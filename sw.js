@@ -1,5 +1,23 @@
 const CACHE_NAME = 'kitaplus-v1';
 
+// התראות Push (FCM) — טעינת ה-SDK בגרסת ה-compat כי ל-service worker אין
+// תמיכת מודולים; ה-init חייב לקרות כאן כדי ש-Firebase יוכל להציג התראה
+// גם כשהאתר סגור לגמרי (background message).
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js');
+
+firebase.initializeApp({
+  apiKey: "AIzaSyBKFa8DtbZdZcn-nDclearM86QmnCe6SM0",
+  authDomain: "hyper-fucos.firebaseapp.com",
+  databaseURL: "https://hyper-fucos-default-rtdb.firebaseio.com",
+  projectId: "hyper-fucos",
+  storageBucket: "hyper-fucos.firebasestorage.app",
+  messagingSenderId: "126453149478",
+  appId: "1:126453149478:web:8f5643d5a622014e915be7"
+});
+
+firebase.messaging();
+
 self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
