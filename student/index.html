@@ -164,15 +164,12 @@ async function callAPI(action, params = {}) {
 async function loadStudentData() {
   const main = document.getElementById('mainContent');
   try {
-    // מביא את נתוני התלמיד דרך getTeacherDashboard — הAPI מחזיר גם נתוני תלמידים
-    const data   = await callAPI('getTeacherDashboard');
-    const groups = data.groups || [];
+    const data = await callAPI('getMyStudentGroup');
+    groupData = data.group;
+    renderDashboard(data.group, data.classAvg);
 
-    // מוצא את הקבוצה של התלמיד הנוכחי
-    const email = currentUser.email;
-    const myGroup = groups.find(g => (g.members || []).some(m => m.toLowerCase() === email.toLowerCase()));
-
-    if (!myGroup) {
+  } catch(e) {
+    if (e.message.includes('שויכת')) {
       main.innerHTML = `
         <div style="text-align:center;padding:60px 20px;">
           <div style="font-size:48px;margin-bottom:16px;">📭</div>
@@ -181,12 +178,6 @@ async function loadStudentData() {
         </div>`;
       return;
     }
-
-    groupData = myGroup;
-    const classAvg = groups.length ? Math.round(groups.reduce((s, g) => s + g.percent, 0) / groups.length) : 0;
-    renderDashboard(myGroup, classAvg);
-
-  } catch(e) {
     main.innerHTML = '<div class="empty-state">שגיאה: ' + e.message + '</div>';
   }
 }
