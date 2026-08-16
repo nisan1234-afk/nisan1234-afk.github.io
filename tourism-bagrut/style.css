@@ -384,6 +384,53 @@ details.qa .answer::before {
 }
 .more-links a { margin-left: 10px; }
 
+/* ===== Podcasts / audio ===== */
+.podcast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.podcast-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px 18px;
+}
+.podcast-card .podcast-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--teal-dark);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.podcast-card .podcast-desc {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 10px;
+}
+.podcast-card audio { width: 100%; display: block; }
+.podcast-card iframe.drive-audio {
+  width: 100%;
+  height: 80px;
+  border: 0;
+  border-radius: 8px;
+}
+.podcast-card .video-wrap { margin-top: 4px; }
+.podcast-empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  background: var(--card);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+}
+.podcast-empty .emoji { font-size: 30px; display: block; margin-bottom: 10px; }
+
 /* ===== Source note ===== */
 .source-note {
   background: var(--sand-2);
