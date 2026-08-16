@@ -105,6 +105,15 @@
     @keyframes spin { to { transform: rotate(360deg); } }
     .empty-state { padding: 40px; text-align: center; color: var(--muted); font-size: 14px; }
 
+    /* SUBJECT PICKER — מוצג רק כשלתלמיד/ה יש יותר ממקצוע אחד */
+    .picker-title { font-size: 20px; font-weight: 800; margin-bottom: 4px; }
+    .picker-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
+    .picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+    .picker-card { cursor: pointer; background: var(--dark2); border: 1px solid rgba(27,42,61,0.08); border-radius: 16px; padding: 22px; transition: transform 0.15s, box-shadow 0.15s; }
+    .picker-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,42,61,0.1); }
+    .picker-icon { font-size: 30px; margin-bottom: 10px; }
+    .picker-name { font-size: 16px; font-weight: 800; }
+
     @media (max-width: 600px) {
       .sections-grid { grid-template-columns: repeat(2, 1fr); }
       .main { padding: 16px; }
@@ -151,8 +160,44 @@ window.onload = async function() {
   const name = currentUser.name || currentUser.email || '';
   document.getElementById('userName').textContent = name.split(' ')[0] || name;
 
-  await loadStudentData();
+  await loadStudentEntry();
 };
+
+/**
+ * נקודת הכניסה של דשבורד התלמיד. אם יש לתלמיד/ה יותר ממקצוע אחד — מציגים
+ * מסך בחירה קטן שמפנה למקצוע הרצוי (הכל קורה שם, לא בעמוד הזה). אם יש
+ * מקצוע יחיד, או שטאב 'subjects' עדיין לא הוגדר ב-Sheet (getMySubjects
+ * מחזירה רשימה ריקה/נכשלת) — ממשיכים בדיוק כמו היום, ישר לתיירות דיגיטלית.
+ */
+async function loadStudentEntry() {
+  let mySubjects = [];
+  try {
+    const data = await callAPI('getMySubjects');
+    mySubjects = data.subjects || [];
+  } catch (e) { /* אין עדיין טאב subjects — פולבק להתנהגות הישנה */ }
+
+  if (mySubjects.length >= 2) {
+    renderSubjectPicker(mySubjects);
+    return;
+  }
+  await loadStudentData();
+}
+
+function renderSubjectPicker(subjects) {
+  const main = document.getElementById('mainContent');
+  main.innerHTML = `
+    <div class="picker-title">המקצועות שלי</div>
+    <div class="picker-sub">בחר/י מקצוע כדי להמשיך</div>
+    <div class="picker-grid">
+      ${subjects.map(s => `
+        <div class="picker-card" onclick="window.location.href='${s.student_url}'">
+          <div class="picker-icon">${s.icon || '📘'}</div>
+          <div class="picker-name">${s.name}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
 
 async function callAPI(action, params = {}) {
   const res  = await fetch(API_URL, { method: 'POST', body: JSON.stringify({ action, token: currentUser.token, ...params }) });

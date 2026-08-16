@@ -263,13 +263,22 @@ async function loadDashboard() {
       return Date.now() - new Date(g.last_active).getTime() > 7 * 24 * 60 * 60 * 1000;
     }).length;
 
-    document.getElementById('statSubjects').textContent = '1';
     document.getElementById('statPairs').textContent    = groups.length;
     document.getElementById('statPairsSub').textContent = groups.length + ' קבוצות רשומות';
     document.getElementById('statAvg').textContent      = avg + '%';
     document.getElementById('statStuck').textContent    = stuck;
 
-    renderSubjects(groups);
+    // מקצועות: אם טאב 'subjects' עוד לא הוגדר ב-Sheet, getMySubjects מחזירה
+    // רשימה ריקה (או שגיאה בגרסאות ישנות של ה-API) — במקרה כזה נופלים חזרה
+    // לרשימה הקבועה הישנה (מקצוע יחיד: תיירות דיגיטלית), בלי שינוי נראה לעין.
+    let mySubjects = [];
+    try {
+      const subjData = await callAPI('getMySubjects');
+      mySubjects = subjData.subjects || [];
+    } catch (e) { /* אין עדיין טאב subjects — פולבק */ }
+
+    document.getElementById('statSubjects').textContent = mySubjects.length || '1';
+    renderSubjects(groups, mySubjects);
     renderActivity(groups);
   } catch(e) {
     document.getElementById('subjectsGrid').innerHTML = '<div class="empty-state">שגיאה: ' + e.message + '</div>';
@@ -284,25 +293,35 @@ function renderRoles(roles) {
   document.getElementById('userRoles').textContent = roles.map(r => labels[r] || r).join(' · ');
 }
 
-function renderSubjects(groups) {
+function renderSubjects(groups, mySubjects) {
   const avg = groups.length ? Math.round(groups.reduce((s, g) => s + g.percent, 0) / groups.length) : 0;
   const grid = document.getElementById('subjectsGrid');
 
-  const subjects = [
-    {
-      id: 'tourism', icon: '🗺️', name: 'תיירות דיגיטלית',
-      desc: 'ניתוח נוכחות דיגיטלית של אתרי תיירות — פרויקט שנתי בקבוצות',
-      url: TOURISM_URL, active: true, cssClass: 'tourism',
-      badge: 'פעיל', badgeClass: 'badge-teal',
-      progress: avg, progressLabel: avg + '% התקדמות ממוצעת · ' + groups.length + ' קבוצות'
-    },
-    {
-      id: 'future1', icon: '📐', name: 'מקצוע נוסף',
-      desc: 'בקרוב — מקצוע נוסף יתווסף כאן',
-      url: null, active: false, cssClass: 'future',
-      badge: 'בקרוב', badgeClass: 'badge-gray', progress: 0, progressLabel: ''
-    }
-  ];
+  const tourismCard = {
+    id: 'tourism', icon: '🗺️', name: 'תיירות דיגיטלית',
+    desc: 'ניתוח נוכחות דיגיטלית של אתרי תיירות — פרויקט שנתי בקבוצות',
+    url: TOURISM_URL, active: true, cssClass: 'tourism',
+    badge: 'פעיל', badgeClass: 'badge-teal',
+    progress: avg, progressLabel: avg + '% התקדמות ממוצעת · ' + groups.length + ' קבוצות'
+  };
+
+  // אם ה-Sheet כבר מגדיר מקצועות דרך getMySubjects — משתמשים בזה (דינמי,
+  // תומך בכמה מקצועות). אחרת נופלים חזרה לרשימה הקבועה הישנה.
+  const subjects = (mySubjects && mySubjects.length)
+    ? mySubjects.map(s => s.subject_id === 'tourism' ? tourismCard : {
+        id: s.subject_id, icon: s.icon || '📘', name: s.name, desc: '',
+        url: s.teacher_url, active: true, cssClass: 'tourism',
+        badge: 'פעיל', badgeClass: 'badge-teal', progress: 0, progressLabel: ''
+      })
+    : [
+        tourismCard,
+        {
+          id: 'future1', icon: '📐', name: 'מקצוע נוסף',
+          desc: 'בקרוב — מקצוע נוסף יתווסף כאן',
+          url: null, active: false, cssClass: 'future',
+          badge: 'בקרוב', badgeClass: 'badge-gray', progress: 0, progressLabel: ''
+        }
+      ];
 
   grid.innerHTML = subjects.map(s => `
     <div class="subject-card ${s.cssClass} ${s.active ? '' : 'coming-soon'}" onclick="${s.active ? 'window.location.href=\'' + s.url + '\'' : ''}">
