@@ -157,6 +157,7 @@
     <button class="tab-btn active" onclick="switchTab('teachers', this)">מורים</button>
     <button class="tab-btn" onclick="switchTab('students', this)">תלמידים</button>
     <button class="tab-btn" onclick="switchTab('log', this); loadLog()">לוג פעילות</button>
+    <button class="tab-btn" onclick="switchTab('subjects', this); loadSubjects()">מקצועות</button>
   </div>
 
   <!-- מורים -->
@@ -224,6 +225,32 @@
     </div>
   </div>
 
+  <!-- מקצועות -->
+  <div class="screen" id="tab-subjects">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">ניהול מקצועות</div>
+        <button class="btn btn-role" onclick="openSubjectModal()">+ הוסף מקצוע</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>אייקון</th>
+              <th>שם המקצוע</th>
+              <th>מזהה</th>
+              <th>סטטוס</th>
+              <th>פעולות</th>
+            </tr>
+          </thead>
+          <tbody id="subjectsBody">
+            <tr><td colspan="5" class="empty-state"><span class="loading-spinner"></span> טוען...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <!-- מודל ניהול תפקידים -->
@@ -247,6 +274,38 @@
   </div>
 </div>
 
+<!-- מודל הוספת מקצוע -->
+<div class="modal-overlay" id="subjectModal">
+  <div class="modal">
+    <div class="modal-title">הוספת מקצוע חדש</div>
+    <div class="form-group">
+      <label>שם המקצוע</label>
+      <input type="text" id="subjectName" class="search-input" style="width:100%;" placeholder="לדוגמה: תיירות דיגיטלית" />
+    </div>
+    <div class="form-group">
+      <label>מזהה (אנגלית קטנה, ללא רווחים)</label>
+      <input type="text" id="subjectId" class="search-input" style="width:100%;" placeholder="לדוגמה: tourism" />
+    </div>
+    <div class="form-group">
+      <label>אייקון (אימוג'י)</label>
+      <input type="text" id="subjectIcon" class="search-input" style="width:100%;" placeholder="📘" />
+    </div>
+    <div class="form-group">
+      <label>קישור מורה (לא חובה)</label>
+      <input type="text" id="subjectTeacherUrl" class="search-input" style="width:100%;" placeholder="https://..." />
+    </div>
+    <div class="form-group">
+      <label>קישור תלמיד (לא חובה)</label>
+      <input type="text" id="subjectStudentUrl" class="search-input" style="width:100%;" placeholder="https://..." />
+    </div>
+    <div id="subjectModalError" style="color:var(--error);font-size:12px;margin-top:6px;"></div>
+    <div class="modal-footer">
+      <button class="btn-modal-cancel" onclick="hideModal('subjectModal')">ביטול</button>
+      <button class="btn-modal-confirm" onclick="submitSubject()">הוסף מקצוע</button>
+    </div>
+  </div>
+</div>
+
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(function(){});
@@ -257,6 +316,7 @@ const API_URL    = 'https://script.google.com/macros/s/AKfycbwf3-MNZBBi64zXcNH7w
 let currentUser  = null;
 let allTeachers  = [];
 let allStudents  = [];
+let allSubjects  = [];
 let selectedTeacherEmail = null;
 
 // ========== INIT ==========
@@ -434,6 +494,87 @@ async function addRole() {
     await callAPI('addRole', { targetEmail: selectedTeacherEmail, role });
     hideModal('roleModal');
     alert('התפקיד נוסף בהצלחה!');
+  } catch(e) { alert('שגיאה: ' + e.message); }
+}
+
+// ========== SUBJECTS ==========
+
+async function loadSubjects() {
+  const tbody = document.getElementById('subjectsBody');
+  try {
+    const data = await callAPI('getSubjectsAdmin');
+    allSubjects = data.subjects || [];
+    renderSubjects();
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="5" class="empty-state">שגיאה: ' + e.message + '</td></tr>';
+  }
+}
+
+function renderSubjects() {
+  const tbody = document.getElementById('subjectsBody');
+  if (!allSubjects.length) {
+    tbody.innerHTML = '<tr><td colspan="5" class="empty-state">אין מקצועות עדיין</td></tr>';
+    return;
+  }
+  tbody.innerHTML = allSubjects.map(s => {
+    const isActive = (s.status || 'active') === 'active';
+    const statusBadge = isActive
+      ? '<span class="badge badge-success">פעיל</span>'
+      : '<span class="badge badge-error">מושבת</span>';
+    const toggleBtn = isActive
+      ? '<button class="btn btn-block" onclick="toggleSubjectStatus(\'' + s.subject_id + '\', \'inactive\')">✗ השבת</button>'
+      : '<button class="btn btn-unblock" onclick="toggleSubjectStatus(\'' + s.subject_id + '\', \'active\')">↩ הפעל</button>';
+    return '<tr>' +
+      '<td style="font-size:18px;">' + (s.icon || '📘') + '</td>' +
+      '<td><strong>' + (s.name || '—') + '</strong></td>' +
+      '<td style="color:var(--muted)">' + (s.subject_id || '—') + '</td>' +
+      '<td>' + statusBadge + '</td>' +
+      '<td><div class="actions">' + toggleBtn + '</div></td>' +
+      '</tr>';
+  }).join('');
+}
+
+function openSubjectModal() {
+  document.getElementById('subjectName').value = '';
+  document.getElementById('subjectId').value = '';
+  document.getElementById('subjectIcon').value = '';
+  document.getElementById('subjectTeacherUrl').value = '';
+  document.getElementById('subjectStudentUrl').value = '';
+  document.getElementById('subjectModalError').textContent = '';
+  showModal('subjectModal');
+}
+
+async function submitSubject() {
+  const name = document.getElementById('subjectName').value.trim();
+  const subject_id = document.getElementById('subjectId').value.trim();
+  const icon = document.getElementById('subjectIcon').value.trim();
+  const teacher_url = document.getElementById('subjectTeacherUrl').value.trim();
+  const student_url = document.getElementById('subjectStudentUrl').value.trim();
+  const errEl = document.getElementById('subjectModalError');
+  errEl.textContent = '';
+  if (!name || !subject_id) {
+    errEl.textContent = 'יש למלא שם ומזהה למקצוע';
+    return;
+  }
+  if (!/^[a-z0-9_]+$/.test(subject_id)) {
+    errEl.textContent = 'מזהה חייב להכיל רק אותיות אנגליות קטנות, ספרות וקו תחתון';
+    return;
+  }
+  try {
+    await callAPI('addSubject', { subject_id, name, icon, teacher_url, student_url });
+    hideModal('subjectModal');
+    await loadSubjects();
+  } catch(e) {
+    errEl.textContent = 'שגיאה: ' + e.message;
+  }
+}
+
+async function toggleSubjectStatus(subject_id, status) {
+  try {
+    await callAPI('updateSubjectStatus', { subject_id, status });
+    const s = allSubjects.find(s => s.subject_id === subject_id);
+    if (s) s.status = status;
+    renderSubjects();
   } catch(e) { alert('שגיאה: ' + e.message); }
 }
 
