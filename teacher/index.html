@@ -90,6 +90,7 @@
     .subject-card::before { content: ''; position: absolute; top: 0; right: 0; width: 4px; height: 100%; }
     .subject-card.tourism::before { background: linear-gradient(180deg, var(--teal), var(--blue)); }
     .subject-card.future::before { background: var(--dark4); }
+    .subject-card.bagrut::before { background: linear-gradient(180deg, var(--purple), var(--orange)); }
     .subject-icon { font-size: 36px; margin-bottom: 14px; }
     .subject-name { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
     .subject-desc { font-size: 13px; color: var(--muted); margin-bottom: 18px; line-height: 1.6; }
@@ -97,6 +98,7 @@
     .subject-badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; }
     .badge-teal { background: rgba(20,184,166,0.15); color: var(--teal); border: 1px solid rgba(20,184,166,0.3); }
     .badge-gray { background: rgba(156,163,175,0.1); color: var(--muted); border: 1px solid rgba(156,163,175,0.2); }
+    .badge-purple { background: rgba(139,92,246,0.15); color: var(--purple); border: 1px solid rgba(139,92,246,0.3); }
     .subject-arrow { font-size: 20px; color: var(--muted); transition: all 0.2s; }
     .subject-card:hover .subject-arrow { color: var(--blue-light); transform: translateX(-4px); }
 
@@ -220,6 +222,7 @@ const HOMEROOM_URL  = 'https://nisan1234-afk.github.io/homeroom/';
 const ADMIN_URL     = 'https://nisan1234-afk.github.io/admin/';
 const API_URL       = 'https://script.google.com/macros/s/AKfycbwf3-MNZBBi64zXcNH7wfhBRoEBl9brtQ9QRI4Won5RmUIOrl_WBivN6uI5NAp6Mc0h/exec';
 
+const BAGRUT_TEACHER_URL = 'https://nisan1234-afk.github.io/tourism11/teacher/';
 let currentUser = null;
 let dashboardData = null;
 
@@ -296,6 +299,12 @@ function renderSubjects(groups) {
       badge: 'פעיל', badgeClass: 'badge-teal',
       progress: avg, progressLabel: avg + '% התקדמות ממוצעת · ' + groups.length + ' קבוצות'
     },
+        {
+          id: 'tourism_bagrut', icon: '🎓', name: 'תיירות בגרות',
+          desc: 'הכנה לבחינת הבגרות בתיירות — יחידות לימוד ובוחני הצלחה אישיים',
+          url: BAGRUT_TEACHER_URL, active: true, cssClass: 'bagrut',
+          badge: 'פעיל', badgeClass: 'badge-purple', progress: 0, progressLabel: ''
+        },
     {
       id: 'future1', icon: '📐', name: 'מקצוע נוסף',
       desc: 'בקרוב — מקצוע נוסף יתווסף כאן',
