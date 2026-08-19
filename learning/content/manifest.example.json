@@ -1,0 +1,21 @@
+{
+  "subjects": [
+    {
+      "id": "example-subject",
+      "title": "שם המקצוע",
+      "topics": [
+        {
+          "id": "example-topic",
+          "title": "שם הנושא",
+          "sourceDriveFolder": "https://drive.google.com/drive/folders/...",
+          "files": {
+            "summary": "content/example-subject/example-topic/summary.md",
+            "guide": "content/example-subject/example-topic/guide.md",
+            "quiz": "content/example-subject/example-topic/quiz.json",
+            "audio": ["content/example-subject/example-topic/audio-01.mp3"]
+          }
+        }
+      ]
+    }
+  ]
+}
