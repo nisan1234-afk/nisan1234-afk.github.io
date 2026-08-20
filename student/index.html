@@ -37,6 +37,12 @@
 
     .main { max-width: 900px; margin: 0 auto; padding: 28px 24px; }
 
+    /* BAGRUT PROMO BANNER (מוצג רק אם התלמיד/ה רשומ/ה גם ל"תיירות בגרות") */
+    .bagrut-promo { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; background: linear-gradient(135deg, rgba(139,92,246,0.12), rgba(30,144,255,0.08)); border: 1px solid rgba(139,92,246,0.3); border-radius: 16px; padding: 16px 20px; margin-bottom: 20px; text-decoration: none; }
+    .bagrut-promo-text { font-size: 14px; font-weight: 700; color: var(--text); }
+    .bagrut-promo-sub { font-size: 12px; color: var(--muted); margin-top: 2px; font-weight: 400; }
+    .bagrut-promo-arrow { color: var(--purple); font-size: 20px; }
+
     /* HERO */
     .hero { background: linear-gradient(135deg, rgba(30,144,255,0.09), rgba(14,158,143,0.06)); border: 1px solid rgba(27,42,61,0.08); border-radius: 20px; padding: 28px; margin-bottom: 28px; }
     .hero-top { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px; }
@@ -178,7 +184,7 @@ async function loadStudentData() {
 
     const data = await callAPI('getMyStudentGroup');
     groupData = data.group;
-    renderDashboard(data.group, data.classAvg);
+    renderDashboard(data.group, data.classAvg, !!bagrut);
 
   } catch(e) {
     if (e.message.includes('שויכת')) {
@@ -194,8 +200,16 @@ async function loadStudentData() {
   }
 }
 
-function renderDashboard(group, classAvg) {
+function renderDashboard(group, classAvg, bagrutEnrolled) {
   const main     = document.getElementById('mainContent');
+  const bagrutPromo = bagrutEnrolled ? `
+    <a class="bagrut-promo" href="${TOURISM_BAGRUT_URL}">
+      <div>
+        <div class="bagrut-promo-text">🎓 את/ה רשומ/ה גם למקצוע "תיירות בגרות"</div>
+        <div class="bagrut-promo-sub">מעבר לדשבורד האישי — יחידות תוכן, בוחנים ובגרות מדומה</div>
+      </div>
+      <div class="bagrut-promo-arrow">←</div>
+    </a>` : '';
   const name     = currentUser.name || currentUser.email.split('@')[0];
   const myEmail  = currentUser.email;
   const others   = (group.members || []).filter(m => m.toLowerCase() !== myEmail.toLowerCase());
@@ -234,6 +248,7 @@ function renderDashboard(group, classAvg) {
   }).join('');
 
   main.innerHTML = `
+    ${bagrutPromo}
     <!-- HERO -->
     <div class="hero">
       <div class="hero-top">
