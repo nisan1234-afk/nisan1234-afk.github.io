@@ -223,6 +223,7 @@ const ADMIN_URL     = 'https://nisan1234-afk.github.io/admin/';
 const API_URL       = 'https://script.google.com/macros/s/AKfycbwf3-MNZBBi64zXcNH7wfhBRoEBl9brtQ9QRI4Won5RmUIOrl_WBivN6uI5NAp6Mc0h/exec';
 
 const BAGRUT_TEACHER_URL = 'https://nisan1234-afk.github.io/tourism11/teacher/';
+const BAGRUT_NEW_TEACHER_URL = 'https://nisan1234-afk.github.io/tourism-bagrut-v2/teacher.html';
 let currentUser = null;
 let dashboardData = null;
 
@@ -266,7 +267,7 @@ async function loadDashboard() {
       return Date.now() - new Date(g.last_active).getTime() > 7 * 24 * 60 * 60 * 1000;
     }).length;
 
-    document.getElementById('statSubjects').textContent = '1';
+    document.getElementById('statSubjects').textContent = '3';
     document.getElementById('statPairs').textContent    = groups.length;
     document.getElementById('statPairsSub').textContent = groups.length + ' קבוצות רשומות';
     document.getElementById('statAvg').textContent      = avg + '%';
@@ -300,10 +301,16 @@ function renderSubjects(groups) {
       progress: avg, progressLabel: avg + '% התקדמות ממוצעת · ' + groups.length + ' קבוצות'
     },
         {
-          id: 'tourism_bagrut', icon: '🎓', name: 'תיירות בגרות',
-          desc: 'הכנה לבחינת הבגרות בתיירות — יחידות לימוד ובוחני הצלחה אישיים',
+          id: 'tourism_bagrut', icon: '📚', name: 'תיירות בגרות — ישן',
+          desc: 'המערכת הקיימת להכנה לבגרות — נשמרת ללא שינוי בתקופת המעבר',
           url: BAGRUT_TEACHER_URL, active: true, cssClass: 'bagrut',
-          badge: 'פעיל', badgeClass: 'badge-purple', progress: 0, progressLabel: ''
+          badge: 'ישן · פעיל', badgeClass: 'badge-purple', progress: 0, progressLabel: ''
+        },
+        {
+          id: 'tourism_bagrut_new', icon: '✨', name: 'תיירות בגרות — חדש',
+          desc: 'המערכת החדשה — יחידות מסודרות, מצגות, משחקים, שאלות פתוחות ותובנות למורה',
+          url: BAGRUT_NEW_TEACHER_URL, active: true, cssClass: 'bagrut',
+          badge: 'חדש · בהרצה', badgeClass: 'badge-teal', progress: 0, progressLabel: ''
         },
     {
       id: 'future1', icon: '📐', name: 'מקצוע נוסף',
