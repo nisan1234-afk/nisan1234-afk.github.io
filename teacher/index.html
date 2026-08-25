@@ -338,6 +338,10 @@ function renderSubjects(groups) {
   `).join('');
 }
 
+function safe(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function renderActivity(groups) {
   const feed = document.getElementById('activityFeed');
   const active = groups.filter(g => g.last_active).sort((a, b) =>
@@ -358,7 +362,7 @@ function renderActivity(groups) {
         <div class="activity-dot ${dotClass}">${icon}</div>
         <div>
           <div class="activity-text">
-            <strong>${g.site_name || 'אתר לא נבחר'}</strong> — סעיף ${g.current_section || '—'} · ${g.percent}% הושלמו
+            <strong>${safe(g.site_name || 'אתר לא נבחר')}</strong> — סעיף ${safe(g.current_section || '—')} · ${g.percent}% הושלמו
           </div>
           <div class="activity-time">${timeAgo}</div>
         </div>

@@ -379,6 +379,10 @@ function renderStats(stats) {
 
 // ========== TEACHERS ==========
 
+function safe(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function renderTeachers(teachers) {
   const tbody = document.getElementById('teachersBody');
   if (!teachers.length) {
@@ -393,23 +397,23 @@ function renderTeachers(teachers) {
                              '<span class="badge badge-error">חסום</span>';
 
     const driveBtn = t.folder_id
-      ? '<a href="https://drive.google.com/drive/folders/' + t.folder_id + '" target="_blank" class="btn btn-drive">📁 Drive</a>'
+      ? '<a href="https://drive.google.com/drive/folders/' + encodeURIComponent(t.folder_id) + '" target="_blank" class="btn btn-drive">📁 Drive</a>'
       : '<span style="color:var(--muted);font-size:11px;">—</span>';
 
     const date = t.created_date ? new Date(t.created_date).toLocaleDateString('he-IL') : '—';
 
     const actions = '<div class="actions">' +
-      (status === 'pending' ? '<button class="btn btn-approve" onclick="approveTeacher(\'' + t.email + '\')">✓ אשר</button>' : '') +
-      (status === 'active'  ? '<button class="btn btn-block" onclick="blockTeacher(\'' + t.email + '\')">✗ חסום</button>' : '') +
-      (status === 'blocked' ? '<button class="btn btn-unblock" onclick="approveTeacher(\'' + t.email + '\')">↩ שחרר</button>' : '') +
-      '<button class="btn btn-role" onclick="openRoleModal(\'' + t.email + '\', \'' + (t.name || '') + '\')">תפקידים</button>' +
+      (status === 'pending' ? '<button class="btn btn-approve" data-approve-teacher="' + safe(t.email) + '">✓ אשר</button>' : '') +
+      (status === 'active'  ? '<button class="btn btn-block" data-block-teacher="' + safe(t.email) + '">✗ חסום</button>' : '') +
+      (status === 'blocked' ? '<button class="btn btn-unblock" data-approve-teacher="' + safe(t.email) + '">↩ שחרר</button>' : '') +
+      '<button class="btn btn-role" data-role-email="' + safe(t.email) + '" data-role-name="' + safe(t.name || '') + '">תפקידים</button>' +
       driveBtn +
       '</div>';
 
     return '<tr>' +
-      '<td><strong>' + (t.name || '—') + '</strong></td>' +
-      '<td style="color:var(--muted)">' + (t.email || '—') + '</td>' +
-      '<td>' + (t.phone || '—') + '</td>' +
+      '<td><strong>' + safe(t.name || '—') + '</strong></td>' +
+      '<td style="color:var(--muted)">' + safe(t.email || '—') + '</td>' +
+      '<td>' + safe(t.phone || '—') + '</td>' +
       '<td>' + statusBadge + '</td>' +
       '<td><span class="badge badge-purple">מורה</span></td>' +
       '<td>' + driveBtn + '</td>' +
@@ -417,6 +421,9 @@ function renderTeachers(teachers) {
       '<td>' + actions + '</td>' +
       '</tr>';
   }).join('');
+  tbody.querySelectorAll('[data-approve-teacher]').forEach(b => b.addEventListener('click', () => approveTeacher(b.dataset.approveTeacher)));
+  tbody.querySelectorAll('[data-block-teacher]').forEach(b => b.addEventListener('click', () => blockTeacher(b.dataset.blockTeacher)));
+  tbody.querySelectorAll('[data-role-email]').forEach(b => b.addEventListener('click', () => openRoleModal(b.dataset.roleEmail, b.dataset.roleName)));
 }
 
 function filterTeachers(q) {
@@ -463,10 +470,10 @@ function renderStudents(students) {
   tbody.innerHTML = students.map(s => {
     const date = s.created_date ? new Date(s.created_date).toLocaleDateString('he-IL') : '—';
     return '<tr>' +
-      '<td><strong>' + (s.name || '—') + '</strong></td>' +
-      '<td style="color:var(--muted)">' + (s.email || '—') + '</td>' +
-      '<td>' + (s.phone || '—') + '</td>' +
-      '<td>' + (s.class || '—') + '</td>' +
+      '<td><strong>' + safe(s.name || '—') + '</strong></td>' +
+      '<td style="color:var(--muted)">' + safe(s.email || '—') + '</td>' +
+      '<td>' + safe(s.phone || '—') + '</td>' +
+      '<td>' + safe(s.class || '—') + '</td>' +
       '<td style="color:var(--muted);font-size:12px;">' + date + '</td>' +
       '</tr>';
   }).join('');
@@ -522,16 +529,17 @@ function renderSubjects() {
       ? '<span class="badge badge-success">פעיל</span>'
       : '<span class="badge badge-error">מושבת</span>';
     const toggleBtn = isActive
-      ? '<button class="btn btn-block" onclick="toggleSubjectStatus(\'' + s.subject_id + '\', \'inactive\')">✗ השבת</button>'
-      : '<button class="btn btn-unblock" onclick="toggleSubjectStatus(\'' + s.subject_id + '\', \'active\')">↩ הפעל</button>';
+      ? '<button class="btn btn-block" data-toggle-subject="' + safe(s.subject_id) + '" data-toggle-status="inactive">✗ השבת</button>'
+      : '<button class="btn btn-unblock" data-toggle-subject="' + safe(s.subject_id) + '" data-toggle-status="active">↩ הפעל</button>';
     return '<tr>' +
-      '<td style="font-size:18px;">' + (s.icon || '📘') + '</td>' +
-      '<td><strong>' + (s.name || '—') + '</strong></td>' +
-      '<td style="color:var(--muted)">' + (s.subject_id || '—') + '</td>' +
+      '<td style="font-size:18px;">' + safe(s.icon || '📘') + '</td>' +
+      '<td><strong>' + safe(s.name || '—') + '</strong></td>' +
+      '<td style="color:var(--muted)">' + safe(s.subject_id || '—') + '</td>' +
       '<td>' + statusBadge + '</td>' +
       '<td><div class="actions">' + toggleBtn + '</div></td>' +
       '</tr>';
   }).join('');
+  tbody.querySelectorAll('[data-toggle-subject]').forEach(b => b.addEventListener('click', () => toggleSubjectStatus(b.dataset.toggleSubject, b.dataset.toggleStatus)));
 }
 
 function openSubjectModal() {

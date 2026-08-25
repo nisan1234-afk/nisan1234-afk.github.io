@@ -249,6 +249,10 @@ async function loadData() {
   }
 }
 
+function safe(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function renderStudentCards() {
   const grid = document.getElementById('studentGrid');
   if (!groupsData.length) {
@@ -271,15 +275,15 @@ function renderStudentCards() {
 
     const members    = g.members || [];
     const namesLabel = members.length ? members.map(m => m.split('@')[0]).join(' + ') : (g.group_name || '—');
-    const avatarLetter = (g.group_name || members[0] || '?')[0].toUpperCase();
+    const avatarLetter = safe((g.group_name || members[0] || '?')[0].toUpperCase());
 
     return `
       <div class="student-card ${cardClass}">
         <div class="student-header">
           <div class="student-avatar">${avatarLetter}</div>
           <div>
-            <div class="student-name">${g.group_name || namesLabel}</div>
-            <div class="student-email">${g.site_name || 'אתר לא נבחר עדיין'}</div>
+            <div class="student-name">${safe(g.group_name || namesLabel)}</div>
+            <div class="student-email">${safe(g.site_name || 'אתר לא נבחר עדיין')}</div>
           </div>
         </div>
 
@@ -305,7 +309,7 @@ function renderStudentCards() {
 
         <div class="student-footer">
           <span class="last-active-label ${timeClass}">${isAlert ? '⚠️ ' : ''}${timeLabel}</span>
-          <span style="font-size:11px;color:var(--muted)">סעיף ${g.current_section || '—'} / 8</span>
+          <span style="font-size:11px;color:var(--muted)">סעיף ${safe(g.current_section || '—')} / 8</span>
         </div>
       </div>
     `;
@@ -337,7 +341,7 @@ function renderComparisonTable() {
     </div>`;
 
     return `<tr>
-      <td><strong>${g.group_name || namesLabel}</strong><br><span style="font-size:11px;color:var(--muted)">${namesLabel}</span></td>
+      <td><strong>${safe(g.group_name || namesLabel)}</strong><br><span style="font-size:11px;color:var(--muted)">${safe(namesLabel)}</span></td>
       <td>${tourismBar}</td>
       <td><span style="color:var(--muted);font-size:12px;">—</span></td>
       <td><span style="color:var(--muted);font-size:12px;">—</span></td>

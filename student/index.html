@@ -195,6 +195,10 @@ async function loadStudentData() {
   }
 }
 
+function safe(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 function renderDashboard(group, classAvg) {
   const main     = document.getElementById('mainContent');
   const name     = currentUser.name || currentUser.email.split('@')[0];
@@ -239,8 +243,8 @@ function renderDashboard(group, classAvg) {
     <div class="hero">
       <div class="hero-top">
         <div class="hero-greeting">
-          <h2>שלום, ${name.split(' ')[0]}!</h2>
-          <p>🤝 ${others.length ? 'חברי הקבוצה: ' + partnerName : partnerName} · אתר: ${group.site_name || 'לא נבחר עדיין'}</p>
+          <h2>שלום, ${safe(name.split(' ')[0])}!</h2>
+          <p>🤝 ${safe(others.length ? 'חברי הקבוצה: ' + partnerName : partnerName)} · אתר: ${safe(group.site_name || 'לא נבחר עדיין')}</p>
         </div>
         <div class="hero-badge">
           <div class="hero-badge-num">${percent}%</div>
@@ -289,7 +293,7 @@ function renderDashboard(group, classAvg) {
       </div>
       ${others.map(m => `
       <div class="contrib-row">
-        <div class="contrib-label">${m.split('@')[0]} (solo)</div>
+        <div class="contrib-label">${safe(m.split('@')[0])} (solo)</div>
         <div class="contrib-bar"><div class="contrib-fill partner" style="width:${contrib[m]||0}%"></div></div>
         <div class="contrib-pct" style="color:var(--teal)">${contrib[m]||0}%</div>
       </div>`).join('')}
