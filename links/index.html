@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>האתרים שלי — ניסן</title>
+  <meta name="theme-color" content="#1E90FF">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Secular+One&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blue: #1E90FF; --blue-dark: #0B66C7;
+      --dark: #FFF8ED; --dark2: #FFFFFF; --dark3: #FFEFD9;
+      --text: #1B2A3D; --muted: #6C7A8C;
+      --admin: #8B5CF6; --admin-light: #6D28D9;
+      --gold: #F2A900; --warning: #FF7A3D;
+      --font-display: 'Secular One', 'Heebo', sans-serif;
+    }
+    body {
+      font-family: 'Heebo', sans-serif; background: var(--dark); color: var(--text);
+      min-height: 100vh;
+    }
+    .bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(ellipse 70% 50% at 30% 20%, rgba(30,144,255,0.10) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 70%, rgba(255,122,61,0.08) 0%, transparent 60%), var(--dark); }
+    .wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 48px 20px 64px; }
+    header { text-align: center; margin-bottom: 40px; }
+    header h1 { font-family: var(--font-display); font-size: 34px; font-weight: 400; background: linear-gradient(135deg, var(--blue-dark), var(--admin-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    header p { color: var(--muted); font-size: 14px; margin-top: 8px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+    .card {
+      background: var(--dark2); border: 1px solid rgba(27,42,61,0.08); border-radius: 18px;
+      padding: 22px 22px 20px; box-shadow: 0 12px 32px rgba(27,42,61,0.08);
+      display: flex; flex-direction: column; gap: 10px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(27,42,61,0.14); }
+    .card h2 { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+    .card p { font-size: 13.5px; color: var(--muted); line-height: 1.6; flex-grow: 1; }
+    .card a.btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 4px; padding: 10px 14px; border-radius: 10px; text-decoration: none;
+      background: linear-gradient(135deg, var(--blue), var(--admin)); color: #fff;
+      font-size: 13.5px; font-weight: 700; box-shadow: 0 4px 14px rgba(30,144,255,0.25);
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+    .card a.btn:hover { filter: brightness(1.08); }
+    .card a.btn:active { transform: scale(0.97); }
+    footer { text-align: center; margin-top: 40px; font-size: 12.5px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+  <div class="wrap">
+    <header>
+      <h1>האתרים שלי</h1>
+      <p>כל הפרויקטים והאתרים שבניתי, במקום אחד</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>כיתה פלוס</h2>
+        <p>מערכת ניהול למידה לישיבת אלוני הבשן — כניסה אחת למורים, לתלמידים ולהנהלה, עם מעקב התקדמות ומטלות.</p>
+        <a class="btn" href="/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>תיירות לבגרות</h2>
+        <p>אתר לימוד לבגרות במגמת תיירות, חלק ממערכת כיתה פלוס — יחידות לימוד לפי חבלי ארץ ומעקב התקדמות אישי.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/tourism-bagrut-v2/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>חזרה לבגרות בתיירות — י"א</h2>
+        <p>אתר חזרה לבגרות במגמת תיירות לכיתה י"א, עם מושגי יסוד וסיור וירטואלי בארבעה חבלי ארץ תיירותיים.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/tourism11/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>כרטיסיות תיירות — ירושלים ועוד</h2>
+        <p>משחק כרטיסיות (Flashcards) לזיהוי ולימוד אתרי תיירות בישראל לפי תמונות, לקראת בגרות תשפ"ו.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/jerusalem-tour/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>עבודת קבוצות — תיירות דיגיטלית</h2>
+        <p>פלטפורמת עבודת קבוצות לתלמידים בנושא נוכחות דיגיטלית של אתרי תיירות, בשמונה שלבי עבודה מודרכים.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/tourism/student/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>צ'קליסט היערכות לתיירות</h2>
+        <p>צ'קליסט אינטראקטיבי להיערכות למשימת תיירות — בניית מסלול, טיסות ואטרקציות, עם שליחת דוח התקדמות למורה.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/tayarut12/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>גלריית פרויקטים דיגיטליים</h2>
+        <p>גלריית עבודות תלמידים ממגמת תיירות ואירוח, על נוכחות דיגיטלית של אתרים כמו החרמון, סופרלנד וגן החיות התנ"כי.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/HADSHANOTDIG2025/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>תוכנית שנתית תשפ"ז</h2>
+        <p>לוח ותוכנית עבודה שנתית לישיבת אלוני הבשן, עם התחברות דרך Google לצפייה מותאמת אישית.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/school-calendar-tashpaz/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>משחק חשבון לילדים</h2>
+        <p>משחק חשבון אינטראקטיבי לילדים — חיבור, חיסור וסדרות, עם קופיף מטפס על עצים וזיקוקים בכל הצלחה.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/math-game/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>לוח הכפל</h2>
+        <p>משחק תרגול לוח הכפל לילדים, עם דמות מונפשת, רצפי תרגול וחגיגת קונפטי בכל תשובה נכונה.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/multiply-/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>לימוד ערבית מדוברת</h2>
+        <p>משחק ללימוד ערבית מדוברת — אותיות, מילים ומשפטים עם קבצי שמע, ודורש התחברות עם חשבון Google.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/arabic-learning-game/" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+
+      <div class="card">
+        <h2>מיני-משחקים</h2>
+        <p>אוסף מיני-משחקי דפדפן: משחק דארטס לשני שחקנים ומשחק אוצר מילים באנגלית ועברית, עשרות זוגות מילים ברמות קושי שונות.</p>
+        <a class="btn" href="https://nisan1234-afk.github.io/my-games/darts_game.html" target="_blank" rel="noopener">כניסה לאתר</a>
+      </div>
+    </div>
+
+    <footer>נבנה ומתוחזק בעצמי — כל הזכויות שמורות</footer>
+  </div>
+</body>
+</html>
