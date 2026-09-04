@@ -149,7 +149,7 @@
     <div class="stat-card"><div class="stat-num purple" id="statTeachers">—</div><div class="stat-label">מורים פעילים</div></div>
     <div class="stat-card"><div class="stat-num blue" id="statStudents">—</div><div class="stat-label">תלמידים רשומים</div></div>
     <div class="stat-card"><div class="stat-num warning" id="statPending">—</div><div class="stat-label">ממתינים לאישור</div></div>
-    <div class="stat-card"><div class="stat-num green" id="statSchools">—</div><div class="stat-label">בתי ספר</div></div>
+    <div class="stat-card"><div class="stat-num green" id="statBlocked">—</div><div class="stat-label">חסומים</div></div>
   </div>
 
   <!-- טאבים -->
@@ -374,7 +374,7 @@ function renderStats(stats) {
   document.getElementById('statTeachers').textContent = stats.active || 0;
   document.getElementById('statStudents').textContent = stats.students || 0;
   document.getElementById('statPending').textContent  = stats.pending || 0;
-  document.getElementById('statSchools').textContent  = '1';
+  document.getElementById('statBlocked').textContent  = (allTeachers.filter(t => t.status === 'blocked').length);
 }
 
 // ========== TEACHERS ==========
@@ -457,6 +457,7 @@ async function blockTeacher(email) {
 function updateStats() {
   document.getElementById('statTeachers').textContent = allTeachers.filter(t => t.status === 'active').length;
   document.getElementById('statPending').textContent  = allTeachers.filter(t => t.status === 'pending').length;
+  document.getElementById('statBlocked').textContent  = allTeachers.filter(t => t.status === 'blocked').length;
 }
 
 // ========== STUDENTS ==========
@@ -590,11 +591,10 @@ async function toggleSubjectStatus(subject_id, status) {
 
 function loadLog() {
   const container = document.getElementById('logContainer');
-  const logs = [
-    { icon: '🔑', text: 'כניסה למערכת', email: currentUser.email, time: 'עכשיו' },
-  ];
+  // הבקאנד עדיין לא שומר לוג אירועים; במקום רשומה מזויפת מציגים את המצב כמו שהוא
+  const logs = [];
   if (!logs.length) {
-    container.innerHTML = '<div class="empty-state">אין פעילות מתועדת</div>';
+    container.innerHTML = '<div class="empty-state">לוג הפעילות עדיין לא מחובר לשרת. הפעולות של המורים והתלמידים נשמרות בגיליונות, לא כאן.</div>';
     return;
   }
   container.innerHTML = logs.map(l => `

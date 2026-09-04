@@ -267,7 +267,7 @@ async function loadDashboard() {
       return Date.now() - new Date(g.last_active).getTime() > 7 * 24 * 60 * 60 * 1000;
     }).length;
 
-    document.getElementById('statSubjects').textContent = '3';
+    document.getElementById('statSubjects').textContent = String(subjectsList().filter(s => s.active).length);
     document.getElementById('statPairs').textContent    = groups.length;
     document.getElementById('statPairsSub').textContent = groups.length + ' קבוצות רשומות';
     document.getElementById('statAvg').textContent      = avg + '%';
@@ -288,11 +288,9 @@ function renderRoles(roles) {
   document.getElementById('userRoles').textContent = roles.map(r => labels[r] || r).join(' · ');
 }
 
-function renderSubjects(groups) {
+function subjectsList(groups = []) {
   const avg = groups.length ? Math.round(groups.reduce((s, g) => s + g.percent, 0) / groups.length) : 0;
-  const grid = document.getElementById('subjectsGrid');
-
-  const subjects = [
+  return [
     {
       id: 'tourism', icon: '🗺️', name: 'תיירות דיגיטלית',
       desc: 'ניתוח נוכחות דיגיטלית של אתרי תיירות — פרויקט שנתי בקבוצות',
@@ -319,7 +317,11 @@ function renderSubjects(groups) {
       badge: 'בקרוב', badgeClass: 'badge-gray', progress: 0, progressLabel: ''
     }
   ];
+}
 
+function renderSubjects(groups) {
+  const grid = document.getElementById('subjectsGrid');
+  const subjects = subjectsList(groups);
   grid.innerHTML = subjects.map(s => `
     <div class="subject-card ${s.cssClass} ${s.active ? '' : 'coming-soon'}" onclick="${s.active ? 'window.location.href=\'' + s.url + '\'' : ''}">
       <div class="subject-icon">${s.icon}</div>

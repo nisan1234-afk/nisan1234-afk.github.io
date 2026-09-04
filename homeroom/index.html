@@ -126,7 +126,7 @@
 
 <div class="main">
   <div class="page-title" id="pageTitle">ניהול כיתה</div>
-  <div class="page-sub">מעקב התקדמות כללי בכל המקצועות — צפייה בלבד</div>
+  <div class="page-sub">קבוצות הפרויקט בתיירות דיגיטלית — צפייה בלבד. תיירות לבגרות מנוהלת בדשבורד המורה של המקצוע.</div>
 
   <div class="stats-row">
     <div class="stat-card">
@@ -162,21 +162,19 @@
   <!-- טבלת השוואה -->
   <div class="screen" id="tab-table">
     <div class="card">
-      <div class="card-title">השוואת התקדמות — כל המקצועות</div>
+      <div class="card-title">השוואת התקדמות — תיירות דיגיטלית</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>תלמיד</th>
               <th>תיירות דיגיטלית</th>
-              <th>מקצוע 2</th>
-              <th>מקצוע 3</th>
               <th>סה"כ</th>
               <th>פעילות אחרונה</th>
             </tr>
           </thead>
           <tbody id="comparisonBody">
-            <tr><td colspan="6" class="empty-state"><span class="loading-spinner"></span> טוען...</td></tr>
+            <tr><td colspan="4" class="empty-state"><span class="loading-spinner"></span> טוען...</td></tr>
           </tbody>
         </table>
       </div>
@@ -289,7 +287,7 @@ function renderStudentCards() {
 
         <div class="subject-progress">
           <div class="subject-label">
-            <span class="subject-name-label">🗺️ תיירות דיגיטלית</span>
+            <span class="subject-name-label">🗺️ תיירות דיגיטלית (קבוצה)</span>
             <span class="subject-pct" style="color:var(--teal)">${g.percent}%</span>
           </div>
           <div class="progress-bar">
@@ -297,15 +295,6 @@ function renderStudentCards() {
           </div>
         </div>
 
-        <div class="subject-progress">
-          <div class="subject-label">
-            <span class="subject-name-label">📐 מקצוע 2</span>
-            <span class="subject-pct" style="color:var(--muted)">—</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill fill-blue" style="width:0%"></div>
-          </div>
-        </div>
 
         <div class="student-footer">
           <span class="last-active-label ${timeClass}">${isAlert ? '⚠️ ' : ''}${timeLabel}</span>
@@ -319,7 +308,7 @@ function renderStudentCards() {
 function renderComparisonTable() {
   const tbody = document.getElementById('comparisonBody');
   if (!groupsData.length) {
-    tbody.innerHTML = '<tr><td colspan="6" class="empty-state">אין נתונים</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="4" class="empty-state">אין נתונים</td></tr>';
     return;
   }
 
@@ -343,8 +332,6 @@ function renderComparisonTable() {
     return `<tr>
       <td><strong>${safe(g.group_name || namesLabel)}</strong><br><span style="font-size:11px;color:var(--muted)">${safe(namesLabel)}</span></td>
       <td>${tourismBar}</td>
-      <td><span style="color:var(--muted);font-size:12px;">—</span></td>
-      <td><span style="color:var(--muted);font-size:12px;">—</span></td>
       <td><strong style="color:var(--blue-light)">${g.percent}%</strong></td>
       <td>${badge}</td>
     </tr>`;

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kitaplus-v1';
+const CACHE_NAME = 'kitaplus-v2';
 
 // התראות Push (FCM) — טעינת ה-SDK בגרסת ה-compat כי ל-service worker אין
 // תמיכת מודולים; ה-init חייב לקרות כאן כדי ש-Firebase יוכל להציג התראה
@@ -40,8 +40,11 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        // שומרים במטמון רק תגובות תקינות; 404/500 לא נכנסים למטמון ולא מוצגים במצב לא מקוון
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+        }
         return response;
       })
       .catch(() => caches.match(event.request))
