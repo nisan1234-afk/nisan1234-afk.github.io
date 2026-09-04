@@ -21,7 +21,7 @@
 | A7 | **התראות "המורה בדק תשובה" לא מופיעות ב-3 יחידות.** `app.js` (שמכיל `checkReviewNotices`) נטען רק בדף הבית, מישור החוף וירושלים. בעמקים, ים המלח והגליל התלמיד לא רואה את המשוב. | `units/valleys.html`, `dead-sea.html`, `galilee.html` | גבוה |
 | A8 | **`askBagrutBot` פתוח בלי כניסה.** כל מי שמכיר את ה-URL יכול לשרוף מכסת Gemini ו-Apps Script. האתר ממילא דורש כניסה, אז אין סיבה שה-endpoint לא ידרוש טוקן. | כל קבצי היחידות + בקאנד | בינוני-גבוה |
 | A9 | **ניווט מת.** "ההתקדמות שלי" ו"תרגול אישי" עם `href="#"` ותווית "נעול" — ואין CSS ל-`.nav-link.locked` בכלל. כרטיסי היחידות ("6 פרקים · 24 אתרים") סטטיים. | `index.html`, `styles.css` | בינוני |
-| A10 | **מפה מוויקימדיה בירושלים** — סותר את כלל "תמונות רק מ-jerusalem-tour" שמופיע ב-CLAUDE.md. | `region-unit.js` (slides), `units/jerusalem.html` | בינוני |
+| A10 | ~~מפה מוויקימדיה בירושלים~~ — **לא בעיה.** הבהרת נסים (04.09): תמונות עיצוב ואביזרים (כמו המפה האילמת) מותרות מכל מקור; רק צילומי אתרים ונופים לימודיים חייבים להגיע מהמאגר. ה-CLAUDE.md מנוסח מחמיר מדי ושווה לדייק אותו. | `CLAUDE.md` סעיף 4 | אין |
 
 ### B. מבנה ותחזוקה (הסיבה שהבאגים חוזרים)
 
@@ -94,7 +94,7 @@
 1. `npm init`, Prettier + ESLint, קומיט אחד "format only" שפורס את `unit.js`, `styles.css`, `teacher.js`, `region-unit.js` לשורות. אפס שינוי לוגי. מעכשיו כל diff קריא.
 2. `.gitignore`, מחיקת `tourismbagrut.zip` מ-tourism11.
 3. GitHub Action: lint + `html-validate` + בדיקת Playwright אחת: פותח כל אחד מ-6 הדפים עם `kitahUser` מזויף ב-sessionStorage, נכשל על כל שגיאת console. זה היה תופס את "API is not defined".
-4. Lint מותאם: כל `<img src>` חייב להיות מ-`nisan1234-afk.github.io` — הכלל מ-CLAUDE.md הופך לאכיפה במקום למדיניות.
+4. Lint מותאם: כל תמונת אתר/נוף (כרטיסי זיהוי, שקופיות, `assets/`) חייבת להגיע מ-`nisan1234-afk.github.io`; תמונות עיצוב מסומנות `data-decor` ופטורות. הכלל הופך לאכיפה במקום למדיניות.
 5. כיווץ `CLAUDE.md` לעמוד אחד; `AI_WORKLOG.md` לארכיון (`docs/archive/`). git log הוא היומן.
 
 ### שלב 1 — תיקוני תלמיד (שבוע)
@@ -105,7 +105,6 @@
 | החלפת ההודעה בעמקים ל"השליחה נכשלה, נסו שוב" + כפתור ניסיון חוזר; מחיקת ענף "לא מחובר" המת | A6 | `valleys-unit.js` |
 | טעינת `app.js` (או `shared/notices.js`) בכל 5 היחידות | A7 | 3 קבצי HTML |
 | CSS ל-`.nav-link.locked` או הסרת שני הקישורים | A9 | `styles.css`, `index.html` |
-| החלפת מפת ויקימדיה בתמונה ממאגר מאושר או במפה מצוירת | A10 | `region-unit.js`, `jerusalem.html` |
 
 ### שלב 2 — איחוד קוד (שבוע–שבועיים)
 1. `shared/config.js` — `API_URL`, `HUB_URL`, `IMAGE_BASE`, ורשימת יחידות אחת (`UNITS`) שממנה נבנים כרטיסי דף הבית, כרטיסי המורה ו-`CONTENT_PAGES`. פותר B3, B4.
