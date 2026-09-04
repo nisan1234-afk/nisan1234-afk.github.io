@@ -260,7 +260,18 @@ if ('serviceWorker' in navigator) {
 
   const STAFF_ROLE_LABELS = { admin: 'מנהל מערכת', school_admin: 'מנהל בית ספר', teacher: 'מורה', homeroom: 'מחנך/ת' };
 
+  // חזרה לדף שממנו הגיעו (למשל יחידה בתיירות לבגרות אחרי שהטוקן פג).
+  // רק כתובות באותו origin, כדי שאי אפשר יהיה להפנות החוצה דרך הפרמטר.
+  const RETURN_TO = (() => {
+    try {
+      const r = new URLSearchParams(location.search).get('return');
+      if (r && new URL(r, location.href).origin === location.origin) return r;
+    } catch (_) { /* ignore */ }
+    return null;
+  })();
+
   function goToDashboard(user) {
+    if (RETURN_TO) { window.location.href = RETURN_TO; return; }
     const roles = user.roles || [user.role];
     const hasStudent = roles.includes('student');
     const staffRoles = roles.filter(r => STAFF_ROLE_LABELS[r]);
