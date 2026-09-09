@@ -126,6 +126,7 @@
         הכפתור לא נטען? נסה לרענן את הדף (Ctrl+Shift+R), או בדוק שעוגיות (cookies) של גוגל לא חסומות בדפדפן.
       </div>
       <div class="not-registered">
+        תלמיד/ה חדש/ה? <a href="#" onclick="showStudentRegister()">הרשמה עם קוד כיתה</a><br>
         מורה חדש? <a href="#" onclick="showScreen('registerScreen')">הרשמה למערכת</a>
       </div>
     </div>
@@ -170,6 +171,32 @@
       <div class="form-group"><label>טלפון</label><input type="tel" id="regPhone" placeholder="0501234567" /></div>
       <button class="btn btn-primary" id="registerBtn" onclick="handleRegister()">שליחת בקשה</button>
       <button class="btn btn-ghost" onclick="showScreen('loginScreen')">חזרה</button>
+    </div>
+
+    <!-- הרשמת תלמיד/ה: קודם כניסה עם גוגל (המייל מגיע מגוגל, לא מוקלד), אחר כך קוד כיתה מהמורה -->
+    <div class="screen" id="studentRegisterScreen">
+      <div class="card-title">הרשמת תלמיד/ה</div>
+      <div class="card-sub">שלב 1 מתוך 2: היכנסו עם חשבון הגוגל שאיתו תלמדו. בשלב הבא תקלידו את קוד הכיתה שקיבלתם מהמורה.</div>
+      <div class="error-msg" id="studentRegisterError"></div>
+      <div id="googleBtnRegister" style="display:flex;justify-content:center;min-height:44px;"></div>
+      <button class="btn btn-ghost" onclick="showScreen('loginScreen')">חזרה</button>
+    </div>
+
+    <div class="screen" id="studentCodeScreen">
+      <div class="user-preview">
+        <div class="user-avatar" id="codeAvatar">?</div>
+        <div>
+          <div class="user-name" id="codeName"></div>
+          <div class="user-email" id="codeEmail"></div>
+        </div>
+      </div>
+      <div class="card-title">קוד כיתה</div>
+      <div class="card-sub" id="codeSub">החשבון הזה עדיין לא רשום. אם קיבלתם קוד כיתה מהמורה, הקלידו אותו כאן ותיכנסו מיד.</div>
+      <div class="error-msg" id="studentCodeError"></div>
+      <div class="success-msg" id="studentCodeSuccess"></div>
+      <div class="form-group"><label>קוד הכיתה מהמורה</label><input type="text" id="classCodeInput" placeholder="לדוגמה: tour2027" autocomplete="off" autocapitalize="none" spellcheck="false" /></div>
+      <button class="btn btn-primary" id="classCodeBtn" onclick="handleStudentCode()">הרשמה וכניסה</button>
+      <button class="btn btn-ghost" onclick="signOut()">כניסה עם חשבון אחר</button>
     </div>
   </div>
 </div>
@@ -233,14 +260,61 @@ if ('serviceWorker' in navigator) {
     google.accounts.id.prompt();
   }
 
+  // מסך ההרשמה של תלמיד/ה: כפתור גוגל נוסף (אותו callback), כי ההרשמה מתחילה בזיהוי
+  let registerButtonRendered = false;
+  function showStudentRegister() {
+    showScreen('studentRegisterScreen');
+    if (registerButtonRendered || !window.google || !google.accounts || !google.accounts.id) return;
+    google.accounts.id.renderButton(
+      document.getElementById('googleBtnRegister'),
+      { theme: 'outline', size: 'large', width: 280, text: 'continue_with', locale: 'he' }
+    );
+    registerButtonRendered = true;
+  }
+
+  function showStudentCodeScreen() {
+    const info = parseToken(googleToken);
+    document.getElementById('codeAvatar').textContent = (info.name || '?')[0];
+    document.getElementById('codeName').textContent   = info.name || '';
+    document.getElementById('codeEmail').textContent  = info.email || '';
+    document.getElementById('studentCodeError').classList.remove('show');
+    showScreen('studentCodeScreen');
+    setTimeout(() => document.getElementById('classCodeInput').focus(), 50);
+  }
+
+  async function finishLogin() {
+    const data = await callAPI('getMyProfile', { token: googleToken });
+    const user = { ...data, token: googleToken };
+    sessionStorage.setItem('kitahUser', JSON.stringify(user));
+    goToDashboard(user);
+  }
+
+  // הרשמה עם קוד כיתה: השרת מאמת את הטוקן, מוצא את הכיתה לפי הקוד ומוסיף לרשימת המורה
+  async function handleStudentCode() {
+    const code = document.getElementById('classCodeInput').value.trim();
+    const btn  = document.getElementById('classCodeBtn');
+    if (!code) { showError('studentCodeError', 'נא להקליד את קוד הכיתה'); return; }
+    if (!googleToken) { showError('studentCodeError', 'החיבור לגוגל פג. היכנסו שוב.'); return; }
+    btn.disabled = true;
+    btn.innerHTML = 'נרשם...<span class="loading-spinner" style="margin-right:8px;"></span>';
+    try {
+      const r = await callAPI('registerBagrutStudent', { token: googleToken, class_code: code });
+      const ok = document.getElementById('studentCodeSuccess');
+      ok.textContent = r.already ? '✅ כבר רשומים לכיתה ' + (r.class_name || '') + '. נכנסים...' : '✅ נרשמת לכיתה ' + (r.class_name || '') + '. נכנסים...';
+      ok.classList.add('show');
+      await finishLogin();
+    } catch(e) {
+      showError('studentCodeError', e.message);
+      btn.disabled = false;
+      btn.textContent = 'הרשמה וכניסה';
+    }
+  }
+
   async function handleGoogleResponse(response) {
     googleToken = response.credential;
     showScreen('loadingScreen');
     try {
-      const data = await callAPI('getMyProfile', { token: googleToken });
-      const user = { ...data, token: googleToken };
-      sessionStorage.setItem('kitahUser', JSON.stringify(user));
-      goToDashboard(user);
+      await finishLogin();
     } catch(e) {
       if (e.message.includes('ממתין')) {
         const info = parseToken(googleToken);
@@ -249,8 +323,8 @@ if ('serviceWorker' in navigator) {
         document.getElementById('pendingEmail').textContent  = info.email || '';
         showScreen('pendingScreen');
       } else if (e.message.includes('לא נמצא')) {
-        showScreen('loginScreen');
-        showError('loginError', 'החשבון לא רשום במערכת. פנה למורה או הירשם.');
+        // חשבון לא מוכר: במקום הודעת שגיאה, מסך קוד כיתה (הרשמה עצמית של תלמיד/ה)
+        showStudentCodeScreen();
       } else {
         showScreen('loginScreen');
         showError('loginError', e.message);
@@ -339,8 +413,13 @@ if ('serviceWorker' in navigator) {
     el.classList.add('show');
   }
 
+  // הטוקן של גוגל הוא base64url (עם - ו-_) ו-UTF-8: atob לבד נכשל על התווים האלה ומשבש שמות בעברית
   function parseToken(token) {
-    try { return JSON.parse(atob(token.split('.')[1])); } catch(e) { return {}; }
+    try {
+      const part = token.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+      const bytes = Uint8Array.from(atob(part.padEnd(part.length + ((4 - (part.length % 4)) % 4), '=')), (c) => c.charCodeAt(0));
+      return JSON.parse(new TextDecoder().decode(bytes));
+    } catch(e) { return {}; }
   }
 
   window.onload = function() {

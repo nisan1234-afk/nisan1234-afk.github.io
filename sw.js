@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kitaplus-v2';
+const CACHE_NAME = 'kitaplus-v3';
 
 // התראות Push (FCM) — טעינת ה-SDK בגרסת ה-compat כי ל-service worker אין
 // תמיכת מודולים; ה-init חייב לקרות כאן כדי ש-Firebase יוכל להציג התראה
