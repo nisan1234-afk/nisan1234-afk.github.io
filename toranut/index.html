@@ -37,10 +37,12 @@ header time{font-size:15px;color:var(--muted)}
 
 .board{
   background:var(--board);color:#fff;border-radius:18px;
-  padding:26px 22px;text-align:center;position:relative;overflow:hidden;
+  padding:26px 22px;text-align:center;
 }
+.board.quiet{background:var(--board-soft)}
 .board .role{font-size:14px;font-weight:600;color:var(--chalk);margin:0 0 10px}
 .board .name{font-size:clamp(28px,8vw,38px);font-weight:800;margin:0;line-height:1.15;letter-spacing:-.02em}
+.board .name.small{font-size:clamp(20px,5.5vw,26px)}
 .board .meta{font-size:14px;color:#A9BDB8;margin:12px 0 0}
 .board .flag{
   display:inline-block;margin-top:14px;background:var(--board-soft);
@@ -77,7 +79,7 @@ dialog{border:none;border-radius:16px;padding:22px;max-width:320px;width:calc(10
 dialog::backdrop{background:rgba(10,20,18,.55)}
 dialog h3{margin:0 0 4px;font-size:18px}
 dialog p{margin:0 0 16px;font-size:14px;color:var(--muted)}
-input[type=date]{font-family:inherit;font-size:16px;width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+input{font-family:inherit;font-size:16px;width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;margin-bottom:12px}
 .dlg-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 
 #toast{
@@ -108,6 +110,17 @@ input[type=date]{font-family:inherit;font-size:16px;width:100%;padding:11px;bord
   <div class="dlg-actions">
     <button class="btn-main" id="addOk">הוסף</button>
     <button class="btn-alt" id="addCancel">ביטול</button>
+  </div>
+</dialog>
+
+<dialog id="pauseDlg">
+  <h3>יום ללא תורנות</h3>
+  <p>אף אחד לא ייספר ביום הזה ואיש לא יאבד את מקומו בתור.</p>
+  <input type="date" id="pauseDate">
+  <input type="text" id="pauseReason" placeholder="סיבה, למשל טיול שנתי">
+  <div class="dlg-actions">
+    <button class="btn-main" id="pauseOk">אישור</button>
+    <button class="btn-alt" id="pauseCancel">ביטול</button>
   </div>
 </dialog>
 
@@ -170,38 +183,15 @@ function esc(s){
   return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 }
 
-function render(){
-  document.getElementById('today').textContent = 'יום ' + state.dayName + ', ' + state.date;
-  const app = document.getElementById('app');
+function today10(){
+  const d = new Date();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return d.getFullYear()+'-'+m+'-'+day;
+}
 
-  if(!state.current){
-    app.innerHTML = '<div class="board"><p class="name">אין תורן זמין</p>'+
-      '<p class="meta">כל התלמידים מסומנים כלא פעילים.</p></div>';
-    return;
-  }
-
-  const c = state.current;
-  const lastText = c.last ? 'תורנות אחרונה ב-' + c.last : 'טרם היה תורן';
-
-  let html = '<div class="board">'+
-    '<p class="role">'+(state.completed?'התורן שסיים היום':'התורן של היום')+'</p>'+
-    '<p class="name">'+esc(c.name)+'</p>'+
-    '<p class="meta">'+c.done+' תורנויות, '+lastText+'</p>'+
-    (state.skipped.length ? '<span class="flag">דולגו היום: '+state.skipped.length+'</span>' : '')+
-    '</div>';
-
-  if(state.completed){
-    html += '<button class="btn-ghost" id="refresh">רענון</button>';
-  }else{
-    html += '<div class="actions">'+
-      '<button class="btn-main" id="done">בוצע</button>'+
-      '<button class="btn-alt" id="skip">דלג</button>'+
-      '</div>';
-  }
-
-  html += '<button class="btn-wide" id="copy">העתקת ההודעה לוואטסאפ</button>';
-
-  html += '<section class="roster"><h2>כל התלמידים</h2>'+
+function rosterHtml(){
+  let html = '<section class="roster"><h2>כל התלמידים</h2>'+
     '<p class="hint">המספר הוא סך התורנויות. + מוסיף תורנות, והכפתור השני מפעיל או משבית.</p>';
 
   state.students.forEach(s=>{
@@ -213,7 +203,50 @@ function render(){
       '</div>';
   });
 
-  html += '</section>';
+  return html + '</section>';
+}
+
+function render(){
+  document.getElementById('today').textContent = 'יום ' + state.dayName + ', ' + state.date;
+  const app = document.getElementById('app');
+  let html = '';
+
+  if(state.off){
+    html += '<div class="board quiet">'+
+      '<p class="role">אין תורנות היום</p>'+
+      '<p class="name small">'+esc(state.offReason)+'</p>'+
+      '</div>'+
+      '<button class="btn-ghost" id="refresh">רענון</button>';
+
+  }else if(!state.current){
+    html += '<div class="board"><p class="name">אין תורן זמין</p>'+
+      '<p class="meta">כל התלמידים מסומנים כלא פעילים.</p></div>';
+
+  }else{
+    const c = state.current;
+    const lastText = c.last ? 'תורנות אחרונה ב-' + c.last : 'טרם היה תורן';
+
+    html += '<div class="board">'+
+      '<p class="role">'+(state.completed?'התורן שסיים היום':'התורן של היום')+'</p>'+
+      '<p class="name">'+esc(c.name)+'</p>'+
+      '<p class="meta">'+c.done+' תורנויות, '+lastText+'</p>'+
+      (state.skipped.length ? '<span class="flag">דולגו היום: '+state.skipped.length+'</span>' : '')+
+      '</div>';
+
+    if(state.completed){
+      html += '<button class="btn-ghost" id="refresh">רענון</button>';
+    }else{
+      html += '<div class="actions">'+
+        '<button class="btn-main" id="done">בוצע</button>'+
+        '<button class="btn-alt" id="skip">דלג</button>'+
+        '</div>'+
+        '<button class="btn-wide" id="copy">העתקת ההודעה לוואטסאפ</button>';
+    }
+  }
+
+  html += '<button class="btn-ghost" id="pause">דילוג על יום שלם</button>';
+  html += rosterHtml();
+
   app.innerHTML = html;
   wire();
 }
@@ -228,7 +261,10 @@ function wire(){
   const refresh = document.getElementById('refresh');
   if(refresh) refresh.onclick = ()=>call({action:'state'});
 
-  document.getElementById('copy').onclick = copyMessage;
+  const copy = document.getElementById('copy');
+  if(copy) copy.onclick = copyMessage;
+
+  document.getElementById('pause').onclick = openPause;
 
   document.querySelectorAll('[data-add]').forEach(b=>{
     b.onclick = ()=>openAdd(b.getAttribute('data-add'));
@@ -262,7 +298,7 @@ let addTarget = null;
 function openAdd(name){
   addTarget = name;
   document.getElementById('addWho').textContent = name;
-  document.getElementById('addDate').value = new Date().toISOString().slice(0,10);
+  document.getElementById('addDate').value = today10();
   document.getElementById('addDlg').showModal();
 }
 document.getElementById('addCancel').onclick = ()=>document.getElementById('addDlg').close();
@@ -270,6 +306,20 @@ document.getElementById('addOk').onclick = ()=>{
   const date = document.getElementById('addDate').value;
   document.getElementById('addDlg').close();
   call({action:'add',name:addTarget,date:date}, 'נוספה תורנות ל'+addTarget);
+};
+
+function openPause(){
+  document.getElementById('pauseDate').value = today10();
+  document.getElementById('pauseReason').value = '';
+  document.getElementById('pauseDlg').showModal();
+}
+document.getElementById('pauseCancel').onclick = ()=>document.getElementById('pauseDlg').close();
+document.getElementById('pauseOk').onclick = ()=>{
+  const date = document.getElementById('pauseDate').value;
+  const reason = document.getElementById('pauseReason').value;
+  if(!date){ toast('צריך לבחור תאריך',true); return; }
+  document.getElementById('pauseDlg').close();
+  call({action:'pause',date:date,reason:reason}, 'נקבע יום ללא תורנות');
 };
 
 call({action:'state'});
