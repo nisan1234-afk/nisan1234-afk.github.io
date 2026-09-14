@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>תורנות כיתה</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#14322E">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#14322E;
+  --board-soft:#1D4640;
+  --chalk:#F2C230;
+  --page:#EEF0EC;
+  --card:#FFFFFF;
+  --line:#D5D9D3;
+  --text:#1B211F;
+  --muted:#6B746F;
+  --stop:#B2472F;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--page);color:var(--text);
+  font-family:'Assistant',system-ui,sans-serif;font-size:17px;line-height:1.5;
+  padding:0 0 env(safe-area-inset-bottom);
+}
+.wrap{max-width:480px;margin:0 auto;padding:0 16px 40px}
+
+header{display:flex;align-items:baseline;justify-content:space-between;padding:20px 0 14px}
+header h1{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+header time{font-size:15px;color:var(--muted)}
+
+.board{
+  background:var(--board);color:#fff;border-radius:18px;
+  padding:26px 22px;text-align:center;position:relative;overflow:hidden;
+}
+.board .role{font-size:14px;font-weight:600;color:var(--chalk);margin:0 0 10px}
+.board .name{font-size:clamp(28px,8vw,38px);font-weight:800;margin:0;line-height:1.15;letter-spacing:-.02em}
+.board .meta{font-size:14px;color:#A9BDB8;margin:12px 0 0}
+.board .flag{
+  display:inline-block;margin-top:14px;background:var(--board-soft);
+  color:#fff;font-size:13px;font-weight:600;border-radius:99px;padding:5px 14px;
+}
+
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 10px}
+button{font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;border-radius:12px;border:1px solid transparent;transition:transform .08s ease}
+button:active{transform:scale(.97)}
+button:focus-visible{outline:3px solid var(--board);outline-offset:2px}
+.btn-main{background:var(--board);color:#fff;padding:15px 0}
+.btn-alt{background:var(--card);color:var(--stop);border-color:var(--line);padding:15px 0}
+.btn-wide{width:100%;background:var(--chalk);color:#3A2C00;padding:15px 0;font-weight:800}
+.btn-ghost{background:none;border:1px solid var(--line);color:var(--muted);padding:13px 0;width:100%;margin-top:8px;font-weight:600}
+
+.roster{margin-top:28px}
+.roster h2{font-size:16px;font-weight:800;margin:0 0 4px}
+.roster p.hint{margin:0 0 12px;font-size:14px;color:var(--muted)}
+.row{
+  display:flex;align-items:center;gap:10px;background:var(--card);
+  border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:7px;
+}
+.row.off{opacity:.5}
+.row .who{flex:1;min-width:0}
+.row .who b{display:block;font-weight:600;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .who span{font-size:13px;color:var(--muted)}
+.tally{
+  background:var(--page);border-radius:8px;min-width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
+}
+.mini{background:none;border:1px solid var(--line);border-radius:9px;width:34px;height:34px;font-size:17px;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0}
+
+dialog{border:none;border-radius:16px;padding:22px;max-width:320px;width:calc(100% - 40px);font-family:inherit}
+dialog::backdrop{background:rgba(10,20,18,.55)}
+dialog h3{margin:0 0 4px;font-size:18px}
+dialog p{margin:0 0 16px;font-size:14px;color:var(--muted)}
+input[type=date]{font-family:inherit;font-size:16px;width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;margin-bottom:14px}
+.dlg-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+#toast{
+  position:fixed;inset-inline:16px;bottom:18px;max-width:448px;margin:0 auto;
+  background:var(--board);color:#fff;border-radius:12px;padding:13px 16px;
+  font-size:15px;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s
+}
+#toast.show{opacity:1}
+#toast.bad{background:var(--stop)}
+.loading{text-align:center;color:var(--muted);padding:60px 0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>תורנות כיתה</h1>
+    <time id="today"></time>
+  </header>
+
+  <div id="app"><p class="loading">טוען…</p></div>
+</div>
+
+<dialog id="addDlg">
+  <h3>הוספת תורנות</h3>
+  <p id="addWho"></p>
+  <input type="date" id="addDate">
+  <div class="dlg-actions">
+    <button class="btn-main" id="addOk">הוסף</button>
+    <button class="btn-alt" id="addCancel">ביטול</button>
+  </div>
+</dialog>
+
+<div id="toast"></div>
+
+<script>
+const API = 'https://script.google.com/macros/s/AKfycbyhIkiWWWAqlniCTgua_yM9cE0cwFRACp8rF3Zb76zSrYVx4O5unMdCcJNfE1XjoPgh/exec';
+const KEY = 'tor-9k4m2xq7';
+
+let state = null;
+let busy = false;
+
+function api(params){
+  return new Promise((resolve,reject)=>{
+    const cb = 'cb'+Date.now()+Math.floor(Math.random()*1000);
+    const url = new URL(API);
+    Object.keys(params).forEach(k=>url.searchParams.set(k,params[k]));
+    url.searchParams.set('key',KEY);
+    url.searchParams.set('callback',cb);
+
+    const script = document.createElement('script');
+    const timer = setTimeout(()=>{cleanup();reject(new Error('אין תשובה מהשרת'));},20000);
+
+    function cleanup(){clearTimeout(timer);delete window[cb];script.remove();}
+
+    window[cb] = data=>{
+      cleanup();
+      if(data && data.ok) resolve(data);
+      else reject(new Error(data && data.error ? data.error : 'שגיאה לא ידועה'));
+    };
+    script.onerror = ()=>{cleanup();reject(new Error('אין חיבור לרשת'));};
+    script.src = url.toString();
+    document.body.appendChild(script);
+  });
+}
+
+function toast(msg,bad){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = bad ? 'show bad' : 'show';
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>{t.className='';},2600);
+}
+
+async function call(params,okMsg){
+  if(busy) return;
+  busy = true;
+  try{
+    state = await api(params);
+    render();
+    if(okMsg) toast(okMsg);
+  }catch(err){
+    toast(err.message,true);
+  }finally{
+    busy = false;
+  }
+}
+
+function esc(s){
+  return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+
+function render(){
+  document.getElementById('today').textContent = 'יום ' + state.dayName + ', ' + state.date;
+  const app = document.getElementById('app');
+
+  if(!state.current){
+    app.innerHTML = '<div class="board"><p class="name">אין תורן זמין</p>'+
+      '<p class="meta">כל התלמידים מסומנים כלא פעילים.</p></div>';
+    return;
+  }
+
+  const c = state.current;
+  const lastText = c.last ? 'תורנות אחרונה ב-' + c.last : 'טרם היה תורן';
+
+  let html = '<div class="board">'+
+    '<p class="role">'+(state.completed?'התורן שסיים היום':'התורן של היום')+'</p>'+
+    '<p class="name">'+esc(c.name)+'</p>'+
+    '<p class="meta">'+c.done+' תורנויות, '+lastText+'</p>'+
+    (state.skipped.length ? '<span class="flag">דולגו היום: '+state.skipped.length+'</span>' : '')+
+    '</div>';
+
+  if(state.completed){
+    html += '<button class="btn-ghost" id="refresh">רענון</button>';
+  }else{
+    html += '<div class="actions">'+
+      '<button class="btn-main" id="done">בוצע</button>'+
+      '<button class="btn-alt" id="skip">דלג</button>'+
+      '</div>';
+  }
+
+  html += '<button class="btn-wide" id="copy">העתקת ההודעה לוואטסאפ</button>';
+
+  html += '<section class="roster"><h2>כל התלמידים</h2>'+
+    '<p class="hint">המספר הוא סך התורנויות. + מוסיף תורנות, והכפתור השני מפעיל או משבית.</p>';
+
+  state.students.forEach(s=>{
+    html += '<div class="row'+(s.active?'':' off')+'">'+
+      '<div class="tally">'+s.done+'</div>'+
+      '<div class="who"><b>'+esc(s.name)+'</b><span>'+(s.last?'אחרון ב-'+s.last:'טרם היה')+'</span></div>'+
+      '<button class="mini" data-add="'+esc(s.name)+'" aria-label="הוספת תורנות">+</button>'+
+      '<button class="mini" data-toggle="'+esc(s.name)+'" data-active="'+(s.active?'1':'0')+'" aria-label="'+(s.active?'השבתה':'הפעלה')+'">'+(s.active?'✓':'✕')+'</button>'+
+      '</div>';
+  });
+
+  html += '</section>';
+  app.innerHTML = html;
+  wire();
+}
+
+function wire(){
+  const done = document.getElementById('done');
+  if(done) done.onclick = ()=>call({action:'done'},'נרשם: בוצע');
+
+  const skip = document.getElementById('skip');
+  if(skip) skip.onclick = ()=>call({action:'skip'},'נרשם: דולג');
+
+  const refresh = document.getElementById('refresh');
+  if(refresh) refresh.onclick = ()=>call({action:'state'});
+
+  document.getElementById('copy').onclick = copyMessage;
+
+  document.querySelectorAll('[data-add]').forEach(b=>{
+    b.onclick = ()=>openAdd(b.getAttribute('data-add'));
+  });
+  document.querySelectorAll('[data-toggle]').forEach(b=>{
+    b.onclick = ()=>{
+      const name = b.getAttribute('data-toggle');
+      const nowActive = b.getAttribute('data-active') === '1';
+      call({action:'toggle',name:name,active:nowActive?'0':'1'},
+           nowActive ? name+' הושבת' : name+' הופעל');
+    };
+  });
+}
+
+async function copyMessage(){
+  const text = state.message || '';
+  try{
+    await navigator.clipboard.writeText(text);
+    toast('ההודעה הועתקה');
+  }catch(e){
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); toast('ההודעה הועתקה'); }
+    catch(e2){ toast('ההעתקה נכשלה',true); }
+    ta.remove();
+  }
+}
+
+let addTarget = null;
+function openAdd(name){
+  addTarget = name;
+  document.getElementById('addWho').textContent = name;
+  document.getElementById('addDate').value = new Date().toISOString().slice(0,10);
+  document.getElementById('addDlg').showModal();
+}
+document.getElementById('addCancel').onclick = ()=>document.getElementById('addDlg').close();
+document.getElementById('addOk').onclick = ()=>{
+  const date = document.getElementById('addDate').value;
+  document.getElementById('addDlg').close();
+  call({action:'add',name:addTarget,date:date}, 'נוספה תורנות ל'+addTarget);
+};
+
+call({action:'state'});
+
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
