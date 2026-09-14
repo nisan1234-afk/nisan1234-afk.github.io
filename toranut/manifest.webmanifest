@@ -1,10 +1,11 @@
 {
+  "id": "/toranut/",
   "name": "תורנות כיתה",
   "short_name": "תורנות",
   "lang": "he",
   "dir": "rtl",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/toranut/",
+  "scope": "/toranut/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#EEF0EC",
