@@ -284,7 +284,10 @@ if ('serviceWorker' in navigator) {
 
   async function finishLogin() {
     const data = await callAPI('getMyProfile', { token: googleToken });
-    const user = { ...data, token: googleToken };
+    // הפרש בין שעון המחשב לשעון גוגל (לפי iat). דפי התיירות משתמשים בו בבדיקת התוקף,
+    // כדי שמחשב עם שעון לא מכוון לא ייכנס ללופ של "פג תוקף" מיד אחרי הכניסה.
+    const iat = parseToken(googleToken).iat;
+    const user = { ...data, token: googleToken, clockSkew: iat ? Math.round(Date.now() / 1000 - iat) : 0 };
     sessionStorage.setItem('kitahUser', JSON.stringify(user));
     goToDashboard(user);
   }
@@ -427,7 +430,7 @@ if ('serviceWorker' in navigator) {
     if (stored) {
       const user = JSON.parse(stored);
       const info = parseToken(user.token || '');
-      if (info.exp && Date.now() / 1000 < info.exp) { goToDashboard(user); return; }
+      if (info.exp && Date.now() / 1000 - (Number(user.clockSkew) || 0) < info.exp - 60) { goToDashboard(user); return; }
       sessionStorage.removeItem('kitahUser');
     }
     initGoogleSignIn();
