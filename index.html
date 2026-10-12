@@ -304,6 +304,7 @@ if ('serviceWorker' in navigator) {
       const r = await callAPI('registerBagrutStudent', { token: googleToken, class_code: code });
       const ok = document.getElementById('studentCodeSuccess');
       ok.textContent = r.already ? '✅ כבר רשומים לכיתה ' + (r.class_name || '') + '. נכנסים...' : '✅ נרשמת לכיתה ' + (r.class_name || '') + '. נכנסים...';
+      if (r.waiting) ok.textContent = '✅ נרשמת לכיתה ' + (r.class_name || '') + '. המורה ישבץ/תשבץ אותך לקבוצה בקרוב. נכנסים...';
       ok.classList.add('show');
       await finishLogin();
     } catch(e) {
