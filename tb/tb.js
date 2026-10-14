@@ -6,7 +6,9 @@
   'use strict';
   var CFG = window.TB_CONFIG || {};
   var API = CFG.api || '';
-  var TRACK_TITLES = { FIT: 'FIT', GRP: 'קבוצות', EX: 'תרגילים' };
+  var TRACK_TITLES = { BASE: 'יסודות', FIT: 'FIT', GRP: 'קבוצות', EX: 'תרגילים' };
+  var TRACK_LABELS = { BASE: 'יסודות · לפני שמתחילים', FIT: 'FIT · לקוח פרטי', GRP: 'קבוצות · הצעת מחיר ודוקט', EX: 'תרגילים' };
+  var RECORD_LABEL = { docket: 'מספר הדוקט', proposal: 'מספר הצעת המחיר' };
   var UNITS = window.TB_UNITS || [];
   var app = document.getElementById('tbApp');
   var syncEl = document.getElementById('tbSync');
@@ -147,7 +149,7 @@
   function statusOf(unit) {
     var p = progress[unit.id];
     if (!p) return { label: 'עוד לא התחלת', pct: 0 };
-    if (p.done) return { label: 'הושלמה ✓ · דוקט <bdi>' + esc(p.docket) + '</bdi>', pct: 100, p: p };
+    if (p.done) return { label: 'הושלמה ✓' + (p.docket ? (unit.record === 'proposal' ? ' · הצעה ' : ' · דוקט ') + '<bdi>' + esc(p.docket) + '</bdi>' : ''), pct: 100, p: p };
     var n = unit.steps ? unit.steps.length : p.steps_total || 1;
     var at = Math.min(p.step || 0, n);
     return { label: 'בשלב ' + at + ' מתוך ' + n, pct: p.percent || 0, p: p };
@@ -169,7 +171,7 @@
     var tracks = {};
     UNITS.forEach(function (u) { (tracks[u.track] = tracks[u.track] || []).push(u); });
     Object.keys(tracks).forEach(function (t) {
-      html += '<div class="tb-track">' + (t === 'FIT' ? 'FIT · לקוח פרטי' : 'קבוצות') + '</div><ul class="tb-units">';
+      html += '<div class="tb-track">' + (TRACK_LABELS[t] || t) + '</div><ul class="tb-units">';
       tracks[t].forEach(function (u) {
         if (u.soon) {
           html += '<li><button class="tb-unit" disabled><span class="ic">' + u.icon + '</span><span><b>' + esc(u.title) + '</b><small>בקרוב</small></span><span></span></button></li>';
@@ -234,7 +236,7 @@
 
   function headHtml(unit, i) {
     var n = unit.steps.length;
-    var label = i === 0 ? 'פתיחה' : i > n ? 'סיום' : 'שלב ' + i + ' מתוך ' + n;
+    var label = i === 0 ? 'פתיחה' : i === n + 1 ? 'בדיקה ושאלות בוחן' : i > n ? 'סיום' : 'שלב ' + i + ' מתוך ' + n;
     var pct = Math.round((Math.min(i, n) / n) * 100);
     return '<div class="tb-head"><a class="btn btn-ghost" href="#" aria-label="לרשימת היחידות">→</a><div class="t"><small>' + unit.icon + ' ' + esc(unit.title) + '</small><b>' + label + '</b></div></div>' +
       '<div class="tb-progress"><i style="width:' + pct + '%"></i></div>';
@@ -246,6 +248,30 @@
       '<a class="btn btn-primary" href="' + nextHref + '" data-next>' + nextLabel + '</a></nav>';
   }
 
+  function beforeHtml(unit) {
+    if (!unit.before || !unit.before.length) return '';
+    return '<h3 class="tb-sub">📘 לפני שמתחילים</h3><div class="tb-before">' + unit.before.map(function (b) {
+      return '<div class="tb-concept"><b>' + rich(/[a-zA-Z]/.test(b.term) && !/[\u0590-\u05FF]/.test(b.term) ? '[[' + b.term + ']]' : b.term) + '</b><p>' + rich(b.text) + '</p></div>';
+    }).join('') + '</div>';
+  }
+  // אחרי השלבים: רשימת בדיקה לפני שקוראים לבוחן + שאלות בעל פה (לוחצים כדי לראות תשובה)
+  function reviewHtml(unit) {
+    var h = '<article class="tb-card"><h2>✅ לפני שקוראים לבוחן</h2>';
+    if (unit.check && unit.check.length) {
+      h += '<ul class="tb-check">' + unit.check.map(function (c, k) {
+        return '<li><label><input type="checkbox" data-chk="' + k + '"> <span>' + rich(c) + '</span></label></li>';
+      }).join('') + '</ul>';
+    }
+    h += '</article>';
+    if (unit.oral && unit.oral.length) {
+      h += '<article class="tb-card" style="margin-top:14px"><h2>🗣️ שאלות שהבוחן עשוי לשאול</h2><p class="tb-text" style="margin-top:0">עונים בקול, ורק אז פותחים את התשובה.</p>' +
+        unit.oral.map(function (o) {
+          return '<details class="tb-oral"><summary>' + rich(o.q) + '</summary><p>' + rich(o.a) + '</p></details>';
+        }).join('') + '</article>';
+    }
+    return h;
+  }
+
   function renderUnit(unit, i) {
     keepAwake(true);
     var n = unit.steps.length;
@@ -254,6 +280,7 @@
     if (i === 0) {
       html += '<article class="tb-card tb-intro"><h2>' + unit.icon + ' ' + esc(unit.title) + '</h2>' +
         '<p><b>מה עושים:</b> ' + rich(unit.goal) + '</p><div class="tb-why"><b>💡 למה זה חשוב</b>' + rich(unit.why) + '</div>' +
+        beforeHtml(unit) +
         '<p style="margin-bottom:0">' + n + ' שלבים. בכל שלב: קוראים, עושים במחשב, ולוחצים "עשיתי".</p></article>';
       html += navHtml('', 'מתחילים', base + '1');
     } else if (i <= n) {
@@ -263,13 +290,16 @@
         shotHtml(s) + '<p class="tb-text">' + rich(s.text) + '</p>' +
         (s.trap ? '<div class="tb-trap"><b>⚠️ מלכודת</b>' + rich(s.trap) + '</div>' : '') +
         (s.why ? '<div class="tb-why"><b>💡 למה</b>' + rich(s.why) + '</div>' : '') + '</article>';
-      html += navHtml(base + (i - 1), i === n ? 'עשיתי ✓ לסיום' : 'עשיתי ✓ הבא', base + (i + 1));
+      html += navHtml(base + (i - 1), i === n ? 'עשיתי ✓ לבדיקה' : 'עשיתי ✓ הבא', base + (i + 1));
+    } else if (i === n + 1) {
+      html += reviewHtml(unit);
+      html += navHtml(base + n, 'לסיום היחידה', base + (n + 2));
     } else {
       html += renderCheckpoint(unit);
     }
     app.innerHTML = html;
     if (i >= 1 && i <= n) saveStep(unit, i);
-    if (i > n) wireCheckpoint(unit);
+    if (i > n + 1) wireCheckpoint(unit);
     sizeCrops();
     app.querySelectorAll('[data-zoom]').forEach(function (el) {
       el.addEventListener('click', function () { openZoom(el); });
@@ -280,24 +310,30 @@
 
   function renderCheckpoint(unit) {
     var p = progress[unit.id] || {};
-    return '<article class="tb-card"><h2>🏁 סיום: מספר הדוקט</h2>' +
-      '<p class="tb-text">מקלידים את מספר הדוקט מהכותרת בטרוול בוסטר. הוא נשמר בגיליון שלכם, בעמודה של היחידה.</p>' +
+    var back = '<nav class="tb-nav"><a class="btn" href="#u/' + unit.id + '/' + (unit.steps.length + 1) + '">הקודם</a><a class="btn" href="#">לרשימה</a></nav>';
+    if (unit.record === 'none') {
+      return '<article class="tb-card"><h2>🏁 סיום היחידה</h2><p class="tb-text">עברתם על כל השלבים. לחיצה על הכפתור מסמנת את היחידה כהושלמה בגיליון שלכם.</p>' +
+        '<form class="tb-form" id="tbDone" novalidate><label for="tbNote">משהו היה לא ברור? (לא חובה)</label><textarea id="tbNote" rows="3" maxlength="500">' + esc(p.note || '') + '</textarea>' +
+        '<p class="msg" id="tbMsg"></p><button class="btn btn-primary" style="width:100%" type="submit">סיימתי את היחידה</button></form></article>' + back;
+    }
+    var label = RECORD_LABEL[unit.record] || 'מספר הדוקט';
+    return '<article class="tb-card"><h2>🏁 סיום: ' + label + '</h2>' +
+      '<p class="tb-text">מקלידים את ' + label + ' מטרוול בוסטר. הוא נשמר בגיליון שלכם, בעמודה של היחידה.</p>' +
       '<form class="tb-form" id="tbDone" novalidate>' +
-      '<label for="tbDocket">מספר דוקט</label><input id="tbDocket" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="152843" value="' + esc(p.docket || '') + '">' +
+      '<label for="tbDocket">' + label + '</label><input id="tbDocket" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="152843" value="' + esc(p.docket || '') + '">' +
       '<label for="tbNote">משהו היה לא ברור? (לא חובה)</label><textarea id="tbNote" rows="3" maxlength="500">' + esc(p.note || '') + '</textarea>' +
-      '<p class="msg" id="tbMsg"></p><button class="btn btn-primary" style="width:100%" type="submit">שמירה וסיום</button></form></article>' +
-      '<nav class="tb-nav"><a class="btn" href="#u/' + unit.id + '/' + unit.steps.length + '">הקודם</a><a class="btn" href="#">לרשימה</a></nav>';
+      '<p class="msg" id="tbMsg"></p><button class="btn btn-primary" style="width:100%" type="submit">שמירה וסיום</button></form></article>' + back;
   }
 
   function wireCheckpoint(unit) {
     var form = document.getElementById('tbDone');
     var input = document.getElementById('tbDocket');
     var msg = document.getElementById('tbMsg');
-    input.addEventListener('input', function () { input.value = input.value.replace(/[^\d]/g, ''); });
+    if (input) input.addEventListener('input', function () { input.value = input.value.replace(/[^\d]/g, ''); });
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var docket = input.value.trim();
-      if (!/^\d{3,9}$/.test(docket)) { msg.textContent = 'מספר הדוקט הוא רק ספרות (למשל 152843).'; input.focus(); return; }
+      var docket = input ? input.value.trim() : '';
+      if (input && !/^\d{3,9}$/.test(docket)) { msg.textContent = 'רק ספרות (למשל 152843).'; input.focus(); return; }
       var note = document.getElementById('tbNote').value.trim();
       var btn = form.querySelector('button');
       btn.disabled = true;
@@ -307,7 +343,7 @@
         store('tbLast', null);
         renderDone(unit, docket);
       };
-      api('complete', unitPayload(unit, { docket: docket, note: note }))
+      api('complete', unitPayload(unit, { docket: docket, note: note, record: unit.record }))
         .then(done)
         .catch(function (err) {
           btn.disabled = false;
@@ -323,7 +359,7 @@
     var next = null;
     for (var k = idx + 1; k < UNITS.length; k++) if (!UNITS[k].soon) { next = UNITS[k]; break; }
     app.innerHTML = '<article class="tb-card tb-done"><div class="big">🎉</div><h2>כל הכבוד!</h2>' +
-      '<p class="tb-text">נשמר בגיליון שלך עם דוקט</p><div class="docket">' + esc(docket) + '</div>' +
+      (docket ? '<p class="tb-text">נשמר בגיליון שלך עם ' + (unit.record === 'proposal' ? 'מספר הצעה' : 'דוקט') + '</p><div class="docket">' + esc(docket) + '</div>' : '<p class="tb-text">היחידה סומנה כהושלמה בגיליון שלך.</p>') +
       '<p class="tb-text">בבחינה: בסוף כל חלק קוראים לבוחן ומשאירים את הכול פתוח על המסך.</p></article>' +
       '<nav class="tb-nav"><a class="btn" href="#">לרשימה</a>' +
       (next ? '<a class="btn btn-primary" href="#u/' + next.id + '/0">ליחידה הבאה</a>' : '<a class="btn btn-primary" href="#">סיום</a>') + '</nav>';
@@ -368,7 +404,7 @@
     var m = /^#u\/([a-z0-9-]+)\/(\d+)$/.exec(location.hash);
     var unit = m && unitById(m[1]);
     if (unit && !unit.soon) {
-      var i = Math.max(0, Math.min(Number(m[2]), unit.steps.length + 1));
+      var i = Math.max(0, Math.min(Number(m[2]), unit.steps.length + 2));
       renderUnit(unit, i);
     } else if (!loaded) {
       app.innerHTML = '<p class="tb-loading">טוען את ההתקדמות שלך…</p>';

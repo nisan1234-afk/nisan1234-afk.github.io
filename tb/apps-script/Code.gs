@@ -17,14 +17,14 @@ const CLIENT_ID = '988232727899-pajp4mhs43tet1phcu3rc8c8mutsgpme.apps.googleuser
 const GUIDE_URL = 'https://nisan1234-afk.github.io/tb/';
 const FOLDER_NAME = 'טרוול בוסטר — גיליונות תלמידים';
 const REGISTRY_NAME = 'טרוול בוסטר — כל התלמידים';
-const UNIT_ID_RE = /^(fit|grp|ex)-[a-z0-9-]{2,40}$/;
+const UNIT_ID_RE = /^(base|fit|grp|ex)-[a-z0-9-]{2,40}$/;
 
 // שורות בכל לשונית חלק-למידה. שורה 1 מוסתרת ומחזיקה את מזהה היחידה (כך אפשר לשנות כותרת בלי לשבור).
 const ROWS = {
   id: 1, title: 2, status: 3, step: 4, total: 5, percent: 6, docket: 7, note: 8,
   started: 9, updated: 10, completed: 11
 };
-const ROW_LABELS = ['unit_id', 'יחידה', 'סטטוס', 'שלב נוכחי', 'מתוך', 'התקדמות %', 'מספר דוקט', 'הערה שלי',
+const ROW_LABELS = ['unit_id', 'יחידה', 'סטטוס', 'שלב נוכחי', 'מתוך', 'התקדמות %', 'דוקט / הצעה', 'הערה שלי',
   'התחלתי', 'עדכון אחרון', 'סיימתי'];
 const REGISTRY_HEADERS = ['שם', 'מייל', 'הגיליון', 'יחידות שהושלמו', 'יחידה אחרונה', 'שלב', 'דוקט אחרון', 'עדכון אחרון', 'נוצר'];
 
@@ -108,8 +108,9 @@ function saveStep_(user, body) {
 
 function complete_(user, body) {
   const unit = checkUnit_(body);
+  // יחידות רקע (record = none) מסתיימות בלי מספר; כל השאר דורשות דוקט או מספר הצעת מחיר
   const docket = String(body.docket == null ? '' : body.docket).replace(/[^\d]/g, '');
-  if (!/^\d{3,9}$/.test(docket)) throw new Error('מספר דוקט לא תקין (רק ספרות)');
+  if (body.record !== 'none' && !/^\d{3,9}$/.test(docket)) throw new Error('מספר לא תקין (רק ספרות)');
   const total = clampInt_(body.steps_total, 0, 300);
   const ss = getOrCreateStudentSheet_(user);
   const sh = trackSheet_(ss, unit.track);
@@ -117,11 +118,11 @@ function complete_(user, body) {
   const now = new Date();
   setCol_(sh, col, {
     status: 'הושלם ✓', step: total, total: total, percent: 100,
-    docket: "'" + docket, note: String(body.note || '').slice(0, 500),
+    docket: docket ? "'" + docket : null, note: String(body.note || '').slice(0, 500),
     updated: now, completed: now, started: sh.getRange(ROWS.started, col).getValue() ? null : now
   });
   sh.getRange(ROWS.status, col).setBackground('#dff3e7');
-  updateRegistry_(user, ss, { unit: unit.title, step: 'הושלם', docket: docket });
+  updateRegistry_(user, ss, { unit: unit.title, step: 'הושלם', docket: docket || null });
   return { saved: true, docket: docket };
 }
 
@@ -152,6 +153,7 @@ function getOrCreateStudentSheet_(user) {
   info.getRange(1, 1, 5, 1).setFontWeight('bold');
   info.setColumnWidth(1, 110);
   info.setColumnWidth(2, 460);
+  trackSheet_(ss, 'יסודות');
   trackSheet_(ss, 'FIT');
   trackSheet_(ss, 'קבוצות');
 

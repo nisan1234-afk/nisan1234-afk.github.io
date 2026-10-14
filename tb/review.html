@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>סקירת הקורס — טרוול בוסטר צעד-צעד</title>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root { --forest:#173d37; --mint:#dcebe4; --sand:#f2eadc; --cream:#fbf8f1; --ink:#1d2c29; --muted:#5d6b67; --line:#d9dfda; --warn:#fff3c4; --warn-ink:#7a5a00; --hl:#ff7a00; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Assistant', sans-serif; color: var(--ink); background: var(--cream); line-height: 1.55; }
+    header { background: var(--forest); color: #fff; padding: 18px 16px; }
+    header h1 { font-family: 'Frank Ruhl Libre', serif; margin: 0 0 4px; font-size: 1.6rem; }
+    header p { margin: 0; opacity: .85; }
+    main { max-width: 980px; margin: 0 auto; padding: 16px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 14px; }
+    .stats div { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 8px 14px; }
+    .stats b { font-size: 1.3rem; display: block; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .filters label { background: #fff; border: 1px solid var(--line); border-radius: 99px; padding: 4px 12px; cursor: pointer; }
+    nav.toc { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px 14px; margin-bottom: 18px; columns: 2 260px; }
+    nav.toc a { display: block; color: var(--forest); text-decoration: none; padding: 2px 0; }
+    nav.toc h3 { margin: 6px 0; font-size: .9rem; color: var(--muted); }
+    section.unit { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; margin-bottom: 18px; }
+    section.unit h2 { margin: 0 0 4px; font-family: 'Frank Ruhl Libre', serif; }
+    .meta { color: var(--muted); font-size: .9rem; }
+    h4 { margin: 14px 0 6px; }
+    ol.steps { padding-inline-start: 22px; margin: 0; }
+    ol.steps > li { margin-bottom: 10px; }
+    .step-title { font-weight: 700; }
+    .why, .trap, .verify, .shot { display: block; font-size: .93rem; margin-top: 4px; padding: 4px 8px; border-radius: 8px; }
+    .why { background: var(--mint); }
+    .trap { background: #fff0e0; border-inline-start: 3px solid var(--hl); }
+    .verify { background: var(--warn); color: var(--warn-ink); }
+    .shot { color: var(--muted); background: var(--sand); }
+    .shot.has { background: #e6f2ea; color: #1f7a4d; }
+    .term { direction: ltr; unicode-bidi: isolate; font-family: ui-monospace, Menlo, monospace; font-size: .88em; background: #ede7fb; color: #4b2aa8; border-radius: 5px; padding: 0 5px; }
+    dl { margin: 0; } dt { font-weight: 700; } dd { margin: 0 0 6px; }
+    .src { color: var(--muted); font-size: .85rem; margin-top: 10px; }
+    body.hide-shot .shot, body.hide-why .why { display: none; }
+    body.only-verify ol.steps > li:not(.has-verify) { display: none; }
+  </style>
+</head>
+<body>
+  <header><h1>טרוול בוסטר צעד-צעד — סקירת הקורס</h1><p>דף עבודה למורה: כל היחידות, השלבים, שאלות הבוחן, מה צריך לבדוק במערכת ואיזה צילום חסר.</p></header>
+  <main>
+    <div class="stats" id="stats"></div>
+    <div class="filters">
+      <label><input type="checkbox" id="fVerify"> רק שלבים שצריך לבדוק</label>
+      <label><input type="checkbox" id="fShot"> להסתיר צילומים חסרים</label>
+      <label><input type="checkbox" id="fWhy"> להסתיר "למה"</label>
+    </div>
+    <nav class="toc" id="toc"></nav>
+    <div id="units"></div>
+  </main>
+  <script src="course-review.js?v=1"></script>
+  <script>
+    (function () {
+      var C = window.TB_COURSE || [];
+      var TR = { BASE: 'יסודות', FIT: 'FIT', GRP: 'קבוצות' };
+      var REC = { docket: 'מספר דוקט', proposal: 'מספר הצעת מחיר', none: 'בלי מספר' };
+      function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+      function rich(s) { return esc(s).replace(/\[\[(.+?)\]\]/g, '<span class="term">$1</span>'); }
+      var steps = 0, verify = 0, shots = 0, oral = 0;
+      C.forEach(function (u) { steps += u.steps.length; oral += (u.oral || []).length; u.steps.forEach(function (s) { if (s.verify) verify++; if (s.img) shots++; }); });
+      document.getElementById('stats').innerHTML =
+        '<div><b>' + C.length + '</b>יחידות</div><div><b>' + steps + '</b>שלבים</div><div><b>' + oral + '</b>שאלות בעל פה</div>' +
+        '<div><b>' + shots + '/' + steps + '</b>שלבים עם צילום</div><div><b>' + verify + '</b>לבדיקה במערכת</div>';
+      var toc = '', last = '';
+      C.forEach(function (u) {
+        if (u.track !== last) { toc += '<h3>' + TR[u.track] + '</h3>'; last = u.track; }
+        var v = u.steps.filter(function (s) { return s.verify; }).length;
+        toc += '<a href="#' + u.id + '">' + u.icon + ' ' + esc(u.title) + (v ? ' · ⚠ ' + v : '') + '</a>';
+      });
+      document.getElementById('toc').innerHTML = toc;
+      document.getElementById('units').innerHTML = C.map(function (u) {
+        return '<section class="unit" id="' + u.id + '"><h2>' + u.icon + ' ' + esc(u.title) + '</h2>' +
+          '<div class="meta">' + TR[u.track] + ' · ' + u.steps.length + ' שלבים · בסוף: ' + REC[u.record] + ' · <code>' + u.id + '</code></div>' +
+          '<p><b>מטרה:</b> ' + rich(u.goal) + '<br><b>למה:</b> ' + rich(u.why) + '</p>' +
+          ((u.before || []).length ? '<h4>📘 לפני שמתחילים</h4><dl>' + u.before.map(function (b) { return '<dt>' + rich(b.term) + '</dt><dd>' + rich(b.text) + '</dd>'; }).join('') + '</dl>' : '') +
+          '<h4>שלבים</h4><ol class="steps">' + u.steps.map(function (s) {
+            return '<li' + (s.verify ? ' class="has-verify"' : '') + '><span class="step-title">' + esc(s.title) + '</span><br>' + rich(s.text) +
+              (s.trap ? '<span class="trap">⚠️ ' + rich(s.trap) + '</span>' : '') +
+              (s.why ? '<span class="why">💡 ' + rich(s.why) + '</span>' : '') +
+              (s.verify ? '<span class="verify">🔎 לבדוק: ' + rich(s.verify) + '</span>' : '') +
+              (s.img ? '<span class="shot has">📷 יש צילום: ' + esc(s.img) + '</span>' : '<span class="shot">📷 חסר צילום: ' + rich(s.shot) + '</span>') + '</li>';
+          }).join('') + '</ol>' +
+          ((u.check || []).length ? '<h4>✅ בדיקה לפני הבוחן</h4><ul>' + u.check.map(function (c) { return '<li>' + rich(c) + '</li>'; }).join('') + '</ul>' : '') +
+          ((u.oral || []).length ? '<h4>🗣️ שאלות בעל פה</h4><dl>' + u.oral.map(function (o) { return '<dt>' + rich(o.q) + '</dt><dd>' + rich(o.a) + '</dd>'; }).join('') + '</dl>' : '') +
+          '<div class="src">מקורות: ' + esc((u.sources || []).join(' · ')) + '</div></section>';
+      }).join('');
+      [['fVerify', 'only-verify'], ['fShot', 'hide-shot'], ['fWhy', 'hide-why']].forEach(function (p) {
+        document.getElementById(p[0]).addEventListener('change', function (e) { document.body.classList.toggle(p[1], e.target.checked); });
+      });
+    })();
+  </script>
+</body>
+</html>
