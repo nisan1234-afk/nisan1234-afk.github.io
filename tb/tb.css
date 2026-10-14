@@ -168,3 +168,4 @@ button { cursor: pointer; }
 .tb-oral { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin-top: 8px; background: var(--white); }
 .tb-oral summary { font-weight: 700; cursor: pointer; line-height: 1.5; }
 .tb-oral p { margin: 8px 0 0; line-height: 1.6; color: var(--forest); }
+button.tb-sheetlink { border: 0; font-family: inherit; cursor: pointer; }

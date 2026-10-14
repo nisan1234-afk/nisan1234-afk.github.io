@@ -1,5 +1,7 @@
 /* טרוול בוסטר צעד-צעד: מדריך לטלפון שמונח ליד המחשב. עצמאי, בלי כיתה פלוס.
- * כניסה עם גוגל; כל תלמיד/ה מקבל/ת גיליון Google Sheets אישי (נוצר בשרת, tb/apps-script/Code.gs),
+ * כניסה חופשית כברירת מחדל: ההתקדמות נשמרת בטלפון (localStorage, tbProgress).
+ * כשיש שרת (config.js) אפשר גם להתחבר עם גוגל; אז מה שנשמר בטלפון עולה לגיליון.
+ * במצב מחובר: כל תלמיד/ה מקבל/ת גיליון Google Sheets אישי (נוצר בשרת, tb/apps-script/Code.gs),
  * עם לשונית לכל חלק למידה ועמודה לכל יחידה. כל מעבר שלב מתעדכן שם.
  * מסלול: #  = רשימת יחידות | #u/<unit>/<i> = מסך בתוך יחידה (0 = פתיחה, 1..n = שלבים, n+1 = סיום ומספר דוקט). */
 (function () {
@@ -20,6 +22,8 @@
   var loaded = false;
   var loadError = '';
   var pendingStep = null; // שמירת שלב שנכשלה, לניסיון חוזר
+  var guest = true; // כניסה חופשית: בלי גוגל, שמירה בטלפון בלבד
+  var loginBtn = document.getElementById('tbLogin');
 
   // ---------- עזרים ----------
   function esc(s) {
@@ -73,8 +77,10 @@
   function showLogin(reason) {
     keepAwake(false);
     app.innerHTML = '<section class="tb-card tb-login"><div class="big">✈️</div><h2>טרוול בוסטר צעד-צעד</h2>' +
-      '<p class="tb-text">' + esc(reason || 'נכנסים עם חשבון הגוגל שלכם. ההתקדמות נשמרת בגיליון אישי שנפתח לכם בדרייב.') + '</p>' +
-      '<div id="tbGoogleBtn" class="tb-gbtn"></div></section>';
+      '<p class="tb-text">' + esc(reason || 'נכנסים עם חשבון הגוגל שלכם. ההתקדמות נשמרת בגיליון אישי שנפתח לכם בדרייב, כולל מה שכבר עשיתם בטלפון הזה.') + '</p>' +
+      '<div id="tbGoogleBtn" class="tb-gbtn"></div>' +
+      '<p style="margin-top:18px"><a href="#" id="tbGuest">להמשיך בלי כניסה</a></p></section>';
+    document.getElementById('tbGuest').addEventListener('click', function (e) { e.preventDefault(); startGuest(); });
     withGis(function () {
       google.accounts.id.renderButton(document.getElementById('tbGoogleBtn'), { theme: 'filled_blue', size: 'large', text: 'signin_with', locale: 'he', width: 280 });
       google.accounts.id.prompt();
@@ -102,6 +108,9 @@
       });
   }
 
+  function saveLocal() { store('tbProgress', progress); }
+  function where() { return guest ? 'בטלפון הזה' : 'בגיליון שלכם'; }
+
   function saveStep(unit, step) {
     var p = progress[unit.id] || (progress[unit.id] = { unit_id: unit.id, step: 0, percent: 0, steps_total: unit.steps.length });
     if (!p.done) {
@@ -110,11 +119,13 @@
     }
     p.steps_total = unit.steps.length;
     store('tbLast', { unit: unit.id, i: step });
+    saveLocal();
+    if (guest) return;
     pendingStep = unitPayload(unit, { step: step });
     flushStep();
   }
   function flushStep() {
-    if (!pendingStep) return;
+    if (!pendingStep || guest) return;
     if (!tokenValid()) { setSync('הכניסה פגה, לחצו להתחבר', true); return; }
     var sending = pendingStep;
     api('step', sending).then(function () {
@@ -158,7 +169,8 @@
   function renderHome() {
     keepAwake(false);
     var html = '<section class="tb-hello"><h1>שלום' + (auth && auth.name ? ' ' + esc(auth.name.split(' ')[0]) : '') + '</h1>' +
-      '<p>הטלפון ליד המחשב: כאן רואים מה לעשות בכל שלב, ובמחשב עושים את זה בטרוול בוסטר. לוחצים על צילום כדי להגדיל אותו. ההתקדמות נשמרת בגיליון האישי שלכם.</p></section>';
+      '<p>הטלפון ליד המחשב: כאן רואים מה לעשות בכל שלב, ובמחשב עושים את זה בטרוול בוסטר. לוחצים על צילום כדי להגדיל אותו. ההתקדמות נשמרת ' + where() + '.' +
+      (guest ? ' עובדים תמיד מאותו טלפון ובאותו דפדפן, כדי לא לאבד אותה.' : '') + '</p></section>';
     if (loadError) html += '<p class="tb-error">' + esc(loadError) + '</p>';
 
     var last = store('tbLast');
@@ -312,13 +324,13 @@
     var p = progress[unit.id] || {};
     var back = '<nav class="tb-nav"><a class="btn" href="#u/' + unit.id + '/' + (unit.steps.length + 1) + '">הקודם</a><a class="btn" href="#">לרשימה</a></nav>';
     if (unit.record === 'none') {
-      return '<article class="tb-card"><h2>🏁 סיום היחידה</h2><p class="tb-text">עברתם על כל השלבים. לחיצה על הכפתור מסמנת את היחידה כהושלמה בגיליון שלכם.</p>' +
+      return '<article class="tb-card"><h2>🏁 סיום היחידה</h2><p class="tb-text">עברתם על כל השלבים. לחיצה על הכפתור מסמנת את היחידה כהושלמה ' + where() + '.</p>' +
         '<form class="tb-form" id="tbDone" novalidate><label for="tbNote">משהו היה לא ברור? (לא חובה)</label><textarea id="tbNote" rows="3" maxlength="500">' + esc(p.note || '') + '</textarea>' +
         '<p class="msg" id="tbMsg"></p><button class="btn btn-primary" style="width:100%" type="submit">סיימתי את היחידה</button></form></article>' + back;
     }
     var label = RECORD_LABEL[unit.record] || 'מספר הדוקט';
     return '<article class="tb-card"><h2>🏁 סיום: ' + label + '</h2>' +
-      '<p class="tb-text">מקלידים את ' + label + ' מטרוול בוסטר. הוא נשמר בגיליון שלכם, בעמודה של היחידה.</p>' +
+      '<p class="tb-text">מקלידים את ' + label + ' מטרוול בוסטר. הוא נשמר ' + where() + '. רושמים אותו גם במחברת, ליתר ביטחון.</p>' +
       '<form class="tb-form" id="tbDone" novalidate>' +
       '<label for="tbDocket">' + label + '</label><input id="tbDocket" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="152843" value="' + esc(p.docket || '') + '">' +
       '<label for="tbNote">משהו היה לא ברור? (לא חובה)</label><textarea id="tbNote" rows="3" maxlength="500">' + esc(p.note || '') + '</textarea>' +
@@ -341,8 +353,10 @@
       var done = function () {
         progress[unit.id] = Object.assign(progress[unit.id] || {}, { unit_id: unit.id, done: true, docket: docket, note: note, step: unit.steps.length, percent: 100, steps_total: unit.steps.length });
         store('tbLast', null);
+        saveLocal();
         renderDone(unit, docket);
       };
+      if (guest) { done(); return; }
       api('complete', unitPayload(unit, { docket: docket, note: note, record: unit.record }))
         .then(done)
         .catch(function (err) {
@@ -359,7 +373,7 @@
     var next = null;
     for (var k = idx + 1; k < UNITS.length; k++) if (!UNITS[k].soon) { next = UNITS[k]; break; }
     app.innerHTML = '<article class="tb-card tb-done"><div class="big">🎉</div><h2>כל הכבוד!</h2>' +
-      (docket ? '<p class="tb-text">נשמר בגיליון שלך עם ' + (unit.record === 'proposal' ? 'מספר הצעה' : 'דוקט') + '</p><div class="docket">' + esc(docket) + '</div>' : '<p class="tb-text">היחידה סומנה כהושלמה בגיליון שלך.</p>') +
+      (docket ? '<p class="tb-text">נשמר ' + where() + ' עם ' + (unit.record === 'proposal' ? 'מספר הצעה' : 'דוקט') + '</p><div class="docket">' + esc(docket) + '</div>' : '<p class="tb-text">היחידה סומנה כהושלמה ' + where() + '.</p>') +
       '<p class="tb-text">בבחינה: בסוף כל חלק קוראים לבוחן ומשאירים את הכול פתוח על המסך.</p></article>' +
       '<nav class="tb-nav"><a class="btn" href="#">לרשימה</a>' +
       (next ? '<a class="btn btn-primary" href="#u/' + next.id + '/0">ליחידה הבאה</a>' : '<a class="btn btn-primary" href="#">סיום</a>') + '</nav>';
@@ -415,9 +429,38 @@
   window.addEventListener('hashchange', route);
   document.querySelectorAll('[data-home]').forEach(function (a) { a.addEventListener('click', function (e) { e.preventDefault(); location.hash = ''; }); });
 
+  // כניסה חופשית: בלי שרת, ההתקדמות מהטלפון
+  function startGuest() {
+    guest = true;
+    progress = store('tbProgress') || {};
+    loaded = true;
+    if (loginBtn) loginBtn.hidden = !API;
+    route();
+  }
+  // אחרי כניסה עם גוגל: יחידות שהושלמו בטלפון ועוד לא בגיליון עולות לגיליון
+  function uploadLocal() {
+    var local = store('tbProgress') || {};
+    Object.keys(local).forEach(function (id) {
+      var l = local[id], u = unitById(id), srv = progress[id];
+      if (!u || !l) return;
+      if (l.done && !(srv && srv.done)) {
+        api('complete', unitPayload(u, { docket: l.docket || '', note: l.note || '', record: u.record })).then(function () {
+          progress[id] = l;
+          if (!/^#u\//.test(location.hash)) renderHome();
+        }, function () {});
+      } else if (!l.done && l.step && !(srv && (srv.done || (srv.step || 0) >= l.step))) {
+        api('step', unitPayload(u, { step: l.step })).then(function () {
+          progress[id] = Object.assign(srv || {}, l);
+        }, function () {});
+      }
+    });
+  }
+  if (loginBtn) loginBtn.addEventListener('click', function () { showLogin(); });
+
   function start() {
-    if (!API) { app.innerHTML = '<p class="tb-error">המערכת עוד לא חוברה לשרת (חסרה כתובת ב-config.js).</p>'; return; }
-    if (!tokenValid()) { showLogin(); return; }
+    if (!API || !tokenValid()) { startGuest(); return; }
+    guest = false;
+    if (loginBtn) loginBtn.hidden = true;
     document.getElementById('tbUser').textContent = auth.name || auth.email;
     loaded = false;
     route();
@@ -427,6 +470,7 @@
         loadError = '';
         if (d.sheet_url) { sheetLink.href = d.sheet_url; sheetLink.hidden = false; }
         flushStep();
+        uploadLocal();
       })
       .catch(function (err) {
         if (err.message === 'LOGIN') { needLogin('הכניסה פגה. נכנסים שוב וממשיכים מאותו מקום.'); throw err; }
