@@ -63,7 +63,7 @@
   <main class="ex" id="app"><p class="tb-loading">טוען…</p></main>
 
   <script src="config.js?v=3"></script>
-  <script src="exercises.js?v=1"></script>
+  <script src="exercises.js?v=2"></script>
   <script>
   (function () {
     'use strict';
@@ -109,7 +109,7 @@
         html += '<div class="tb-track">' + TRACK[t] + '</div><ul class="cards">' + list.map(function (e) {
           var p = progress[e.id] || {};
           var st = p.done ? '<span class="st done">✓ ' + esc(p.number || 'הושלם') + '</span>' : p.parts ? '<span class="st">בתהליך</span>' : '';
-          return '<li><a class="card" href="?id=' + e.id + '">' + st + '<b>' + esc(e.title) + '</b><span class="lvl">' + LEVELS[e.level] + '</span>' +
+          return '<li><a class="card" href="?id=' + e.id + '">' + st + '<b>' + esc(e.title) + '</b><span class="lvl">' + LEVELS[e.level] + '</span>' + (e.verified ? '<span class="lvl" style="background:#dff3e7;color:var(--ok)">✓ נבדק במערכת</span>' : '') +
             '<small>' + esc(e.client) + ' · כ-' + e.minutes + ' דק׳</small><small>' + rich(e.focus) + '</small></a></li>';
         }).join('') + '</ul>';
       });
@@ -121,7 +121,7 @@
       document.title = ex.title + ' · תרגיל';
       var p = progress[ex.id] || { parts: [] };
       var n = 0;
-      var html = '<h1>' + esc(ex.title) + '</h1><p class="meta">' + TRACK[ex.track] + ' · ' + LEVELS[ex.level] + ' · כ-' + ex.minutes + ' דק׳ · תרגיל אימון בסגנון הבגרות</p>' +
+      var html = '<h1>' + esc(ex.title) + '</h1><p class="meta">' + TRACK[ex.track] + ' · ' + LEVELS[ex.level] + ' · כ-' + ex.minutes + ' דק׳ · תרגיל אימון בסגנון הבגרות' + (ex.verified ? ' · <b style="color:var(--ok)">✓ נבדק במערכת</b>' : '') + '</p>' +
         '<div class="box"><b>לפני שמתחילים</b><ul><li>קוראים את כל השאלה עד הסוף, ורק אז נוגעים במחשב.</li>' +
         '<li>מסמנים בצבעים: <span class="tag sys">מתוך המערכת</span> <span class="tag bh">בין הרים</span>' + (ex.track === 'GRP' ? ' <span class="tag calc">בהצעת המחיר</span>' : '') + '</li>' +
         '<li>מזינים לטרוול בוסטר באנגלית. גוגל ותרגום פתוחים.</li><li>רושמים את ' + REC[ex.record] + ' על הדף מיד כשמקבלים אותו.</li></ul></div>' +
@@ -146,7 +146,9 @@
         '<p class="msg" id="msg"></p><button class="btn btn-primary" style="width:100%" type="submit">' + (p.done ? 'עדכון' : 'שמירה וסיום') + '</button>' +
         '<p class="note">' + esc(where()) + '</p></form></section>';
       if (teacher) {
-        html += '<details class="key" open><summary>🔑 למורה: מה בודקים</summary><div class="part"><ul>' + ex.key.map(function (k) { return '<li>' + rich(k) + '</li>'; }).join('') + '</ul></div>' +
+        html += '<details class="key" open><summary>🔑 למורה: מה בודקים</summary>' +
+          (ex.solution ? '<div class="part"><h2>פתרון במערכת' + (ex.verified ? ' <small>' + esc(ex.verified) + '</small>' : '') + '</h2><ul>' + ex.solution.map(function (k) { return '<li>' + rich(k) + '</li>'; }).join('') + '</ul></div>' : '') +
+          '<div class="part"><ul>' + ex.key.map(function (k) { return '<li>' + rich(k) + '</li>'; }).join('') + '</ul></div>' +
           '<div class="part"><h2>לפני שנותנים לתלמידים</h2><ul>' + ex.precheck.map(function (k) { return '<li>' + rich(k) + '</li>'; }).join('') + '</ul></div></details>';
       }
       app.innerHTML = html;
