@@ -33,7 +33,7 @@
     },
     {
       "title": "מהמערכת, לפני אישור",
-      "text": "בשורת ההזמנה לוחצים על ההמבורגר ← [[Cancel Reservation]] ← מאשרים. בשורה מופיע X אדום.",
+      "text": "בשורת ההזמנה לוחצים על ההמבורגר ← [[Cancel Reservation]]. בחלון [[Are you sure you want to proceed?]] לוחצים [[OK]]. בשורה מופיע X אדום, והסכום נעלם מהשורה ומהסה״כ.",
       "trap": "לא [[Delete Transaction]]. בבחינה הביטול צריך להישאר גלוי.",
       "shot": "תפריט ההמבורגר פתוח. לסמן את [[Cancel Reservation]] בירוק ואת [[Delete Transaction]] באדום."
     },
