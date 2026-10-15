@@ -184,7 +184,7 @@
         '<a class="btn btn-primary" href="#u/' + lastUnit.id + '/' + (last.i || 0) + '">המשך</a></div>';
     }
 
-    html += '<a class="tb-resume" href="ex1.html" style="text-decoration:none;color:inherit"><span>📝 תרגיל בסגנון בגרות<br><b>משפחת לוי · FIT</b></span><span class="btn">לתרגיל</span></a>';
+    html += '<a class="tb-resume" href="ex.html" style="text-decoration:none;color:inherit"><span>📝 תרגילים בסגנון בגרות<br><b>FIT וקבוצות, מחימום ועד בחינה</b></span><span class="btn">לתרגילים</span></a>';
 
     var tracks = {};
     UNITS.forEach(function (u) { (tracks[u.track] = tracks[u.track] || []).push(u); });

@@ -116,9 +116,10 @@
       var mine = rows.filter(function (r) { return r.email === st.email; });
       var latest = mine.slice().sort(function (a, b) { return String(b.updated_at).localeCompare(String(a.updated_at)); })[0] || null;
       var m = latest ? mins(latest.updated_at, now) : Infinity;
-      var done = mine.filter(function (r) { return r.done; });
-      var lastDone = done.slice().sort(function (a, b) { return String(b.completed_at).localeCompare(String(a.completed_at)); })[0];
-      return { rows: mine, latest: latest, m: m, active: m <= ACTIVE_MIN, stuck: !!(latest && !latest.done && m > STUCK_MIN && m <= ACTIVE_MIN), done: done.length, docket: lastDone ? lastDone.docket : '' };
+      var done = mine.filter(function (r) { return r.done && unitOf(r.unit_id); });
+      var exDone = mine.filter(function (r) { return r.done && /^ex-/.test(r.unit_id); }).length;
+      var lastDone = mine.filter(function (r) { return r.done; }).slice().sort(function (a, b) { return String(b.completed_at).localeCompare(String(a.completed_at)); })[0];
+      return { rows: mine, latest: latest, m: m, active: m <= ACTIVE_MIN, stuck: !!(latest && !latest.done && m > STUCK_MIN && m <= ACTIVE_MIN), done: done.length, exDone: exDone, docket: lastDone ? lastDone.docket : '' };
     }
 
     function render() {
@@ -133,12 +134,13 @@
       var doneAll = list.reduce(function (n, r) { return n + r.x.done; }, 0);
       var html = '<h1>מעקב מורה</h1><div class="bar"><span id="state">עודכן ' + new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }) + ' · מתעדכן לבד כל 30 שניות</span>' +
         '<a href="' + esc(data.registry_url) + '" target="_blank" rel="noopener">📄 הגיליון המרכזי</a>' +
+        '<a href="ex.html" target="_blank" rel="noopener">📝 התרגילים (עם מה בודקים)</a>' +
         '<button class="btn mini" id="refresh">רענון</button></div>' +
         '<div class="pulse"><article><span>עובדים עכשיו</span><b>' + active + '</b></article>' +
         '<article class="' + (stuck ? 'alert' : '') + '"><span>תקועים (' + STUCK_MIN + '+ דק׳ באותו שלב)</span><b>' + stuck + '</b></article>' +
         '<article><span>יחידות שהושלמו</span><b>' + doneAll + '</b></article>' +
         '<article><span>תלמידים</span><b>' + list.length + '</b></article></div>';
-      html += '<div class="wrap"><table><thead><tr><th>תלמיד/ה</th><th>עכשיו</th><th>פעילות אחרונה</th><th>הושלמו</th><th>דוקט אחרון</th><th></th></tr></thead><tbody>';
+      html += '<div class="wrap"><table><thead><tr><th>תלמיד/ה</th><th>עכשיו</th><th>פעילות אחרונה</th><th>יחידות שהושלמו</th><th>דוקט אחרון</th><th></th></tr></thead><tbody>';
       html += list.length ? list.map(function (r) {
         var s = r.s, x = r.x, l = x.latest;
         var nowTxt = !l ? '<small>עוד לא התחיל/ה</small>' :
@@ -146,7 +148,7 @@
           (l.done ? '' : '<div class="meter"><i style="width:' + Math.min(100, l.percent) + '%"></i></div>');
         var when = '<span class="' + (x.stuck ? 'warn' : x.m < 3 ? 'live' : '') + '">' + (x.stuck ? '⚠ ' : '') + ago(x.m) + '</span>';
         return '<tr' + (x.stuck ? ' class="stuck"' : '') + '><td><b>' + esc(s.name) + '</b><small>' + esc(s.email) + '</small></td><td>' + nowTxt + '</td><td>' + when + '</td>' +
-          '<td>' + x.done + ' / ' + UNITS.length + '</td><td>' + (x.docket ? '<span class="dk">' + esc(x.docket) + '</span>' : '—') + '</td>' +
+          '<td>' + x.done + ' / ' + UNITS.length + (x.exDone ? '<small>תרגילים: ' + x.exDone + '</small>' : '') + '</td><td>' + (x.docket ? '<span class="dk">' + esc(x.docket) + '</span>' : '—') + '</td>' +
           '<td><button class="btn mini" data-st="' + esc(s.email) + '">פירוט</button></td></tr>';
       }).join('') : '<tr><td colspan="6">עוד אף תלמיד/ה לא נכנס/ה. התלמידים מופיעים כאן אחרי הכניסה הראשונה עם גוגל במדריך.</td></tr>';
       html += '</tbody></table></div><div id="detail"></div>';

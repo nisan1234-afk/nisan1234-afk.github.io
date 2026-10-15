@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173d37">
+  <title>תרגילים · טרוול בוסטר</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tb.css?v=3">
+  <style>
+    .ex { max-width: 760px; margin: 0 auto; padding: 16px 16px 80px; line-height: 1.65; }
+    .ex h1 { font-family: 'Frank Ruhl Libre', serif; font-size: 1.7rem; margin: 6px 0 2px; color: var(--forest); }
+    .meta { color: var(--muted); margin: 0 0 14px; }
+    .box { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 12px 16px; }
+    .box ul { margin: 6px 0 0; padding-inline-start: 20px; }
+    .part { margin-top: 22px; background: var(--white); border-radius: 18px; box-shadow: var(--shadow); padding: 16px 18px; }
+    .part > h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin: 0 0 8px; font-size: 1.2rem; color: var(--forest); }
+    .part > h2 small { font-size: 0.9rem; color: var(--gold); font-weight: 700; white-space: nowrap; }
+    .story { background: var(--sand); border-radius: 12px; padding: 12px 14px; margin: 8px 0 12px; }
+    ol.items { margin: 0; padding-inline-start: 22px; }
+    ol.items > li { margin: 0 0 12px; padding-inline-start: 4px; }
+    ol.items > li::marker { font-weight: 700; color: var(--forest); }
+    .tag { display: inline-block; font-size: 0.78rem; font-weight: 700; padding: 1px 8px; border-radius: 99px; margin-inline-start: 6px; vertical-align: 1px; }
+    .tag.sys { background: var(--mint); color: var(--forest); }
+    .tag.bh { background: #ece3f7; color: #5b3a8a; }
+    .tag.calc { background: #fdecd2; color: #8a4b08; }
+    .term { direction: ltr; unicode-bidi: isolate; font-weight: 600; }
+    .partdone { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 14px 0 0; padding: 10px 14px; border-radius: 12px; background: var(--warn-bg); color: var(--warn-ink); font-weight: 700; }
+    .partdone.ok { background: #dff3e7; color: var(--ok); }
+    .partdone .btn { min-height: 40px; padding: 6px 14px; font-size: 0.95rem; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 14px 0 0; }
+    .finish label { display: block; font-weight: 700; margin: 10px 0 4px; }
+    .finish input, .finish textarea { width: 100%; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 12px; background: var(--white); }
+    .msg { min-height: 1.4em; color: var(--bad); margin: 8px 0; }
+    .saved { color: var(--ok); font-weight: 700; }
+    .key summary { cursor: pointer; font-weight: 700; color: var(--forest); padding: 10px 0; }
+    .key ul { margin: 0; padding-inline-start: 20px; } .key li { margin-bottom: 6px; }
+    .cards { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 12px; }
+    .card { display: block; background: var(--white); border-radius: 16px; box-shadow: var(--shadow); padding: 14px 16px; text-decoration: none; color: inherit; border: 1.5px solid transparent; }
+    .card:hover { border-color: var(--forest); }
+    .card b { font-size: 1.1rem; color: var(--forest); }
+    .card small { display: block; color: var(--muted); }
+    .lvl { display: inline-block; font-size: 0.8rem; font-weight: 700; padding: 1px 8px; border-radius: 99px; background: var(--mint); color: var(--forest); margin-inline-start: 6px; }
+    .st { float: left; font-weight: 700; font-size: 0.9rem; color: var(--muted); }
+    .st.done { color: var(--ok); }
+    .note { color: var(--muted); font-size: 0.92rem; }
+    @media print {
+      .tb-top, .actions, .key, .partdone, .finish, .note { display: none !important; }
+      body, .ex { background: #fff; }
+      .part { box-shadow: none; border: 1px solid #bbb; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="tb-top">
+    <a class="tb-brand" href="./">
+      <span class="tb-mark">TB</span>
+      <span><strong>טרוול בוסטר צעד-צעד</strong><small id="who">תרגילים בסגנון בגרות</small></span>
+    </a>
+  </header>
+  <main class="ex" id="app"><p class="tb-loading">טוען…</p></main>
+
+  <script src="config.js?v=3"></script>
+  <script src="exercises.js?v=1"></script>
+  <script>
+  (function () {
+    'use strict';
+    var CFG = window.TB_CONFIG || {}, API = CFG.api || '';
+    var EX = window.TB_EXERCISES || [];
+    var app = document.getElementById('app');
+    var LEVELS = { 1: 'רמה 1 · חימום', 2: 'רמה 2', 3: 'רמה 3 · כמו בבחינה' };
+    var TRACK = { FIT: 'FIT · לקוח פרטי', GRP: 'קבוצות' };
+    var REC = { docket: 'מספר הדוקט', proposal: 'מספר הצעת המחיר' };
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function rich(s) { return esc(s).replace(/\[\[(.+?)\]\]/g, '<bdi class="term" dir="ltr">$1</bdi>'); }
+    function read(k) { try { return JSON.parse(sessionStorage.getItem(k) || 'null'); } catch (_) { return null; } }
+    function store(v) { try { if (v === undefined) return JSON.parse(localStorage.getItem('tbExProgress') || '{}'); localStorage.setItem('tbExProgress', JSON.stringify(v)); } catch (_) { return {}; } }
+
+    // אותה כניסה כמו במדריך (sessionStorage באותו אתר)
+    var auth = read('tbAuth');
+    var online = !!(API && auth && auth.token && auth.exp * 1000 > Date.now() + 60000);
+    var teacher = !!read('tbTeacherAuth') || /[?&]key=1/.test(location.search);
+    if (online) document.getElementById('who').textContent = auth.name || auth.email;
+    var progress = store() || {};
+
+    function api(action, params) {
+      if (!online) return Promise.resolve(null);
+      var body = { action: action, token: auth.token };
+      for (var k in params) body[k] = params[k];
+      return fetch(API, { method: 'POST', body: JSON.stringify(body) }).then(function (r) { return r.json(); })
+        .then(function (d) { if (!d.ok) throw new Error(d.error || 'שגיאה'); return d.data; });
+    }
+    function payload(ex, extra) {
+      var o = { unit_id: ex.id, unit_title: 'תרגיל: ' + ex.title, track_title: 'תרגילים', steps_total: ex.parts.length + 1 };
+      for (var k in extra) o[k] = extra[k];
+      return o;
+    }
+    function where() { return online ? 'נשמר בגיליון שלכם, והמורה רואה.' : 'נשמר בטלפון הזה בלבד. כדי שהמורה יראה, נכנסים עם גוגל במדריך.'; }
+
+    function renderList() {
+      var html = '<h1>תרגילים בסגנון בגרות</h1><p class="meta">מתחילים מרמה 1. כל תרגיל: קוראים הכול, מסמנים בשני צבעים, ועובדים בטרוול בוסטר. בסוף כל חלק קוראים למורה.</p>' +
+        '<p class="note">' + esc(where()) + '</p>';
+      ['FIT', 'GRP'].forEach(function (t) {
+        var list = EX.filter(function (e) { return e.track === t; });
+        if (!list.length) return;
+        html += '<div class="tb-track">' + TRACK[t] + '</div><ul class="cards">' + list.map(function (e) {
+          var p = progress[e.id] || {};
+          var st = p.done ? '<span class="st done">✓ ' + esc(p.number || 'הושלם') + '</span>' : p.parts ? '<span class="st">בתהליך</span>' : '';
+          return '<li><a class="card" href="?id=' + e.id + '">' + st + '<b>' + esc(e.title) + '</b><span class="lvl">' + LEVELS[e.level] + '</span>' +
+            '<small>' + esc(e.client) + ' · כ-' + e.minutes + ' דק׳</small><small>' + rich(e.focus) + '</small></a></li>';
+        }).join('') + '</ul>';
+      });
+      html += '<div class="actions"><a class="btn" href="./">למדריך צעד-צעד</a></div>';
+      app.innerHTML = html;
+    }
+
+    function renderEx(ex) {
+      document.title = ex.title + ' · תרגיל';
+      var p = progress[ex.id] || { parts: [] };
+      var n = 0;
+      var html = '<h1>' + esc(ex.title) + '</h1><p class="meta">' + TRACK[ex.track] + ' · ' + LEVELS[ex.level] + ' · כ-' + ex.minutes + ' דק׳ · תרגיל אימון בסגנון הבגרות</p>' +
+        '<div class="box"><b>לפני שמתחילים</b><ul><li>קוראים את כל השאלה עד הסוף, ורק אז נוגעים במחשב.</li>' +
+        '<li>מסמנים בצבעים: <span class="tag sys">מתוך המערכת</span> <span class="tag bh">בין הרים</span>' + (ex.track === 'GRP' ? ' <span class="tag calc">בהצעת המחיר</span>' : '') + '</li>' +
+        '<li>מזינים לטרוול בוסטר באנגלית. גוגל ותרגום פתוחים.</li><li>רושמים את ' + REC[ex.record] + ' על הדף מיד כשמקבלים אותו.</li></ul></div>' +
+        '<div class="actions"><button class="btn" type="button" onclick="window.print()">🖨️ הדפסה</button><a class="btn" href="ex.html">לכל התרגילים</a><a class="btn" href="./">למדריך</a></div>';
+      ex.parts.forEach(function (part, k) {
+        var done = p.parts && p.parts.indexOf(k) !== -1;
+        html += '<section class="part"><h2>' + esc(part.title) + ' <small>' + part.points + ' נק׳</small></h2>' +
+          (part.story ? '<div class="story">' + rich(part.story) + '</div>' : '') +
+          '<ol class="items" start="' + (n + 1) + '">' + part.items.map(function (it) {
+            n++;
+            var tag = it.tag === 'sys' ? '<span class="tag sys">מתוך המערכת</span>' : it.tag === 'bh' ? '<span class="tag bh">בין הרים</span>' : it.tag === 'calc' ? '<span class="tag calc">הצעת מחיר</span>' : '';
+            return '<li>' + tag + ' ' + rich(it.text) + '</li>';
+          }).join('') + '</ol>' +
+          '<div class="partdone' + (done ? ' ok' : '') + '"><span>' + (done ? '✓ סימנתם שסיימתם את החלק הזה' : '✋ סיימתם? משאירים הכול פתוח וקוראים למורה') + '</span>' +
+          (done ? '' : '<button class="btn" type="button" data-part="' + k + '">סיימתי את החלק</button>') + '</div></section>';
+      });
+      html += '<section class="part"><h2>שאלות בעל פה <small>10 נק׳</small></h2><p style="margin:0 0 8px">המורה ישאל על מה שבניתם. עונים בקול, ומראים במערכת.</p><ol class="items">' +
+        ex.oral.map(function (q) { return '<li>' + rich(q) + '</li>'; }).join('') + '</ol></section>';
+      html += '<section class="part finish"><h2>🏁 סיום התרגיל</h2><form id="fin" novalidate>' +
+        '<label for="num">' + REC[ex.record] + '</label><input id="num" inputmode="numeric" maxlength="9" autocomplete="off" value="' + esc(p.number || '') + '" placeholder="152843">' +
+        '<label for="note">משהו היה קשה או לא ברור? (לא חובה)</label><textarea id="note" rows="2" maxlength="500">' + esc(p.note || '') + '</textarea>' +
+        '<p class="msg" id="msg"></p><button class="btn btn-primary" style="width:100%" type="submit">' + (p.done ? 'עדכון' : 'שמירה וסיום') + '</button>' +
+        '<p class="note">' + esc(where()) + '</p></form></section>';
+      if (teacher) {
+        html += '<details class="key" open><summary>🔑 למורה: מה בודקים</summary><div class="part"><ul>' + ex.key.map(function (k) { return '<li>' + rich(k) + '</li>'; }).join('') + '</ul></div>' +
+          '<div class="part"><h2>לפני שנותנים לתלמידים</h2><ul>' + ex.precheck.map(function (k) { return '<li>' + rich(k) + '</li>'; }).join('') + '</ul></div></details>';
+      }
+      app.innerHTML = html;
+      window.scrollTo(0, 0);
+      if (!p.parts.length && !p.started) {
+        p.started = Date.now(); progress[ex.id] = p; store(progress);
+        api('step', payload(ex, { step: 0 })).catch(function () {});
+      }
+      app.querySelectorAll('[data-part]').forEach(function (b) {
+        b.onclick = function () {
+          var k = Number(b.getAttribute('data-part'));
+          if (p.parts.indexOf(k) === -1) p.parts.push(k);
+          progress[ex.id] = p; store(progress);
+          api('step', payload(ex, { step: p.parts.length })).catch(function () {});
+          renderEx(ex);
+        };
+      });
+      var num = document.getElementById('num');
+      num.oninput = function () { num.value = num.value.replace(/[^\d]/g, ''); };
+      document.getElementById('fin').onsubmit = function (e) {
+        e.preventDefault();
+        var msg = document.getElementById('msg');
+        if (!/^\d{3,9}$/.test(num.value)) { msg.textContent = 'רק ספרות (למשל 152843).'; num.focus(); return; }
+        var btn = e.target.querySelector('button'); btn.disabled = true; msg.textContent = '';
+        p.number = num.value; p.note = document.getElementById('note').value.trim(); p.done = true;
+        ex.parts.forEach(function (_, k) { if (p.parts.indexOf(k) === -1) p.parts.push(k); });
+        progress[ex.id] = p; store(progress);
+        api('complete', payload(ex, { docket: p.number, note: p.note, record: ex.record }))
+          .then(function () { msg.className = 'saved'; msg.textContent = '✓ ' + where(); btn.disabled = false; })
+          .catch(function (err) { msg.className = 'msg'; msg.textContent = 'נשמר בטלפון, אבל לא בגיליון: ' + err.message; btn.disabled = false; });
+      };
+    }
+
+    var id = (/[?&]id=([a-z0-9-]+)/.exec(location.search) || [])[1];
+    var ex = id && EX.filter(function (e) { return e.id === id; })[0];
+    if (ex) renderEx(ex); else renderList();
+  })();
+  </script>
+</body>
+</html>
