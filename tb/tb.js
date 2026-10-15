@@ -180,6 +180,8 @@
         '<a class="btn btn-primary" href="#u/' + lastUnit.id + '/' + (last.i || 0) + '">המשך</a></div>';
     }
 
+    html += '<a class="tb-resume" href="ex1.html" style="text-decoration:none;color:inherit"><span>📝 תרגיל בסגנון בגרות<br><b>משפחת לוי · FIT</b></span><span class="btn">לתרגיל</span></a>';
+
     var tracks = {};
     UNITS.forEach(function (u) { (tracks[u.track] = tracks[u.track] || []).push(u); });
     Object.keys(tracks).forEach(function (t) {
