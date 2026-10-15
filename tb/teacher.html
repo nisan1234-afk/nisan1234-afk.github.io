@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173d37">
+  <title>מעקב מורה · טרוול בוסטר</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tb.css?v=3">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    .tw { max-width: 1100px; margin: 0 auto; padding: 16px 16px 80px; }
+    .tw h1 { font-family: 'Frank Ruhl Libre', serif; color: var(--forest); margin: 4px 0 4px; font-size: 1.6rem; }
+    .bar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; color: var(--muted); margin-bottom: 14px; }
+    .bar a { color: var(--forest); font-weight: 700; }
+    .pulse { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
+    .pulse article { background: var(--white); border-radius: 14px; box-shadow: var(--shadow); padding: 12px 14px; }
+    .pulse span { display: block; color: var(--muted); font-size: 0.9rem; }
+    .pulse b { font-size: 1.7rem; color: var(--forest); }
+    .pulse .alert { background: #fde2df; } .pulse .alert b { color: var(--bad); }
+    .wrap { background: var(--white); border-radius: 16px; box-shadow: var(--shadow); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { text-align: right; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: var(--sand); font-size: 0.9rem; color: var(--forest); position: sticky; top: 0; }
+    td small { display: block; color: var(--muted); }
+    tr.stuck td { background: #fff6f4; }
+    .warn { color: var(--bad); font-weight: 700; }
+    .live { color: var(--ok); font-weight: 700; }
+    .dk { font-weight: 700; letter-spacing: 0.5px; direction: ltr; unicode-bidi: isolate; }
+    .mini { display: inline-block; min-height: 0; padding: 6px 12px; font-size: 0.9rem; border-radius: 10px; }
+    .meter { height: 6px; background: var(--mint); border-radius: 99px; overflow: hidden; margin-top: 5px; max-width: 160px; }
+    .meter i { display: block; height: 100%; background: var(--forest); }
+    #detail { margin-top: 18px; }
+    #detail h2 { margin: 0; font-size: 1.2rem; color: var(--forest); }
+    .dhead { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 14px 14px 6px; flex-wrap: wrap; }
+    .msg { text-align: center; color: var(--muted); padding: 30px 0; }
+    .err { color: var(--bad); }
+  </style>
+</head>
+<body>
+  <header class="tb-top">
+    <a class="tb-brand" href="./">
+      <span class="tb-mark">TB</span>
+      <span><strong>טרוול בוסטר צעד-צעד</strong><small id="who">מעקב מורה</small></span>
+    </a>
+  </header>
+  <main class="tw" id="app"><p class="msg">טוען…</p></main>
+
+  <script src="config.js?v=2"></script>
+  <script src="units.js?v=2"></script>
+  <script>
+  (function () {
+    'use strict';
+    var CFG = window.TB_CONFIG || {}, API = CFG.api || '';
+    var UNITS = (window.TB_UNITS || []).filter(function (u) { return !u.soon; });
+    var STUCK_MIN = 8, ACTIVE_MIN = 45;
+    var app = document.getElementById('app');
+    var auth = null, data = null, openEmail = '', timer = null;
+    try { auth = JSON.parse(sessionStorage.getItem('tbTeacherAuth') || 'null'); } catch (_) {}
+
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function valid() { return auth && auth.token && auth.exp * 1000 > Date.now() + 60000; }
+    function decode(t) { try { var p = t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/'); while (p.length % 4) p += '='; return JSON.parse(decodeURIComponent(escape(atob(p)))); } catch (_) { return {}; } }
+    function unitOf(id) { for (var i = 0; i < UNITS.length; i++) if (UNITS[i].id === id) return UNITS[i]; return null; }
+    function title(p) { var u = unitOf(p.unit_id); return u ? u.icon + ' ' + u.title : (p.title || p.unit_id); }
+    function mins(iso, now) { return iso ? (now - new Date(iso).getTime()) / 60000 : Infinity; }
+    function ago(m) {
+      if (!isFinite(m)) return '—';
+      if (m < 1) return 'עכשיו';
+      if (m < 60) return 'לפני ' + Math.round(m) + ' דק׳';
+      if (m < 1440) return 'לפני ' + Math.round(m / 60) + ' שע׳';
+      return 'לפני ' + Math.round(m / 1440) + ' ימים';
+    }
+
+    var gis = false;
+    function login(msg) {
+      clearInterval(timer); timer = null;
+      app.innerHTML = '<section class="tb-card tb-login"><div class="big">📊</div><h2>מעקב מורה</h2><p class="tb-text">' + esc(msg || 'נכנסים עם חשבון הגוגל של המורה.') + '</p><div id="gbtn" class="tb-gbtn"></div></section>';
+      (function wait() {
+        if (!(window.google && google.accounts && google.accounts.id)) return setTimeout(wait, 250);
+        if (!gis) {
+          google.accounts.id.initialize({ client_id: CFG.clientId, auto_select: true, use_fedcm_for_prompt: true, callback: function (r) {
+            var i = decode(r.credential);
+            auth = { token: r.credential, exp: i.exp || 0, email: i.email || '', name: i.name || '' };
+            try { sessionStorage.setItem('tbTeacherAuth', JSON.stringify(auth)); } catch (_) {}
+            start();
+          } });
+          gis = true;
+        }
+        google.accounts.id.renderButton(document.getElementById('gbtn'), { theme: 'filled_blue', size: 'large', text: 'signin_with', locale: 'he', width: 280 });
+        google.accounts.id.prompt();
+      })();
+    }
+
+    function load() {
+      if (!valid()) return login('הכניסה פגה. נכנסים שוב.');
+      return fetch(API, { method: 'POST', body: JSON.stringify({ action: 'teacher', token: auth.token }) })
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          if (!d.ok) {
+            if (/הכניסה פגה|צריך להיכנס/.test(d.error || '')) { auth = null; return login('הכניסה פגה. נכנסים שוב.'); }
+            throw new Error(d.error);
+          }
+          data = d.data; render();
+        })
+        .catch(function (e) {
+          var s = document.getElementById('state');
+          if (s) { s.textContent = 'שגיאה: ' + e.message; s.className = 'err'; }
+          else app.innerHTML = '<p class="msg err">' + esc(e.message) + '</p>';
+        });
+    }
+
+    function summarize(st, rows, now) {
+      var mine = rows.filter(function (r) { return r.email === st.email; });
+      var latest = mine.slice().sort(function (a, b) { return String(b.updated_at).localeCompare(String(a.updated_at)); })[0] || null;
+      var m = latest ? mins(latest.updated_at, now) : Infinity;
+      var done = mine.filter(function (r) { return r.done; });
+      var lastDone = done.slice().sort(function (a, b) { return String(b.completed_at).localeCompare(String(a.completed_at)); })[0];
+      return { rows: mine, latest: latest, m: m, active: m <= ACTIVE_MIN, stuck: !!(latest && !latest.done && m > STUCK_MIN && m <= ACTIVE_MIN), done: done.length, docket: lastDone ? lastDone.docket : '' };
+    }
+
+    function render() {
+      var now = new Date(data.now).getTime() || Date.now();
+      var list = data.students.map(function (s) { return { s: s, x: summarize(s, data.progress, now) }; });
+      list.sort(function (a, b) {
+        var ra = a.x.stuck ? 0 : a.x.active ? 1 : 2, rb = b.x.stuck ? 0 : b.x.active ? 1 : 2;
+        return ra - rb || String(a.s.name).localeCompare(String(b.s.name), 'he');
+      });
+      var active = list.filter(function (r) { return r.x.active; }).length;
+      var stuck = list.filter(function (r) { return r.x.stuck; }).length;
+      var doneAll = list.reduce(function (n, r) { return n + r.x.done; }, 0);
+      var html = '<h1>מעקב מורה</h1><div class="bar"><span id="state">עודכן ' + new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }) + ' · מתעדכן לבד כל 30 שניות</span>' +
+        '<a href="' + esc(data.registry_url) + '" target="_blank" rel="noopener">📄 הגיליון המרכזי</a>' +
+        '<button class="btn mini" id="refresh">רענון</button></div>' +
+        '<div class="pulse"><article><span>עובדים עכשיו</span><b>' + active + '</b></article>' +
+        '<article class="' + (stuck ? 'alert' : '') + '"><span>תקועים (' + STUCK_MIN + '+ דק׳ באותו שלב)</span><b>' + stuck + '</b></article>' +
+        '<article><span>יחידות שהושלמו</span><b>' + doneAll + '</b></article>' +
+        '<article><span>תלמידים</span><b>' + list.length + '</b></article></div>';
+      html += '<div class="wrap"><table><thead><tr><th>תלמיד/ה</th><th>עכשיו</th><th>פעילות אחרונה</th><th>הושלמו</th><th>דוקט אחרון</th><th></th></tr></thead><tbody>';
+      html += list.length ? list.map(function (r) {
+        var s = r.s, x = r.x, l = x.latest;
+        var nowTxt = !l ? '<small>עוד לא התחיל/ה</small>' :
+          (l.done ? '<b>סיים/ה</b>' : '<b>שלב ' + l.step + ' מתוך ' + l.steps_total + '</b>') + '<small>' + esc(title(l)) + '</small>' +
+          (l.done ? '' : '<div class="meter"><i style="width:' + Math.min(100, l.percent) + '%"></i></div>');
+        var when = '<span class="' + (x.stuck ? 'warn' : x.m < 3 ? 'live' : '') + '">' + (x.stuck ? '⚠ ' : '') + ago(x.m) + '</span>';
+        return '<tr' + (x.stuck ? ' class="stuck"' : '') + '><td><b>' + esc(s.name) + '</b><small>' + esc(s.email) + '</small></td><td>' + nowTxt + '</td><td>' + when + '</td>' +
+          '<td>' + x.done + ' / ' + UNITS.length + '</td><td>' + (x.docket ? '<span class="dk">' + esc(x.docket) + '</span>' : '—') + '</td>' +
+          '<td><button class="btn mini" data-st="' + esc(s.email) + '">פירוט</button></td></tr>';
+      }).join('') : '<tr><td colspan="6">עוד אף תלמיד/ה לא נכנס/ה. התלמידים מופיעים כאן אחרי הכניסה הראשונה עם גוגל במדריך.</td></tr>';
+      html += '</tbody></table></div><div id="detail"></div>';
+      app.innerHTML = html;
+      document.getElementById('refresh').onclick = load;
+      app.querySelectorAll('[data-st]').forEach(function (b) { b.onclick = function () { openEmail = b.getAttribute('data-st'); detail(); document.getElementById('detail').scrollIntoView({ behavior: 'smooth' }); }; });
+      detail();
+    }
+
+    function detail() {
+      var box = document.getElementById('detail');
+      var s = openEmail && data.students.find(function (x) { return x.email === openEmail; });
+      if (!s) { box.innerHTML = ''; return; }
+      var rows = data.progress.filter(function (r) { return r.email === s.email; });
+      var byId = {}; rows.forEach(function (r) { byId[r.unit_id] = r; });
+      var extra = rows.filter(function (r) { return !unitOf(r.unit_id); });
+      var line = function (label, p) {
+        if (!p) return '<tr><td>' + esc(label) + '</td><td colspan="4"><small>עוד לא התחיל/ה</small></td></tr>';
+        return '<tr><td>' + esc(label) + '</td><td>' + (p.done ? '<b>הושלמה ✓</b>' : 'שלב ' + p.step + ' מתוך ' + p.steps_total) + '<small>' + ago(mins(p.updated_at, Date.now())) + '</small></td>' +
+          '<td>' + (p.docket ? '<span class="dk">' + esc(p.docket) + '</span>' : '—') + '</td><td>' + (p.note ? esc(p.note) : '<small>—</small>') + '</td></tr>';
+      };
+      box.innerHTML = '<div class="wrap"><div class="dhead"><h2>' + esc(s.name) + '</h2><span>' +
+        (s.sheet_url ? '<a class="btn mini" href="' + esc(s.sheet_url) + '" target="_blank" rel="noopener">הגיליון שלו/ה</a> ' : '') +
+        '<button class="btn mini" id="dclose">סגירה</button></span></div>' +
+        '<p style="margin:0 14px 8px;color:var(--muted)">לבדיקת דוקט בטרוול בוסטר: <span class="dk">Find → By Number</span></p>' +
+        '<table><thead><tr><th>יחידה</th><th>מצב</th><th>דוקט / הצעה</th><th>הערת התלמיד/ה</th></tr></thead><tbody>' +
+        UNITS.map(function (u) { return line(u.icon + ' ' + u.title, byId[u.id]); }).join('') +
+        extra.map(function (p) { return line(p.title || p.unit_id, p); }).join('') + '</tbody></table></div>';
+      document.getElementById('dclose').onclick = function () { openEmail = ''; box.innerHTML = ''; };
+    }
+
+    function start() {
+      if (!API) { app.innerHTML = '<p class="msg err">השרת עוד לא מחובר (חסרה כתובת ב-config.js).</p>'; return; }
+      if (!valid()) return login();
+      document.getElementById('who').textContent = auth.name || auth.email;
+      app.innerHTML = '<p class="msg">טוען את ההתקדמות…</p>';
+      load();
+      if (!timer) timer = setInterval(function () { if (document.visibilityState === 'visible' && data) load(); }, 30000);
+    }
+    start();
+  })();
+  </script>
+</body>
+</html>

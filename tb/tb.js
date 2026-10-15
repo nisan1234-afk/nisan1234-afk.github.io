@@ -80,7 +80,11 @@
       '<p class="tb-text">' + esc(reason || 'נכנסים עם חשבון הגוגל שלכם. ההתקדמות נשמרת בגיליון אישי שנפתח לכם בדרייב, כולל מה שכבר עשיתם בטלפון הזה.') + '</p>' +
       '<div id="tbGoogleBtn" class="tb-gbtn"></div>' +
       '<p style="margin-top:18px"><a href="#" id="tbGuest">להמשיך בלי כניסה</a></p></section>';
-    document.getElementById('tbGuest').addEventListener('click', function (e) { e.preventDefault(); startGuest(); });
+    document.getElementById('tbGuest').addEventListener('click', function (e) {
+      e.preventDefault();
+      try { sessionStorage.setItem('tbGuest', '1'); } catch (_) {}
+      startGuest();
+    });
     withGis(function () {
       google.accounts.id.renderButton(document.getElementById('tbGoogleBtn'), { theme: 'filled_blue', size: 'large', text: 'signin_with', locale: 'he', width: 280 });
       google.accounts.id.prompt();
@@ -457,10 +461,20 @@
       }
     });
   }
-  if (loginBtn) loginBtn.addEventListener('click', function () { showLogin(); });
+  if (loginBtn) loginBtn.addEventListener('click', function () {
+    try { sessionStorage.removeItem('tbGuest'); } catch (_) {}
+    showLogin();
+  });
 
   function start() {
-    if (!API || !tokenValid()) { startGuest(); return; }
+    var choseGuest = false;
+    try { choseGuest = sessionStorage.getItem('tbGuest') === '1'; } catch (_) {}
+    if (!API) { startGuest(); return; }
+    if (!tokenValid()) {
+      if (choseGuest) startGuest();
+      else showLogin('נכנסים עם חשבון הגוגל שלכם, כדי שההתקדמות תישמר ותגיע למורה. מה שכבר עשיתם בטלפון הזה עולה אוטומטית.');
+      return;
+    }
     guest = false;
     if (loginBtn) loginBtn.hidden = true;
     document.getElementById('tbUser').textContent = auth.name || auth.email;

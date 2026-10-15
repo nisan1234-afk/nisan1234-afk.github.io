@@ -7,7 +7,10 @@
  *    והוא משותף איתו/ה לצפייה.
  *  - בגיליון: לשונית לכל חלק למידה (FIT, קבוצות, ...), ועמודה לכל יחידה.
  *    כל מעבר שלב בטלפון מעדכן את העמודה; בסוף יחידה נכתב מספר הדוקט.
- *  - בנוסף יש גיליון מרכזי אחד ("כל התלמידים") עם שורה לכל תלמיד/ה וקישור לגיליון שלו/ה.
+ *  - בנוסף יש גיליון מרכזי אחד ("כל התלמידים"): לשונית "תלמידים" (שורה לכל תלמיד/ה וקישור לגיליון שלו/ה)
+ *    ולשונית "התקדמות" (שורה לכל תלמיד/ה × יחידה). ממנה קורא עמוד המורה (tb/teacher.html).
+ *  - עמוד המורה פתוח רק לבעל/ת הסקריפט, ולמיילים נוספים שרשומים ב-Script Properties תחת teachers
+ *    (מופרדים בפסיק).
  *
  * התקנה: ר' tb/apps-script/README.md (העתקה של הקובץ הזה, הרצה אחת של setup, ופריסה).
  * הכול נוצר אוטומטית בדרייב של מי שמריץ את הסקריפט. אין צורך לערוך כלום בקובץ.
@@ -27,6 +30,9 @@ const ROWS = {
 const ROW_LABELS = ['unit_id', 'יחידה', 'סטטוס', 'שלב נוכחי', 'מתוך', 'התקדמות %', 'דוקט / הצעה', 'הערה שלי',
   'התחלתי', 'עדכון אחרון', 'סיימתי'];
 const REGISTRY_HEADERS = ['שם', 'מייל', 'הגיליון', 'יחידות שהושלמו', 'יחידה אחרונה', 'שלב', 'דוקט אחרון', 'עדכון אחרון', 'נוצר'];
+const PROGRESS_TAB = 'התקדמות';
+const PROGRESS_HEADERS = ['מייל', 'שם', 'unit_id', 'יחידה', 'חלק', 'סטטוס', 'שלב', 'מתוך', 'התקדמות %', 'דוקט / הצעה', 'הערה', 'התחלתי', 'עדכון אחרון', 'סיימתי'];
+const P = { email: 1, name: 2, id: 3, title: 4, track: 5, status: 6, step: 7, total: 8, percent: 9, docket: 10, note: 11, started: 12, updated: 13, completed: 14 };
 
 // ========== נקודת כניסה ==========
 
@@ -37,7 +43,8 @@ function doPost(e) {
     const handlers = {
       hello: () => hello_(user),
       step: () => withLock_(() => saveStep_(user, body)),
-      complete: () => withLock_(() => complete_(user, body))
+      complete: () => withLock_(() => complete_(user, body)),
+      teacher: () => teacherSummary_(user)
     };
     if (!handlers[body.action]) return json_({ ok: false, error: 'פעולה לא מוכרת' });
     return json_({ ok: true, data: handlers[body.action]() });
@@ -103,6 +110,9 @@ function saveStep_(user, body) {
     started: sh.getRange(ROWS.started, col).getValue() ? null : now
   });
   updateRegistry_(user, ss, { unit: unit.title, step: total ? step + ' / ' + total : step });
+  upsertProgress_(user, unit, done ? { updated: now } : {
+    status: 'בתהליך', step: step, total: total, percent: percent, updated: now
+  });
   return { saved: true };
 }
 
@@ -123,6 +133,10 @@ function complete_(user, body) {
   });
   sh.getRange(ROWS.status, col).setBackground('#dff3e7');
   updateRegistry_(user, ss, { unit: unit.title, step: 'הושלם', docket: docket || null });
+  upsertProgress_(user, unit, {
+    status: 'הושלם', step: total, total: total, percent: 100, docket: docket ? "'" + docket : '',
+    note: String(body.note || '').slice(0, 500), updated: now, completed: now
+  });
   return { saved: true, docket: docket };
 }
 
@@ -271,6 +285,76 @@ function updateRegistry_(user, ss, info) {
   if (info.docket) sh.getRange(row, 7).setValue("'" + info.docket);
   sh.getRange(row, 8).setValue(new Date());
 }
+
+// ========== התקדמות מרוכזת (לעמוד המורה) ==========
+
+function progressSheet_() {
+  const ss = getRegistry_();
+  let sh = ss.getSheetByName(PROGRESS_TAB);
+  if (sh) return sh;
+  sh = ss.insertSheet(PROGRESS_TAB);
+  sh.setRightToLeft(true);
+  sh.getRange(1, 1, 1, PROGRESS_HEADERS.length).setValues([PROGRESS_HEADERS]).setFontWeight('bold').setBackground('#173d37').setFontColor('#ffffff');
+  sh.setFrozenRows(1);
+  sh.getRange(2, P.started, 1000, 3).setNumberFormat('dd/MM HH:mm');
+  return sh;
+}
+
+/** שורה אחת לכל תלמיד/ה × יחידה. מעדכן אם קיימת, אחרת מוסיף. */
+function upsertProgress_(user, unit, fields) {
+  const sh = progressSheet_();
+  const last = sh.getLastRow();
+  let row = -1;
+  if (last >= 2) {
+    const keys = sh.getRange(2, P.email, last - 1, P.id).getValues();
+    for (let i = 0; i < keys.length; i++) {
+      if (String(keys[i][0]).toLowerCase() === user.email && keys[i][P.id - 1] === unit.id) { row = i + 2; break; }
+    }
+  }
+  if (row === -1) {
+    row = Math.max(2, last + 1);
+    sh.getRange(row, 1, 1, 5).setValues([[user.email, user.name, unit.id, unit.title, unit.track]]);
+    if (!fields.started) fields.started = new Date();
+  } else {
+    sh.getRange(row, P.name).setValue(user.name);
+    if (unit.title) sh.getRange(row, P.title).setValue(unit.title);
+  }
+  Object.keys(fields).forEach(k => {
+    if (fields[k] === null || fields[k] === undefined || !P[k]) return;
+    sh.getRange(row, P[k]).setValue(fields[k]);
+  });
+}
+
+function isTeacher_(email) {
+  const list = String(PropertiesService.getScriptProperties().getProperty('teachers') || '')
+    .split(',').map(x => x.trim().toLowerCase()).filter(Boolean);
+  let owner = '';
+  try { owner = String(Session.getEffectiveUser().getEmail() || '').toLowerCase(); } catch (_) {}
+  return email === owner || list.indexOf(email) !== -1;
+}
+
+/** עמוד המורה: כל התלמידים + שורת התקדמות לכל יחידה. */
+function teacherSummary_(user) {
+  if (!isTeacher_(user.email)) throw new Error('אין הרשאת מורה לחשבון הזה');
+  const reg = getRegistry_();
+  const st = reg.getSheets()[0];
+  const students = st.getLastRow() < 2 ? [] : st.getRange(2, 1, st.getLastRow() - 1, REGISTRY_HEADERS.length).getValues()
+    .filter(r => r[1])
+    .map(r => ({ name: String(r[0]), email: String(r[1]).toLowerCase(), sheet_url: String(r[2]), created: iso_(r[8]) }));
+  const ps = progressSheet_();
+  const rows = ps.getLastRow() < 2 ? [] : ps.getRange(2, 1, ps.getLastRow() - 1, PROGRESS_HEADERS.length).getValues()
+    .filter(r => r[0] && r[2])
+    .map(r => ({
+      email: String(r[P.email - 1]).toLowerCase(), unit_id: String(r[P.id - 1]), title: String(r[P.title - 1]),
+      track: String(r[P.track - 1]), done: String(r[P.status - 1]).indexOf('הושלם') === 0,
+      step: Number(r[P.step - 1]) || 0, steps_total: Number(r[P.total - 1]) || 0, percent: Number(r[P.percent - 1]) || 0,
+      docket: String(r[P.docket - 1] || '').replace(/^'/, ''), note: String(r[P.note - 1] || ''),
+      started_at: iso_(r[P.started - 1]), updated_at: iso_(r[P.updated - 1]), completed_at: iso_(r[P.completed - 1])
+    }));
+  return { now: new Date().toISOString(), registry_url: reg.getUrl(), students: students, progress: rows };
+}
+
+function iso_(v) { return v instanceof Date ? v.toISOString() : (v ? String(v) : ''); }
 
 // ========== עזרים ==========
 
