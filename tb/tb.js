@@ -469,6 +469,11 @@
   function start() {
     var choseGuest = false;
     try { choseGuest = sessionStorage.getItem('tbGuest') === '1'; } catch (_) {}
+    // קישור פתוח בלי כניסה: ?free=1 (שמירה בטלפון בלבד)
+    if (/[?&]free=1\b/.test(location.search) && !tokenValid()) {
+      choseGuest = true;
+      try { sessionStorage.setItem('tbGuest', '1'); } catch (_) {}
+    }
     if (!API) { startGuest(); return; }
     if (!tokenValid()) {
       if (choseGuest) startGuest();
