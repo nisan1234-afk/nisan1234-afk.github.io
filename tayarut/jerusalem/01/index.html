@@ -1,0 +1,862 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>ירושלים · פתיחה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+</style>
+
+<div class="deck" dir="rtl" lang="he">
+  <div class="bar"><b>ירושלים והסביבה</b><span>נושא 1 · פתיחה</span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+
+  <!-- 1 -->
+
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero-oldcity.jpg" alt="מבט מלמעלה על הר הבית והעיר העתיקה בירושלים">
+    <span class="credit">מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">חבל ירושלים · נושא 1</p>
+      <h1>ירושלים: פתיחה</h1>
+      <p class="lead">העיר החשובה ביותר לתיירות בישראל: על רכס הרים בגובה 800 מטר, בין השפלה למדבר, וקדושה לשלוש דתות. כמעט שלושה מכל ארבעה תיירים שמגיעים לישראל מגיעים גם אליה. בנושא הזה נבין למה.</p>
+      <div class="chips"><span class="chip">מיקום ונוף</span><span class="chip">אקלים</span><span class="chip">שלוש הדתות</span><span class="chip">בית לחם וחברון</span><span class="chip">נתונים</span><span class="chip">סוגי תיירות</span><span class="chip">גורמים משפיעים</span><span class="chip">תכנון מסלול</span><span class="chip">מושגים</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">תעודת זהות</p>
+      <h2>ירושלים במספרים</h2>
+      <div class="facts">
+        <div class="fact"><span class="n">כ־800 מ׳</span><span class="l">גובה הרי ירושלים</span></div>
+        <div class="fact"><span class="n">כ־4,000</span><span class="l">שנות היסטוריה, מהעיר היבוסית</span></div>
+        <div class="fact"><span class="n">3</span><span class="l">דתות שהעיר קדושה להן</span></div>
+        <div class="fact"><span class="n">4</span><span class="l">רובעים בעיר העתיקה</span></div>
+        <div class="fact"><span class="n">8</span><span class="l">שערים בחומה, שבעה מהם פתוחים</span></div>
+        <div class="fact"><span class="n">כ־70</span><span class="l">שמות שניתנו לעיר</span></div>
+        <div class="fact"><span class="n">1981</span><span class="l">העיר העתיקה הוכרזה אתר מורשת עולמית</span></div>
+        <div class="fact"><span class="n">74%</span><span class="l">מהתיירים הנכנסים ביקרו בה (2017)</span></div>
+      </div>
+      <div class="two">
+        <p class="lead">ירושלים היא בירת ישראל והעיר הגדולה בה. היא מוקד לכל מגזרי התיירות: צליינות, היסטוריה וארכיאולוגיה, תרבות, זיכרון והנצחה, ותיירות עירונית.</p>
+        <figure><img src="img/illustrated-map.jpg" alt="מפה מאוירת של אתרי ירושלים" style="aspect-ratio:16/10;object-position:top"><figcaption>מפת תיירות מאוירת של ירושלים · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+      </div>
+      <details class="more"><summary>הרחבה</summary><div class="body">
+        <p>בין שמותיה של העיר: ציון, שלם, יבוס, עיר דוד, יפה נוף ואריאל. ריבוי השמות משקף את מקומה המרכזי בתרבות היהודית, ובשירה העברית נכתבו עליה מאות שירים, כמו "ירושלים של זהב" של נעמי שמר.</p>
+        <p>החומה של העיר העתיקה נבנתה בידי הסולטן העות'מאני סולימאן המפואר לפני כ־500 שנה. אחד השערים, שער הרחמים, אטום, ולפי המסורת ייפתח בבוא המשיח.</p>
+        <p class="src">נתון 74%: דוח מבקר המדינה על ירושלים (2019), לפי נתוני 2017. ההכרזה של אונסק״ו אינה מופיעה בספר.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad two maptwo">
+      <div class="mapwrap map">
+        <svg viewBox="0 0 600 638.9" role="img" aria-labelledby="mapT mapD" style="direction:ltr"><title id="mapT">מפת חבל ירושלים</title><desc id="mapD">קו החוף לפי נתוני Natural Earth, ומיקום אמיתי של היישובים בחבל ירושלים ובסביבתו.</desc>
+<rect class="m-sea" x="0" y="0" width="600" height="638.9"/><path class="m-land" d="M24.3,385.6 L44.2,356.8 L50.2,342.2 L63.9,324.6 L117.5,233.5 L164.4,127.5 L174.9,110.9 L192.5,52.8 L192.5,39.3 L200.2,35.2 L211.5,0.0 L600.0,0.0 L600.0,638.9 L0.0,638.9 L0.0,410.8 L24.3,385.6 Z"/>
+<clipPath id="landclip"><path d="M24.3,385.6 L44.2,356.8 L50.2,342.2 L63.9,324.6 L117.5,233.5 L164.4,127.5 L174.9,110.9 L192.5,52.8 L192.5,39.3 L200.2,35.2 L211.5,0.0 L600.0,0.0 L600.0,638.9 L0.0,638.9 L0.0,410.8 L24.3,385.6 Z"/></clipPath>
+<g clip-path="url(#landclip)"><path class="m-hills" d="M347.7,0.0 L336.4,112.0 L336.4,210.8 L325.2,276.6 L297.2,375.4 L280.4,474.2 L291.6,638.9 L364.5,638.9 L392.5,507.1 L437.4,408.3 L476.6,309.5 L504.7,210.8 L515.9,112.0 L521.5,0.0 Z"/><path class="m-desert" d="M521.5,0.0 L515.9,112.0 L504.7,210.8 L476.6,309.5 L437.4,408.3 L392.5,507.1 L364.5,638.9 L600.0,638.9 L600.0,0.0 Z"/></g>
+<path class="m-road" d="M197.5,45.8 L324.3,185.4 L397.8,206.9 L467.9,226.1"/><text class="m-zone" x="224" y="329" text-anchor="middle">השפלה</text><text class="m-zone" x="393" y="474" text-anchor="middle">הרי יהודה</text><text class="m-zone" x="544" y="461" text-anchor="middle">מדבר יהודה</text><text class="m-zone" x="84" y="145" text-anchor="middle" transform="rotate(-62 84 145)">הים התיכון</text><circle class="m-pt m-pt-big" cx="467.9" cy="226.1" r="9"/><text class="m-lab m-big" x="479.9" y="233.1" text-anchor="start">ירושלים</text><circle class="m-pt" cx="449.9" cy="273.1" r="6"/><text class="m-lab m-md" x="461.9" y="280.1" text-anchor="start">בית לחם</text><circle class="m-pt" cx="392.4" cy="386.9" r="6"/><text class="m-lab m-md" x="404.4" y="393.9" text-anchor="start">חברון</text><circle class="m-pt" cx="503.6" cy="225.9" r="5"/><text class="m-lab m-sm" x="503.6" y="211.9" text-anchor="middle">מעלה אדומים</text><circle class="m-pt" cx="420.6" cy="209.2" r="5"/><text class="m-lab m-sm" x="420.6" y="195.2" text-anchor="middle">מבשרת ציון</text><circle class="m-pt" cx="329.8" cy="245.7" r="5"/><text class="m-lab m-sm" x="317.8" y="252.7" text-anchor="end">בית שמש</text><circle class="m-pt" cx="324.3" cy="185.4" r="5"/><text class="m-lab m-sm" x="312.3" y="192.4" text-anchor="end">לטרון</text><circle class="m-pt" cx="397.8" cy="206.9" r="5"/><text class="m-lab m-sm" x="397.8" y="232.9" text-anchor="middle">אבו גוש</text><path class="m-peak" d="M514.1,99.5 L522.1,84.5 L530.1,99.5 Z"/><text class="m-lab m-peak" x="510.1" y="99.5" text-anchor="end">הר בעל חצור</text><circle class="m-pt" cx="219.4" cy="571.8" r="6"/><text class="m-lab m-md" x="231.4" y="578.8" text-anchor="start">באר שבע</text><circle class="m-pt" cx="197.5" cy="45.8" r="6"/><text class="m-lab m-md" x="209.5" y="52.8" text-anchor="start">יפו</text>
+<g class="m-scale"><line x1="20" y1="614.9" x2="79.1" y2="614.9"/><text x="49.55" y="604.9" text-anchor="middle">10 ק״מ</text></g>
+<g class="m-north"><path d="M570,576.9 l9,24 l-9,-7 l-9,7 Z"/><text x="570" y="568.9" text-anchor="middle">צ</text></g></svg>
+        <div class="inset"><svg viewBox="0 0 150 319.5" role="img" aria-label="מיקום החבל בארץ"><rect class="m-sea" width="150" height="319.5"/><path class="m-land" d="M0.0,174.7 L15.2,165.6 L23.8,156.8 L32.6,145.5 L41.6,130.6 L48.5,115.7 L57.1,89.4 L64.2,54.0 L64.6,46.8 L66.2,44.6 L70.1,45.8 L72.5,43.3 L75.0,23.9 L78.2,20.7 L79.2,17.8 L80.1,18.4 L82.1,14.0 L82.4,11.6 L81.0,9.6 L83.5,7.0 L85.1,0.0 L150.0,0.0 L150.0,319.5 L65.8,319.5 L66.6,313.4 L68.0,310.1 L65.5,306.8 L62.1,312.3 L58.6,313.8 L55.6,319.5 L0.0,319.5 L0.0,174.7 Z"/><path class="m-lake" d="M104.4,178.2 L102.5,180.6 L103.4,182.4 L103.0,183.4 L100.7,184.8 L96.5,184.2 L95.0,182.7 L94.7,180.4 L93.0,177.7 L92.6,174.9 L93.4,172.9 L95.5,173.3 L96.9,171.6 L99.6,174.2 L104.1,176.6 L104.4,178.2 Z M108.3,133.4 L106.0,148.7 L107.2,154.3 L105.3,163.4 L105.5,165.2 L103.9,166.9 L102.5,167.2 L103.0,162.4 L101.7,162.4 L98.3,166.0 L96.5,165.6 L95.9,164.2 L95.0,156.9 L95.5,154.0 L95.0,150.6 L96.5,146.5 L96.0,142.6 L100.7,133.4 L102.7,131.3 L106.3,130.6 L108.2,131.6 L108.3,133.4 Z M111.7,41.9 L111.4,51.7 L109.0,54.5 L107.5,54.3 L106.8,51.4 L105.6,50.4 L103.4,46.3 L103.9,43.8 L106.0,41.5 L108.5,40.1 L110.0,40.3 L111.7,41.9 Z"/><rect class="m-ibox" x="27.3" y="102.2" width="73.0" height="77.5"/></svg></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p class="kick">מיקום</p>
+        <h2>גבולות החבל</h2>
+        <p>חבל ירושלים הוא אזור הררי: הרי יהודה, ובמרכזם הרי ירושלים, שגובהם מגיע לכ־800 מטר.</p>
+        <div class="compass">
+          <div><b>צפון</b>הר בעל חצור</div>
+          <div><b>דרום</b>בקעת באר שבע</div>
+          <div><b>מערב</b>השפלה</div>
+          <div><b>מזרח</b>מדבר יהודה</div>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--hills)"></i>הרי יהודה</span>
+          <span><i class="sw" style="background:var(--desert)"></i>מדבר יהודה</span>
+          <span><i class="sw" style="background:var(--land)"></i>שפלה ומישור החוף</span>
+          <span><i class="sw" style="background:transparent;border:2px dashed var(--copper)"></i>הדרך ההיסטורית מיפו</span>
+        </div>
+        <details class="more"><summary>הרחבה</summary><div class="body">
+          <p>ירושלים נמצאת כ־60 ק״מ מהים התיכון. הקרבה למקומות שונים מאוד, ההר, השפלה והמדבר, הופכת אותה לבסיס לינה לטיולים בכל האזור.</p>
+          <p class="src">המפה: קו החוף לפי נתוני Natural Earth. היישובים במיקומם האמיתי. רצועות הנוף משורטטות בקירוב.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">למה דווקא כאן</p>
+      <h2>עיר על רכס ההר</h2>
+      <div class="profile"><svg viewBox="0 0 900 300" style="direction:ltr" role="img" aria-labelledby="pfT pfD"><title id="pfT">חתך רוחב מהים התיכון דרך ירושלים אל שולי מדבר יהודה</title><desc id="pfD">מגובה פני הים עולים לכ־800 מטר בירושלים. רוב הגשם יורד על המדרון המערבי, וממזרח לעיר מתחיל המדבר.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.5"/></marker></defs>
+<path class="p-ground" d="M50.0,250.0 L138.9,243.7 L227.8,235.2 L316.7,220.4 L383.3,203.6 L450.0,182.4 L516.7,131.8 L572.2,98.0 L627.8,85.3 L661.1,81.1 L694.4,76.9 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3 L850.0,280.0 L50.0,280.0 Z"/><path class="p-line" d="M50.0,250.0 L138.9,243.7 L227.8,235.2 L316.7,220.4 L383.3,203.6 L450.0,182.4 L516.7,131.8 L572.2,98.0 L627.8,85.3 L661.1,81.1 L694.4,76.9 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3"/>
+<path class="p-desertband" d="M716.7,280.0 L716.7,110.7 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3 L850.0,280.0 Z"/>
+<rect class="p-sea" x="5.6" y="250.0" width="45.4" height="30"/>
+<circle cx="661.1" cy="81.1" r="6" fill="var(--olive)"/>
+<text class="p-tb" x="661.1" y="65.1" text-anchor="middle">ירושלים · כ־800 מ׳</text>
+<text class="p-t" x="72.2" y="240.0" text-anchor="start">הים התיכון · 0 מ׳</text>
+<text class="p-t" x="272.2" y="216.9" text-anchor="middle">השפלה</text>
+<text class="p-t" x="538.9" y="154.9" text-anchor="middle">מדרון מערבי: גשום</text>
+<text class="p-t" x="794.4" y="201.3" text-anchor="middle">מדבר יהודה</text>
+<g class="p-cloud"><ellipse cx="383.3" cy="38" rx="52" ry="15"/><ellipse cx="527.8" cy="30" rx="44" ry="17"/></g>
+<g style="color:var(--ink-3)"><path class="p-arrow" d="M116.7,48 C216.7,32 305.6,32 383.3,36"/><path class="p-arrow" d="M705.6,46 C750.0,54 783.3,70 816.7,96"/></g>
+<text class="p-t" x="138.9" y="78" text-anchor="middle">רוח לחה מהים</text>
+<text class="p-t" x="850" y="70" text-anchor="end">אוויר יורד ומתייבש</text>
+<line class="p-axis" x1="50.0" y1="280.0" x2="850.0" y2="280.0"/>
+<text class="p-t" x="50.0" y="294" text-anchor="middle">חוף הים</text>
+<text class="p-t" x="661.1" y="294" text-anchor="middle">כ־60 ק״מ מהים</text>
+</svg></div>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p><b>מדבר בצל גשם.</b> ענני הגשם מגיעים מהים התיכון ומורידים את רוב הגשם על המדרון המערבי של ההר. כשהאוויר יורד מזרחה הוא מתחמם ומתייבש, ולכן ממש ממזרח לעיר מתחיל מדבר יהודה.</p>
+          <p><b>מה זה נותן לתיירות?</b> מתצפיות בעיר רואים את המדבר, ותוך דקות נסיעה עוברים מנוף ירוק לנוף מדברי.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p><b>למה העיר קמה כאן?</b> על רכס ההר עוברת הדרך הקדומה מצפון לדרום, ומכאן יורדות דרכים מערבה לים ומזרחה ליריחו. ליד העיר הקדומה נבע מעיין הגיחון, וההר הגבוה היה קל להגנה.</p>
+          <p class="src">הגבהים והמרחקים מקורבים. החתך סכמטי.</p>
+        </div>
+      </div>
+      <details class="more"><summary>הרחבה</summary><div class="body">
+        <p>ירושלים יושבת על קו פרשת המים: מי גשם שיורדים ממערב לעיר זורמים אל הים התיכון, ומה שיורד ממזרח לה זורם מזרחה, אל הבקע. לאורך הרכס עובר היום כביש 60, שמכונה "דרך האבות", כי לפי המסורת הלכו בו אבות האומה. לאורכו נמצאות חברון, בית לחם וירושלים.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+        <p>בירושלים יורדים בממוצע כ־550 מ״מ גשם בשנה, ובמרחק קצר ממזרח לה הכמות יורדת בחדות.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad side-photo">
+      <figure><img src="img/judean-hills.jpg" alt="נוף הרי יהודה המיוערים עם פריחת לוטם"><figcaption>הרי יהודה · מתוך שיעור הפורטל של משרד החינוך</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p class="kick">נוף</p>
+        <h2>הרי יהודה</h2>
+        <ul class="clean">
+          <li><b>סלע:</b> בעיקר גיר ודולומיט.</li>
+          <li><b>צמחייה:</b> בעבר כיסו את ההרים חורשים. היום יש חורש טבעי בעיקר בהרי ירושלים.</li>
+          <li><b>שמורות טבע:</b> שטחים בהרי ירושלים הוכרזו כשמורות.</li>
+          <li><b>טיולים:</b> מסלולי הליכה ואופניים, מעיינות ותצפיות, במרחק קצר מהעיר.</li>
+        </ul>
+        <details class="more"><summary>הרחבה</summary><div class="body">
+          <p><b>אבן ירושלים.</b> הגיר הוא גם אבן הבנייה של העיר. ב־1918 קבע המושל הבריטי רונלד סטורס שכל בניין בירושלים יצופה באבן. לכן העיר כולה בגוון אחד, וזה חלק מהזהות שלה כיעד תיירותי.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+          <p><b>טרסות ומעיינות.</b> במדרונות ההרים בנו החקלאים לאורך הדורות טרסות, מדרגות חקלאיות, ובין ההרים נובעים מעיינות. שניהם הפכו למוקדי טיול פופולריים בהרי ירושלים.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+          <p><b>שמורת טבע:</b> חבל ארץ מוגן שהוכרז כדי לשמור על החי והצומח שבו.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad side-photo">
+      <figure><img src="img/armon.jpg" alt="טיילת ארמון הנציב והנוף לעיר"><figcaption>טיילת ארמון הנציב · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">אקלים ועונות</p>
+        <h2>קרירה בחורף, יבשה בקיץ</h2>
+        <div class="tblwrap"><table class="cl">
+          <tr><th>עונה</th><th>מזג האוויר</th><th>מה זה אומר לתייר</th></tr>
+          <tr><td><b>חורף</b></td><td>קר וגשום, לפעמים שלג</td><td>שלג בעיר מושך מבקרים מכל הארץ. חג המולד מביא צליינים לבית לחם.</td></tr>
+          <tr><td><b>אביב וסתיו</b></td><td>נעים</td><td>העונות הנוחות לסיור רגלי. פסח, חג הפסחא וסוכות הם עונות השיא.</td></tr>
+          <tr><td><b>קיץ</b></td><td>חם ויבש, ערבים קרירים</td><td>סיורים בבוקר ובערב, פסטיבלים ומופעים בערבי הקיץ.</td></tr>
+        </table></div>
+        <p class="src">האקלים אינו מופיע בספר הלימוד. השקף הוא הרחבה.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide stop tint" id="s7" hidden>
+    <img class="bg" src="img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 1–3</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">ציינו את ארבעת הגבולות של חבל ירושלים.<span class="tag">תרגול</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">בירושלים יורדים כ־550 מ״מ גשם בשנה, אבל במרחק קצר ממזרח לה מתחיל מדבר. הסבירו מדוע.<span class="tag">בסגנון בגרות</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">ציינו שני מאפיינים גאוגרפיים של חבל ירושלים, והסבירו כיצד אחד מהם משפיע על התיירות.<span class="tag">בסגנון בגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide bgslide" id="s8" hidden>
+    <img class="bg" src="img/temple-mount.jpg" alt="הר הבית מלמעלה">
+    <span class="credit">מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">למה מגיעים</p>
+      <h2>הר אחד, שלוש דתות</h2>
+      <p class="lead">ירושלים קדושה ליהדות, לנצרות ולאסלאם, ולכל אחת מהן היא מקום שאין לו תחליף. בשלושת השקפים הבאים נכיר מה קדוש לכל דת, ומה עושה בעיר הצליין של כל אחת מהן.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">שלוש הדתות · יהדות</p>
+      <h2>העיר שאליה מתפללים</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>על הר הבית, הר המוריה, עמדו בית המקדש הראשון והשני. לפי המסורת שם התרחשה עקידת יצחק, ושם נכרתה הברית בין אלוהים לאברהם. יהודים בכל העולם מתפללים לכיוון ירושלים.</p>
+          <ul class="clean">
+            <li><b>הכותל המערבי:</b> קיר התמך שבנה הורדוס סביב הר הבית בימי בית שני, השריד הקרוב ביותר למקדש. לפי המסורת "לעולם אין השכינה זזה מן הכותל המערבי", ולכן זהו המקום המקודש ביותר ליהודים.</li>
+            <li><b>הר הזיתים:</b> בית הקברות היהודי העתיק. לפי המסורת, הקבורים בו יהיו הראשונים לתחיית המתים.</li>
+            <li><b>קבר דוד:</b> לפי המסורת, במערה בהר ציון.</li>
+            <li><b>עיר דוד:</b> ירושלים הקדומה, שדוד המלך כבש והפך לבירתו.</li>
+          </ul>
+        </div>
+        <figure><img src="img/kotel.jpg" alt="רחבת הכותל המערבי" style="aspect-ratio:4/3"><figcaption>הכותל המערבי · צילמה יעל דור · מצגת התמונות הרשמית</figcaption></figure>
+      </div>
+      <details class="more"><summary>מה עושה כאן התייר היהודי</summary><div class="body">
+        <p>תפילה בכותל, טקסי בר מצווה ובת מצווה, ברכת כוהנים המונית בכותל בחול המועד פסח וסוכות, וביקור באתרים שמספרים את ההיסטוריה היהודית: הרובע היהודי, מנהרות הכותל ועיר דוד.</p>
+        <p>בבגרות 2019 התבקשו התלמידים לתכנן סיור יומיים למשפחה יהודית מחו״ל שבאה לחגוג בר מצווה בכותל. נחזור לשאלה הזו בסוף הנושא.</p>
+        <div class="gal">
+          <figure><img src="img/tunnels.jpg" alt="מנהרות הכותל"><h3>מנהרות הכותל</h3><p>המשך הכותל מתחת לבתי הרובע המוסלמי.</p></figure>
+          <figure><img src="img/city-david.jpg" alt="עיר דוד"><h3>עיר דוד</h3><p>ירושלים הקדומה ונקבת חזקיהו.</p></figure>
+          <figure><img src="img/david-tomb.jpg" alt="קבר דוד"><h3>קבר דוד</h3><p>לפי המסורת, בהר ציון.</p></figure>
+        </div>
+        <p class="src">התמונות: מצגת התמונות הרשמית.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">שלוש הדתות · נצרות</p>
+      <h2>העיר של ימיו האחרונים של ישו</h2>
+      <p>לפי האמונה הנוצרית, בירושלים אכל ישו את הסעודה האחרונה, נעצר, נשפט, נצלב, נקבר, קם לתחייה ועלה לשמיים. לכן כמעט כל אתר נוצרי בעיר מסמן אחד מהאירועים האלה.</p>
+      <div class="gal">
+        <figure><img src="img/cenacle.jpg" alt="חדר הסעודה האחרונה"><span class="yr">הר ציון</span><h3>חדר הסעודה האחרונה</h3><p>ישו ושליחיו אכלו כאן את סעודת הפסח.</p></figure>
+        <figure><img src="img/all-nations.jpg" alt="כנסיית כל האומות"><span class="yr">הר הזיתים</span><h3>גת שמנים</h3><p>כנסיית כל האומות, בגן שבו התפלל ישו לפני מעצרו.</p></figure>
+        <figure><img src="img/via-dolorosa.jpg" alt="הוויה דולורוזה"><span class="yr">הרובע הנוצרי</span><h3>הוויה דולורוזה</h3><p>14 תחנות בדרך לצליבה. חמש האחרונות בתוך כנסיית הקבר.</p></figure>
+        <figure><img src="img/sepulchre.jpg" alt="כנסיית הקבר"><span class="yr">הרובע הנוצרי</span><h3>כנסיית הקבר</h3><p>מקום הצליבה, הקבורה והתחייה. שיא הביקור של הצליין.</p></figure>
+        <figure><img src="img/ascension.jpg" alt="כנסיית העלייה"><span class="yr">הר הזיתים</span><h3>כנסיית העלייה</h3><p>המקום שממנו עלה ישו לשמיים.</p></figure>
+      </div>
+      <p class="src">התמונות: מצגת התמונות הרשמית (פיקיוויקי, אתרי מורשת ויקיפדיה).</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">שלוש הדתות · זרמי הנצרות</p>
+      <h2>לכל זרם, האתרים שלו</h2>
+      <div class="two">
+        <div class="tblwrap"><table class="streams">
+          <tr><th>זרם</th><th>מי הם</th><th>מה חשוב להם בירושלים</th></tr>
+          <tr><td>קתולים</td><td>בהנהגת האפיפיור ברומא</td><td>הוויה דולורוזה, כנסיית הקבר, הכנסיות בהר הזיתים. הפרנציסקנים שומרים על המקומות הקדושים מטעם הכנסייה.</td></tr>
+          <tr><td>אורתודוקסים</td><td>הנצרות המזרחית: יוונים, רוסים ועוד</td><td>כנסיית הקבר וטקס "האש הקדושה" בשבת שלפני הפסחא. כנסיית מריה מגדלנה הרוסית.</td></tr>
+          <tr><td>פרוטסטנטים</td><td>זרמי הרפורמציה, מדגישים את לימוד הכתובים</td><td>גן הקבר, מחוץ לחומות. אתרים פשוטים, בלי פולחן מסביב.</td></tr>
+          <tr><td>ארמנים</td><td>העם הראשון שקיבל את הנצרות כדת רשמית</td><td>הרובע הארמני וקתדרלת סנט ג'יימס.</td></tr>
+          <tr><td>אתיופים</td><td>הכנסייה האתיופית</td><td>מנזר על גג כנסיית הקבר.</td></tr>
+        </table></div>
+        <div class="vs" style="grid-template-columns:1fr 1fr">
+          <figure><img src="img/sepulchre-in.jpg" alt="טקס האש הקדושה בכנסיית הקבר"><figcaption>טקס האש הקדושה · מתוך מצגת ירושלים</figcaption></figure>
+          <figure><img src="img/magdalene.jpg" alt="כנסיית מריה מגדלנה"><figcaption>כנסיית מריה מגדלנה הרוסית · מצגת התמונות הרשמית</figcaption></figure>
+        </div>
+      </div>
+      <details class="more"><summary>הרחבה</summary><div class="body">
+        <p>כנסיית הקבר מחולקת בין כמה כנסיות: היוונים האורתודוקסים, הקתולים והארמנים מחזיקים את רוב השטח, ולקופטים, לאתיופים ולסורים יש חלקים קטנים. החלוקה נשמרת בהסדר ישן שנקרא "הסטטוס קוו". מפתח הכנסייה מוחזק בידי משפחה מוסלמית, כדי שאף כנסייה לא תשלוט בדלת.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+        <p>את חג המולד חוגגים הקתולים ב־25 בדצמבר, והאורתודוקסים בתחילת ינואר. לכן עונת הצליינות לבית לחם נמשכת כמה שבועות.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">שאלה שחוזרת בבגרות</p>
+      <h2>איפה נקבר ישו? שתי תשובות</h2>
+      <div class="vs">
+        <div>
+          <figure><img src="img/sepulchre.jpg" alt="כנסיית הקבר" style="object-position:top"><figcaption>מצגת התמונות הרשמית · פיקיוויקי</figcaption></figure>
+          <h3>כנסיית הקבר</h3>
+          <p>בתוך העיר העתיקה, ברובע הנוצרי. כאן, לפי רוב המסורות הנוצריות, הייתה גבעת הגולגולתא שעליה נצלב ישו, וכאן נקבר וקם לתחייה.</p>
+          <p><b>מאמינים בה:</b> קתולים ואורתודוקסים, וכמעט כל הזרמים הוותיקים.</p>
+        </div>
+        <div>
+          <figure><img src="img/garden-tomb.jpg" alt="גן הקבר"><figcaption>מצגת התמונות הרשמית · פיקיוויקי</figcaption></figure>
+          <h3>גן הקבר</h3>
+          <p>מחוץ לחומות, צפונית לשער שכם. מערת קבורה עתיקה בגן שקט, ליד סלע שצורתו מזכירה גולגולת. זוהה כקבר ישו במאה ה־19.</p>
+          <p><b>מאמינים בו:</b> חלק מהפרוטסטנטים.</p>
+        </div>
+      </div>
+      <p class="note">בבגרות 2023 נשאלו התלמידים: "ציינו את שני האתרים שנחשבים מקום קבורתו של ישו, ואיזה זרם מאמין בכל אחד".</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="s13" hidden>
+    <div class="pad">
+      <p class="kick">שלוש הדתות · אסלאם</p>
+      <h2>"המסגד הרחוק ביותר"</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>לפי האמונה המוסלמית, מוחמד נישא בלילה אחד ממכה לירושלים, ומהר הבית עלה לשמיים, ושם קיבל את מצוות התפילה. לכן הר הבית, בערבית "אל־חרם א־שריף", הוא המקום השלישי בקדושתו לאסלאם, אחרי מכה ומדינה.</p>
+          <ul class="clean">
+            <li><b>מסגד אל־אקצא:</b> הוקם לראשונה בשנת 705 לספירה. שמו פירושו "הרחוק ביותר", על שם מסע הלילה של מוחמד. הקדום והחשוב במסגדי הארץ.</li>
+            <li><b>כיפת הסלע:</b> נבנתה בסוף המאה ה־7 מעל הסלע שממנו, לפי האמונה, עלה מוחמד לשמיים. אותו סלע, לפי המסורת היהודית, הוא אבן השתייה.</li>
+          </ul>
+          <p><b>זיארה:</b> ביקור מוסלמי במקום קדוש או בקבר, כמו ביקור בהר הבית או במערת המכפלה.</p>
+        </div>
+        <div class="vs" style="grid-template-columns:1fr">
+          <figure><img src="img/aqsa.jpg" alt="מסגד אל־אקצא" style="aspect-ratio:16/9"><figcaption>מסגד אל־אקצא · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure><img src="img/dome.jpg" alt="כיפת הסלע" style="aspect-ratio:16/9"><figcaption>כיפת הסלע · צילמה יעל דור · מצגת התמונות הרשמית</figcaption></figure>
+        </div>
+      </div>
+      <details class="more"><summary>הרחבה</summary><div class="body">
+        <p>בימי שישי, ובמיוחד בחודש הרמדאן, מגיעים להר הבית מתפללים רבים מאוד. הכניסה לכיפת הסלע מותרת רק למוסלמים. יהודים ותיירים מבקרים ברחבה בשעות קבועות, ותפילה של יהודים במקום אסורה.</p>
+        <p>הר הבית הוא אתר רגיש מאוד מבחינה דתית ופוליטית, ואירועים בו משפיעים על התיירות לכל העיר.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="s14" hidden>
+    <div class="pad">
+      <p class="kick">סביבות ירושלים</p>
+      <h2>ערים של עלייה לרגל</h2>
+      <div class="gal">
+        <figure><img src="img/nativity.jpg" alt="כנסיית המולד"><span class="yr">בית לחם · נצרות</span><h3>כנסיית המולד</h3><p>נבנתה מעל המערה שבה, לפי המסורת, נולד ישו. מהכנסיות העתיקות בעולם, ואתר מורשת עולמית. בחג המולד העיר מתמלאת צליינים.</p></figure>
+        <figure><img src="img/rachel.jpg" alt="קבר רחל"><span class="yr">כניסה לבית לחם · יהדות</span><h3>קבר רחל</h3><p>קבר רחל אמנו. מקום תפילה, בעיקר לנשים, שמגיעות לבקש על פריון ועל ילדיהן.</p></figure>
+        <figure><img src="img/machpela.jpg" alt="מערת המכפלה"><span class="yr">חברון · יהדות ואסלאם</span><h3>מערת המכפלה</h3><p>קברי אברהם, יצחק ויעקב, שרה, רבקה ולאה. קדושה ליהודים ולמוסלמים, ולכן מחולקת ביניהם.</p></figure>
+        <figure><img src="img/herodion.jpg" alt="הרודיון"><span class="yr">ליד בית לחם · היסטוריה</span><h3>הרודיון</h3><p>הר שבנה הורדוס, ועליו ארמון ומבצר. שם, לפי המחקר, גם נקבר.</p></figure>
+      </div>
+      <details class="more"><summary>מטרופולין ירושלים</summary><div class="body">
+        <div class="two">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p><b>מטרופולין:</b> עיר אם שסביבה יישובים שמקבלים ממנה שירותי חינוך, תעסוקה, תרבות ובריאות.</p>
+            <p>מטרופולין ירושלים כולל פרברים כמו מעלה אדומים, מבשרת ציון ובית שמש, וגם מושבים וקיבוצים. בחלק מהקיבוצים בהרי ירושלים יש בתי מלון ואירוח כפרי. בית לחם וחברון נמצאות בשטחי הרשות הפלסטינית, ותיירים מגיעים גם אליהן.</p>
+          </div>
+          <figure><img src="img/metro.jpg" alt="שכונות פרבר על רכס" style="aspect-ratio:16/10"><figcaption>מתוך שיעור הפורטל של משרד החינוך</figcaption></figure>
+        </div>
+      </div></details>
+      <details class="more"><summary>אבו גוש: יישוב אחד, כמה דתות</summary><div class="body">
+        <p>הכפר המוסלמי אבו גוש, מערבית לירושלים על הדרך ההיסטורית מיפו, הוא דוגמה ליישוב שבו אתרים הקדושים לכמה דתות: כנסיית תחיית המתים הצלבנית מהמאה ה־12, וכנסיית נוטרדאם על הגבעה שבה עמד ארון הברית בקריית יערים, לפי התנ״ך. בכפר גם מסעדות חומוס מפורסמות ופסטיבל מוזיקה קולית.</p>
+        <p>בבגרות 2024 התבקשו התלמידים לציין "יישוב בסביבת ירושלים שיש בו אתר הקדוש לכמה דתות". במחוון הרשמי: חברון ומערת המכפלה. גם אבו גוש היא דוגמה טובה.</p>
+        <p class="src">התמונות: מצגת התמונות הרשמית. המכפלה: צילמה רוית שטינברג.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide stop tint" id="s15" hidden>
+    <img class="bg" src="img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 4–6</h2>
+      <div class="q"><span class="qn">4</span><div class="qt">ציינו לגבי כל אחת מהדתות, יהדות, נצרות ואסלאם, אתר מרכזי אחד בירושלים המקודש לה, והסבירו מדוע הוא מקודש לדת זו.<span class="tag real">ממאגר הבגרות</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">ציינו את שמות האתרים הנחשבים כמקום קבורתו של ישו, ואיזה זרם בנצרות מאמין בכל אחד מהם.<span class="tag real">בגרות 2023</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">בסביבות ירושלים יש שתי ערים שהן מוקד לעלייה לרגל: בית לחם וחברון. כתבו בקצרה מה מושך את התייר הנוצרי לבית לחם, ומה מושך את התייר היהודי ואת התייר המוסלמי לחברון.<span class="tag real">ממאגר הבגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="s16" hidden>
+    <div class="pad two">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">נתוני תיירות</p>
+        <div class="big-num">74%</div>
+        <h3>מהתיירים שנכנסו לישראל ב־2017 ביקרו בירושלים</h3>
+        <p>כ־2.7 מיליון מתוך כ־3.6 מיליון. בקרב התיירים הנוצרים השיעור הגבוה ביותר.</p>
+        <div class="bars" aria-label="שיעור המבקרים בירושלים לפי דת, 2017">
+          <div class="row"><span>תיירים נוצרים</span><span class="track"><i style="width:82%"></i></span><span class="v">82%</span></div>
+          <div class="row"><span>תיירים מוסלמים</span><span class="track"><i style="width:73%"></i></span><span class="v">73%</span></div>
+          <div class="row"><span>תיירים יהודים</span><span class="track"><i style="width:70%"></i></span><span class="v">70%</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <h3>האתרים שבהם ביקרו התיירים בירושלים</h3>
+        <p class="src">שיעור מכלל התיירים לישראל, 2016</p>
+        <div class="bars">
+          <div class="row"><span>הכותל המערבי</span><span class="track"><i style="width:67%"></i></span><span class="v">67%</span></div>
+          <div class="row"><span>הרובע היהודי</span><span class="track"><i style="width:62%"></i></span><span class="v">62%</span></div>
+          <div class="row"><span>כנסיית הקבר</span><span class="track"><i style="width:52%"></i></span><span class="v">52%</span></div>
+          <div class="row"><span>הוויה דולורוזה</span><span class="track"><i style="width:43%"></i></span><span class="v">43%</span></div>
+          <div class="row"><span>הר הזיתים</span><span class="track"><i style="width:43%"></i></span><span class="v">43%</span></div>
+        </div>
+        <p class="note">גם תייר יהודי מבקר בכנסיית הקבר, וגם תייר נוצרי מבקר בכותל. האתרים הגדולים מושכים כמעט את כולם.</p>
+        <p class="src">מקור: דוח מבקר המדינה על ירושלים (2019), פרק התיירות.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="s17" hidden>
+    <div class="pad">
+      <p class="kick">סוגי תיירות</p>
+      <h2>כל מגזרי התיירות בעיר אחת</h2>
+      <div class="tblwrap"><table class="cl">
+        <tr><th>סוג תיירות</th><th>דוגמאות בירושלים ובסביבתה</th></tr>
+        <tr><td><b>צליינות יהודית</b></td><td>הכותל, קבר דוד, מערת המכפלה, קבר רחל</td></tr>
+        <tr><td><b>צליינות נוצרית</b></td><td>כנסיית הקבר, הוויה דולורוזה, גת שמנים, עין כרם, בית לחם</td></tr>
+        <tr><td><b>צליינות מוסלמית</b></td><td>הר הבית: מסגד אל־אקצא וכיפת הסלע</td></tr>
+        <tr><td><b>היסטוריה וארכיאולוגיה</b></td><td>עיר דוד, מנהרות הכותל, הקרדו, הבית השרוף, הרודיון</td></tr>
+        <tr><td><b>תרבות ומורשת</b></td><td>מוזיאון ישראל, מוזיאון ארצות המקרא, בית עגנון, שכונות כמו מאה שערים וימין משה</td></tr>
+        <tr><td><b>עירונית ופנאי</b></td><td>שוק מחנה יהודה, מדרחוב בן יהודה, נחלת שבעה, המושבה הגרמנית, מתחם התחנה הראשונה</td></tr>
+        <tr><td><b>זיכרון והנצחה</b></td><td>יד ושם, הר הרצל, גבעת התחמושת</td></tr>
+        <tr><td><b>טבע ונוף</b></td><td>הר הזיתים, הר הצופים, טיילת ארמון הנציב, יד קנדי, שמורות בהרי ירושלים</td></tr>
+      </table></div>
+      <details class="more"><summary>תיור מול סיור עומק</summary><div class="body">
+        <p><b>תיור (מושג 77):</b> היכרות כללית ורחבה עם יעד, כמו סיור של יום אחד בכל האתרים המפורסמים של העיר.</p>
+        <p><b>סיור עומק (מושג 10):</b> היכרות מעמיקה עם נושא אחד או אזור אחד, כמו סיור של יום שלם רק בעיר דוד ובמנהרות, או רק בכנסיות הר הזיתים. תיירים חוזרים לירושלים בוחרים בדרך כלל בסיורי עומק.</p>
+        <p class="src">הטבלה לפי ספר הלימוד, תיירות בישראל, פרק ד׳.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="s18" hidden>
+    <div class="pad">
+      <p class="kick">בירה</p>
+      <h2>מוסדות המדינה כאתרי ביקור</h2>
+      <div class="gal">
+        <figure><img src="img/knesset.jpg" alt="הכנסת"><span class="yr">גבעת רם · 1966</span><h3>הכנסת</h3><p>בית המחוקקים. מבקרים בתיאום מראש, בימי ראשון וחמישי, ורואים גם יצירות של שאגאל.</p></figure>
+        <figure><img src="img/supreme-court.jpg" alt="בית המשפט העליון"><span class="yr">גבעת רם · 1992</span><h3>בית המשפט העליון</h3><p>ארכיטקטורה שמשלבת ישן וחדש. סיורים מודרכים בתיאום.</p></figure>
+        <figure><img src="img/shrine.jpg" alt="היכל הספר"><span class="yr">גבעת רם</span><h3>מוזיאון ישראל</h3><p>המוזיאון הלאומי. בהיכל הספר מוצגות מגילות קומראן, ובחוץ דגם ירושלים בימי בית שני.</p></figure>
+        <figure><img src="img/library.jpg" alt="הספרייה הלאומית"><span class="yr">גבעת רם</span><h3>הספרייה הלאומית</h3><p>אוצרות הדפוס של המדינה ושל העם היהודי, בבניין חדש שאפשר לסייר בו.</p></figure>
+        <figure><img src="img/yadvashem.jpg" alt="היכל השמות ביד ושם"><span class="yr">הר הזיכרון</span><h3>יד ושם</h3><p>מוזיאון השואה. כל אורח רשמי של המדינה מבקר בו.</p></figure>
+        <figure><img src="img/herzl.jpg" alt="הר הרצל"><span class="yr">830 מ׳</span><h3>הר הרצל</h3><p>בית הקברות הלאומי: קבר הרצל וגדולי האומה, ומאז 2017 היכל הזיכרון לחללי מערכות ישראל.</p></figure>
+      </div>
+      <details class="more"><summary>למה יד ושם נכלל בכל ביקור ממלכתי</summary><div class="body">
+        <p>לפי המחוון של בגרות 2026: הביקור מכיר למבקרים את ההיסטוריה היהודית ואת השמדת העם היהודי בשואה, ובמקביל את המדינה המשגשגת שנבנתה אחריה. הוא יוצר הזדהות עם ישראל כביתו של העם היהודי.</p>
+        <p class="src">התמונות: מצגת התמונות הרשמית. התיאורים מסוכמים מהמחוונים הרשמיים של 2026.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="s19" hidden>
+    <div class="pad">
+      <p class="kick">תיירות עירונית ופנאי</p>
+      <h2>ירושלים של ערב</h2>
+      <div class="gal">
+        <figure><img src="img/mahane.jpg" alt="שוק מחנה יהודה"><h3>שוק מחנה יהודה</h3><p>שוק אוכל תוסס ביום, ובערב מסעדות, ברים ואומנות רחוב.</p></figure>
+        <figure><img src="img/nahalat.jpg" alt="נחלת שבעה"><h3>נחלת שבעה</h3><p>השכונה השלישית שנבנתה מחוץ לחומות. שופצה והפכה למוקד בילוי לילי.</p></figure>
+        <figure><img src="img/ben-yehuda.jpg" alt="מדרחוב בן יהודה"><h3>מדרחוב בן יהודה</h3><p>טיילת במרכז העיר עם מסעדות, בתי קפה וחנויות.</p></figure>
+        <figure><img src="img/scopus.jpg" alt="הר הצופים"><h3>תצפיות</h3><p>הר הצופים, הר הזיתים וטיילת ארמון הנציב משקיפים על העיר העתיקה ועל מדבר יהודה.</p></figure>
+      </div>
+      <p class="note">שאלה שחוזרת בבגרות (2024, 2026): אתר מוזיאון, אתר לבילוי לילי, אתר לילדים קטנים, ואתר שהוא סמל שלטון. לילדים קטנים מתקבלים גן החיות התנ״כי, מוזיאון המדע ואקווריום ישראל.</p>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="slide bgslide" id="s20" hidden>
+    <img class="bg" src="img/walls.jpg" alt="טיילת החומות">
+    <span class="credit">טיילת החומות · מצגת התמונות הרשמית</span>
+    <div class="pad">
+      <p class="kick">גורמים המשפיעים על התיירות</p>
+      <h2>מה מעלה ומה מוריד את התיירות לירושלים</h2>
+      <div class="factor">
+        <div><span class="cn">מצב גאופוליטי · מושג 30</span><b>מלחמה וביטחון</b><span>לפי כתבה מנובמבר 2024, שהופיעה בבגרות 2025, כחמישית מבתי המלון בארץ היו על סף סגירה. ירושלים נפגעה במיוחד, כי היא תלויה בתיירות נכנסת ובצליינים.</span></div>
+        <div><span class="cn">מושג 31</span><b>אזהרות מסע</b><span>מדינות מפרסמות לאזרחיהן אזהרות מפני נסיעה, ואז קבוצות צליינים מבטלות.</span></div>
+        <div><span class="cn">מושגים 15–16</span><b>עונות</b><span>עונות שיא בחגים: פסח וחג הפסחא, סוכות, חג המולד. עונות שפל בשאר השנה.</span></div>
+        <div><span class="cn">אירוע־על · מושג 51</span><b>אירועים גדולים</b><span>הג׳ירו ד׳איטליה נפתח בירושלים ב־2018 ושודר לכל העולם. מרתון ירושלים ופסטיבל האור מושכים מבקרים כל שנה.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 -->
+  <section class="slide" id="s21" hidden>
+    <div class="pad side-photo">
+      <figure><img src="img/latrun.jpg" alt="מנזר לטרון על הדרך מיפו לירושלים"><figcaption>מנזר לטרון, על הדרך ההיסטורית לירושלים · צילם ישראל פרקר, פיקיוויקי · מצגת התמונות הרשמית</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">גישה ולינה</p>
+        <h2>איך מגיעים, ואיפה לנים</h2>
+        <ul class="clean">
+          <li><b>הדרך ההיסטורית:</b> צליינים ירדו מהספינה בנמל יפו ועלו לירושלים דרך לטרון ואבו גוש. לכן לאורך הדרך יש מנזרים וכנסיות שאירחו אותם.</li>
+          <li><b>היום:</b> כביש 1, כביש 443, רכבת מהירה מתל אביב ומנתב״ג, ורכבת קלה בתוך העיר.<span class="tag-ext">הרחבה</span></li>
+          <li><b>לינה:</b> מלונות בכל הרמות, אכסניות לעולי רגל (הוספיס), ואירוח כפרי בקיבוצים בהרים. בבית לחם יש מלונות לצליינים.</li>
+        </ul>
+        <details class="more"><summary>הרחבה</summary><div class="body">
+          <p><b>מלון המלך דוד:</b> מלון פאר מימי המנדט, והיום בית ההארחה הרשמי של המדינה לאורחים חשובים.</p>
+          <p><b>קבוצה או עצמאי:</b> קבוצות צליינים (GROUP, מושג 26) לנות בדרך כלל במלונות גדולים ומגיעות באוטובוס. תיירים עצמאיים (F.I.T, מושג 25) בוחרים לרוב מלון בוטיק או דירה, ומסתובבים ברגל וברכבת הקלה.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 -->
+  <section class="slide" id="s22" hidden>
+    <div class="pad">
+      <p class="kick">אתגרים</p>
+      <h2>מה הבעיות של ירושלים כיעד?</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>בדוח שפרסם ב־2019 מצא מבקר המדינה כמה בעיות שחוזרות על עצמן:</p>
+          <ul class="clean">
+            <li>אין גוף אחד שמרכז את התיירות בעיר.</li>
+            <li>מידע תיירותי לא מעודכן, ושלטים חסרים או בשפה אחת.</li>
+            <li>לכלוך ותחזוקה ירודה באזורים עמוסי תיירים, כמו שער שכם.</li>
+            <li>מחסור בשירותים ציבוריים תקינים בעיר העתיקה.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="card"><span class="num">מושג 50</span><span class="t">כושר נשיאה</span><span>מספר המבקרים המרבי שאתר יכול לקלוט בלי לפגוע בסביבה ובחוויה.</span><span class="ex">בחגים, רחבת הכותל והסמטאות של העיר העתיקה מגיעות לקצה כושר הנשיאה.</span></div>
+          <div class="card"><span class="num">מושג 49</span><span class="t">תיירות בת קיימא</span><span>תיירות שמתחשבת בהשפעה הכלכלית, החברתית והסביבתית, היום ובעתיד.</span><span class="ex">פיזור תיירים לשכונות ולאתרים פחות מוכרים מקל על העיר העתיקה.</span></div>
+        </div>
+      </div>
+      <p class="src">מקור: דוח מבקר המדינה על ירושלים (2019), פרק התיירות.</p>
+    </div>
+  </section>
+
+  <!-- 23 -->
+  <section class="slide" id="s23" hidden>
+    <div class="pad">
+      <p class="kick">קהלים</p>
+      <h2>מי מגיע לירושלים, ומה הוא מחפש</h2>
+      <div class="aud">
+        <div><b>יהודים</b><span>מהארץ ומהתפוצות: הכותל, הרובע היהודי, בר ובת מצווה</span></div>
+        <div><b>צליינים נוצרים</b><span>קתולים, אורתודוקסים ופרוטסטנטים, וכל זרם והאתרים שלו</span></div>
+        <div><b>מוסלמים</b><span>זיארה להר הבית ולמערת המכפלה</span></div>
+        <div><b>חובבי היסטוריה וארכיאולוגיה</b><span>עיר דוד, מנהרות הכותל, הקרדו, מגדל דוד</span></div>
+        <div><b>משפחות</b><span>גן החיות התנ״כי, מוזיאון המדע, אקווריום ישראל</span></div>
+        <div><b>קבוצות חינוכיות</b><span>יד ושם, הכנסת, הר הרצל</span></div>
+        <div><b>גיל הזהב</b><span>סיורים מותאמים וטיילות נגישות, כמו ארמון הנציב</span></div>
+        <div><b>תיירים חוזרים</b><span>סיורי עומק: שכונות, שווקים, מנזרים</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 -->
+  <section class="slide" id="s24" hidden>
+    <div class="pad">
+      <p class="kick">מיומנות בגרות</p>
+      <h2>איך עונים על שאלת תכנון מסלול</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ol class="steps">
+            <li><span><b>קראו מי הקהל ומה מטרתו.</b> צליינים, משפחה, קבוצה בנושא אחד.</span></li>
+            <li><span><b>בחרו אתרים שמתאימים לקהל,</b> לא סתם אתרים מפורסמים.</span></li>
+            <li><span><b>סדרו לפי קרבה:</b> אזור אחד בכל חצי יום, בלי לקפוץ הלוך וחזור.</span></li>
+            <li><span><b>קבעו משך שהייה ריאלי</b> בכל אתר, שעה עד שלוש שעות.</span></li>
+            <li><span><b>נמקו כל בחירה במשפט אחד.</b> הנימוק שווה נקודות.</span></li>
+          </ol>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p class="note">בגרות 2019: משפחה יהודית מחו״ל חוגגת בר מצווה בכותל ורוצה להכיר את ההיסטוריה של העם היהודי. תכננו סיור של יומיים עם חמישה אתרים.</p>
+          <div class="plan"><table>
+            <tr><th>יום</th><th>אתר</th><th>זמן</th><th>למה</th></tr>
+            <tr><td class="d">יום 1</td><td>הכותל המערבי</td><td>שעתיים</td><td>טקס הבר מצווה, מטרת הביקור</td></tr>
+            <tr><td class="d"></td><td>מנהרות הכותל</td><td>שעה וחצי</td><td>ממשיכים מתחת לאדמה מאותה רחבה</td></tr>
+            <tr><td class="d"></td><td>הקרדו והבית השרוף</td><td>שעתיים</td><td>הרובע היהודי, הליכה קצרה מהכותל</td></tr>
+            <tr><td class="d">יום 2</td><td>עיר דוד ונקבת חזקיהו</td><td>3 שעות</td><td>ירושלים של דוד וימי בית ראשון</td></tr>
+            <tr><td class="d"></td><td>מגדל דוד</td><td>שעתיים</td><td>מוזיאון תולדות ירושלים, ליד שער יפו</td></tr>
+          </table></div>
+          <p class="src">פתרון לדוגמה. את האתרים עצמם נלמד בנושאים הבאים.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25 -->
+  <section class="slide stop tint" id="s25" hidden>
+    <img class="bg" src="img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 7–9</h2>
+      <div class="q"><span class="qn">7</span><div class="qt">ציינו את שמותיהם של שני אתרים חשובים בירושלים שאפשר לכלול בתוכנית לצליינים נוצרים, והסבירו את מקור חשיבותו של כל אתר.<span class="tag real">בגרות 2019</span></div></div>
+      <div class="q"><span class="qn">8</span><div class="qt">ציינו את שמותיהם של שני אתרים חשובים בירושלים שאפשר לכלול בתוכנית לעולי רגל מוסלמים, והסבירו את מקור חשיבותו של כל אתר.<span class="tag real">בגרות 2019</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">ציינו ארבעה אתרי תיירות בירושלים החדשה: מוזיאון, אתר לבילוי לילי, אתר לבילוי עם ילדים קטנים, ואתר שהוא מסמלי השלטון ופתוח למבקרים.<span class="tag real">בגרות 2024</span></div></div>
+    </div>
+  </section>
+
+  <!-- 26 -->
+  <section class="slide" id="s26" hidden>
+    <div class="pad">
+      <p class="kick">מושגים לבגרות</p>
+      <h2>מושגים מהנושא</h2>
+      <div class="cards">
+        <div class="card"><span class="num">מושג 1</span><span class="t">תיירות פנים</span><span class="en">Domestic tourism</span><span>תושבי המדינה מטיילים בתוך המדינה.</span><span class="ex">משפחה מחיפה שבאה לסוף שבוע בירושלים.</span></div>
+        <div class="card"><span class="num">מושג 2</span><span class="t">תיירות נכנסת</span><span class="en">Incoming tourism</span><span>תיירים מחו״ל מבקרים במדינה.</span><span class="ex">קבוצת צליינים מאיטליה בכנסיית הקבר.</span></div>
+        <div class="card"><span class="num">מושג 4</span><span class="t">מבקר יום</span><span>מבקר ביעד בלי ללון בו.</span><span class="ex">נוסע ספינה שיורד בנמל אשדוד ועולה לירושלים לכמה שעות.</span></div>
+        <div class="card"><span class="num">מושג 6</span><span class="t">קידוש המרחב</span><span>מקום מקבל משמעות דתית בעקבות אירוע, מסורת או אמונה.</span><span class="ex">הר הבית: עקידת יצחק ליהודים, מסע הלילה של מוחמד למוסלמים.</span></div>
+        <div class="card"><span class="num">מושג 10</span><span class="t">סיור עומק</span><span>היכרות מעמיקה עם יעד, נושא או תרבות.</span><span class="ex">יום שלם בכנסיות הר הזיתים.</span></div>
+        <div class="card"><span class="num">מושג 52</span><span class="t">צליין</span><span>נוסע למקום קדוש ממניע דתי.</span><span class="ex">נוצרי שהולך בוויה דולורוזה.</span></div>
+        <div class="card"><span class="num">מושגים 53–55</span><span class="t">קתולים, פרוטסטנטים, אורתודוקסים</span><span>שלושת הזרמים הגדולים בנצרות.</span><span class="ex">כנסיית הקבר מול גן הקבר.</span></div>
+        <div class="card"><span class="num">מושג 56</span><span class="t">זיארה</span><span>ביקור מוסלמי במקום קדוש או בקבר.</span><span class="ex">ביקור במערת המכפלה.</span></div>
+        <div class="card"><span class="num">מושג 93</span><span class="t">אכסניה לצליינים</span><span class="en">Hospice</span><span>מקום לינה צנוע לעולי רגל.</span><span class="ex">אכסניות של מנזרים בעיר העתיקה.</span></div>
+        <div class="card"><span class="num">מושגים 49–50</span><span class="t">תיירות בת קיימא, כושר נשיאה</span><span>תיירות שלא פוגעת ביעד, ומספר המבקרים המרבי שהוא יכול לקלוט.</span><span class="ex">רחבת הכותל בחגים.</span></div>
+        <div class="card"><span class="num">מושג 51</span><span class="t">אירוע־על</span><span class="en">Mega event</span><span>אירוע בינלאומי ענק עם חשיפה עולמית.</span><span class="ex">פתיחת הג׳ירו ד׳איטליה בירושלים, 2018.</span></div>
+        <div class="card"><span class="num">מושג 89</span><span class="t">תיירות עירונית</span><span>העיר עצמה היא מוקד המשיכה.</span><span class="ex">שוק מחנה יהודה ונחלת שבעה.</span></div>
+      </div>
+      <p class="src">המספרים לפי רשימת המושגים של משרד החינוך (2024). "מטרופולין" ו"שמורת טבע" מופיעים בשיעור הפורטל ואינם ברשימה.</p>
+    </div>
+  </section>
+
+  <!-- 27 -->
+  <section class="slide stop tint" id="s27" hidden>
+    <img class="bg" src="img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 10–11</h2>
+      <div class="q"><span class="qn">10</span><div class="qt">הסבירו את המושג "קידוש המרחב", ותנו דוגמה מחבל ירושלים.<span class="tag">מושגים, כמו בבגרות</span></div></div>
+      <div class="q"><span class="qn">11</span><div class="qt">הסבירו את המושג "כושר נשיאה", ותנו דוגמה לאתר בירושלים שבו הוא בא לידי ביטוי.<span class="tag">מושגים, כמו בבגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 28 -->
+  <section class="slide stop tint" id="s28" hidden>
+    <img class="bg" src="img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלת סגירה · עונים בסטודיו</p>
+      <h2>שאלה 12: ענו על 2 מתוך 3 הסעיפים</h2>
+      <div class="q"><span class="qn">א</span><div class="qt">ציינו שלושה גורמים שהפכו את ירושלים לעיר התיירות החשובה בישראל.<span class="tag real">ממאגר הבגרות</span></div></div>
+      <div class="q"><span class="qn">ב</span><div class="qt">ציינו יישוב בסביבת ירושלים שיש בו אתר הקדוש לכמה דתות. מהו האתר, ולאילו דתות הוא קדוש ומדוע?<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">ג</span><div class="qt">בזמן המלחמה ירדה התיירות בכל הארץ, אבל ירושלים נפגעה במיוחד. הסבירו מדוע.<span class="tag real">בגרות 2025</span></div></div>
+      <p class="src">כמו בבחינה: כל סעיף שווה 8.5 נקודות, וכל השאלה 17.</p>
+    </div>
+  </section>
+
+  <!-- 29 -->
+  <section class="slide bgslide" id="s29" hidden>
+    <img class="bg" src="img/olives.jpg" alt="הר הזיתים">
+    <span class="credit">הר הזיתים · מצגת התמונות הרשמית</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהפתיחה</h2>
+      <ul class="clean" style="color:#EDE7DA">
+        <li>החבל יושב על הרי יהודה, בין השפלה במערב למדבר יהודה במזרח. ממזרח לעיר יש מדבר, כי הוא בצל הגשם של ההר.</li>
+        <li>הר הבית קדוש ליהדות ולאסלאם, ובעיר מתרחשים האירועים המרכזיים בחיי ישו. לכל זרם נוצרי האתרים שלו.</li>
+        <li>בית לחם וחברון משלימות את ירושלים: מולד ישו, קבר רחל ומערת המכפלה.</li>
+        <li>כ־3 מכל 4 תיירים לישראל מבקרים בירושלים, ולכן מלחמה, אזהרות מסע ועונות משפיעים עליה במיוחד.</li>
+        <li>בתכנון מסלול: קהל, אתרים מתאימים, סדר לפי קרבה, זמן ונימוק.</li>
+      </ul>
+      <p class="lead">בנושא הבא: סרגל הזמן של ירושלים, מהעיר היבוסית ועד 1967.</p>
+    </div>
+  </section>
+</div>
+
+<nav class="nav" dir="rtl" aria-label="ניווט בין שקפים">
+  <button type="button" id="prev" class="ghost">הקודם</button>
+  <span class="count" id="count" aria-live="polite">1 / 29</span>
+  <button type="button" id="next">הבא</button>
+</nav>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
