@@ -1,0 +1,538 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>ירושלים · ירושלים החדשה וסביבותיה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+
+/* topic 2: timeline overview, period header, site chips */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tl li{border-top:4px solid var(--olive);background:var(--bg);border-radius:0 0 10px 10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl li.cp{border-top-color:var(--copper)}
+.tl .y{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tl .p{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25}
+.tl .s{font-size:14px;color:var(--ink-2);line-height:1.45}
+.era{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.era .when{font-family:var(--display);font-weight:900;font-size:var(--step-2);color:var(--olive);font-variant-numeric:tabular-nums}
+.sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sites figure img{aspect-ratio:4/3}
+.sites h3{font-size:18px;margin-top:2px}
+.sites p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.small-photo img{max-width:260px;aspect-ratio:auto !important}
+.tl-mini{display:flex;gap:4px;flex-wrap:wrap;font-size:12px;color:var(--ink-3)}
+.tl-mini span{padding:1px 8px;border-radius:99px;border:1px solid var(--rule)}
+.tl-mini span.on{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+</style>
+
+<div class="deck" dir="rtl" lang="he">
+  <div class="bar"><b>ירושלים והסביבה</b><span>נושא 6 · ירושלים החדשה וסביבותיה</span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="בניין הכנסת">
+    <span class="credit">מצגת התמונות הרשמית</span>
+    <div class="pad">
+      <p class="kick">חבל ירושלים · נושא 6</p>
+      <h1>ירושלים החדשה וסביבותיה</h1>
+      <p class="lead">מחוץ לחומות צמחה עיר אחרת: שכונות ותיקות עם אופי משלהן, מוסדות השלטון של מדינת ישראל, אתרי זיכרון, מוזיאונים, שווקים וחיי לילה. ומסביב לעיר, אתרים שמושכים צליינים יהודים, נוצרים ומוסלמים.</p>
+      <div class="chips"><span class="chip">שכונות האבות</span><span class="chip">קריית הלאום</span><span class="chip">הר הרצל ויד ושם</span><span class="chip">מוזיאונים</span><span class="chip">הר הצופים</span><span class="chip">בילוי ופנאי</span><span class="chip">בית לחם וחברון</span><span class="chip">מושגים</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">היציאה מהחומות</p>
+      <h2>איך נולדה העיר החדשה</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>עד אמצע המאה ה־19 גרו כמעט כל תושבי ירושלים בתוך החומות. העיר העתיקה הייתה צפופה, השערים ננעלו בלילה, והתנאים היו קשים. מ־1860 התחילו לבנות שכונות בחוץ, ומהן צמחה העיר החדשה.</p>
+          <ol class="tl">
+            <li class="cp"><span class="y">1860</span><span class="p">משכנות שאננים</span><span class="s">השכונה היהודית הראשונה מחוץ לחומות, בעזרת משה מונטיפיורי</span></li>
+            <li><span class="y">1869</span><span class="p">נחלת שבעה</span><span class="s">שבע משפחות קנו יחד קרקע ליד רחוב יפו</span></li>
+            <li><span class="y">1873</span><span class="p">המושבה הגרמנית</span><span class="s">הקימו אותה הטמפלרים, נוצרים מגרמניה</span></li>
+            <li><span class="y">שנות ה־70</span><span class="p">מאה שערים</span><span class="s">אנשי היישוב הישן שיצאו מהעיר העתיקה</span></li>
+            <li><span class="y">סוף המאה ה־19</span><span class="p">ימין משה</span><span class="s">נבנתה ליד משכנות שאננים, ונקראה על שם מונטיפיורי</span></li>
+          </ol>
+        </div>
+        <figure><img src="img/mishkenot.jpg" alt="משכנות שאננים וטחנת הרוח, תחריט" style="aspect-ratio:auto"><figcaption>משכנות שאננים וטחנת הרוח בימיה הראשונים · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">שכונות האבות</p>
+      <h2>כל שכונה, עולם בפני עצמו</h2>
+      <div class="sites">
+        <figure><img src="img/windmill.jpg" alt="טחנת הרוח של מונטיפיורי"><h3>משכנות שאננים וימין משה</h3><p>השכונה הראשונה מחוץ לחומות, מול העיר העתיקה. סמלה הוא <b>טחנת הרוח של מונטיפיורי</b>. הבתים שוקמו, ויש בהם היום מרכז כנסים, מרכז למוזיקה ובית הארחה. בימין משה גרים אמנים, ויש בה גלריות.</p></figure>
+        <figure><img src="img/mea.jpg" alt="סמטה במאה שערים"><h3>מאה שערים</h3><p>שכונה חרדית ותיקה. הביקור בה הוא מפגש עם אורח חיים דתי ששומר על מסורת בתוך עיר מודרנית. השכונה מבקשת ממבקרים <b>ללבוש לבוש צנוע</b> ולא להגיע בקבוצות גדולות.</p></figure>
+        <figure><img src="img/nahalat.jpg" alt="מטריות צבעוניות בנחלת שבעה"><h3>נחלת שבעה</h3><p>אחת השכונות הראשונות, במרכז העיר. היום מתחם של מסעדות, פאבים וחנויות, ליד מדרחוב בן יהודה.</p></figure>
+      </div>
+      <div class="cards" style="margin-top:12px">
+        <div class="card"><h3>המושבה הגרמנית</h3><p>בתי אבן של הטמפלרים לאורך רחוב עמק רפאים, שהפך לרחוב של מסעדות ובתי קפה.</p></div>
+        <div class="card"><h3>עין כרם</h3><p>כפר ציורי בין הרים מיוערים. לפי המסורת הנוצרית, מקום הולדתו של יוחנן המטביל, ויש בו כנסיות ומנזרים. גם גלריות ומסעדות.</p></div>
+      </div>
+      <p class="note">נשאל בבגרות: "בחר שתיים מבין השכונות שצוינו והסבר מה מייחד כל אחת מהן" (מאה שערים, המושבה הגרמנית, עין כרם, משכנות שאננים, ימין משה).</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">קריית הלאום · גבעת רם</p>
+      <h2>סמלי השלטון של מדינת ישראל</h2>
+      <p class="lead">ירושלים היא בירת ישראל, ולכן כאן נמצאים המוסדות החשובים של המדינה. רבים מהם פתוחים למבקרים, והם ביקור חובה לתייר.</p>
+      <div class="sites">
+        <figure><img src="img/knesset-in.jpg" alt="אולם המליאה בכנסת"><h3>הכנסת</h3><p>בית המחוקקים. ביקור בתיאום מראש: סיור מודרך וצפייה בדיון במליאה. מוצגות בה יצירות של <b>מארק שאגאל</b>, ומולה עומדת <b>המנורה</b> שתרמו חברי הפרלמנט הבריטי.</p></figure>
+        <figure><img src="img/supreme.jpg" alt="בית המשפט העליון"><h3>בית המשפט העליון</h3><p>הכניסה מזכירה שער עתיק, ומעליה פירמידה שמזכירה בנייה מימי בית שני. הבניין עשוי אבן ירושלמית שמסמלת את הכותל. הכניסה חינם, בתיאום מראש, וגם סיורים מודרכים.</p></figure>
+        <figure><img src="img/library.jpg" alt="הספרייה הלאומית"><h3>הספרייה הלאומית</h3><p>הספרייה של העם היהודי, עם כתבי יד נדירים. בניין חדש ליד הכנסת, שנפתח ב־2023, עם תערוכות לקהל.<span class="tag-ext">הרחבה, לא מהספר</span></p></figure>
+      </div>
+      <p class="src">מצגת התמונות הרשמית, ומתוך מצגת ירושלים של המגמה.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">הר הזיכרון</p>
+      <h2>הר הרצל ויד ושם</h2>
+      <div class="vs">
+        <div>
+          <figure><img src="img/herzl.jpg" alt="קבר הרצל"><figcaption>קבר הרצל · מצגת התמונות הרשמית</figcaption></figure>
+          <h3>הר הרצל</h3>
+          <p>נקרא על שם בנימין זאב הרצל, חוזה המדינה. על ההר:</p>
+          <ul class="clean">
+            <li><b>קבר הרצל</b>, ולידו <b>חלקת גדולי האומה</b>: קברי מנהיגי המדינה והציונות.</li>
+            <li><b>בית הקברות הצבאי</b> הגדול במדינה.</li>
+            <li><b>מוזיאון הרצל</b>: מוצג אורקולי על חייו ועל ראשית הציונות, וחדר העבודה שלו.</li>
+            <li>כאן נערך בכל שנה <b>טקס הדלקת המשואות</b> של יום העצמאות.<span class="tag-ext">הרחבה, לא מהספר</span></li>
+          </ul>
+        </div>
+        <div>
+          <figure><img src="img/yadvashem.jpg" alt="היכל השמות ביד ושם"><figcaption>היכל השמות ביד ושם · מצגת התמונות הרשמית</figcaption></figure>
+          <h3>יד ושם</h3>
+          <p>המוסד הרשמי להנצחת השואה, צמוד להר הרצל. ביד ושם:</p>
+          <ul class="clean">
+            <li><b>המוזיאון לתולדות השואה</b>.</li>
+            <li><b>היכל השמות</b>: שמות ותמונות של נספים.</li>
+            <li><b>אנדרטת הקרון</b>: קרון רכבת מימי המלחמה.</li>
+            <li><b>אנדרטת יאנוש קורצ'אק ותלמידיו</b>, <b>יד לילד</b>, ו<b>שדרת חסידי אומות העולם</b>.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">נשאל בבגרות: "הר הרצל נקרא גם הר הזיכרון. בחר שני אתרים שנמצאים על הר הרצל, ותאר אותם בקצרה".</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide stop tint" id="s6" hidden>
+    <img class="bg" src="img/knesset-in.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 1–3</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל אתר לסוג שלו.<span class="tag">תרגול</span><span class="sub">הכנסת · יד ושם · מאה שערים · שוק מחנה יהודה · מוזיאון ישראל · בית המשפט העליון</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">בירושלים שכונות אבות בעלות אופי מיוחד, ביניהן מאה שערים, המושבה הגרמנית, עין כרם, משכנות שאננים וימין משה. בחרו שתיים מבין השכונות, והסבירו מה מייחד כל אחת מהן.<span class="tag real">בגרות</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">הר הרצל נקרא גם הר הזיכרון. בחרו שני אתרים שנמצאים על הר הרצל, ותארו אותם בקצרה.<span class="tag real">בגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">עיר של מוזיאונים</p>
+      <h2>איזה מוזיאון לאיזה תייר</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <thead><tr><th>מוזיאון</th><th>מה מוצג</th><th>למי מתאים</th></tr></thead>
+          <tbody>
+            <tr><td class="d">מוזיאון ישראל</td><td>ארכאולוגיה, אמנות ויהדות. <b>דגם ירושלים בימי בית שני</b>, ו<b>היכל הספר</b> עם המגילות הגנוזות מקומראן</td><td>כל המגזרים, משפחות, תיירות תרבות</td></tr>
+            <tr><td class="d">יד ושם</td><td>תולדות השואה והנצחת הנספים</td><td>תיירות יהודית, משלחות נוער, אורחים רשמיים</td></tr>
+            <tr><td class="d">מוזיאון הרצל</td><td>חייו של הרצל וראשית הציונות</td><td>תיירות יהודית, נוער, תגלית</td></tr>
+            <tr><td class="d">מוזיאון ארצות המקרא</td><td>ממצאים ארכאולוגיים מארצות התנ"ך<span class="tag-ext">הרחבה</span></td><td>צליינים, אוהבי היסטוריה</td></tr>
+            <tr><td class="d">מוזיאון רוקפלר</td><td>ממצאים ארכאולוגיים מחפירות בארץ<span class="tag-ext">הרחבה</span></td><td>אוהבי ארכאולוגיה</td></tr>
+            <tr><td class="d">מוזיאון קו התפר, גבעת התחמושת</td><td>ירושלים המחולקת ומלחמת ששת הימים (נושא 2)</td><td>תיירות יהודית, נוער</td></tr>
+            <tr><td class="d">מגדל דוד</td><td>תולדות ירושלים (נושא 3)</td><td>כל המגזרים</td></tr>
+          </tbody>
+        </table></div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/shrine.jpg" alt="היכל הספר"><figcaption>היכל הספר במוזיאון ישראל · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure><img src="img/museum-in.jpg" alt="ארונות קבורה באגף הארכאולוגיה"><figcaption>אגף הארכאולוגיה במוזיאון ישראל · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+        </div>
+      </div>
+      <p class="note">נשאל בבגרות: שלושה מוזיאונים, מה מוצג בכל אחד ולאיזה מגזר הוא מתאים · שני מוזיאונים שמציגים ממצאים ארכאולוגיים.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">הר הצופים וטיילת ארמון הנציב</p>
+      <h2>להשקיף על העיר</h2>
+      <div class="vs">
+        <div>
+          <figure><img src="img/scopus.jpg" alt="האמפיתאטרון בהר הצופים"><figcaption>האמפיתאטרון בהר הצופים · מצגת התמונות הרשמית</figcaption></figure>
+          <h3>הר הצופים</h3>
+          <p>פסגתו צופה על העיר העתיקה, על העיר החדשה ועל מדבר יהודה. על ההר:</p>
+          <ul class="clean">
+            <li><b>האוניברסיטה העברית</b>, שנפתחה ב־1925, עם <b>אמפיתאטרון</b> מול מדבר יהודה ו<b>גן בוטני</b>.</li>
+            <li><b>בית הקברות הבריטי</b> לחללי מלחמת העולם הראשונה.<span class="tag-ext">הרחבה</span></li>
+            <li><b>בית החולים הדסה הר הצופים</b>. בין 1948 ל־1967 היה ההר מובלעת ישראלית בתוך השטח הירדני.<span class="tag-ext">הרחבה</span></li>
+            <li><b>נקודת תצפית</b> על העיר.</li>
+          </ul>
+        </div>
+        <div>
+          <figure><img src="img/armon.jpg" alt="טיילת ארמון הנציב"><figcaption>טיילת ארמון הנציב · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <h3>טיילת ארמון הנציב</h3>
+          <p>טיילת בדרום העיר שמשקיפה על העיר העתיקה ועל מדבר יהודה. הליכה נעימה ורגועה לכל הגילאים, מותאמת לעגלות ולכיסאות גלגלים.</p>
+          <p>הר הזיתים (נושא 5) הוא נקודת התצפית השלישית על העיר העתיקה.</p>
+        </div>
+      </div>
+      <p class="note">נשאל בבגרות: "בחר שניים מבין האתרים השוכנים על הר הצופים ותאר אותם" · שני הרים שמהם יש תצפית על העיר העתיקה.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">בילוי ופנאי</p>
+      <h2>ירושלים של יום ושל לילה</h2>
+      <div class="sites">
+        <figure><img src="img/mahane2.jpg" alt="שוק מחנה יהודה"><h3>שוק מחנה יהודה</h3><p>השוק המרכזי של העיר: פירות וירקות, מאפיות, מעדניות ותבלינים. בערב הדוכנים נסגרים, והשוק הופך למתחם <b>בילוי לילי</b> של ברים ומסעדות.</p></figure>
+        <figure><img src="img/benyehuda.jpg" alt="מדרחוב בן יהודה"><h3>מדרחוב בן יהודה ונחלת שבעה</h3><p>רחובות להולכי רגל במרכז העיר: חנויות, בתי קפה, נגני רחוב, ובלילה מסעדות ופאבים.</p></figure>
+        <figure><img src="img/kingdavid.jpg" alt="מלון המלך דוד"><h3>מלון המלך דוד</h3><p>מלון פאר מימי המנדט הבריטי, שמשמש גם בית הארחה רשמי לאורחי המדינה. מהבולטים במלונות ישראל.</p></figure>
+      </div>
+      <div class="cards" style="margin-top:12px">
+        <div class="card"><h3>לבילוי עם ילדים</h3><p><b>גן החיות התנ"כי</b>: בעלי חיים שמוזכרים בתנ"ך, ומרכז המבקרים "תיבת נח". גם <b>אגף הנוער</b> במוזיאון ישראל.</p></div>
+        <div class="card"><h3>לבילוי לילי</h3><p><b>שוק מחנה יהודה</b>, <b>התחנה הראשונה</b>: תחנת הרכבת הוותיקה ששוחזרה למתחם מסעדות ותרבות, ו<b>ממילא</b>, מדרחוב של חנויות מול שער יפו.<span class="tag-ext">הרחבה</span></p></div>
+      </div>
+      <p class="note">נשאל בבגרות 2024: ארבעה אתרים בירושלים החדשה (המערבית): מוזיאון, בילוי לילי, בילוי עם ילדים קטנים, וסמל שלטון שפתוח למבקרים.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop tint" id="s10" hidden>
+    <img class="bg" src="img/shrine.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 4–5</h2>
+      <div class="q"><span class="qn">4</span><div class="qt">ירושלים משופעת במוזיאונים העוסקים במגוון נושאים. בחרו שלושה מוזיאונים, ותארו מה מוצג בכל אחד מהם ולאיזה מגזר תיירות הוא מתאים.<span class="tag real">בגרות</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">אחד מן ההרים הסובבים את ירושלים הוא הר הצופים, אשר פסגתו צופה על ירושלים העתיקה והחדשה ועל מדבר יהודה. בחרו שניים מבין האתרים השוכנים על הר הצופים ותארו אותם.<span class="tag real">בגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">מסביב לירושלים</p>
+      <h2>ערים ואתרים בסביבת העיר</h2>
+      <div class="sites">
+        <figure><img src="img/nativity.jpg" alt="כנסיית המולד בבית לחם"><h3>בית לחם</h3><p>לפי האמונה הנוצרית, <b>מקום הולדתו של ישו</b>. במרכז העיר <b>כנסיית המולד</b>, מהכנסיות העתיקות בעולם, ולידה כיכר האבוס. מוקד עלייה לרגל לנוצרים, בעיקר בחג המולד.</p></figure>
+        <figure><img src="img/rachel.jpg" alt="קבר רחל"><h3>קבר רחל</h3><p>בכניסה לבית לחם. לפי המסורת, קבורה כאן רחל אמנו. מקום תפילה ליהודים, בעיקר לנשים.</p></figure>
+        <figure><img src="img/herodion.jpg" alt="הרודיון"><h3>הרודיון</h3><p>ארמון־מבצר שבנה הורדוס על הר בצורת חרוט בשולי מדבר יהודה. בו נמצא, לפי החוקרים, גם קברו.<span class="tag-ext">הרחבה</span></p></figure>
+      </div>
+      <div class="cards" style="margin-top:12px">
+        <div class="card"><h3>חברון · מערת המכפלה</h3><p>לפי המסורת, קבורים כאן אברהם, יצחק ויעקב, ושרה, רבקה ולאה. המקום קדוש <b>ליהודים</b> וגם <b>למוסלמים</b>, שקוראים לו מסגד אל־אברהימי. המבנה מימי הורדוס.</p></div>
+        <div class="card"><h3>לטרון</h3><p>על הדרך לירושלים: <b>יד לשריון</b>, אתר הנצחה ומוזיאון של חיל השריון, ו<b>מנזר השתקנים</b> עם יקב.<span class="tag-ext">הרחבה</span></p></div>
+      </div>
+      <p class="note">נשאל בבגרות: מה מושך את התייר הנוצרי לבית לחם, ומה מושך את התייר היהודי ואת התייר המוסלמי לחברון.</p>
+      <p class="src">בית לחם וחברון נמצאות בשטח שבשליטה פלסטינית, והכניסה אליהן תלויה במצב הביטחוני ובהנחיות. כדאי לבדוק לפני כל סיור.</p>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">מושגים לבגרות</p>
+      <h2>שני מושגים שקשורים לירושלים</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>יריד הספרים הבינלאומי</h3>
+          <p>אירוע תרבותי ועסקי בינלאומי שמתקיים בישראל מאז 1963. מטרתו לחשוף ספרות, סופרים ומו"לים מהעולם, ולחבר ביניהם לשיתופי פעולה, תרגומים, זכויות יוצרים והפצה.</p>
+          <p><b>איפה:</b> בנייני האומה, ירושלים. <b>מתי:</b> אחת לשנתיים, בדרך כלל בפברואר.</p>
+          <p>בירושלים כי היא בירת התרבות והספר. היריד מביא לעיר תיירות עסקים ותיירות תרבות.</p>
+        </div>
+        <div class="card">
+          <h3>WTO · ארגון התיירות העולמי</h3>
+          <p>World Tourism Organization</p>
+          <p>ארגון בינלאומי המסונף לאו"ם, ומושבו במדריד. תפקידו לאסוף נתונים מכל ארצות התיירות בעולם, לנתח אותם ולתת תחזית על ההתפתחויות הצפויות בעולם התיירות.</p>
+          <p>לא לבלבל עם ארגון הסחר העולמי, שגם הוא נקרא WTO. מ־2024 הארגון נקרא <b>UN Tourism</b>.<span class="tag-ext">הרחבה, לא מהספר</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide stop tint" id="s13" hidden>
+    <img class="bg" src="img/library.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 6–7 · מושגים</h2>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו מהו "יריד הספרים הבינלאומי", וציינו היכן ובאיזו תדירות הוא מתקיים.<span class="tag">מושג</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו מהו ארגון ה־WTO, ומהו תפקידו העיקרי.<span class="tag">מושג</span></div></div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide stop tint" id="s14" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות סיכום בסגנון בגרות</p>
+      <h2>שאלות 8–9</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">ציינו את שמותיהם של ארבעה אתרי תיירות בירושלים החדשה (המערבית), אחד לכל הגדרה: א. מוזיאון · ב. בילוי לילי · ג. בילוי עם ילדים קטנים · ד. אחד מסמלי השלטון של מדינת ישראל שפתוח למבקרים. לגבי כל אתר, כתבו משפט אחד על מה שהוא מציע לתייר.<span class="tag real">בעקבות בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">בסביבות ירושלים יש שתי ערים שהן מוקד עלייה לרגל: בית לחם וחברון. כתבו מה מושך את התייר הנוצרי לבית לחם, ומה מושך את התייר היהודי ואת התייר המוסלמי לחברון.<span class="tag real">בגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide bgslide" id="s15" hidden>
+    <img class="bg" src="img/armon.jpg" alt="טיילת ארמון הנציב">
+    <span class="credit">מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">לסיום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>היציאה מהחומות: משכנות שאננים (1860), ואחריה נחלת שבעה, המושבה הגרמנית, מאה שערים וימין משה.</li>
+        <li>סמלי השלטון: הכנסת, בית המשפט העליון, הספרייה הלאומית.</li>
+        <li>הר הזיכרון: קבר הרצל, גדולי האומה, בית הקברות הצבאי, מוזיאון הרצל, יד ושם.</li>
+        <li>מוזיאונים: מה מוצג ולאיזה מגזר. הר הצופים וארמון הנציב לתצפית.</li>
+        <li>פנאי: מחנה יהודה, בן יהודה, גן החיות התנ"כי. סביב העיר: בית לחם, קבר רחל, חברון.</li>
+        <li>מושגים: יריד הספרים הבינלאומי, WTO.</li>
+      </ul>
+      <p class="lead">סיימנו את חבל ירושלים.</p>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav" dir="rtl" aria-label="ניווט בין שקפים">
+  <button type="button" id="prev" class="ghost">הקודם</button>
+  <span class="count" id="count" aria-live="polite">1 / 15</span>
+  <button type="button" id="next">הבא</button>
+</nav>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
