@@ -1,0 +1,450 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>העמקים · עמק המעיינות והגלבוע</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+
+/* topic 2: timeline overview, period header, site chips */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tl li{border-top:4px solid var(--olive);background:var(--bg);border-radius:0 0 10px 10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl li.cp{border-top-color:var(--copper)}
+.tl .y{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tl .p{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25}
+.tl .s{font-size:14px;color:var(--ink-2);line-height:1.45}
+.era{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.era .when{font-family:var(--display);font-weight:900;font-size:var(--step-2);color:var(--olive);font-variant-numeric:tabular-nums}
+.sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sites figure img{aspect-ratio:4/3}
+.sites h3{font-size:18px;margin-top:2px}
+.sites p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.small-photo img{max-width:260px;aspect-ratio:auto !important}
+.tl-mini{display:flex;gap:4px;flex-wrap:wrap;font-size:12px;color:var(--ink-3)}
+.tl-mini span{padding:1px 8px;border-radius:99px;border:1px solid var(--rule)}
+.tl-mini span.on{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+</style>
+
+<div class="deck" dir="rtl" lang="he">
+  <div class="bar"><b>חבל העמקים</b><span>נושא 3 · עמק המעיינות והגלבוע</span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/sachne.jpg" alt="רוחצים בבריכות גן השלושה">
+    <span class="credit">מתוך השידור "העמקים", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">חבל העמקים · נושא 3</p>
+      <h1>עמק המעיינות והגלבוע</h1>
+      <p class="lead">באזור חם מאוד נובעים מעיינות שהמים שלהם חמימים כל השנה. מעליהם מתנשא הגלבוע, עם תצפית על כל העמקים ופריחה מיוחדת באביב.</p>
+      <div class="chips"><span class="chip">28 מעלות כל השנה</span><span class="chip">גן השלושה</span><span class="chip">פארק המעיינות</span><span class="chip">מעיין חרוד</span><span class="chip">הר הגלבוע</span><span class="chip">אירוס הגלבוע</span><span class="chip">מושגים</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">למה יש כאן מים</p>
+      <h2>עמק של מעיינות</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>בעמק בית שאן ובעמק חרוד נובעים מעיינות רבים, למשל מעיין חרוד, עין עמל, עין שוקק, עין מודע ועין מגדל. המעיינות היו הבסיס להתיישבות בעמק, והיום הם הבסיס לנופש.</p>
+          <p>המים יוצאים מהאדמה בטמפרטורה קבועה של כ־<b>28 מעלות</b>, ולכן אפשר לרחוץ בהם <b>בכל עונה</b>, גם בחורף.</p>
+          <p>הקיץ בעמק בית שאן חם מאוד. בקיץ מבלים במים, ובאביב ובסתיו מתאים לטייל ולסייר באתרים.<span class="tag-ext">הרחבה</span></p>
+        </div>
+        <figure><img src="img/map-roads.jpg" alt="מפת העמקים עם גן השלושה ומעיין חרוד" style="aspect-ratio:auto;object-fit:contain;background:#fff"><figcaption>גן השלושה ומעיין חרוד במפה · מתוך קובץ שאלות הבגרות של המגמה</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">אתר: גן השלושה (הסחנה)</p>
+      <h2>בריכות טבעיות, 28 מעלות</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>גן לאומי במערב עמק המעיינות, ליד קיבוץ ניר דוד. בגן בריכות רחצה טבעיות שמתמלאות במי מעיינות, עם מפלים קטנים, מדשאות ועצים.</p>
+          <p><b>מה עושים:</b> שוחים בבריכות בכל ימות השנה, עושים פיקניק, מבלים יום במשפחה.</p>
+          <p><b>למה השם:</b> הגן נקרא על שם שלושה מתיישבים שנרצחו במאורעות בשנות ה־30.</p>
+          <p>בתחום הגן גם <b>מוזיאון ארכאולוגי</b> עם אוספי אמנות עתיקה מתרבויות הים התיכון.<span class="tag-ext">הרחבה</span></p>
+        </div>
+        <figure><img src="img/sachne-falls.jpg" alt="מפל בגן השלושה"><figcaption>מפל בגן השלושה · מתוך השידור "העמקים", מערכת השידורים הלאומית</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">אתר: פארק המעיינות ונחל הקיבוצים</p>
+      <h2>טבע בלי מכוניות</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>ליד ניר דוד נובעים כמה מעיינות כל השנה, ביניהם עין עמל, עין חומה ועין מגדל, ומהם זורם <b>נחל הקיבוצים</b>. לאורכו פארק עם בריכות טבעיות, צמחייה, ציפורים ואתרי מורשת.</p>
+          <ul class="clean">
+            <li>הכניסה ברגל או באופניים, בלי תשלום.</li>
+            <li><b>אסור להיכנס בכלי רכב פרטיים</b>, כדי לשמור על הטבע.</li>
+          </ul>
+          <p>ניר דוד, שבתחילה נקרא תל עמל, היה יישוב "חומה ומגדל" הראשון (נושא 1).</p>
+        </div>
+        <figure><img src="img/nahal-kibbutzim.jpg" alt="נחל הקיבוצים"><figcaption>נחל הקיבוצים · מתוך השידור "העמקים", מערכת השידורים הלאומית</figcaption></figure>
+      </div>
+      <p class="note">לפי מחוון 2026: פארק המעיינות סגור לכלי רכב כדי לשמור על הטבע. זה בדיוק הרעיון של תיירות אקולוגית.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">עוד אתרי מים ונופש</p>
+      <h2>מעיין חרוד, ועוד</h2>
+      <div class="sites">
+        <figure><img src="img/einharod.jpg" alt="מעיין חרוד"><h3>מעיין חרוד</h3><p>גן לאומי למרגלות הגלבוע: מעיין שנובע במערה, בריכה, מדשאות וחניון לילה. את הסיפורים שלו, גדעון וחנקין, למדנו בנושא 1.</p></figure>
+        <figure><img src="img/park-maayanot.jpg" alt="בריכה בפארק המעיינות"><h3>עין שוקק, עין מודע, עין מגדל</h3><p>מעיינות בעמק המעיינות, עם בריכות טבעיות ופינות רחצה.</p></figure>
+        <figure><img src="img/gan-guru.jpg" alt="משפחה עם קנגורו בגן גורו"><h3>גן גורו</h3><p>בניר דוד: פארק של בעלי חיים מאוסטרליה. מלטפים קנגורו ומאכילים תוכים. אטרקציה למשפחות, שונה מאתרי המים והטבע.<span class="tag-ext">הרחבה</span></p></figure>
+      </div>
+      <p class="src">התמונות מתוך השידור "העמקים", מערכת השידורים הלאומית.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide stop tint" id="s6" hidden>
+    <img class="bg" src="img/sachne.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 1–2</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל אתר למה שמאפיין אותו.<span class="tag">תרגול</span><span class="sub">גן השלושה · פארק המעיינות · הר הגלבוע · מעיין חרוד</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">למה אפשר לרחוץ בגן השלושה גם בחורף?<span class="tag">תרגול</span></div></div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">אתר: הר הגלבוע</p>
+      <h2>תצפית, טבע ומורשת</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>ההר שגובל בעמקים מדרום. מהפסגה רואים את כל אזור העמקים.</p>
+          <p><b>מה עושים:</b> נוסעים בכביש הנוף ועוצרים בתצפיות, הולכים במסלולי טיול, ובאביב רואים את הפריחה בשמורת הגלבוע.</p>
+          <p><b>מורשת מקראית:</b> בגלבוע נפלו <b>שאול ויהונתן</b> בקרב מול הפלשתים. דוד קונן עליהם: "הרי בגלבוע אל טל ואל מטר עליכם". לפי המסורת, בגלל "קללת דוד" חלק מההר חשוף מצמחייה.</p>
+          <p>הגלבוע מתאים ל<b>תיירות טבע ותיור</b>, וגם לתיירות מורשת.</p>
+        </div>
+        <figure><img src="img/gilboa-view.jpg" alt="נוף העמק מהגלבוע"><figcaption>העמק מהגלבוע · מתוך השידור "העמקים", מערכת השידורים הלאומית</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">סמל האזור</p>
+      <h2>אירוס הגלבוע, ונדידת הציפורים</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p><b>אירוס הגלבוע</b> פורח בסוף החורף ובתחילת האביב, בפרחים גדולים בצבע סגול כהה. רבים מגיעים לגלבוע במיוחד כדי לראות אותו.</p>
+          <p>זה <b>צמח מוגן</b>: מסתכלים ומצלמים, אבל לא קוטפים.<span class="tag-ext">הרחבה</span></p>
+          <p><b>נדידת ציפורים:</b> עמק בית שאן נמצא על ציר הנדידה לאורך השבר הסורי־אפריקני, ובריכות הדגים מושכות ציפורים רבות. במרכז הצפרות בכפר רופין צופים בהן.<span class="tag-ext">הרחבה</span></p>
+        </div>
+        <figure><img src="img/iris.jpg" alt="אירוס הגלבוע"><figcaption>אירוס הגלבוע · מתוך השידור "העמקים", מערכת השידורים הלאומית</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">איזה אתר למי · מושגים</p>
+      <h2>תיירות אקולוגית ומבקר יום</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <thead><tr><th>קהל</th><th>אתר</th></tr></thead>
+          <tbody>
+            <tr><td class="d">משפחות, נופשים בקיץ</td><td>גן השלושה, פארק המעיינות, מעיין חרוד</td></tr>
+            <tr><td class="d">חובבי טבע ומטיילים</td><td>הר הגלבוע, נחל הקיבוצים</td></tr>
+            <tr><td class="d">חובבי ציפורים</td><td>מרכז הצפרות בכפר רופין</td></tr>
+            <tr><td class="d">ילדים קטנים</td><td>גן גורו</td></tr>
+          </tbody>
+        </table></div>
+        <div class="cards" style="grid-template-columns:1fr">
+          <div class="card"><h3>תיירות אקולוגית</h3><p>ביקור באזורים טבעיים ושמורים כדי לחוות את הטבע, ללמוד עליו ולשמור עליו, תוך צמצום הפגיעה בסביבה ותרומה לקהילה המקומית. <b>דוגמה:</b> פארק המעיינות, שסגור לרכב.</p></div>
+          <div class="card"><h3>מבקר יום</h3><p>תייר ששוהה במקום עד 24 שעות, בלי לינה. <b>דוגמה:</b> משפחה מחיפה שבאה לרחוץ בגן השלושה וחוזרת הביתה בערב.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop tint" id="s10" hidden>
+    <img class="bg" src="img/nahal-kibbutzim.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 3–6</h2>
+      <div class="q"><span class="qn">3</span><div class="qt">מיינו כל אתר לסוג התיירות שהוא מתאים לו.<span class="tag">תרגול</span><span class="sub">נופש ומים · טבע ותיור · מורשת מקראית</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">קבוצת בני נוער רוצה לבלות בעמקים בקיץ החם. היכן תמליצו להם לבלות, ומה הם יראו שם? נמקו לפי האקלים.<span class="tag">תרגול</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">הסבירו את המושג "תיירות אקולוגית", והסבירו איך פארק המעיינות מתאים לה.<span class="tag">מושג</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "מבקר יום", ותנו דוגמה מאתרי המים בעמקים.<span class="tag">מושג</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/sachne-falls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות סיכום בסגנון בגרות</p>
+      <h2>שאלות 7–9</h2>
+      <div class="q"><span class="qn">7</span><div class="qt">ציינו את שמותיהן של שתי אטרקציות מים תיירותיות באזור העמקים.<span class="tag real">בגרות 2019</span></div></div>
+      <div class="q"><span class="qn">8</span><div class="qt">ציינו את שמותיהם של שני אתרי טבע באזור העמקים, ותארו כל אחד מהם.<span class="tag real">בגרות</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">משפחה מבקרת בעפולה. ציינו אתר תיירות מזרחית לעפולה, ותארו אותו.<span class="tag real">בעקבות בגרות 2018</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide bgslide" id="s12" hidden>
+    <img class="bg" src="img/park-maayanot.jpg" alt="פארק המעיינות">
+    <span class="credit">מתוך השידור "העמקים", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">לסיום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>עמק המעיינות: מים בכ־28 מעלות כל השנה, ולכן רוחצים בכל עונה.</li>
+        <li>גן השלושה (הסחנה): בריכות טבעיות, ליד ניר דוד. השם: שלושה מתיישבים שנרצחו בשנות ה־30.</li>
+        <li>פארק המעיינות ונחל הקיבוצים: ברגל או באופניים, בלי רכב, כדי לשמור על הטבע.</li>
+        <li>הגלבוע: תצפית על העמקים, אירוס הגלבוע באביב, שאול ויהונתן וקינת דוד.</li>
+        <li>מושגים: תיירות אקולוגית, מבקר יום.</li>
+      </ul>
+      <p class="lead">סיימנו את חבל העמקים.</p>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav" dir="rtl" aria-label="ניווט בין שקפים">
+  <button type="button" id="prev" class="ghost">הקודם</button>
+  <span class="count" id="count" aria-live="polite">1 / 12</span>
+  <button type="button" id="next">הבא</button>
+</nav>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
