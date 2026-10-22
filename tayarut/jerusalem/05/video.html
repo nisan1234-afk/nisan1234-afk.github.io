@@ -8,15 +8,14 @@
 <style>
   html,body{margin:0;background:#f6f2e8;font-family:Heebo,Arial,sans-serif;color:#1c2226}
   .wrap{max-width:960px;margin:0 auto;padding:12px}
-  video{width:100%;height:auto;display:block;border-radius:12px;background:#000}
+  .frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#000}
+  .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
   p{font-size:14px;color:#5a6066;margin:8px 2px 0}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <video controls preload="metadata" playsinline poster="video-poster.jpg">
-    <source src="video.mp4" type="video/mp4">
-  </video>
+  <div class="frame"><iframe src="https://drive.google.com/file/d/13H-f4lBflxvKir8zAk6ou_f-1aZ-5bB1/preview" allow="autoplay; fullscreen" allowfullscreen title="סרטון פתיחה"></iframe></div>
   <p>סרטון פתיחה לנושא, כ־5 דקות. נוצר ב־NotebookLM מתוך המצגת של היחידה.</p>
 </div>
 </body>
