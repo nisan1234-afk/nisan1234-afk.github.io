@@ -1,0 +1,641 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>ירושלים · ציר זמן</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+
+/* topic 2: timeline overview, period header, site chips */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tl li{border-top:4px solid var(--olive);background:var(--bg);border-radius:0 0 10px 10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl li.cp{border-top-color:var(--copper)}
+.tl .y{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tl .p{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25}
+.tl .s{font-size:14px;color:var(--ink-2);line-height:1.45}
+.era{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.era .when{font-family:var(--display);font-weight:900;font-size:var(--step-2);color:var(--olive);font-variant-numeric:tabular-nums}
+.sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sites figure img{aspect-ratio:4/3}
+.sites h3{font-size:18px;margin-top:2px}
+.sites p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.small-photo img{max-width:260px;aspect-ratio:auto !important}
+.tl-mini{display:flex;gap:4px;flex-wrap:wrap;font-size:12px;color:var(--ink-3)}
+.tl-mini span{padding:1px 8px;border-radius:99px;border:1px solid var(--rule)}
+.tl-mini span.on{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+</style>
+
+<div class="deck" dir="rtl" lang="he">
+  <div class="bar"><b>ירושלים והסביבה</b><span>נושא 2 · ציר זמן</span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="מבט מלמעלה על העיר העתיקה בירושלים והר הבית">
+    <span class="credit">מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">חבל ירושלים · נושא 2</p>
+      <h1>ירושלים: ציר זמן</h1>
+      <p class="lead">כ־4,000 שנה של היסטוריה בעיר אחת. כל שלטון השאיר אחריו אתר שאפשר לבקר בו היום: מנהרה, חומה, רחוב, כנסייה, מסגד או מוזיאון. בנושא הזה נלמד לחבר בין תקופה לאתר, ובין האתר לתייר שמגיע אליו.</p>
+      <div class="chips"><span class="chip">העיר היבוסית ודוד</span><span class="chip">בית ראשון</span><span class="chip">בית שני</span><span class="chip">רומאים וביזנטים</span><span class="chip">הכיבוש המוסלמי</span><span class="chip">צלבנים וממלוכים</span><span class="chip">עות'מאנים</span><span class="chip">המנדט</span><span class="chip">העיר המחולקת</span><span class="chip">1967</span><span class="chip">מושגים</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">סרגל הזמן</p>
+      <h2>עיר בשכבות</h2>
+      <p class="lead">בירושלים כל תקופה נבנתה על גבי הקודמת. לכן התייר פוגש את ההיסטוריה גם מתחת לאדמה, בחפירות ובמנהרות, וגם מעליה, בחומות, בכנסיות ובמסגדים. בבגרות שואלים על <b>אתרים</b>: מה רואים בהם ולמה הם חשובים. הסרגל עוזר לדעת לאיזה סיפור שייך כל אתר.</p>
+      <ol class="tl">
+        <li><span class="y">לפני כ־4,000 שנה</span><span class="p">העיר היבוסית</span><span class="s">עיר דוד</span></li>
+        <li><span class="y">כ־1005 לפנה״ס</span><span class="p">דוד המלך</span><span class="s">ירושלים בירה</span></li>
+        <li><span class="y">עד 586 לפנה״ס</span><span class="p">בית ראשון</span><span class="s">נקבת השילוח, החומה הרחבה</span></li>
+        <li><span class="y">עד 70 לספירה</span><span class="p">בית שני</span><span class="s">הכותל, הבית השרוף, הרודיון</span></li>
+        <li><span class="y">70 – 638</span><span class="p">רומאים וביזנטים</span><span class="s">הקרדו, מפת מידבא, כנסיית הקבר</span></li>
+        <li><span class="y">638 – 1099</span><span class="p">הכיבוש המוסלמי</span><span class="s">כיפת הסלע, אל־אקצא</span></li>
+        <li><span class="y">מ־1099</span><span class="p">צלבנים וממלוכים</span><span class="s">סנט אנה, הרמב״ן, שוק הכותנה</span></li>
+        <li><span class="y">1517 – 1917</span><span class="p">העות'מאנים</span><span class="s">החומות והשערים, משכנות שאננים</span></li>
+        <li><span class="y">1917 – 1948</span><span class="p">המנדט הבריטי</span><span class="s">מלון המלך דוד, האוניברסיטה העברית</span></li>
+        <li class="cp"><span class="y">1948 – 1967</span><span class="p">העיר המחולקת</span><span class="s">מוזיאון קו התפר</span></li>
+        <li class="cp"><span class="y">1967 ואילך</span><span class="p">איחוד העיר</span><span class="s">גבעת התחמושת, הרובע היהודי</span></li>
+      </ol>
+      <p class="src">לפי "סרגל זמן" בסיכום החבל (כהן, תיירות בישראל, 2006).</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">לפני כ־4,000 שנה · כ־1005 לפנה״ס</p>
+      <h2>העיר היבוסית ועיר דוד</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>ירושלים הקדומה ישבה על רכס צר מדרום להר הבית, ליד מעיין הגיחון. שלטו בה היבוסים, והיא מוזכרת כבר בכתבים מצריים. בסביבות שנת 1005 לפנה״ס <b>כבש דוד המלך את העיר והפך אותה לבירתו</b>. מכאן השם "עיר דוד".</p>
+          <ul class="clean">
+            <li><b>מה רואים היום:</b> עיר דוד היא גן לאומי מחוץ לחומות, למרגלות הר הבית. מבקרים בחפירות ארכיאולוגיות של העיר הקדומה, ויכולים ללכת במים בנקבת השילוח.</li>
+            <li><b>למה זה חשוב לתייר:</b> זה המקום שבו מתחיל הסיפור של ירושלים כבירה, ולכן הוא מושך תיירות יהודית, קבוצות חינוכיות ותיירי היסטוריה וארכיאולוגיה.</li>
+          </ul>
+          <p class="note">"מגדל דוד" ליד שער יפו <b>לא</b> נבנה בימי דוד. זו מצודה מתקופות מאוחרות בהרבה. נפגוש אותו בתקופה העות'מאנית.</p>
+        </div>
+        <div class="vs">
+          <figure><img src="img/city-david.jpg" alt="הכניסה לגן הלאומי עיר דוד" style="aspect-ratio:3/4"><figcaption>הכניסה לעיר דוד · מצגת התמונות הרשמית</figcaption></figure>
+          <figure><img src="img/city-dig.jpg" alt="חפירות בעיר דוד" style="aspect-ratio:3/4"><figcaption>חפירות בעיר דוד · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">עד 586 לפנה״ס · תקופת בית ראשון</p>
+      <h2>בית ראשון: מקדש, חומה ומנהרת מים</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p><b>שלמה</b> בנה את בית המקדש הראשון. אחריו, <b>רחבעם</b> בנו הפך את ירושלים לבירת ממלכת יהודה. במאה ה־8 לפנה״ס התכונן <b>המלך חזקיהו</b> למצור של סנחריב מלך אשור, ובנה שני מפעלים שאפשר לראות עד היום. בשנת <b>586 לפנה״ס</b> החריבו הבבלים את העיר ואת המקדש.</p>
+          <ul class="clean">
+            <li><b>נקבת השילוח (נקבת חזקיהו):</b> מנהרה שנחצבה בסלע והובילה את מי הגיחון אל בריכת השילוח שבתוך העיר, כדי שיהיו לתושבים מים בזמן מצור. היום הולכים בה במים, עם פנס, בתוך עיר דוד.</li>
+            <li><b>החומה הרחבה:</b> שרידים של חומת הביצור שבנה חזקיהו מפני סנחריב. היא מוזכרת בספר נחמיה. רואים אותה ברובע היהודי, ברחוב מקביל לקרדו.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/siloam.jpg" alt="מבקרים בתעלת המים בעיר דוד" style="aspect-ratio:3/2"><figcaption>מים בעיר דוד, בדרך אל השילוח · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure class="small-photo"><img src="img/broad-wall.jpg" alt="שרידי החומה הרחבה ברובע היהודי"><figcaption>החומה הרחבה · מתוך השידור "ירושלים העיר העתיקה", מערכת השידורים הלאומית</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">עד 70 לספירה · תקופת בית שני</p>
+      <h2>בית שני: העיר של הורדוס</h2>
+      <p>אחרי <b>שיבת ציון</b> נבנה המקדש מחדש. בהמשך שלטו בעיר ההלניסטים ואחריהם <b>החשמונאים</b>. <b>הורדוס</b> הרחיב את הר הבית ובנה סביבו קירות תמך ענקיים. בשנת <b>70 לספירה</b>, בסוף המרד הגדול, החריבו הרומאים את העיר ואת המקדש.</p>
+      <div class="sites">
+        <figure><img src="img/kotel.jpg" alt="הכותל המערבי"><h3>הכותל המערבי</h3><p>קיר התמך המערבי של הר הבית שבנה הורדוס. השריד הקרוב ביותר למקדש, והמקום המקודש ביותר ליהודים לתפילה. ממשיכים אותו מתחת לאדמה במנהרות הכותל.</p></figure>
+        <figure><img src="img/burnt-house.jpg" alt="חדרי הבית השרוף"><h3>הבית השרוף</h3><p>בית של משפחת הכוהנים קתרוס, שנשרף בחורבן. שכבת אפר, כלים ומטבעות מימי המרד הגדול מראים שנשרף בשנת 70. היום יש בו מייצג אור־קולי.</p></figure>
+        <figure><img src="img/herodion.jpg" alt="הרודיון"><h3>הרודיון</h3><p>הר שהורדוס עיצב, ועליו ארמון ומבצר, ליד בית לחם. מבקרים בארמון, במנהרות ובקבר שנמצא במקום.</p></figure>
+      </div>
+      <details class="more"><summary>עוד אתרים מימי בית שני</summary><div class="body">
+        <p><b>קשת רובינסון וקשת וילסון:</b> שרידים של המעברים שהובילו אל הר הבית בימי בית שני.</p>
+        <p><b>מנהרות הכותל:</b> נחשפו אחרי 1967. כוללות תעלת מים מימי החשמונאים, אולמות וקטע רחוב מימי בית שני.</p>
+        <p><b>קבר בני חזיר בעמק קדרון:</b> קבר של משפחת כוהנים, עם כתובת בעברית.</p>
+      </div></details>
+      <p class="src">התמונות: מתוך מצגת ירושלים של המגמה · הרודיון: מצגת התמונות הרשמית.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">70 – 638 לספירה · התקופה הרומית והביזנטית</p>
+      <h2>רומאים וביזנטים: רחוב עמודים וכנסיות</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>אחרי החורבן הקימו הרומאים על חורבות ירושלים עיר רומית בשם <b>איליה קפיטולינה</b><span class="tag-ext">הרחבה: בימי הקיסר אדריאנוס, אחרי מרד בר כוכבא</span>, ויהודים לא הורשו לגור בה. בתקופה הביזנטית הפכה הנצרות לדת האימפריה, ובעיר נבנו כנסיות גדולות.</p>
+          <ul class="clean">
+            <li><b>הקרדו:</b> הרחוב הראשי של העיר הרומית־ביזנטית, עם עמודים משני צידיו וחנויות מתחתם. נחשף בחפירות ב־1975, ומשמש היום רחוב של חנויות ברובע היהודי.</li>
+            <li><b>מפת מידבא:</b> רצפת פסיפס בכנסייה בעיר מידבא שבירדן, מלפני כ־1,500 שנה. רואים בה את ירושלים, את הקרדו ואת כנסיית הקבר. היא עזרה לארכיאולוגים לזהות אתרים בחפירות.</li>
+            <li><b>כנסיית הקבר:</b> נבנתה במקום שבו, לפי המסורת הנוצרית, נצלב ישו, נקבר וקם לתחייה<span class="tag-ext">הרחבה: נבנתה במאה ה־4, ביוזמת הקיסר קונסטנטינוס ואמו הלנה</span>.</li>
+            <li><b>הנאה:</b> כנסייה ביזנטית ענקית שבנה הקיסר יוסטיניאנוס במאה ה־6. שרידיה ברובע היהודי.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/cardo.jpg" alt="עמודי הקרדו ברובע היהודי" style="aspect-ratio:4/3"><figcaption>הקרדו · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure><img src="img/madaba.jpg" alt="ירושלים במפת מידבא" style="aspect-ratio:3/2"><figcaption>ירושלים במפת מידבא, עם הקרדו לאורך העיר · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide bgslide" id="s7" hidden>
+    <img class="bg" src="img/dome.jpg" alt="כיפת הסלע על הר הבית">
+    <span class="credit">כיפת הסלע · מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">638 – 1099 · הכיבוש המוסלמי</p>
+      <h2>הכיבוש המוסלמי: כיפת זהב על הר הבית</h2>
+      <p class="lead">בשנת 638 כבשו המוסלמים את ירושלים. על הר הבית הם בנו את <b>כיפת הסלע</b><span class="tag-ext" style="border-color:rgba(255,255,255,.6);color:rgba(255,255,255,.8)">הרחבה: הושלמה בשנת 691</span> ואת <b>מסגד אל־אקצא</b>. לפי המסורת המוסלמית, משם עלה מוחמד לשמיים במסע הלילה.</p>
+      <p>היהודים, שלא הורשו לגור בעיר בתקופה הנוצרית, קיבלו רשות לחזור, וחיו בה עד בוא הצלבנים. היום הר הבית הוא מוקד הצליינות המוסלמית בישראל.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">מ־1099 · צלבנים, ואחריהם ממלוכים</p>
+      <h2>צלבנים וממלוכים</h2>
+      <p>בשנת <b>1099</b> כבשו הצלבנים את ירושלים והפכו אותה לבירת ממלכתם. היהודים נרדפו ונאסר עליהם לגור בעיר. אחרי הצלבנים חזר השלטון המוסלמי, ובהמשך שלטו בעיר <b>הממלוכים</b>, שהשאירו שווקים ומבנים מפוארים ברובע המוסלמי.</p>
+      <div class="sites">
+        <figure><img src="img/st-anne.jpg" alt="כנסיית סנט אנה"><span class="yr" style="font-size:12px;color:var(--copper);font-weight:500">צלבנים</span><h3>כנסיית סנט אנה</h3><p>כנסייה צלבנית ליד שער האריות. לפי המסורת הנוצרית, כאן נולדה מרים.</p></figure>
+        <figure><img src="img/ramban.jpg" alt="בית הכנסת הרמב״ן"><span class="yr" style="font-size:12px;color:var(--copper);font-weight:500">1267</span><h3>בית הכנסת הרמב״ן</h3><p>הרמב״ן הגיע מספרד ב־1267 כדי לשקם את החיים היהודיים בעיר, והניח את היסוד לבית הכנסת. היום הוא פעיל ברובע היהודי.</p></figure>
+        <figure><img src="img/market.jpg" alt="שוק מקורה בעיר העתיקה"><span class="yr" style="font-size:12px;color:var(--copper);font-weight:500">ממלוכים · 1336</span><h3>שוק הכותנה</h3><p>שוק מקורה שנבנה כדי לרכז את סוחרי הכותנה והאריגים. מוביל אל הר הבית.</p></figure>
+        <figure><img src="img/khan.jpg" alt="חאן אל־סולטן"><span class="yr" style="font-size:12px;color:var(--copper);font-weight:500">ממלוכים · 1386</span><h3>חאן אל־סולטן</h3><p>פונדק דרכים בן שתי קומות לסוחרים ולגמליהם, ליד רחוב השלשלת.</p></figure>
+      </div>
+      <p>מחוץ לעיר: <b>כנסיית תחיית המתים באבו גוש</b>, כנסייה צלבנית מהמאה ה־12.</p>
+      <p class="src">סנט אנה, הרמב״ן וחאן אל־סולטן: מתוך השידור "ירושלים העיר העתיקה", מערכת השידורים הלאומית · השוק: מתוך מצגת ירושלים של המגמה.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">1517 – 1917 · התקופה העות'מאנית</p>
+      <h2>העות'מאנים: החומות שאנחנו רואים היום</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>בשנת 1517 כבשו הטורקים העות'מאנים את הארץ. <b>הסולטן סולימאן המפואר בנה את חומות העיר העתיקה בין 1535 ל־1542.</b> החומה מקיפה את ארבעת הרבעים, ויש בה <b>שמונה שערים</b>: שבעה פתוחים, ושער הרחמים אטום.</p>
+          <ul class="clean">
+            <li><b>שער יפו:</b> נבנה ב־1538, ויוצאת ממנו הדרך מערבה, לכיוון יפו. לידו מגדל דוד.</li>
+            <li><b>מגדל דוד:</b> מצודה ליד שער יפו. היום מוזיאון לתולדות ירושלים, עם מופע לילי על קירות המצודה.</li>
+            <li><b>בריכת הסולטן:</b> מאגר מים מימי סולימאן. היום במה למופעים.</li>
+            <li><b>השער החדש:</b> נפתח רק ב־1889, כדי להקל את הגישה לרובע הנוצרי.</li>
+            <li><b>טיילת החומות:</b> הליכה על החומה, משער יפו לשער האריות או לשער ציון.</li>
+          </ul>
+        </div>
+        <div class="vs">
+          <figure><img src="img/tower.jpg" alt="מגדל דוד" style="aspect-ratio:3/4"><figcaption>מגדל דוד · מצגת התמונות הרשמית</figcaption></figure>
+          <figure><img src="img/walls.jpg" alt="טיילת החומות" style="aspect-ratio:3/4"><figcaption>טיילת החומות · מצגת התמונות הרשמית</figcaption></figure>
+        </div>
+      </div>
+      <p class="note">את השערים, ואת האירועים ההיסטוריים שקרו בכל אחד, נלמד לעומק בנושא 3.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">המאה ה־19 · סוף התקופה העות'מאנית</p>
+      <h2>יוצאים מהחומות</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>במאה ה־19 העיר העתיקה הייתה צפופה, ותושבים התחילו לבנות שכונות מחוץ לחומות. גם מעצמות אירופה וכנסיות בנו מבנים גדולים מחוץ לעיר, בעיקר בשביל צליינים.</p>
+          <ul class="clean">
+            <li><b>משכנות שאננים:</b> השכונה היהודית הראשונה מחוץ לחומות<span class="tag-ext">הרחבה: 1860</span>. משה מונטיפיורי תרם רבות להקמתה, ולידה טחנת הרוח. היום מרכז כנסים, מרכז מוזיקה ובתי הארחה.</li>
+            <li><b>מאה שערים:</b> שכונה שהקימו אנשי היישוב הישן ביציאה מהעיר העתיקה, בשנות ה־70 של המאה ה־19. היום שכונה חרדית. מבקרים בה בלבוש צנוע ובקבוצות קטנות.</li>
+            <li><b>מגרש הרוסים ונוטרדאם:</b> מבנים גדולים שנבנו בשביל צליינים נוצרים.</li>
+            <li><b>בתוך העיר:</b> בתי המחסה לנזקקים ברובע היהודי, ובית הכנסת החורבה, שנבנה מחדש במאה ה־19.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/mishkenot.jpg" alt="איור ישן של משכנות שאננים וטחנת הרוח" style="aspect-ratio:3/2"><figcaption>משכנות שאננים וטחנת הרוח, איור מהמאה ה־19 · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure><img src="img/hurva-old.jpg" alt="איור ישן של בית הכנסת החורבה" style="aspect-ratio:3/2"><figcaption>בית הכנסת החורבה, איור מהמאה ה־19 · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+        </div>
+      </div>
+      <p class="note">את שכונות האבות נלמד לעומק בנושא 6, ירושלים החדשה.</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">1917 – 1948 · המנדט הבריטי</p>
+      <h2>המנדט: ירושלים בירת השלטון הבריטי</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>בדצמבר 1917 כבשו הבריטים את העיר מידי הטורקים, והגנרל <b>אלנבי</b> נכנס אליה דרך שער יפו. ירושלים הפכה למרכז השלטון הבריטי, ונבנו בה תשתיות מודרניות: מים, חשמל ותחבורה. מהתקופה הזאת נשארו כמה מהאתרים המוכרים בעיר החדשה:</p>
+          <ul class="clean">
+            <li><b>האוניברסיטה העברית בהר הצופים:</b> נחנכה ב־1925.</li>
+            <li><b>מלון המלך דוד:</b> נפתח כמלון פאר בימי המנדט, והיום משמש גם בית הארחה רשמי לאורחים חשובים של המדינה.</li>
+            <li><b>מוזיאון רוקפלר:</b> מוזיאון לארכיאולוגיה במזרח העיר.</li>
+            <li><b>ימק״א:</b> בניין מפורסם מול מלון המלך דוד.</li>
+            <li><b>ארמון הנציב:</b> מושבו של הנציב הבריטי. לידו טיילת עם תצפית על העיר העתיקה.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/kingdavid.jpg" alt="מלון המלך דוד" style="aspect-ratio:3/2"><figcaption>מלון המלך דוד · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure><img src="img/armon.jpg" alt="טיילת ארמון הנציב" style="aspect-ratio:16/9"><figcaption>טיילת ארמון הנציב · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">1948 – 1967 · העיר המחולקת</p>
+      <h2>עיר עם גבול באמצע</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>במלחמת העצמאות, אחרי מצור ארוך, נפל הרובע היהודי בעיר העתיקה. לוחמים פרצו אליו דרך שער ציון, אבל לא הצליחו להחזיק בו. בתי כנסת כמו <b>החורבה</b> ו<b>תפארת ישראל</b> נהרסו.</p>
+          <p>אחרי המלחמה <b>העיר חולקה: מערבה בשליטת ישראל, ומזרחה, עם העיר העתיקה, בשליטת ירדן.</b> במשך 19 שנה יהודים לא יכלו להגיע לכותל.</p>
+          <ul class="clean">
+            <li><b>מוזיאון קו התפר (בית תורג'מן):</b> עמדה ישראלית על קו הגבול העירוני. היום מוזיאון שמספר על התקופה שבה העיר הייתה מחולקת.</li>
+            <li><b>שער מנדלבאום:</b> מעבר הגבול היחיד בין שני חלקי העיר<span class="tag-ext">הרחבה</span>.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/mandelbaum.jpg" alt="מעבר מנדלבאום בשנות ה־50" style="aspect-ratio:3/2"><figcaption>מעבר מנדלבאום בימי העיר המחולקת · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <figure><img src="img/tourjeman.jpg" alt="בית תורג׳מן, מוזיאון קו התפר" style="aspect-ratio:3/2"><figcaption>בית תורג׳מן, מוזיאון קו התפר · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="s13" hidden>
+    <div class="pad">
+      <p class="kick">1967 ואילך · איחוד העיר</p>
+      <h2>1967: העיר מתאחדת</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>במלחמת ששת הימים פרצו הצנחנים דרך <b>שער האריות</b> אל הר הבית, והעיר אוחדה תחת שלטון ישראל. לזכר האירוע חוגגים את <b>יום ירושלים</b>. אחרי המלחמה שוקמה העיר העתיקה, נעשו חפירות ארכיאולוגיות, והתיירות התפתחה מאוד.</p>
+          <ul class="clean">
+            <li><b>גבעת התחמושת:</b> מוצב ירדני בצפון העיר, שבו נערך אחד הקרבות הקשים במלחמה. היום אתר הנצחה ומוזיאון בבונקר.</li>
+            <li><b>רחבת הכותל:</b> נפתחה מול הכותל אחרי המלחמה. בהמשך נחשפו מנהרות הכותל.</li>
+            <li><b>הרובע היהודי:</b> נבנה מחדש. בחפירות נחשפו הקרדו (1975), הבית השרוף והחומה הרחבה. החורבה נבנתה מחדש<span class="tag-ext">הרחבה: 2010</span>.</li>
+          </ul>
+          <p class="src">הרחבה: ב־1981 הוכרזה העיר העתיקה אתר מורשת עולמית. מעמדה של ירושלים שנוי במחלוקת בינלאומית.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/kotel-plaza.jpg" alt="מתפללים ברחבת הכותל" style="aspect-ratio:3/2"><figcaption>רחבת הכותל · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          <div class="vs">
+            <figure><img src="img/paratroopers.jpg" alt="צנחנים ליד הכותל, 1967" style="aspect-ratio:3/4"><figcaption>צנחנים ליד הכותל, 1967 · צילום: דוד רובינגר</figcaption></figure>
+            <figure><img src="img/ammo.jpg" alt="תעלות בגבעת התחמושת" style="aspect-ratio:3/4"><figcaption>גבעת התחמושת · מתוך מצגת ירושלים של המגמה</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="s14" hidden>
+    <div class="pad">
+      <p class="kick">סיכום התקופות</p>
+      <h2>איזה אתר מספר איזה סיפור</h2>
+      <div class="plan tblwrap"><table>
+        <thead><tr><th>תקופה</th><th>אתרים</th><th>מה התייר רואה</th></tr></thead>
+        <tbody>
+          <tr><td class="d">יבוסים ודוד</td><td>עיר דוד</td><td>חפירות של ירושלים הקדומה</td></tr>
+          <tr><td class="d">בית ראשון</td><td>נקבת השילוח, החומה הרחבה</td><td>הליכה במים במנהרה; שרידי ביצור</td></tr>
+          <tr><td class="d">בית שני</td><td>הכותל, מנהרות הכותל, הבית השרוף, הרודיון</td><td>תפילה, חפירות, מייצג, ארמון הורדוס</td></tr>
+          <tr><td class="d">רומאים וביזנטים</td><td>הקרדו, כנסיית הקבר, הנאה</td><td>רחוב עמודים וחנויות; צליינות</td></tr>
+          <tr><td class="d">הכיבוש המוסלמי</td><td>כיפת הסלע, אל־אקצא</td><td>צליינות מוסלמית</td></tr>
+          <tr><td class="d">צלבנים וממלוכים</td><td>סנט אנה, אבו גוש, הרמב״ן, שוק הכותנה, חאן אל־סולטן</td><td>כנסיות, בית כנסת, שווקים</td></tr>
+          <tr><td class="d">עות'מאנים</td><td>החומות והשערים, מגדל דוד, משכנות שאננים, מאה שערים</td><td>טיילת החומות, מוזיאון, שכונות</td></tr>
+          <tr><td class="d">המנדט</td><td>מלון המלך דוד, האוניברסיטה העברית, רוקפלר</td><td>מבנים היסטוריים, תצפיות, ארכיאולוגיה</td></tr>
+          <tr><td class="d">העיר המחולקת</td><td>מוזיאון קו התפר</td><td>הסיפור של הגבול בעיר</td></tr>
+          <tr><td class="d">מ־1967</td><td>שער האריות, גבעת התחמושת, הרובע היהודי</td><td>מורשת קרב, הרובע המשוקם</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide stop tint" id="s15" hidden>
+    <img class="bg" src="img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 1–3</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">סדרו את התקופות לפי סדר הזמן, מהמוקדמת למאוחרת.<span class="tag">תרגול</span><span class="sub">בית ראשון · בית שני · התקופה הביזנטית · הכיבוש המוסלמי · הצלבנים · העות'מאנים</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">התאימו כל אתר לתקופה שבה נבנה או שאת סיפורה הוא מספר.<span class="tag">תרגול</span><span class="sub">נקבת השילוח · הבית השרוף · הקרדו · כיפת הסלע · חומות העיר העתיקה · מוזיאון קו התפר</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">בין 1948 ל־1967 ירושלים הייתה מחולקת. ציינו שני אתרים בעיר שמספרים לתייר את הסיפור של העיר המחולקת ושל איחודה, ותארו מה מוצע לתייר בכל אחד מהם.<span class="tag">בסגנון בגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="s16" hidden>
+    <div class="pad">
+      <p class="kick">מושגים לבגרות · ההיסטוריה ממשיכה</p>
+      <h2>כשהמצב הביטחוני קובע מי מגיע</h2>
+      <p class="lead">ההיסטוריה של ירושלים לא נגמרה ב־1967. מלחמות, פיגועים ומתיחות משפיעים עד היום על התיירות אליה. כ־3 מכל 4 תיירים שמגיעים לישראל מבקרים בירושלים, ולכן היא נפגעת ראשונה כשהם מפסיקים להגיע.</p>
+      <div class="cards">
+        <div class="card"><span class="num">מושג 13</span><span class="t">גיאופוליטי</span><span>תחום שבודק איך הגאוגרפיה משפיעה על הפוליטיקה, הכלכלה והיחסים בין מדינות. בתיירות: תפיסת הביטחון משפיעה על התיירות הנכנסת. תייר מחפש מקום רגוע, ולכן אי שקט פוליטי גורם לביטול חופשות, להימנעות מהזמנות חדשות ולדימוי של יעד "מסוכן".</span><span class="ex">במלחמה של 2023 בוטלו קבוצות צליינים לירושלים, ומלונות בעיר עמדו ריקים.</span></div>
+        <div class="card"><span class="num">מושג 15</span><span class="t">אזהרה</span><span class="en">Warning</span><span>אזהרת מסע שמפרסמת מדינה: <b>המלצה</b> לאזרחיה לא להגיע ליעד מסוים.</span><span class="ex">מדינה ממליצה לאזרחיה לא לטוס לישראל בזמן מלחמה, ולכן קבוצות מבטלות.</span></div>
+        <div class="card"><span class="num">מושג 14</span><span class="t">הודעה</span><span class="en">Announcement</span><span><b>איסור מוחלט</b> על נסיעה ליעד. בארה״ב, אזרח שבכל זאת נוסע לוקח על עצמו את האחריות, ולמדינה אין חלק בתוצאות.</span><span class="ex">ההבדל: אזהרה היא המלצה, והודעה היא איסור.</span></div>
+        <div class="card"><span class="num">מושג 10</span><span class="t">תיירות יוצאת</span><span class="en">Outgoing tourism</span><span>יציאה של אדם אל מחוץ לארצו לשם הנאה, עסקים או לימודים.</span><span class="ex">ישראלים שטסים לחו״ל. אזהרת מסע של ישראל על יעד מסוים מורידה את התיירות היוצאת אליו.</span></div>
+      </div>
+      <p class="src">המספרים וההגדרות לפי רשימת "מושגים לבגרות 2026". נשאל בבגרות 2024: המצב הגיאופוליטי, השפעתו על התיירות הנכנסת, ואזהרת מסע והשפעתה על התיירות היוצאת.</p>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="s17" hidden>
+    <div class="pad">
+      <p class="kick">מושגים לבגרות · התיירות ככלכלה</p>
+      <h2>מה מרוויחה המדינה מצליין בירושלים</h2>
+      <p class="lead">צליין מאיטליה מגיע לשבוע בירושלים. הוא משלם במלון, אצל מורה הדרך, במסעדה ובחנות המזכרות, ומשלם במטבע זר. חמשת המושגים הבאים מסבירים מה קורה לכסף הזה.</p>
+      <div class="cards">
+        <div class="card"><span class="num">מושג 1</span><span class="t">ייצוא גלוי</span><span>ייצוא של סחורות ומוצרים פיזיים, שהתשלום עליהם הוא במטבע זר.</span><span class="ex">ישראל מוכרת לחו״ל פרחים או חיטה.</span></div>
+        <div class="card"><span class="num">מושג 2</span><span class="t">ייצוא סמוי</span><span>שירותים שהמדינה נותנת לאזרחים של מדינות אחרות: בנקאות, ביטוח, רפואה, ידע. <b>תיירות נחשבת ייצוא סמוי</b>, כי היא מכניסה מטבע זר בזכות שירותים לתיירים במלונות ובמסעדות.</span><span class="ex">הצליין משלם ביורו על לינה והדרכה בירושלים. שום סחורה לא יצאה מהארץ.</span></div>
+        <div class="card"><span class="num">מושג 6</span><span class="t">מכפיל תיירותי</span><span>כל דולר שתייר מוציא מתחלק בין עסקים רבים, ולכן התיירות מכפילה את ההכנסה בכלכלה המקומית.</span><span class="ex">אלף הדולרים של הצליין מגיעים למלון, למסעדה, למונית, לאתר, לחנות בשוק, ומשם גם לספקים של כולם.</span></div>
+        <div class="card"><span class="num">מושג 3</span><span class="t">דליפה</span><span>רווחים מתיירות שזורמים לגופים מחוץ למדינה. בעיה שאופיינית למדינות מתפתחות.</span><span class="ex">כשבעלי הון זרים מחזיקים אתר תיירות, הרווח עובר אליהם, והתושבים כמעט לא נהנים ממנו.</span></div>
+        <div class="card"><span class="num">מושג 7</span><span class="t">פרויקט תגלית</span><span class="en">Birthright</span><span>סיור חינוכי של עשרה ימים בחינם לצעירים יהודים בני 18–26. מטרותיו: חיבור לשורשים, מניעת התבוללות ועידוד עלייה.</span><span class="ex">ירושלים היא תחנה מרכזית בסיור: הכותל, העיר העתיקה, יד ושם והר הרצל.</span></div>
+      </div>
+      <p class="src">המספרים וההגדרות לפי רשימת "מושגים לבגרות 2026". "ייצוא סמוי" נשאל בבגרות 2024 ו־2025. "מכפיל הכנסות" נשאל בבגרות 2025.</p>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide stop tint" id="s18" hidden>
+    <img class="bg" src="img/kotel.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 4–6</h2>
+      <div class="q"><span class="qn">4</span><div class="qt">הסבירו את המושג "ייצוא סמוי", והסבירו מדוע תיירות נכנסת לירושלים היא ייצוא סמוי.<span class="tag">כמו בפרק המושגים</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">הסבירו את המושג "מכפיל תיירותי", והדגימו אותו בעזרת צליין שמגיע לשבוע בירושלים.<span class="tag">כמו בפרק המושגים</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו מהו "פרויקט תגלית", וציינו שתיים ממטרותיו.<span class="tag">כמו בפרק המושגים</span></div></div>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide stop tint" id="s19" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות סיכום · בסגנון בגרות</p>
+      <h2>שאלות 7–8</h2>
+      <div class="q"><span class="qn">7</span><div class="qt">ציינו שני אתרים מתוירים בירושלים הקשורים להיסטוריה של העם היהודי, מתקופות שונות. לגבי כל אתר: ציינו את התקופה, תארו מה מוצע לתייר באתר, והסבירו את חשיבותו ההיסטורית.<span class="tag real">בעקבות הדמיה 2022</span></div></div>
+      <div class="q"><span class="qn">8</span><div class="qt">ירושלים היא העיר שמקבלת את מספר התיירים הגדול ביותר בישראל.<span class="sub">א. הסבירו מהו המצב הגיאופוליטי, וכיצד הוא משפיע על התיירות הנכנסת לירושלים.<br>ב. הסבירו מהי "אזהרה" ובמה היא שונה מ"הודעה".<br>ג. כיצד אזהרת מסע שמפרסמת ישראל על יעד בחו״ל משפיעה על התיירות היוצאת?</span><span class="tag real">בעקבות בגרות 2024</span></div></div>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="slide bgslide" id="s20" hidden>
+    <img class="bg" src="img/kotel-plaza.jpg" alt="רחבת הכותל">
+    <span class="credit">מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">לסיום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>כל אתר בירושלים שייך לתקופה: בבגרות מציינים את האתר, מה התייר רואה בו, ולמה הוא חשוב.</li>
+        <li>החומות של היום עות'מאניות, הקרדו ביזנטי, הכותל מימי בית שני, ונקבת השילוח מימי בית ראשון.</li>
+        <li>1948–1967 ו־1967 הם חלק מהסיפור, ויש להם אתרים משלהם: מוזיאון קו התפר, גבעת התחמושת ושער האריות.</li>
+        <li>המצב הגיאופוליטי ממשיך לקבוע כמה תיירים מגיעים לירושלים, והתיירות מכניסה למדינה מטבע זר כייצוא סמוי.</li>
+      </ul>
+      <p class="lead">בנושא הבא: העיר העתיקה, ארבעת הרבעים והשערים.</p>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav" dir="rtl" aria-label="ניווט בין שקפים">
+  <button type="button" id="prev" class="ghost">הקודם</button>
+  <span class="count" id="count" aria-live="polite">1 / 20</span>
+  <button type="button" id="next">הבא</button>
+</nav>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
