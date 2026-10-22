@@ -1,0 +1,493 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>מישור החוף · תל אביב–יפו</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+
+/* topic 2: timeline overview, period header, site chips */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tl li{border-top:4px solid var(--olive);background:var(--bg);border-radius:0 0 10px 10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl li.cp{border-top-color:var(--copper)}
+.tl .y{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tl .p{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25}
+.tl .s{font-size:14px;color:var(--ink-2);line-height:1.45}
+.era{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.era .when{font-family:var(--display);font-weight:900;font-size:var(--step-2);color:var(--olive);font-variant-numeric:tabular-nums}
+.sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sites figure img{aspect-ratio:4/3}
+.sites h3{font-size:18px;margin-top:2px}
+.sites p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.small-photo img{max-width:260px;aspect-ratio:auto !important}
+.tl-mini{display:flex;gap:4px;flex-wrap:wrap;font-size:12px;color:var(--ink-3)}
+.tl-mini span{padding:1px 8px;border-radius:99px;border:1px solid var(--rule)}
+.tl-mini span.on{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+</style>
+
+<div class="deck" dir="rtl" lang="he">
+  <div class="bar"><b>חבל מישור החוף</b><span>נושא 3 · תל אביב–יפו</span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/jaffa-port.jpg" alt="נמל יפו והעיר העתיקה">
+    <span class="credit">מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">חבל מישור החוף · נושא 3</p>
+      <h1>תל אביב–יפו</h1>
+      <p class="lead">אחת הערים העתיקות בעולם, ולידה עיר שנוסדה ב־1909 על החולות. היום עירייה אחת, ומרכז הכלכלה, התרבות, הבילוי והעסקים של ישראל.</p>
+      <div class="chips"><span class="chip">יפו העתיקה</span><span class="chip">נמל יפו</span><span class="chip">כנסיות ומסגדים</span><span class="chip">נווה צדק</span><span class="chip">העיר הלבנה</span><span class="chip">שווקים ובילוי</span><span class="chip">מוזיאונים</span><span class="chip">כנסים ותערוכות</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">יפו</p>
+      <h2>עיר נמל עתיקה</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ol class="tl">
+            <li><span class="y">תקופת הברונזה</span><span class="p">עיר נמל</span><span class="s">מהערים העתיקות בעולם</span></li>
+            <li><span class="y">ימי המקרא</span><span class="p">עצי הלבנון</span><span class="s">לפי המקרא, דרך נמל יפו הובאו עצי הארזים למקדש</span></li>
+            <li><span class="y">המאה ה־2 לפנה"ס</span><span class="p">החשמונאים</span><span class="s">כובשים את יפו</span></li>
+            <li><span class="y">1268</span><span class="p">ביברס</span><span class="s">הממלוכים כובשים את יפו מהצלבנים</span></li>
+            <li class="cp"><span class="y">המאה ה־19</span><span class="p">נמל הצליינים</span><span class="s">ושכונות חדשות מחוץ לחומה</span></li>
+            <li><span class="y">1909</span><span class="p">תל אביב</span><span class="s">נוסדת ליד יפו</span></li>
+          </ol>
+        </div>
+        <figure><img src="img/jaffa-m.jpg" alt="יפו העתיקה"><figcaption>יפו העתיקה · מתוך מצגת החזרה של המגמה</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">יפו העתיקה</p>
+      <h2>סמטאות, נמל, כנסיות ומסגדים</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ul class="clean">
+            <li><b>יפו העתיקה ורובע האמנים:</b> סמטאות, גלריות, כיכר קדומים.</li>
+            <li><b>נמל יפו:</b> מהנמלים העתיקים בעולם, ושימש דייגים, סוחרים, צליינים ומהגרים. היה הנמל הראשי של הארץ עד 1933. היום סירות דייגים, מסעדות דגים, שיט ותרבות. מול הנמל, לפי המיתולוגיה, סלע אנדרומדה.</li>
+            <li><b>כנסיית פטרוס הקדוש:</b> פרנציסקנית, בראש הגבעה. לפי המסורת התאכסן בה נפוליאון ב־1799. ליד: בית שמעון הבורסקי.</li>
+            <li><b>מגדל השעון</b> (1901) ומולו <b>בית הסראיה</b> ההרוס, סמלי יפו הטורקית. <b>שוק הפשפשים</b>, שפועל שישה ימים בשבוע.</li>
+            <li><b>מסגד מחמודיה</b> (1812), עם סביל, ו<b>מסגד חסן בק</b> (1916), על שם המושל הטורקי האחרון.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <figure><img src="img/jaffa-port2.jpg" alt="נמל יפו בעבר"><figcaption>נמל יפו בעבר · מתוך השידור "מישור החוף המרכזי והדרומי"</figcaption></figure>
+        </div>
+      </div>
+      <p class="note">בגרות 2023: שלושה קווי מוצרים במתחם יפו העתיקה, ודוגמה לכל אחד. בגרות 2018: זיהוי אתרים בתל אביב–יפו מתמונות.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide stop tint" id="s4" hidden>
+    <img class="bg" src="img/jaffa-port.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 1–2</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">סדרו את תולדות יפו, מהמוקדם למאוחר.<span class="tag">תרגול</span><span class="sub">ייסוד תל אביב · עצי הלבנון למקדש · ביברס · החשמונאים</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">התאימו כל אתר ביפו לתיאור שלו.<span class="tag">תרגול</span><span class="sub">מסגד חסן בק · מסגד מחמודיה · כנסיית פטרוס · מגדל השעון · שוק הפשפשים</span></div></div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">תל אביב</p>
+      <h2>נווה צדק והעיר הלבנה</h2>
+      <div class="vs">
+        <div>
+          <figure><img src="img/neve-m.jpg" alt="מרכז סוזן דלל"><figcaption>מרכז סוזן דלל בנווה צדק · מתוך מצגת החזרה של המגמה</figcaption></figure>
+          <h3>נווה צדק</h3>
+          <p>נוסדה ב־1887, השכונה היהודית הראשונה מחוץ לחומות יפו, לפני תל אביב. בתים חד־קומתיים עם חצרות, גלריות ומסעדות. בלב השכונה <b>מרכז סוזן דלל</b> למחול.</p>
+        </div>
+        <div>
+          <figure><img src="img/bauhaus.jpg" alt="בניין באוהאוס"><figcaption>בניין בסגנון הבינלאומי · מתוך השידור "מישור החוף המרכזי והדרומי"</figcaption></figure>
+          <h3>העיר הלבנה</h3>
+          <p>יותר מ־4,000 בניינים בסגנון הבינלאומי (באוהאוס) באזורים הוותיקים של תל אביב, כמו שדרות רוטשילד. זה ריכוז גדול במיוחד של אדריכלות מודרנית, ולכן ב־<b>2003</b> הוכרזה העיר הלבנה אתר מורשת עולמית של אונסק"ו.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">בילוי ופנאי</p>
+      <h2>עיר ללא הפסקה</h2>
+      <div class="sites">
+        <figure><img src="img/carmel.jpg" alt="שוק הכרמל"><h3>שווקים ומדרחובים</h3><p><b>שוק הכרמל</b>, השוק המרכזי של העיר. <b>נחלת בנימין</b>, מדרחוב עם יריד אמנים. <b>שוק לוינסקי</b>, תבלינים ומעדניות.</p></figure>
+        <figure><img src="img/tlvport.jpg" alt="נמל תל אביב"><h3>מתחמי בילוי</h3><p><b>נמל תל אביב</b>, מתחם פנאי על החוף. <b>מתחם התחנה</b>, תחנת הרכבת הישנה ששוחזרה, ו<b>שרונה</b>, מושבת הטמפלרים.<span class="tag-ext">הרחבה</span> גם <b>הטיילת</b> מתל אביב עד יפו.</p></figure>
+        <figure><img src="img/yarkon.jpg" alt="פארק הירקון"><h3>פארק הירקון</h3><p>פארק ענק לאורך נחל הירקון: מדשאות, שבילי אופניים, אגם וסירות.</p></figure>
+      </div>
+      <p class="src">התמונות מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית. לפי מחוון 2019: תל אביב היא "עיר ללא הפסקה", עם חיי לילה וחופי ים יפים.</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">מוזיאונים</p>
+      <h2>תרבות והיסטוריה</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <thead><tr><th>מוזיאון</th><th>מה רואים</th></tr></thead>
+          <tbody>
+            <tr><td class="d">מוזיאון תל אביב לאמנות</td><td>מהחשובים בארץ לאמנות ישראלית ובינלאומית</td></tr>
+            <tr><td class="d">מוזיאון ארץ ישראל</td><td>ממצאים ארכאולוגיים ותולדות הארץ, ופלנטריום</td></tr>
+            <tr><td class="d">אנו, מוזיאון העם היהודי</td><td>סיפור העם היהודי ותפוצותיו (לשעבר בית התפוצות)</td></tr>
+            <tr><td class="d">מוזיאון אילנה גור</td><td>אמנות בבית עתיק ביפו</td></tr>
+          </tbody>
+        </table></div>
+        <figure><img src="img/artmuseum.jpg" alt="מוזיאון תל אביב לאמנות"><figcaption>מוזיאון תל אביב לאמנות · מתוך השידור "מישור החוף המרכזי והדרומי"</figcaption></figure>
+      </div>
+      <p>עוד לחקור: היכל העצמאות, בית בן־גוריון, מוזיאון הפלמ"ח ומרכז רבין.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide stop tint" id="s8" hidden>
+    <img class="bg" src="img/bauhaus.jpg" alt="">
+    <div class="pad">
+      <p class="kick">עצירה לתרגול · עונים בסטודיו</p>
+      <h2>תרגול: שאלות 3 ו־5</h2>
+      <div class="q"><span class="qn">3</span><div class="qt">מה בתל אביב הוכרז אתר מורשת עולמית של אונסק"ו ב־2003?<span class="tag">תרגול</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">ציינו שלושה קווי מוצרים (סוגי אטרקציות) במתחם יפו העתיקה, ודוגמה לכל אחד.<span class="tag real">בגרות 2023</span></div></div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">תל אביב, עיר העסקים</p>
+      <h2>כנסים, תערוכות וירידים</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p><b>למה כנסים בינלאומיים מתקיימים בתל אביב</b> (מחוון 2023): הרבה אולמות כנסים, כמו <b>גני התערוכה</b> · הרבה חדרי מלון ברמות שונות · אירועי תרבות לאורחים · אפשר לשלב את הכנס בנופש · קרוב לנמל התעופה.</p>
+          <div class="vs">
+            <div><h3>יתרונות של כנס בינלאומי בישראל</h3><ul class="clean"><li>מרכזי כנסים גדולים</li><li>חברות מארגנות עם מוניטין</li><li>רמת שירות גבוהה</li><li>מגוון נופים ואתרים</li><li>אנשי מקצוע ומדע ברמה גבוהה</li></ul></div>
+            <div><h3>חסרונות</h3><ul class="clean"><li>קשה לחזות את המצב הגיאופוליטי</li><li>עלות גבוהה</li></ul></div>
+          </div>
+        </div>
+        <div class="cards" style="grid-template-columns:1fr">
+          <div class="card"><h3>תערוכות וירידים</h3><p>תיירות עסקית: ביקור באירועים מסחריים, כמו ירידי סחר ותיירות, כדי להציג חידושים וליצור קשרים.</p></div>
+          <div class="card"><h3>אגריטך</h3><p>התערוכה החקלאית הבינלאומית הגדולה בישראל, אחת לשלוש שנים: חידושי החקלאות וההשקיה.</p></div>
+          <div class="card"><h3>IMTM</h3><p>International Mediterranean Tourism Market</p><p>יריד התיירות של ארצות הים התיכון. מתקיים בפברואר בתל אביב.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">מסלול יום בתל אביב</p>
+      <h2>שלושה אתרים, פנים שונות של העיר</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <thead><tr><th>אתר</th><th>סוג</th><th>למה</th></tr></thead>
+          <tbody>
+            <tr><td class="d">נמל יפו</td><td>היסטורי</td><td>העיר העתיקה והנמל</td></tr>
+            <tr><td class="d">מתחם התחנה</td><td>תרבות</td><td>מבנים משוחזרים, חנויות ומסעדות</td></tr>
+            <tr><td class="d">שוק הכרמל</td><td>בילוי ופנאי</td><td>אוכל, צבע ואווירה</td></tr>
+          </tbody>
+        </table></div>
+        <figure><img src="img/promenade.jpg" alt="הטיילת בתל אביב"><figcaption>הטיילת · מתוך השידור "מישור החוף המרכזי והדרומי"</figcaption></figure>
+      </div>
+      <p class="note">לפי מחוון 2026: האתרים קרובים זה לזה ומראים פנים שונות של העיר, סיור קליל עם נופך היסטורי ותרבותי. מתקבל גם: נמל יפו, מגדל השעון ושוק הפשפשים.</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/artmuseum.jpg" alt="">
+    <div class="pad">
+      <p class="kick">מושגים ושאלות סיכום · עונים בסטודיו</p>
+      <h2>שאלות 4, 6–8: מושגים</h2>
+      <div class="q"><span class="qn">4</span><div class="qt">התאימו כל מושג לדוגמה שלו.<span class="tag">תרגול</span><span class="sub">תיירות כנסים · תערוכות וירידים · אגריטך · IMTM</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "תערוכות וירידים", ותנו דוגמה.<span class="tag">מושג</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו מהי "אגריטך".<span class="tag">מושג</span></div></div>
+      <div class="q"><span class="qn">8</span><div class="qt">הסבירו מהו "IMTM".<span class="tag">מושג</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11b -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/yarkon.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 9–12</h2>
+      <div class="q"><span class="qn">9</span><div class="qt">(עם תמונות) זהו שני אתרים בתל אביב–יפו, ותארו כל אחד בקצרה.<span class="tag real">בגרות 2018</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">ציינו שכונה היסטורית שנוסדה מחוץ ליפו לפני ייסוד תל אביב, ותארו אותה.<span class="tag real">בגרות</span></div></div>
+      <div class="q"><span class="qn">11</span><div class="qt">מה ייחודי ב"עיר הלבנה", שבזכותו הכירה בה אונסק"ו?<span class="tag real">בגרות</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">ציינו שני מוזיאונים בתל אביב, ומה מייחד כל אחד.<span class="tag real">בגרות</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide stop tint" id="s13" hidden>
+    <img class="bg" src="img/promenade.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 13–16</h2>
+      <div class="q"><span class="qn">13</span><div class="qt">ציינו שלושה גורמי משיכה של תל אביב לתיירים.<span class="tag real">בגרות</span></div></div>
+      <div class="q"><span class="qn">14</span><div class="qt">תכננו מסלול יום בתל אביב עם שלושה אתרים, להיכרות כללית עם העיר, והסבירו את הבחירה.<span class="tag real">בגרות 2026</span></div></div>
+      <div class="q"><span class="qn">15</span><div class="qt">הסבירו מדוע תל אביב נבחרה לארח כנסים בינלאומיים. ציינו שתי סיבות.<span class="tag real">בגרות 2023</span></div></div>
+      <div class="q"><span class="qn">16</span><div class="qt">ציינו שני יתרונות וחיסרון אחד של קיום כנס בינלאומי בישראל.<span class="tag real">בגרות 2023</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide bgslide" id="s14" hidden>
+    <img class="bg" src="img/jaffa-port.jpg" alt="נמל יפו">
+    <span class="credit">מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">לסיום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>יפו: נמל עתיק, יפו העתיקה, כנסיית פטרוס, מגדל השעון, שוק הפשפשים, מחמודיה וחסן בק.</li>
+        <li>נווה צדק (1887) וסוזן דלל. העיר הלבנה, אתר מורשת עולמית מ־2003.</li>
+        <li>בילוי: שוק הכרמל, נחלת בנימין, נמל תל אביב, מתחם התחנה, הטיילת, פארק הירקון.</li>
+        <li>מוזיאונים: תל אביב לאמנות, ארץ ישראל, אנו, אילנה גור.</li>
+        <li>עסקים וכנסים: גני התערוכה. מושגים: תערוכות וירידים, אגריטך, IMTM.</li>
+      </ul>
+      <p class="lead">בנושא הבא: השרון והדרום.</p>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav" dir="rtl" aria-label="ניווט בין שקפים">
+  <button type="button" id="prev" class="ghost">הקודם</button>
+  <span class="count" id="count" aria-live="polite">1 / 14</span>
+  <button type="button" id="next">הבא</button>
+</nav>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
