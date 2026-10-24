@@ -1,0 +1,242 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="המצפה התת־ימי באילת">
+    <span class="credit">המצפה התת־ימי · מצגת התמונות הרשמית · צילום: ד"ר אבישי טייכר, מתוך אתר פיקיוויקי</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 8</p>
+      <h1>יסודות השיווק, היצע וביקוש</h1>
+      <p class="lead">מה זה בכלל שיווק, למה הוא לא אותו דבר כמו מכירה, ואיך עובד השוק: כמה חדרים יש באילת באוגוסט, כמה אנשים רוצים אותם, ומה קורה כשאין מספיק.</p>
+      <div class="chips"><span class="chip">מהות השיווק</span><span class="chip">צורך, רצון וביקוש</span><span class="chip">חליפין וברטר</span><span class="chip">שוק</span><span class="chip">תועלות</span><span class="chip">היצע וביקוש</span><span class="chip">מצבי ביקוש</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">מושג 36 · בגרות 2021</p>
+      <h2>מה זה שיווק</h2>
+      <div class="two">
+        <div>
+          <p><b>שיווק</b> הוא תהליך של תכנון, יצירה, קידום והפצה של מוצרים ושירותים, שמטרתו לזהות את הצרכים והרצונות של הלקוחות ולספק אותם, ובדרך להשיג את מטרות הארגון: רווח, נאמנות ותדמית.</p>
+          <p class="mini" style="margin-top:8px">במילים פשוטות: להבין מה הלקוח רוצה, ולתת לו את זה <b>במקום הנכון, בזמן הנכון ובמחיר הנכון</b>.</p>
+          <p class="note" style="margin-top:10px"><b>שיווק ≠ מכירה.</b> מכירה מתחילה במוצר שכבר קיים ומחפשת לו קונים. שיווק מתחיל בצורך של הלקוח, ובונה מוצר שמתאים לו. המטרה היא קשר ארוך טווח ולקוחות נאמנים.</p>
+        </div>
+        <div class="card">
+          <h3>"ישראל חוזרת לטייל" (2021)</h3>
+          <p class="mini">אחרי הקורונה הוצעו טיולים מודרכים <b>בחינם</b>. למה זה שיווק, אם לא מוכרים כלום?</p>
+          <ul class="clean">
+            <li>זה פונה לצורך של הלקוחות: לצאת לטייל.</li>
+            <li>יש לזה מטרה ארוכת טווח: להחזיר את המטיילים לשבילים, כדי שימשיכו לטייל, ובהמשך גם ישלמו.</li>
+            <li>התרומה: התאוששות הענף, פחות אבטלה, ופריחה של לינה, הסעדה, הדרכה ואתרים.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">מושג 37 · מושגים 2023</p>
+      <h2>תעשיית התיירות, וצורך, רצון וביקוש</h2>
+      <div class="two">
+        <div class="card">
+          <span class="num">מושג 37</span><span class="t">תעשיית התיירות</span>
+          <span>כל המוצרים, השירותים והעיסוקים שמוצעים לאנשים שמבקרים מחוץ לביתם, או שעוזרים להם להגיע ליעד. היא לא גורם אחד, אלא הרבה ספקים יחד.</span>
+          <span class="ex">חברת תעופה, מלון, מסעדה, חברת הסעות, מורה דרך, אתר.</span>
+          <span class="tag off">נשאל ב־2023</span>
+        </div>
+        <div>
+          <div class="flow" style="font-size:16px"><span><b>צורך</b><br>חוסר בסיסי</span><i>←</i><span><b>רצון</b><br>דרך מסוימת לספק אותו</span><i>←</i><span><b>ביקוש</b><br>רצון + יכולת לקנות</span></div>
+          <p class="mini" style="margin-top:10px"><b>צורך</b> הוא מצב של חוסר: בסיסי וקיומי כמו מזון, או נפשי כמו מימוש עצמי (מחוון 2023).<span class="tag off">נשאל ב־2023 · לא במיקוד 2026</span></p>
+          <p class="mini">דוגמה: אני צריך מנוחה (צורך) ← אני רוצה סוף שבוע בספא בים המלח (רצון) ← יש לי תקציב, ואני מזמין (ביקוש).</p>
+          <p class="mini">השיווק לא יוצר את הצורך, אבל משפיע על הדרך שבה הלקוח בוחר לספק אותו.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 38–39 · נשאלו 4 פעמים</p>
+      <h2>עסקת חליפין, ברטר וכסף</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="num">מושג 38</span><span class="t">עסקת חליפין</span><span>השגת מוצר מאדם אחר, על ידי הצעת מוצר אחר בתמורה. היום רוב העסקאות הן כסף תמורת סחורה או שירות.</span><span class="tag off">2019, 2021</span></div>
+        <div class="card"><span class="num">מושג 39</span><span class="t">עסקת ברטר</span><span>סחורה תמורת סחורה, בלי כסף.</span><span class="ex">בתיירות: חברת מחשבים נותנת למלון ציוד, ומקבלת בתמורה חדרים לאנשי המכירות שלה.</span><span class="tag off">2018, 2021</span></div>
+        <div class="card"><span class="t">שיטה מוניטרית</span><span>שימוש בכסף כאמצעי חליפין.</span><span class="ex">התייר משלם בכרטיס אשראי על החדר.</span><span class="tag off">נשאל ב־2022 · לא במיקוד 2026</span></div>
+      </div>
+      <h3>חמישה תנאים לעסקת חליפין (ספר)</h3>
+      <div class="flow"><span>לפחות שני צדדים</span><span>לכל צד יש משהו בעל ערך</span><span>יכולת לתקשר ולספק</span><span>חופש לקבל או לדחות</span><span>אמונה שהעסקה כדאית</span></div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 40–41 · מושג 2019</p>
+      <h2>שוק ושוק התיירות</h2>
+      <div class="vs">
+        <div class="card"><span class="num">מושג 40</span><span class="t">שוק</span><span>במקור, מקום שבו נפגשים קונים ומוכרים. בכלכלה: כל הלקוחות, <b>בפועל ובכוח</b>, שיש להם צורך משותף, ושמעוניינים ויכולים לקנות.</span><span class="ex">"שוק התיירות הדתית מאיטליה" הוא כל האיטלקים שעשויים לבוא לישראל כצליינים.</span></div>
+        <div class="card"><span class="num">מושג 41</span><span class="t">שוק התיירות</span><span>מערכת היחסים בין מוכרים, קונים ומתווכים של נסיעות ותיירות. <b>מרכיב השירות בו דומיננטי</b>, והוא פגיע מאוד לשינויים במצב הביטחוני והכלכלי.</span><span class="ex">מלחמה אחת יכולה לרוקן את כל המלונות בירושלים, כמו שראינו בנושא 1.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 48–51 · מושג 2018, 2019</p>
+      <h2>ארבע תועלות</h2>
+      <div class="cards">
+        <div class="card"><span class="num">מושג 48</span><span class="t">תועלת זמן</span><span>המוצר זמין <b>מתי</b> שהלקוח צריך: שעות פתיחה בערב ובסוף שבוע. בתיירות זה קריטי: מה שלא נמכר היום, אבד.</span></div>
+        <div class="card"><span class="num">מושג 49</span><span class="t">תועלת צורה</span><span>הערך שמוסיפים כשמשנים את צורת המוצר כך שתתאים יותר ללקוח.</span><span class="ex">חיתוך עץ לחתיכות קטנות.</span></div>
+        <div class="card"><span class="num">מושג 50</span><span class="t">תועלת מידע</span><span>מוצר שיש עליו מידע הוא מוצר שקונים. סרטים, ספרי הדרכה, פרסומות ומפה לאוזן מקטינים את אי־הוודאות לפני הקנייה.</span><span class="ex"><b>החשובה ביותר בתיירות</b>, כי קונים חופשה לפני שחווים אותה.</span><span class="tag off">2018, 2019</span></div>
+        <div class="card"><span class="num">מושג 51</span><span class="t">תועלת מקום</span><span>המוצר זמין <b>איפה</b> שנוח: ליד תחבורה, עם חניה.</span><span class="ex">דוכן הזמנות בנמל התעופה.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 42–45 · מושגים 2019, 2021, 2026</p>
+      <h2>היצע, ביקוש ושיווי משקל</h2>
+      <div class="two">
+        <div>
+          <ul class="clean">
+            <li><b>היצע (מושג 42):</b> כמות המוצר שהיצרנים מציעים למכירה. משפיעים: מטרת היצרן (רווח), טכנולוגיה, מחיר, ותחרות.</li>
+            <li><b>ביקוש (מושג 43):</b> כמה הצרכנים רוצים <b>ויכולים</b> לקנות. משפיעים: הכנסה, מחיר, מחירי מוצרים מתחרים, וטעם ואופנה.</li>
+            <li><b>ביקוש קשיח (מושג 44):</b> המחיר משתנה, אבל הכמות המבוקשת כמעט לא משתנה. דוגמה: תרופות.<span class="tag real">2026</span></li>
+            <li><b>שיווי משקל (מושג 45):</b> נקודת המפגש בין עקומת ההיצע לעקומת הביקוש. בה כל מי שרצה לקנות במחיר הזה קנה, וכל מי שרצה למכור מצא קונה.<span class="tag off">2019</span></li>
+          </ul>
+        </div>
+        <figure style="margin:0">
+          <svg viewBox="0 0 360 260" role="img" aria-label="תרשים היצע וביקוש ונקודת שיווי משקל" style="width:100%;height:auto;max-height:280px">
+            <line x1="40" y1="225" x2="345" y2="225" stroke="var(--ink-3)" stroke-width="2"/>
+            <line x1="40" y1="225" x2="40" y2="15" stroke="var(--ink-3)" stroke-width="2"/>
+            <line x1="60" y1="40" x2="320" y2="210" stroke="var(--copper)" stroke-width="4"/>
+            <line x1="60" y1="210" x2="320" y2="40" stroke="var(--olive)" stroke-width="4"/>
+            <circle cx="190" cy="125" r="8" fill="var(--ink)"/>
+            <line x1="190" y1="125" x2="190" y2="225" stroke="var(--ink-3)" stroke-dasharray="4 4"/>
+            <line x1="190" y1="125" x2="40" y2="125" stroke="var(--ink-3)" stroke-dasharray="4 4"/>
+            <g font-family="Heebo, Arial" font-size="15" text-anchor="middle">
+              <text x="315" y="30" fill="var(--olive)">היצע</text>
+              <text x="315" y="200" fill="var(--copper)">ביקוש</text>
+              <text x="150" y="100" fill="var(--ink)">שיווי משקל</text>
+              <text x="190" y="248" fill="var(--ink-3)" font-size="13">כמות</text>
+              <text x="22" y="125" fill="var(--ink-3)" font-size="13">מחיר</text>
+            </g>
+          </svg>
+        </figure>
+      </div>
+      <p class="seen"><b>שיווי משקל באילת נלמד:</b><a href="../../negev/04/#s9b">הנגב 4 · נקודת שיווי משקל</a></p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2022, 2023</p>
+      <h2>היצע וביקוש ביעדי התיירות</h2>
+      <div class="vs">
+        <div class="card">
+          <h3>אילת באוגוסט (2022)</h3>
+          <p class="mini"><b>ההיצע:</b> מלונות בדירוגים שונים, לקהלים שונים (משפחות, עסקים), עם מתקנים שונים (ספא, בריכה, חדר כושר).</p>
+          <p class="mini"><b>הביקוש:</b> באתר ההזמנות 90% מהמלונות לא זמינים. כלומר, <b>הביקוש גדול מההיצע</b>: עודף ביקוש.</p>
+        </div>
+        <div class="card">
+          <h3>יעדים בכתבה (2023)</h3>
+          <p class="mini"><b>יעד שיש בו היצע</b> הוא יעד שיש בו חדרים למכירה. <b>יעד שיש בו ביקוש</b> הוא יעד שהרבה תיירים רוצים להגיע אליו.</p>
+          <p class="mini">בכתבה מ־2023 היו מלונות ביעדים רבים (אילת, ים המלח, הרצליה, נצרת, טבריה, ירושלים), אבל הביקוש היה רק בחלק מהם: אילת, ים המלח והרצליה.</p>
+          <p class="mini">מגרף של תפוסה לפי חודשים: בפברואר הביקוש <b>בשפל</b>, ובנובמבר הביקוש <b>מלא</b>.</p>
+        </div>
+      </div>
+      <p class="seen"><b>כבר נלמד:</b><a href="../../negev/04/#s9">הנגב 4 · היצע וביקוש באוגוסט</a></p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 52–59</p>
+      <h2>שמונה מצבי ביקוש, ולכל אחד שיווק אחר</h2>
+      <div class="plan tblwrap"><table>
+        <tr><th>מצב הביקוש</th><th>מה קורה</th><th>סוג השיווק</th><th>דוגמה</th></tr>
+        <tr><td class="d">ביקוש שלילי</td><td>השוק מתנגד למוצר ונמנע ממנו</td><td>ממיר</td><td>טיפול שיניים</td></tr>
+        <tr><td class="d">חוסר ביקוש</td><td>אין עניין במוצר, או אין מודעות אליו</td><td>ממריץ</td><td>חליפות צלילה רחוק מהים</td></tr>
+        <tr><td class="d">ביקוש סמוי</td><td>רוצים מוצר שעוד לא קיים</td><td>מפתח</td><td>רכב חשמלי, לפני שהיה</td></tr>
+        <tr><td class="d">ביקוש בשפל</td><td>מוצר שהיה פופולרי, ועכשיו דוחים אותו</td><td>מחודש</td><td>יעד בזמן משבר פוליטי</td></tr>
+        <tr><td class="d">ביקוש בלתי סדיר <span class="tag off">2022</span></td><td>הביקוש משתנה לפי עונות</td><td>מתואם: מחיר גמיש, מבצעים</td><td>בתי מלון</td></tr>
+        <tr><td class="d">ביקוש מלא</td><td>הביקוש שווה להיצע</td><td>משמר</td><td>מלון בתפוסה רצויה</td></tr>
+        <tr><td class="d">עודף ביקוש <span class="tag off">2021</span></td><td>הביקוש גדול מההיצע. מי שלא קיבל, עובר למתחרה</td><td>מצמצם</td><td>אילת באוגוסט</td></tr>
+        <tr><td class="d">ביקוש בלתי רצוי <span class="tag off">2018</span></td><td>ביקוש למוצר מזיק, כל רמה שלו לא רצויה</td><td>נגדי: הסברה</td><td>סמים</td></tr>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל מצב ביקוש לסוג השיווק שמתאים לו.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">התאימו כל תועלת לדוגמה שלה: זמן, צורה, מידע, מקום.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">מלון מארח צלם, ומקבל בתמורה תמונות לאתר שלו. איזו עסקה זו?<span class="tag">בחירה</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">סדרו: צורך, רצון, ביקוש. מה מוסיף כל שלב?<span class="tag">רצף</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">אחרי הקורונה הכריז משרד התיירות על קמפיין "ישראל חוזרת לטייל", עם טיולים בחינם. הסבירו מהי מהות השיווק, ומדוע הכרזה על טיולים בחינם היא פעולת שיווק. כיצד יתרום הקמפיין לענף התיירות?<span class="tag real">בגרות 2021</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "עסקת ברטר", ותנו דוגמה מתחום התיירות.<span class="tag">מושג 39</span><span class="tag real">בגרות 2018, 2021</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "היצע", ותנו דוגמה.<span class="tag">מושג 42</span><span class="tag real">בגרות 2019, 2021</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">הסבירו מהו יעד שיש בו היצע, ומהו יעד שיש בו ביקוש. תנו דוגמה ליעד בישראל שיש בו גם היצע וגם ביקוש.<span class="tag">בעקבות בגרות 2023</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">הסבירו את המושג "שיווי משקל", ותנו דוגמה מעולם התיירות.<span class="tag">מושג 45</span><span class="tag real">בגרות 2019</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">הסבירו את המושג "תועלת מידע", ומדוע היא חשובה במיוחד בתיירות.<span class="tag">מושג 50</span><span class="tag real">בגרות 2018, 2019</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide stop tint" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">מושגים שנשאלו · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">הסבירו את המושגים "ביקוש בלתי סדיר" ו"עודף ביקוש", ותנו דוגמה לכל אחד.<span class="tag">מושגים 56, 58</span><span class="tag real">בגרות 2021, 2022</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">הסבירו את המושגים "ביקוש קשיח" ו"ביקוש בלתי רצוי", ותנו דוגמה לכל אחד.<span class="tag">מושגים 44, 59</span><span class="tag real">בגרות 2018, 2026</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">הסבירו את המושגים "תעשיית התיירות" ו"צורך", ותנו דוגמה לכל אחד.<span class="tag">מושג 37</span><span class="tag real">בגרות 2023</span></div></div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide bgslide" id="s14" hidden>
+    <img class="bg" src="img/hero.jpg" alt="המצפה התת־ימי באילת">
+    <span class="credit">מצגת התמונות הרשמית · צילום: ד"ר אבישי טייכר, מתוך אתר פיקיוויקי</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>שיווק מתחיל בצורך של הלקוח, ולא במוצר. שיווק ≠ מכירה.</li>
+        <li>צורך ← רצון ← ביקוש (רצון + יכולת לקנות).</li>
+        <li>חליפין = מוצר תמורת מוצר. ברטר = בלי כסף. שיטה מוניטרית = כסף.</li>
+        <li>תועלת מידע היא החשובה ביותר בתיירות.</li>
+        <li>היצע וביקוש נפגשים בשיווי משקל. לכל מצב ביקוש יש סוג שיווק.</li>
+      </ul>
+      <p class="lead">בנושא הבא: שיווק מטרה ופילוח שוק.</p>
+    </div>
+  </section>

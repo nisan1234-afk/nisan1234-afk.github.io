@@ -1,0 +1,281 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="מרינה אשקלון">
+    <span class="credit">מרינה אשקלון · מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 5</p>
+      <h1>שירותי תיירות</h1>
+      <p class="lead">התייר לא קונה שירות אחד. הוא צריך לינה, טיסה, אוטובוס, ארוחות, אטרקציות ומדריך, וכולם צריכים להתחבר לחופשה אחת. איכות החופשה תלויה בתיאום ביניהם.</p>
+      <div class="chips"><span class="chip">אכסון</span><span class="chip">תעופה</span><span class="chip">יבשה וים</span><span class="chip">מעברי גבול</span><span class="chip">הסעדה</span><span class="chip">אטרקציות</span><span class="chip">שירותי תיור</span><span class="chip">סחר מקוון</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">הרעיון המאחד</p>
+      <h2>חופשה היא שרשרת של שירותים</h2>
+      <div class="flow" style="font-size:17px"><span>טיסה</span><i>←</i><span>העברה מנמל התעופה</span><i>←</i><span>מלון</span><i>←</i><span>ארוחות</span><i>←</i><span>אוטובוס ומורה דרך</span><i>←</i><span>אטרקציות</span><i>←</i><span>טיסה הביתה</span></div>
+      <p class="lead">אם חוליה אחת נכשלת, למשל אוטובוס מאחר או חדר לא מוכן, כל החופשה נפגעת. לכן מארגן התיירות מתאם בין הספקים, ובונה מהם מוצר אחד.</p>
+      <div class="card"><h3>מה נלמד כבר בחבלים</h3>
+        <p class="seen"><a href="../../negev/05/#s4">הנגב 5 · שמיים פתוחים ומוגבלים</a><a href="../../negev/05/#s5">הנגב 5 · הסכמים בילטרליים</a><a href="../../negev/04/#s9">הנגב 4 · טיסות צ'רטר</a><a href="../../coastal/04/#s5">מישור החוף 4 · שיט חופים ונוסע בשיוט</a><a href="../../negev/05/#s8">הנגב 5 · מעברי הגבול בדרום</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">שירותי אכסון</p>
+      <h2>מאהל בדואי ועד מלון פאר</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <tr><th>סוג</th><th>למי ואיפה</th></tr>
+          <tr><td class="d">מלון מסחרי</td><td>אנשי עסקים, במרכז העיר</td></tr>
+          <tr><td class="d">מלון נופש</td><td>באזור נופש, עם בריכה, ספורט ובידור</td></tr>
+          <tr><td class="d">מלון כנסים</td><td>גדול, עם אולמות וציוד</td></tr>
+          <tr><td class="d">הוספיס</td><td>אכסניה צנועה לצליינים, לפעמים ליד מנזר</td></tr>
+          <tr><td class="d">אכסניית נוער</td><td>צעירים ותקציב נמוך, חדרים משותפים</td></tr>
+          <tr><td class="d">בית הארחה</td><td>שקט ומנוחה, למשל בקיבוץ</td></tr>
+          <tr><td class="d">צימר</td><td>אירוח כפרי, לפעמים בישול עצמי</td></tr>
+          <tr><td class="d">חניון קמפינג</td><td>אוהלים וקרוואנים, שירותים בסיסיים</td></tr>
+        </table></div>
+        <div>
+          <h3>איפה המלונות</h3>
+          <p class="mini">בשנת 2000 היו בישראל כ־45,000 חדרי מלון. כמחצית בירושלים ובמרכז, ויותר מרבע באילת ובטבריה. צימרים בגליל, בגולן ובעמקים. אכסניות נוצריות בירושלים, בנצרת ובכינרת.</p>
+          <p class="note" style="margin-top:10px">סוג האכסון ופריסתו מתאימים לאופי התיירות באזור: צליינים בירושלים, נופשים באילת, משפחות בצימרים בצפון.</p>
+          <p class="mini" style="margin-top:10px">רשתות: בינלאומיות (הילטון, שרתון, הייאט) וישראליות (דן, ישרוטל).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">מאחורי הקלעים<span class="tag-ext">הרחבה</span></p>
+      <h2>איך מארגן תיירות קונה חדרים</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">Allocation</span><span>הקצאת חדרים שהמלון שומר למארגן מראש, עוד לפני שידוע כמה תיירים יגיעו.</span></div>
+        <div class="card"><span class="t">Release Time</span><span>המועד שבו חדרים שהוקצו ולא נמכרו חוזרים למלון.</span></div>
+        <div class="card"><span class="t">Rooming List</span><span>רשימת אורחי הקבוצה, וחלוקתם לחדרים.</span></div>
+        <div class="card"><span class="t">Over Booking</span><span>המלון אישר יותר הזמנות מהחדרים הפנויים.</span></div>
+        <div class="card"><span class="t">Mark Up</span><span>התוספת שהמשווק מוסיף למחיר שהוא שילם לספק. כשיש כמה מתווכים, המחיר לצרכן עולה.</span></div>
+        <div class="card"><span class="t">Rack Rate</span><span>המחיר הרשמי המפורסם של חדר.</span></div>
+      </div>
+      <p class="mini">אלה מושגים מרשימת 2024. הם לא ברשימת 2026, ולא נשאלו בבגרויות 2018–2026.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">תחבורה אווירית</p>
+      <h2>טיסה סדירה מול טיסת צ'רטר</h2>
+      <p class="lead">כ־90% מהתיירות הבינלאומית מגיעה במטוס (לפי הספר). לישראל כמעט כל התיירים מגיעים באוויר, ולכן מדיניות התעופה קריטית.</p>
+      <div class="vs">
+        <div class="card"><span class="t">טיסה סדירה</span><p class="mini">לפי לוח זמנים קבוע, שלא תלוי במספר הנוסעים. יקרה יחסית. כך טסים רוב אנשי העסקים.</p></div>
+        <div class="card"><span class="num">מושג 21</span><span class="t">טיסת צ'רטר</span><p class="mini">חברת תיירות שוכרת מטוס לתקופה מסוימת, ומוכרת את המושבים בחבילות. זולה יותר, בלי לוח זמנים קבוע, ליעדים קרובים.</p><p class="mini"><b>יתרון:</b> מחיר נמוך, וטיסות ישירות מערים קטנות. <b>חיסרון למארגן:</b> הוא התחייב לשלם, ומפסיד על מושבים שלא נמכרו.</p></div>
+      </div>
+      <p class="mini">נתב"ג: כ־40,000 נוסעים ב־1948, יותר מ־9 מיליון ב־2000. טרמינל 3 נפתח ב־2004.</p>
+      <p class="seen"><b>כבר נלמד:</b><a href="../../negev/04/#s9">הנגב 4 · צ'רטרים לאילת</a><a href="../../negev/05/#s4">הנגב 5 · שמיים פתוחים, מוגבלים ו־Code Sharing</a></p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">תחבורה ביבשה ובים</p>
+      <h2>אוטובוס, רכב, רכבת ואונייה</h2>
+      <div class="two">
+        <div>
+          <ul class="clean">
+            <li><b>אוטובוס:</b> עיקר התיירות הקבוצתית.</li>
+            <li><b>רכב פרטי:</b> עיקר תיירות הפנים, כי הוא גמיש.</li>
+            <li><b>רכב שכור:</b> לתיירים עצמאיים ולאזורים כפריים.</li>
+            <li><b>מוניות:</b> בעיר ולנמל התעופה.</li>
+            <li><b>רכבת:</b> תורמת בעיקר לתיירות הפנים.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>תחבורה ימית</h3>
+          <p class="mini">שיט בכינרת מטבריה, שיט וצלילה באילת, ואוניות נוסעים לנמלי חיפה ואשדוד. <b>התחבורה הימית יכולה להיות מוצר תיירותי בעצמה.</b></p>
+          <p class="mini"><b>שיט חופים:</b> האונייה היא "מלון צף" שעוגן בנמלים. הנוסעים לא לנים ביבשה, ולכן הם <b>מבקרי יום</b>. מנמל חיפה יוצאים לעכו, לנצרת ולכינרת. מנמל אשדוד לירושלים, לבית לחם ולים המלח.</p>
+        </div>
+      </div>
+      <p class="seen"><b>מושגים 11–12 ושאלות 2018, 2024 נלמדו:</b><a href="../../coastal/04/#s5">מישור החוף 4 · שיט חופים ונוסע בשיוט</a></p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">מעברי גבול · בגרות 2019</p>
+      <h2>להגיע לישראל ביבשה</h2>
+      <p class="lead">לפי הספר, יותר ממחצית התיירים שהגיעו ביבשה הגיעו מירדן. מעברי הגבול מאפשרים גם חבילות חוצות גבולות, למשל אילת ופטרה.</p>
+      <div class="vs">
+        <div class="plan"><table>
+          <tr><th>בדרום</th><th>לאן</th></tr>
+          <tr><td class="d">מעבר יצחק רבין (ערבה)</td><td>ירדן, ליד אילת</td></tr>
+          <tr><td class="d">מעבר טאבה</td><td>מצרים, סיני</td></tr>
+        </table></div>
+        <div class="plan"><table>
+          <tr><th>בצפון ובמזרח</th><th>לאן</th></tr>
+          <tr><td class="d">מעבר נהר הירדן (שייח' חוסיין)</td><td>ירדן, ליד בית שאן</td></tr>
+          <tr><td class="d">קוניטרה</td><td>סוריה, ברמת הגולן</td></tr>
+          <tr><td class="d">ראש הנקרה</td><td>לבנון</td></tr>
+        </table></div>
+      </div>
+      <p class="mini">המחוון של 2019 קיבל את כל המעברים האלה. בפועל, היום עוברים תיירים רק לירדן ולמצרים.</p>
+      <p class="seen"><b>מעברי הדרום נלמדו:</b><a href="../../negev/05/#s8">הנגב 5 · מעברי הגבול וטיולים חוצי גבולות</a></p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">שירותי הסעדה</p>
+      <h2>אוכל הוא גם חוויה</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <tr><th>בסיס אירוח</th><th>מה כלול</th><th>מי מעדיף (לפי הספר)</th></tr>
+          <tr><td class="d">Room Only</td><td>לינה בלבד</td><td>אמריקנים</td></tr>
+          <tr><td class="d">Bed &amp; Breakfast</td><td>לינה וארוחת בוקר</td><td>אירופים</td></tr>
+          <tr><td class="d">Half Board · חצי פנסיון</td><td>בוקר וארוחה עיקרית</td><td>אירופים</td></tr>
+          <tr><td class="d">Full Board · פנסיון מלא</td><td>שלוש ארוחות</td><td>קבוצות מצרפת ואיטליה, סיורי תמריץ</td></tr>
+        </table></div>
+        <div>
+          <ul class="clean">
+            <li>לאוכל שני תפקידים: <b>מזון</b>, ו<b>מפגש עם התרבות</b>: פלאפל, ודג אמנון לצליינים בכינרת.</li>
+            <li>לא כולם רוצים אוכל מקומי. צריך להכיר את ההעדפות של כל קהל.</li>
+            <li>בדרך בוחרים בין מסעדה עם מלצרים לבין <b>שירות עצמי</b>, לפי התקציב והזמן של הקבוצה.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">פנאי ובילוי</p>
+      <h2>אטרקציה טבעית מול אטרקציה מלאכותית</h2>
+      <div class="plan tblwrap"><table>
+        <tr><th></th><th>אטרקציה טבעית</th><th>אטרקציה מלאכותית</th></tr>
+        <tr><td class="d">מקור</td><td>תהליכי טבע</td><td>מעשה ידי אדם</td></tr>
+        <tr><td class="d">דוגמאות</td><td>המנסרה (הנגרייה) במכתש, מערת הקמח, מפלי הניאגרה</td><td>מוזיאונים, פארקים, קניונים, אירועים</td></tr>
+        <tr><td class="d">אפשר ליצור?</td><td>לא. אפשר רק לפתח גישה ושירותים</td><td>כן. מתכננים ובונים</td></tr>
+        <tr><td class="d">מי מפתח</td><td>בעיקר המדינה (גנים לאומיים ושמורות)</td><td>לרוב יוזמה מקומית או פרטית</td></tr>
+      </table></div>
+      <p class="mini">כדי שאטרקציה תהיה מוצר תיירותי, צריך גם נגישות, שירותים ותחזוקה.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">שירותי תיור</p>
+      <h2>סיור רגולרי, רכב אשכול ומוצר מדף</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <tr><th></th><th>סיור רגולרי</th><th>רכב אשכול</th></tr>
+          <tr><td class="d">אופי</td><td>קבוצתי</td><td>פרטי</td></tr>
+          <tr><td class="d">מסלול</td><td>קבוע</td><td>מותאם לתייר</td></tr>
+          <tr><td class="d">יציאה</td><td>ימים קבועים</td><td>בתיאום</td></tr>
+          <tr><td class="d">מחיר</td><td>נמוך</td><td>גבוה</td></tr>
+          <tr><td class="d">מתאים ל</td><td>תייר עצמאי עם מעט זמן</td><td>אנשי עסקים, אורחים חשובים, משפחה</td></tr>
+        </table></div>
+        <div>
+          <p class="mini"><b>רכב אשכול:</b> הנהג הוא גם מורה הדרך. על הרכב יש סמל של אשכול ענבים.</p>
+          <p class="mini"><b>חיסרון של סיור רגולרי:</b> לא גמיש, זמן מוגבל בכל אתר, ואין סיורים לכל יעד.</p>
+          <div class="card" style="margin-top:10px"><h3>מוצר מדף</h3><p class="mini">חבילה שמרכיבים מראש ומוכרים לפי תוכנית, למשל חבילת ארקיע לאילת: טיסה, העברות ומלון. <b>יתרון:</b> ניצול שירותים קיימים וחיסכון. <b>חיסרון:</b> לא מותאם אישית.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2019 · מושג 2025</p>
+      <h2>סחר מקוון</h2>
+      <div class="two">
+        <div>
+          <p><b>סחר מקוון</b> הוא מסחר בערוצים אלקטרוניים, כמו האינטרנט והדוא"ל, שמאפשר לקנות, להזמין ולתכנן רכישה של מוצרים ושירותים.<span class="tag off">לא במיקוד 2026</span></p>
+          <h3 style="margin-top:12px">מה אפשר לדעת על מלון באינטרנט</h3>
+          <div class="flow"><span>חוות דעת של אורחים</span><span>מחיר</span><span>מיקום ומפה</span><span>תמונות</span><span>סוגי חדרים</span><span>מתקני המלון</span><span>דירוג כוכבים</span></div>
+        </div>
+        <div class="card">
+          <h3>למה שירותי תיירות מתאימים לאינטרנט</h3>
+          <p class="mini">שירות תיירות הוא <b>מוצר לא מוחשי</b>: אי אפשר להציג אותו פיזית בזמן הקנייה. באינטרנט אפשר לראות תמונות וסרטונים, להשוות מחירים ולקרוא המלצות, ולקנות מתי שרוצים.</p>
+          <p class="mini">נלמד על מוצר לא מוחשי בנושא 6, ועל שיווק באינטרנט בנושא 10.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל קהל לסוג האכסון: קבוצת צליינים, איש עסקים, סטודנטים בתקציב נמוך, זוג שמחפש שקט בגליל.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">התאימו כל בסיס אירוח למה שכלול בו: Room Only, Bed &amp; Breakfast, Half Board, Full Board.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">מיינו לאטרקציות טבעיות ומלאכותיות.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">איזה שירות תיור מתאים לאיש עסקים שרוצה סיור פרטי, בזמן שנוח לו?<span class="tag">בחירה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide stop tint" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">ציינו ארבעה סוגי מידע על בתי מלון שאפשר לקבל באינטרנט. הסבירו מדוע שירותי תיירות מתאימים במיוחד לשיווק באינטרנט.<span class="tag real">בגרות 2019</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "סחר מקוון", ותנו דוגמה מתחום התיירות.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2019, 2025</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "טיסת צ'רטר", ותנו דוגמה.<span class="tag">מושג 21</span><span class="tag real">בגרות 2026</span></div></div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide stop tint" id="s14" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות בעקבות הספר · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">הסבירו את ההבדל בין טיסה סדירה לטיסת צ'רטר. ציינו יתרון אחד וחיסרון אחד של טיסת צ'רטר למארגן התיירות.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">הסבירו את ההבדל בין אטרקציה טבעית לאטרקציה מלאכותית, ותנו דוגמה מישראל לכל אחת.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">השוו בין סיור רגולרי לבין סיור ברכב אשכול בשני מאפיינים. לאיזה תייר מתאים כל אחד מהם?<span class="tag">בעקבות הספר</span></div></div>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide stop tint" id="s15" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות בעקבות הספר · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">ציינו שלושה סוגי אכסון בישראל, ולאיזה קהל מתאים כל אחד. הסבירו מדוע סוג האכסון מתאים לאופי התיירות באזור.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">מהו "מוצר מדף"? תנו דוגמה, וציינו יתרון וחיסרון שלו.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">קבוצת צליינים מצרפת מבקשת פנסיון מלא. הסבירו מה זה אומר, ומה ההבדל בינו לבין חצי פנסיון ו־Bed &amp; Breakfast.<span class="tag">בעקבות הספר</span></div></div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide bgslide" id="s16" hidden>
+    <img class="bg" src="img/hero.jpg" alt="מרינה אשקלון">
+    <span class="credit">מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>חופשה היא שרשרת של שירותים, והמארגן מתאם ביניהם.</li>
+        <li>אכסון מתאים לקהל ולאזור: הוספיס לצליינים, מסחרי לעסקים, צימר בכפר.</li>
+        <li>סדירה = לוח זמנים קבוע. צ'רטר = זולה, ומסוכנת למארגן אם לא נמכרה.</li>
+        <li>מעברי גבול: רבין וטאבה בדרום, נהר הירדן, קוניטרה וראש הנקרה בצפון.</li>
+        <li>טבעית מול מלאכותית. רגולרי מול אשכול. סחר מקוון מתאים כי המוצר לא מוחשי.</li>
+      </ul>
+      <p class="lead">בנושא הבא: המוצר התיירותי.</p>
+    </div>
+  </section>

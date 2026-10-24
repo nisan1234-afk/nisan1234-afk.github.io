@@ -1,0 +1,520 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* marketing chapter: links to region topics, "not in 2026 focus" tag */
+.seen{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--ink-2)}
+.seen b{font-weight:500;color:var(--ink-3);font-size:13px}
+.seen a{color:var(--olive);text-decoration:none;border:1px solid var(--olive);border-radius:99px;padding:1px 10px;font-size:13px}
+.seen a:hover{background:var(--olive-soft)}
+.tag.off{border-style:dashed}
+.card>.tag{align-self:flex-start;margin-inline-start:0}
+.mini{font-size:15px;color:var(--ink-2)}
+.big{font-family:var(--display);font-weight:900;font-size:var(--step-2);color:var(--olive);line-height:1.1}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.flow span{border:1px solid var(--rule);border-radius:10px;padding:6px 12px;background:var(--bg);font-size:15px}
+.flow i{font-style:normal;color:var(--copper);font-weight:700}
+</style></head><body><title>מאפיינים ושיווק · תיירות לשם הנאה</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Heebo:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+
+/* topic 2: timeline overview, period header, site chips */
+.tl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.tl li{border-top:4px solid var(--olive);background:var(--bg);border-radius:0 0 10px 10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl li.cp{border-top-color:var(--copper)}
+.tl .y{font-size:13px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.tl .p{font-family:var(--display);font-weight:700;font-size:18px;line-height:1.25}
+.tl .s{font-size:14px;color:var(--ink-2);line-height:1.45}
+.era{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
+.era .when{font-family:var(--display);font-weight:900;font-size:var(--step-2);color:var(--olive);font-variant-numeric:tabular-nums}
+.sites{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sites figure img{aspect-ratio:4/3}
+.sites h3{font-size:18px;margin-top:2px}
+.sites p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.small-photo img{max-width:260px;aspect-ratio:auto !important}
+.tl-mini{display:flex;gap:4px;flex-wrap:wrap;font-size:12px;color:var(--ink-3)}
+.tl-mini span{padding:1px 8px;border-radius:99px;border:1px solid var(--rule)}
+.tl-mini span.on{background:var(--olive);border-color:var(--olive);color:var(--paper)}
+</style>
+
+<div class="deck" dir="rtl" lang="he">
+  <div class="bar"><b>מאפיינים ושיווק</b><span>נושא 3 · תיירות לשם הנאה · <a class="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfPH4yVHpoVDgWuujNlOalr5OQ58aG-LXlM2PoRxTDdiMylSA/viewform?usp=pp_url&entry.1210554402=%D7%A9%D7%99%D7%95%D7%95%D7%A7%203%20%D7%AA%D7%99%D7%99%D7%A8%D7%95%D7%AA%20%D7%9C%D7%A9%D7%9D%20%D7%94%D7%A0%D7%90%D7%94" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">משוב מורים</a></span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="חוף נתניה">
+    <span class="credit">חוף נתניה · מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 3</p>
+      <h1>תיירות לשם הנאה</h1>
+      <p class="lead">רוב התיירים באים כדי ליהנות: לבקר קרובים, לנוח בחוף, לטייל, להכיר תרבות או לטפל בגוף. כל קבוצה צריכה מוצר אחר.</p>
+      <div class="chips"><span class="chip">ביקור משפחות</span><span class="chip">סיור משפחות</span><span class="chip">גיל הזהב</span><span class="chip">נופש</span><span class="chip">תיור ותיירות עומק</span><span class="chip">נופש פעיל</span><span class="chip">מרפא וריפוי</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">מפת הנושא</p>
+      <h2>מה נכנס בתוך "הנאה"</h2>
+      <div class="factor" style="grid-template-columns:repeat(4,1fr)">
+        <div><b>לפי מי נוסע</b><span>ביקור משפחות · סיור משפחות · גיל הזהב</span></div>
+        <div><b>לפי רמת הנופש</b><span>תיירות המונים · בינונית · יוקרה</span></div>
+        <div><b>לפי העומק</b><span>תיור (Sightseeing) · תיירות תרבות ועומק</span></div>
+        <div><b>לפי הפעילות</b><span>נופש פעיל · אתגר · מדברית · ספורט · מרפא</span></div>
+      </div>
+      <div class="card">
+        <h3>למה ישראל מושכת תיירי הנאה</h3>
+        <p class="mini">שלוש מטרות הביקור העיקריות של תיירים בישראל (2017, לפי מחוון 2022): <b>תיור וטיול</b>, <b>ביקור קרובים</b> ו<b>צליינות</b>. לפי הספר אין מוצר אחד שמתאים לכולם, ולכן מפלחים את התיירים לפי מטרת הביקור.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2018, 2022 · מושגים 2019, 2025</p>
+      <h2>ביקור משפחות מול סיור משפחות</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">ביקור משפחות</span>
+          <p class="mini">תיירים מחו"ל שבאים לבקר <b>קרובים</b> בישראל. נתח נכבד מהתיירות הנכנסת.</p>
+          <ul class="clean">
+            <li>רובם יהודים, בעיקר מארה"ב ומחבר העמים, ובעיקר בקיץ.</li>
+            <li>לרוב באים לאירוע משפחתי: בר מצווה, חתונה.</li>
+            <li>שהייה ארוכה מהממוצע, ולרוב זה ביקור חוזר.</li>
+            <li>רבים כמעט לא משתמשים במלון ובמסעדות, כי הם גרים אצל הקרובים.</li>
+            <li>יוצאים לסיורים יומיים, כי הקרובים עובדים.</li>
+          </ul>
+          <p class="mini">ובכל זאת התרומה הכלכלית גבוהה, כי השהייה ארוכה.</p>
+        </div>
+        <div class="card">
+          <span class="t">סיור משפחות (טיול משפחות)</span>
+          <p class="mini">המשפחה <b>היא</b> קבוצת המטיילים. המשפחה הגרעינית, ולפעמים גם המורחבת, יוצאת יחד לטייל בארץ או בחו"ל, כדי לבלות זמן איכות.</p>
+          <ul class="clean">
+            <li>עונתי: בעיקר בחופשות בתי הספר ובחגים.</li>
+            <li>צריך להתאים את הטיול לכל הגילים.</li>
+          </ul>
+          <p class="note" style="margin-top:8px"><b>להבחין:</b> בביקור משפחות באים <b>אל</b> המשפחה. בסיור משפחות מטיילים <b>עם</b> המשפחה.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2025 · מושג 2024</p>
+      <h2>גיל הזהב: קהל יעד חשוב</h2>
+      <div class="two">
+        <div>
+          <h3>למה זה קהל חשוב</h3>
+          <ul class="clean">
+            <li>זמן פנוי בשפע, ואפשר לצאת לחופשה ארוכה.</li>
+            <li>הכנסה פנויה (פנסיה), ואין ילדים קטנים בבית.</li>
+            <li>גמישות: לא תלויים בחופשות, ולכן נוסעים גם מחוץ לעונה.</li>
+            <li>סקרנות, ורצון ליצור זיכרונות.</li>
+          </ul>
+          <h3 style="margin-top:10px">המגבלות</h3>
+          <p class="mini">בריאות ותנועה, וחשש לחלות. לכן בונים תוכנית פחות עמוסה, עם זמן למנוחה ומזון מתאים.</p>
+        </div>
+        <div>
+          <div class="card"><h3>טיול כוכב</h3><p class="mini">לנים כל הטיול במלון אחד, ויוצאים ממנו בכל יום לטיול וחוזרים. מתאים לגיל הזהב, כי לא צריך לארוז ולעבור מלון כל יום.</p></div>
+          <div class="card" style="margin-top:10px"><h3>למה שייט מתאים להם</h3><p class="mini">פורקים מזוודות פעם אחת, אין מאמץ פיזי, לא דואגים לארוחות ויש מגוון דיאטות, יש צוות רפואי על האונייה, וסיורי החוף מותאמים.</p></div>
+          <div class="card" style="margin-top:10px"><h3>למה תיירות תרבות מתאימה להם</h3><p class="mini">לא דורשת מאמץ פיזי רב, ונותנת עניין ומשמעות: הרצאות, מוזיאונים, קונצרטים, מופעי אור קולי, סיורי מורשת.</p></div>
+        </div>
+      </div>
+      <p class="seen"><b>גיל הזהב בחבלים:</b><a href="../../coastal/04/#s9">מישור החוף 4 · נתניה מול אשקלון</a><a href="../../jerusalem/01/#s23">ירושלים 1 · מי מגיע לירושלים</a></p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">תיירות נופש · בגרות 2024</p>
+      <h2>נופש: שלוש רמות</h2>
+      <p class="lead">תיירות נופש (Resort) היא חופשה למנוחה, לבילוי ולהתרגעות. שורשיה בטיולים המאורגנים של <b>תומס קוק</b> ברכבת, באמצע המאה ה־19.</p>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">תיירות המונים</span><span class="en">Mass Tourism</span><span>היקף גדול מאוד, הרבה תיירים באותו מקום ובאותו זמן.</span><span class="ex">תמונה של ונציה הצפופה: יעד עירוני מלא תיירים (מחוון 2024).</span></div>
+        <div class="card"><span class="t">רמה בינונית</span><span>שירות טוב, פחות אנשים ויותר שקט.</span><span class="ex">מלון חוף משפחתי.</span></div>
+        <div class="card"><span class="t">תיירות יוקרה</span><span class="en">Luxury Tourism</span><span>שירות, נוחות וייחודיות גבוהים במיוחד, מעט תיירים ומחיר גבוה.</span><span class="ex">אתר נופש אקזוטי ויקר (מחוון 2024).</span></div>
+      </div>
+      <p class="seen"><b>נופש ותיירות 3S נלמדו:</b><a href="../../negev/04/#s2">הנגב 4 · ים חם, אלמוגים ושמש</a><a href="../../coastal/04/#s9">מישור החוף 4 · נתניה מול אשקלון</a></p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2025, 2018 · מושג 2022</p>
+      <h2>תיור מול תיירות עומק</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">תיור · טיול סקירה</span><span class="en">Sightseeing</span>
+          <p class="mini">היכרות <b>כללית ורחבה</b> עם היעד: הרבה אתרים, זמן קצר בכל אחד, הסבר כללי, האתרים המפורסמים. ביקור ראשון הוא לרוב תיור.</p>
+          <p class="mini"><b>דוגמה:</b> חיפה, עכו וראש הנקרה ביום אחד.</p>
+        </div>
+        <div class="card">
+          <span class="t">תיירות תרבות · טיול עומק</span>
+          <p class="mini">היכרות <b>מעמיקה</b> עם נושא, אתר או תקופה: היסטוריה, מורשת, פולקלור ואורחות חיים. התייר רוצה לטייל "אחרת", ומקדיש זמן לאתרים חשובים.</p>
+          <p class="mini"><b>דוגמה:</b> סיור בשכונות החרדיות בירושלים. פעילויות: מוזיאונים, קונצרטים, אתרים ארכאולוגיים, אופרה במצדה, אירוח בכפר דרוזי, פסטיבלים.</p>
+        </div>
+      </div>
+      <p class="note"><b>להבחין:</b> תיור = <b>רוחב</b> (הרבה, בקצרה). תיירות תרבות = <b>עומק</b> (מעט, לעומק). השוני התרבותי בין התייר ליעד מגביר את המשיכה.</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2025 · מושג 2019</p>
+      <h2>נופש פעיל, אתגר, מדבר וספורט</h2>
+      <div class="two">
+        <div>
+          <ul class="clean">
+            <li><b>נופש פעיל:</b> חופשה שבמרכזה פעילות גופנית: הליכה, צלילה, שיט, אופניים, רכיבה.</li>
+            <li><b>תיירות אתגר</b> <span class="tag off">נשאל ב־2019</span>: חלק מהנופש הפעיל. פעילות ספורטיבית בטבע: סנפלינג, ג'יפים, טיפוס, רפטינג.</li>
+            <li><b>תיירות מדברית:</b> לישראל אין אלפים ונהרות גדולים, אבל יש מדבר: ג'יפים, גמלים, מסלולים ומפגש עם בדואים.</li>
+            <li><b>תיירות ספורט:</b> <b>צפייה</b> באירוע ספורט, או מחנה אימון של קבוצה. חופשה עם אופניים היא נופש פעיל, לא תיירות ספורט.</li>
+          </ul>
+        </div>
+        <div class="plan tblwrap"><table>
+          <tr><th>פעילות</th><th>התנאי הפיזי שמאפשר אותה</th></tr>
+          <tr><td class="d">סקי בחרמון</td><td>הר גבוה שיורד בו שלג</td></tr>
+          <tr><td class="d">מסלולי נחלים בגולן</td><td>שפע מקורות מים</td></tr>
+          <tr><td class="d">רכיבה על גמלים</td><td>מדבר</td></tr>
+          <tr><td class="d">אופניים במכתש</td><td>מכתשים ושטח פתוח</td></tr>
+          <tr><td class="d">צלילה באילת</td><td>שמורת אלמוגים</td></tr>
+          <tr><td class="d">תצפית כוכבים</td><td>אין זיהום אור</td></tr>
+          <tr><td class="d">סנפלינג</td><td>מצוקים ואזור הררי</td></tr>
+        </table></div>
+      </div>
+      <p class="seen"><b>כבר נלמד:</b><a href="../../negev/01/#s8">הנגב 1 · נופש פעיל במדבר</a><a href="../../golan/04/#s3">הגולן 4 · החרמון</a><a href="../../deadsea/02/#s2">ים המלח 2 · מדבר יהודה</a></p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2022, 2024, 2025 · מושגים 2021, 2025</p>
+      <h2>תיירות מרפא מול תיירות ריפוי</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">תיירות מרפא</span>
+          <p class="mini">ניצול <b>סגולות הטבע</b> לבריאות ולנופש: מעיינות חמים, מים מינרליים, בוץ, אוויר ואקלים, בשילוב מנוחה, ספא ובידור.</p>
+          <div class="plan"><table>
+            <tr><th>אתר</th><th>מיקום</th></tr>
+            <tr><td class="d">ים המלח</td><td>ים המלח</td></tr>
+            <tr><td class="d">חמת גדר</td><td>רמת הגולן</td></tr>
+            <tr><td class="d">חמי טבריה</td><td>הגליל התחתון</td></tr>
+            <tr><td class="d">חמי געש</td><td>מישור החוף</td></tr>
+          </table></div>
+        </div>
+        <div class="card">
+          <span class="t">תיירות ריפוי</span>
+          <p class="mini">נסיעה למדינה אחרת כדי לקבל <b>טיפול רפואי</b>: קליני, ניתוח או שיקום, שאינו קיים בארץ המוצא או שרמתו שם נמוכה. מגיעים לבתי חולים גדולים, גם ממדינות בלי יחסים דיפלומטיים.</p>
+          <p class="mini"><b>התרומה לענף:</b> זו לא תיירות להנאה, אבל השהייה ארוכה, והמשפחה המלווה לנה במלון ומשתמשת במסעדות ובהסעות. לכן היא נכללת בתיירות (מחוון 2024).</p>
+        </div>
+      </div>
+      <p class="seen"><b>מרפא בים המלח נלמד:</b><a href="../../deadsea/01/#s7">ים המלח 1 · חופשה שהיא גם טיפול</a><a href="../../golan/02/#s6">הגולן 2 · חמת גדר</a></p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide stop" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל פעילות לסוג התיירות: חיפה, עכו וראש הנקרה ביום אחד; סיור בשכונות החרדיות; רפטינג בירדן; ניתוח בבית חולים; טבילה בחמי טבריה.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">מיינו לשלוש רמות הנופש: ונציה הצפופה, מלון חוף משפחתי, אי פרטי עם וילות.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">סמנו את המאפיינים של ביקור משפחות.<span class="tag">בחירה מרובה</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">מהו "טיול כוכב", ולמה הוא מתאים לגיל הזהב?<span class="tag">בחירה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop tint" id="s10" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">ציינו שתי סיבות לכך שגיל הזהב הוא קהל יעד חשוב. הסבירו מדוע שייט מתאים לגיל הזהב, וציינו שני יתרונות שלו.<span class="tag real">בגרות 2025</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "תיירות ריפוי", ותנו דוגמה.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2025</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "טיול משפחות" (סיור משפחות), ותנו דוגמה.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2025</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">הסבירו את ההבדל בין טיול סקירה (תיור) לטיול עומק, ותנו דוגמה לכל אחד. ציינו שלושה אתרי מרפא בישראל ואת מיקומם.<span class="tag real">בגרות 2025</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">לפניכם שתי תמונות: ונציה הצפופה בתיירים, ואתר נופש אקזוטי עם מעט נופשים. לאיזו קטגוריה של תיירות נופש מתאימה כל תמונה? נמקו.<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">הסבירו מהי תיירות מרפא, וציינו שלושה אתרי מרפא בישראל. הסבירו מהי תיירות ריפוי, ומה תרומתה לענף התיירות.<span class="tag real">בגרות 2024</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">ציינו את שלוש מטרות הביקור העיקריות של תיירים בישראל. הסבירו את ההבדל בין תיירות מרפא לתיירות ריפוי.<span class="tag real">בגרות 2022</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">ציינו שלושה מאפיינים של תיירות ביקור משפחות.<span class="tag real">בגרות 2018, 2022</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">הסבירו מהי תיירות תרבות, וציינו שלוש פעילויות שמתאימות לה בישראל.<span class="tag real">בגרות 2018</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide bgslide" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="חוף נתניה">
+    <span class="credit">מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>ביקור משפחות: באים אל הקרובים, שהייה ארוכה, מעט מלון. סיור משפחות: מטיילים עם המשפחה, בחופשות.</li>
+        <li>גיל הזהב: זמן, כסף וגמישות. טיול כוכב, שייט ותיירות תרבות מתאימים להם.</li>
+        <li>נופש בשלוש רמות: המונים, בינונית, יוקרה.</li>
+        <li>תיור = רוחב. תיירות תרבות = עומק.</li>
+        <li>מרפא = סגולות הטבע. ריפוי = טיפול רפואי.</li>
+      </ul>
+      <p class="lead">בנושא הבא: צליינות, ייחוד הארץ ומגזרים.</p>
+    </div>
+  </section>
+
+</div>
+
+<nav class="nav" dir="rtl" aria-label="ניווט בין שקפים">
+  <button type="button" id="prev" class="ghost">הקודם</button>
+  <span class="count" id="count" aria-live="polite">1 / 13</span>
+  <button type="button" id="next">הבא</button>
+</nav>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>

@@ -1,0 +1,249 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="שוק צבעוני בעיר העתיקה בירושלים">
+    <span class="credit">שוק בעיר העתיקה, ירושלים · מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 10</p>
+      <h1>תקשורת שיווקית</h1>
+      <p class="lead">איך מספרים לתייר על חופשה שהוא עוד לא חווה, ומשכנעים אותו לבחור בה. פרסום, יחסי ציבור, מבצעים, המלצות ואינטרנט: כל אחד עושה תפקיד אחר.</p>
+      <div class="chips"><span class="chip">תמהיל התקשורת</span><span class="chip">תהליך התקשורת</span><span class="chip">היגיון, רגש ומוסר</span><span class="chip">ערוצי פרסום</span><span class="chip">יחסי ציבור</span><span class="chip">מפה לאוזן</span><span class="chip">אינטרנט</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2018</p>
+      <h2>מה זו תקשורת שיווקית</h2>
+      <div class="two">
+        <div>
+          <p>העברת מידע ומסרים ללקוחות קיימים ועתידיים, כדי להשפיע על <b>הידע, העמדות וההתנהגות</b> שלהם. לפי מחוון 2018: שידור במקביל בכמה ערוצים, כדי למשוך את תשומת הלב של קהל היעד ולהגביר מכירות. היא כוללת מסירת מידע, העברת מסר וקידום מכירות.</p>
+          <p class="note" style="margin-top:10px"><b>פרסמת ≠ תקשרת.</b> לא בטוח שהלקוח ראה, הבין או הושפע. בתיירות זה חשוב במיוחד: המוצר לא מוחשי, והלקוח נשען על מידע, תמונות והמלצות.</p>
+        </div>
+        <div>
+          <h3>שלושה סוגי השפעה</h3>
+          <div class="cards" style="grid-template-columns:1fr">
+            <div class="card"><span class="t">הכרתית</span><span>מודעות וידע: "שמעתי שיש פסטיבל באילת".</span></div>
+            <div class="card"><span class="t">רגשית</span><span>אהדה, העדפה ואמון: "זה נראה לי מקום כיפי".</span></div>
+            <div class="card"><span class="t">התנהגותית</span><span>בירור, הזמנה וקנייה: "הזמנתי".</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">מושג שנשאל ב־2024, 2025</p>
+      <h2>תמהיל התקשורת: חמישה כלים</h2>
+      <p>כל שיטות התקשורת שהארגון משתמש בהן כדי להעביר מסר שיווקי.<span class="tag off">לא במיקוד 2026</span></p>
+      <div class="cards" style="grid-template-columns:repeat(5,1fr)">
+        <div class="card"><span class="t">פרסום</span><span>מסר בתשלום, בשליטת המפרסם, לקהל רחב.</span><span class="ex">שלט חוצות של מלון באילת.</span></div>
+        <div class="card"><span class="t">קידום מכירות</span><span>תמריץ קצר טווח לקנייה.</span><span class="ex">20% הנחה בחודש הראשון.</span></div>
+        <div class="card"><span class="t">יחסי ציבור</span><span>בניית תדמית חיובית ואמון.</span><span class="ex">עיתונאי תיירות מתארח וכותב כתבה.</span></div>
+        <div class="card"><span class="t">מכירה אישית</span><span>קשר ישיר בין איש מכירות ללקוח.</span><span class="ex">נציג בוועד העובדים.</span></div>
+        <div class="card"><span class="t">שיווק ישיר</span><span>פנייה ממוקדת עם תגובה מדידה.</span><span class="ex">מייל ללקוחות שהסכימו.</span></div>
+      </div>
+      <p class="mini">אין תמהיל אחד לכולם: הוא תלוי במוצר, בקהל, בתקציב, בתחרות ובשלב במחזור החיים. למוצר חדש צריך מודעות, ולמוצר מוכר בתחרות צריך קידום מכירות.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">מושג שנשאל ב־2024</p>
+      <h2>תהליך התקשורת</h2>
+      <div class="flow" style="font-size:16px"><span>מקור (שולח)</span><i>←</i><span><b>קידוד</b></span><i>←</i><span>מסר</span><i>←</i><span>ערוץ</span><i>←</i><span>פענוח</span><i>←</i><span>מקבל</span><i>←</i><span>תגובה</span><i>←</i><span>משוב</span></div>
+      <div class="two">
+        <ul class="clean">
+          <li><b>קידוד המסר:</b> הפיכת הרעיון למילים, תמונות, צבעים וסמלים, בקוד מוסכם שקהל היעד יבין.<span class="tag off">2024</span></li>
+          <li><b>פענוח:</b> הפירוש שהמקבל נותן למסר.</li>
+          <li><b>משוב:</b> התגובה שחוזרת לשולח. תגובה הופכת למשוב רק כשהיא מגיעה אליו.</li>
+          <li><b>רעש:</b> כל מה שמפריע בדרך: מודעה של מתחרה, סגר קורונה, רקטות.</li>
+        </ul>
+        <div class="card">
+          <h3>דוגמה</h3>
+          <p class="mini">חברת תיירות (מקור) מכינה מודעה עם תמונה של ים ושמש (קידוד) על חופשה באילת (מסר), ומפרסמת באינסטגרם (ערוץ). הלקוח מבין שזו חופשה זולה לחורף (פענוח), ומתקשר להזמין (תגובה). החברה סופרת את הפניות (משוב).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2018</p>
+      <h2>המסר: היגיון, רגש או מוסר</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">פנייה להיגיון</span><span>עובדות, איכות ומחיר.</span><span class="ex">"טיסה ישירה, זולה ובזמן".</span></div>
+        <div class="card"><span class="t">פנייה לרגש</span><span>חוויה, הזדהות והתרגשות.</span><span class="ex">"תדמיינו איך תרגישו אחרי המסע".</span></div>
+        <div class="card"><span class="t">פנייה למוסר</span><span>אחריות, הגינות, עשיית הטוב.</span><span class="ex">"טיול שתורם לקהילה המקומית".</span></div>
+      </div>
+      <div class="card">
+        <h3>"התיירת ה־3 מיליון" (2018)</h3>
+        <p class="mini">בסרטון של משרד התיירות, שר התיירות מקבל את התיירת ה־3 מיליון, וראש הממשלה מדריך אותה. החוויה מפתיעה ומשמחת, ומעוררת התרגשות. לכן זו <b>פנייה לרגש</b>. לפי המחוון, גם "פנייה להיגיון" התקבלה, אם הנימוק היה משכנע.</p>
+      </div>
+      <p class="mini">המסר צריך למשוך תשומת לב, לעורר עניין, ליצור רצון, ולהניע לפעולה.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2024, 2025</p>
+      <h2>ערוצי פרסום ושיטות שיווק</h2>
+      <div class="two">
+        <div>
+          <h3>ערוצי פרסום חוץ מהאינטרנט (2025)</h3>
+          <div class="flow"><span>עיתונים ודפוס</span><span>רדיו</span><span>טלוויזיה</span><span>שלטי חוצות</span><span>קולנוע</span><span>אריזות</span><span>תערוכות</span><span>ברושורים</span><span>סמלים ומתנות</span></div>
+          <h3 style="margin-top:12px">שיטות לשיווק עסקי תיירות (2024)</h3>
+          <div class="flow"><span>מפה לאוזן והמלצות</span><span>מודעות בעיתונים</span><span>פרסום חוצות</span><span>רדיו וטלוויזיה</span><span>רשתות חברתיות</span></div>
+          <p class="mini" style="margin-top:8px"><b>עיתונות מקצועית</b> פונה לאנשי הענף, כמו סוכני נסיעות.</p>
+        </div>
+        <div class="card">
+          <h3>מתי לפרסם (ספר)</h3>
+          <p class="mini">בתיירות מתכננים מראש: לקיץ מפרסמים כבר בדצמבר.</p>
+          <ul class="clean">
+            <li><b>המשכי:</b> פרסום רצוף כל השנה, למוצר לא עונתי.</li>
+            <li><b>פעימה:</b> כל השנה, ומגבירים לפני העונה. כמו מלונות אילת.</li>
+            <li><b>גיחה:</b> רק בשיא, כמו אתר הסקי בחרמון. חוסך כסף, אבל בין הגיחות שוכחים את המוצר.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">מושג שנשאל ב־2025</p>
+      <h2>קידום מכירות ויחסי ציבור</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">קידום מכירות</span>
+          <p class="mini">תמריצים קצרי טווח: הנחות, מתנות, תחרויות ומבצעים. בתיירות גם <b>סיורי היכרות</b> לסוכנים ולעיתונאים.</p>
+          <p class="note"><b>פרסום</b> נותן ללקוח <b>סיבה</b> לקנות. <b>קידום מכירות</b> נותן לו <b>תמריץ</b> לקנות עכשיו.</p>
+        </div>
+        <div class="card">
+          <span class="t">יחסי ציבור</span><span class="tag off">נשאל ב־2025</span>
+          <p class="mini">מערכת פעולות תקשורת בין חברה או גוף לבין הסביבה שלהם, כלפי פנים וכלפי חוץ. המטרה: <b>להיות</b> ו<b>להיראות</b> טובים יותר מאחרים, ביושר, באיכות, באמינות ובהגינות.</p>
+          <p class="mini">בניגוד לפרסום, ביחסי ציבור לא קונים זמן או מקום, אלא משיגים חשיפה: כתבה, אירוע, סיפור. השליטה בתוכן מוגבלת, אבל האמינות גבוהה יותר.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">מפה לאוזן ושיווק ישיר</p>
+      <h2>המלצה של חבר שווה יותר מפרסומת</h2>
+      <div class="two">
+        <div class="card">
+          <h3>מפה לאוזן</h3>
+          <p class="mini">המלצות בין אנשים. קריטי בתיירות, כי אי אפשר לנסות את החופשה מראש.</p>
+          <p class="mini"><b>יתרונות:</b> אמין (לממליץ אין אינטרס) וזול. <b>חסרונות:</b> אין שליטה, הוא איטי, חלקי, ויכול להיות גם שלילי.</p>
+        </div>
+        <div>
+          <h3>שיווק ישיר</h3>
+          <p class="mini">פנייה ישירה ללקוח, עם תגובה שאפשר למדוד. נשען על <b>מאגרי נתונים</b> של לקוחות.</p>
+          <ul class="clean">
+            <li><b>דיוור ישיר:</b> מכתב או מייל אישי, מותאם לפלח.</li>
+            <li><b>טלמרקטינג:</b> שיווק ומכירה בטלפון, לפי תסריט.</li>
+            <li><b>דיוור אלקטרוני:</b> מהיר, זול, עם תמונות וקישורים. רק ללקוחות שהסכימו.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2019, 2024</p>
+      <h2>למה תיירות מתאימה לאינטרנט</h2>
+      <div class="two">
+        <div>
+          <ul class="clean">
+            <li>מוצר התיירות <b>לא מוחשי</b>: אי אפשר להציג אותו פיזית בזמן הקנייה. באינטרנט רואים תמונות, סרטונים וקולות.</li>
+            <li>יש מגוון עצום של הצעות, והלקוח משווה מחירים.</li>
+            <li>המידע עדכני, וקונים מתי שרוצים, 24 שעות ביממה.</li>
+            <li>אפשר לקרוא חוות דעת והמלצות של אורחים.</li>
+          </ul>
+          <p class="mini" style="margin-top:8px"><b>חסרונות:</b> חשש מתשלום ברשת, מידע חלקי, ולא תמיד זול יותר. סוכן הנסיעות צריך להוסיף ערך: התמחות וייעוץ אישי.</p>
+        </div>
+        <div class="card">
+          <h3>היום: רשתות ומשפיענים</h3>
+          <p class="mini">בשנים האחרונות הרשתות החברתיות ו<b>משפיעני הרשת</b> הם ערוץ מרכזי. בבגרות 2024 הם הופיעו כפעולת שיווק לעידוד תיירות הפנים בזמן המלחמה (נושא 1).</p>
+          <p class="seen"><b>סחר מקוון נלמד:</b><a href="../05/#s11">נושא 5 · סחר מקוון</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל דוגמה לכלי בתמהיל התקשורת.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">סדרו את שלבי תהליך התקשורת.<span class="tag">רצף</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">מיינו את הסיסמאות לפי סוג הפנייה: היגיון, רגש, מוסר.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">התאימו כל עסק לדגם תזמון הפרסום: המשכי, פעימה, גיחה.<span class="tag">התאמה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">הסבירו מהי תקשורת בשיווק. בסרטון "התיירת ה־3 מיליון" של משרד התיירות: האם הסרטון פונה להיגיון או לרגש? נמקו.<span class="tag real">בגרות 2018</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "תמהיל התקשורת", ותנו דוגמה.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2024, 2025</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "יחסי ציבור", ותנו דוגמה מתחום התיירות.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2025</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">ציינו שתי שיטות לשיווק עסקי תיירות.<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">הסבירו מדוע מוצרים תיירותיים מתאימים במיוחד לשיווק באינטרנט.<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">ציינו שלושה ערוצי פרסום, חוץ מהאינטרנט.<span class="tag real">בגרות 2025</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide stop tint" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">מושגים ושאלות מהספר · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">הסבירו את המושג "קידוד המסר", ותארו את תהליך התקשורת בדוגמה מתיירות.<span class="tag off">נשאל בבגרות 2024</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">מלון חדש בגליל מפרסם בעיתון, נותן 20% הנחה בחודש הראשון ומזמין עיתונאי תיירות. זהו את שלושת כלי התקשורת, ואת תפקיד כל אחד.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">הסבירו מהו שיווק "מפה לאוזן", ומדוע הוא חשוב במיוחד בתיירות. ציינו חיסרון אחד שלו.<span class="tag">בעקבות הספר</span></div></div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide bgslide" id="s14" hidden>
+    <img class="bg" src="img/hero.jpg" alt="שוק בעיר העתיקה">
+    <span class="credit">מתוך מצגת ירושלים של המגמה</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>תקשורת שיווקית משפיעה על ידע, עמדות והתנהגות. פרסמת ≠ תקשרת.</li>
+        <li>תמהיל התקשורת: פרסום, קידום מכירות, יחסי ציבור, מכירה אישית, שיווק ישיר.</li>
+        <li>תהליך: מקור, קידוד, מסר, ערוץ, פענוח, תגובה, משוב, ורעש בדרך.</li>
+        <li>פנייה להיגיון, לרגש או למוסר. פרסום = סיבה, קידום מכירות = תמריץ.</li>
+        <li>מפה לאוזן ואינטרנט מתאימים לתיירות, כי המוצר לא מוחשי.</li>
+      </ul>
+      <p class="lead">סוף פרק מאפיינים ושיווק. לחזרה: דף המושגים לבגרות.</p>
+    </div>
+  </section>

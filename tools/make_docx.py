@@ -15,7 +15,7 @@ region, nn = sys.argv[1], sys.argv[2]
 SITE = '/home/claude/nisan1234-afk.github.io/tayarut'
 DECK = f'{SITE}/{region}/{nn}'
 REGION_HE = {'jerusalem': 'חבל ירושלים', 'deadsea': 'ים המלח ומדבר יהודה', 'coastal': 'מישור החוף',
-             'galilee': 'הגליל', 'golan': 'רמת הגולן', 'negev': 'הנגב, הערבה ואילת', 'valleys': 'חבל העמקים'}
+             'galilee': 'הגליל', 'golan': 'רמת הגולן', 'negev': 'הנגב, הערבה ואילת', 'valleys': 'חבל העמקים', 'marketing': 'מאפיינים ושיווק'}
 FONT = 'Arial'
 GREY = RGBColor(0x55, 0x55, 0x55)
 
@@ -220,7 +220,7 @@ run(p, 'איך עובדים עם הדף: ', bold=True)
 run(p, 'המורה מציג את המצגת, ואתם ממלאים כאן את מה שחשוב בכל שקף. בסוף הדף יש שאלות תרגול ובגרות.')
 # where it lives on the site + QR code to the topic page
 import qrcode, os
-URL = f'https://nisan1234-afk.github.io/tayarut/#{region}-{nn}'
+URL = f'https://nisan1234-afk.github.io/tayarut/marketing/#marketing-{nn}' if region == 'marketing' else f'https://nisan1234-afk.github.io/tayarut/#{region}-{nn}'
 qr_path = f'/home/claude/work/pdf/out/{region}{nn}/qr.png'
 os.makedirs(os.path.dirname(qr_path), exist_ok=True)
 qrcode.make(URL, box_size=10, border=1).save(qr_path)
@@ -230,7 +230,7 @@ _borders(t, {'top': 'single', 'bottom': 'single'})
 fix_w(t, [174])
 c = t.rows[0].cells[0]
 cell_text(c, 'החומר של הנושא באתר המגמה', bold=True, size=11)
-for line in [f'באתר המגמה, בחבל {REGION_HE.get(region, region)}, נושא {int(nn)}: {title}.',
+for line in [(f'באתר המגמה, בפרק {REGION_HE[region]}, נושא {int(nn)}: {title}.' if region == 'marketing' else f'באתר המגמה, בחבל {REGION_HE.get(region, region)}, נושא {int(nn)}: {title}.'),
              'בשורה של הנושא יש קישורים למצגת, לסרטון הפתיחה, לפודקאסט החזרה ולדף העבודה הזה.',
              'סרקו את הברקוד בטלפון, או הקלידו את הכתובת:']:
     pp = rtl_p(c.add_paragraph()); run(pp, line, size=10)
@@ -240,8 +240,29 @@ qp.add_run().add_picture(qr_path, width=Mm(30))
 para('', after=8)
 
 # ---------- part A: guided notes ----------
-para('חלק א · סיכום מודרך', bold=True, size=16, before=6, after=4)
-slides = soup.select('section.slide')
+CONCEPTS = region == 'marketing' and nn == '11'
+if CONCEPTS:
+    para('חלק א · מחברת מושגים', bold=True, size=16, before=6, after=2)
+    para('לכל מושג: הסבר במילים שלכם ודוגמה מישראל. מתחת לשם המושג: השנים שבהן נשאל בבגרות.', color=GREY, after=4)
+    raw = BeautifulSoup(open(f'{DECK}/index.html', encoding='utf8').read(), 'html.parser')
+    for sl in raw.select('section.slide'):
+        tabs = sl.select('.ctab table')
+        h = sl.find('h2')
+        if not tabs or 'הכי הרבה' in T(h):
+            continue
+        heading(T(h), T(sl.select_one('.kick')))
+        rows = [['מושג', 'הסבר במילים שלי', 'דוגמה']]
+        for tb in tabs:
+            for tr in tb.select('tr')[1:]:
+                tds = tr.find_all('td')
+                num = T(tds[0]) if len(tds) == 4 else ''
+                name = T(tr.select_one('td.d'))
+                yr = T(tds[2] if len(tds) == 4 else tds[1])
+                lab = (num + '. ' if num else '') + name + (f'\nנשאל: {yr}' if yr and yr != '—' else '')
+                rows.append([lab, '', ''])
+        table(rows, [46, 80, 48], min_h=14)
+para('חלק א · סיכום מודרך', bold=True, size=16, before=6, after=4) if not CONCEPTS else None
+slides = [] if CONCEPTS else soup.select('section.slide')
 qslides = []
 for i, s in enumerate(slides, 1):
     if s.select_one('.q'):

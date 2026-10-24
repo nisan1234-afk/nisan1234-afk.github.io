@@ -1,0 +1,198 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="ריף הדולפינים באילת">
+    <span class="credit">ריף הדולפינים · מצגת התמונות הרשמית · צילמה: אנט מרגיה</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 6</p>
+      <h1>המוצר התיירותי</h1>
+      <p class="lead">מה בעצם קונה מי שמזמין חופשה באילת? לא חדר ולא מושב במטוס, אלא חוויה: מנוחה, שמש ודולפינים. בנושא הזה לומדים מה מיוחד במוצר התיירותי, ואיך בונים ממנו חבילה.</p>
+      <div class="chips"><span class="chip">מוחשי ולא מוחשי</span><span class="chip">שישה מאפיינים</span><span class="chip">חמש רמות המוצר</span><span class="chip">לב המוצר</span><span class="chip">חבילת תיור</span><span class="chip">טיול מאורגן</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">מושגי יסוד</p>
+      <h2>מה זה מוצר</h2>
+      <p class="lead"><b>מוצר</b> הוא כל מה שמוצע לשוק כדי לספק צורך: סחורה, שירות או רעיון. השיווק מתמקד ב<b>תועלת</b> שהלקוח מקבל, ולא רק בתכונות.</p>
+      <div class="cards">
+        <div class="card"><span class="num">מושג 46</span><span class="t">מוצר מוחשי</span><span>אפשר לראות, לגעת, להחזיק ולאגור אותו: רהיטים, בגדים, מזון.</span><span class="ex">מזכרת מהשוק בירושלים.</span><span class="tag off">נשאל ב־2021</span></div>
+        <div class="card"><span class="num">מושג 47</span><span class="t">מוצר לא מוחשי</span><span>שירות או חוויה: אי אפשר לגעת בו או לקחת אותו הביתה. <b>שירותי תיירות הם מוצרים לא מוחשיים.</b></span><span class="ex">לילה במלון, סיור מודרך, טיסה.</span></div>
+        <div class="card"><span class="t">מוצר בר קיימא</span><span>מוצר מוחשי לשימוש חוזר, לאורך זמן.</span><span class="ex">מכונית, רהיט, אוטובוס של חברת תיור.</span><span class="tag off">נשאל ב־2022 · לא במיקוד 2026</span></div>
+        <div class="card"><span class="t">מוצר מתכלה</span><span>נצרך ונגמר.</span><span class="ex">מזון, סוללות. וחדר מלון שלא נמכר הלילה "התכלה": אי אפשר למכור אותו מחר.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2021, 2023</p>
+      <h2>שישה מאפיינים של המוצר התיירותי</h2>
+      <div class="factor" style="grid-template-columns:repeat(3,1fr)">
+        <div><span class="cn">1</span><b>לא מוחשי</b><span>אי אפשר למשש, לטעום או להריח אותו לפני הקנייה, ואי אפשר לקחת אותו הביתה.</span></div>
+        <div><span class="cn">2</span><b>ייצור וצריכה בבת אחת</b><span>השירות נוצר ברגע שהלקוח מקבל אותו: הסיור קורה כשהמדריך מדבר.</span></div>
+        <div><span class="cn">3</span><b>אי אפשר לאגור</b><span>מושב ריק בטיסה של היום אבד לתמיד.</span></div>
+        <div><span class="cn">4</span><b>אין העברת בעלות</b><span>קונים זכות להשתמש בחדר, לא את החדר.</span></div>
+        <div><span class="cn">5</span><b>תלוי במקום</b><span>כדי לחוות אותו צריך להגיע ליעד.</span></div>
+        <div><span class="cn">6</span><b>חוויה וזיכרון</b><span>הערך הוא רגשי: חוויות וזיכרונות.</span></div>
+      </div>
+      <p class="note">לכן חשובים <b>אמון, מידע מדויק ותמונות</b>: הלקוח קונה הבטחה. מכאן גם ש<b>האינטרנט מתאים לשיווק תיירות</b> (נושא 10).</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">מוצר חוויות · מושג 2024</p>
+      <h2>חמש רמות המוצר</h2>
+      <div class="two">
+        <ol class="steps">
+          <li><span><b>לב המוצר:</b> התועלת הבסיסית שהלקוח באמת קונה. במלון: לינה, וגם ביטחון ומנוחה.</span></li>
+          <li><span><b>המוצר המוחשי:</b> המבנה, החדר, הריהוט, העיצוב ורמת השירות.</span></li>
+          <li><span><b>המוצר הצפוי:</b> מה שהלקוח מצפה לו: ניקיון, מיטה נוחה, עמידה בהבטחות.</span></li>
+          <li><span><b>המוצר המעושר:</b> תוספות מעבר לציפייה, שמבדלות מהמתחרים.</span></li>
+          <li><span><b>המוצר בכוח:</b> מה שאפשר עוד לפתח בעתיד.</span></li>
+        </ol>
+        <div class="card">
+          <span class="num">מושג 75</span><span class="t">לב המוצר</span>
+          <span>הרעיון והמסר המרכזי: התועלת הבסיסית שעונה על השאלה <b>"מה הקונה באמת רוצה לקנות?"</b></span>
+          <span class="ex">מי שקונה "בריחה" לאיים הקריביים קונה בעצם תקווה לשלווה ולרוגע, ולא חדר עם מיטה.</span>
+          <span class="tag off">נשאל בבגרות 2024</span>
+        </div>
+      </div>
+      <p class="mini">בתחרות לא מספיק לב המוצר. כדי לבלוט, צריך להעשיר.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">איך קונים<span class="tag-ext">הרחבה</span></p>
+      <h2>ארבעה סוגי מוצרים לפי התנהגות הקנייה</h2>
+      <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+        <div class="card"><span class="t">מוצרי נוחות</span><span>נקנים לעיתים קרובות, מהר ובמאמץ מועט.</span><span class="ex">בקבוק מים בטיול.</span></div>
+        <div class="card"><span class="t">מוצרי חיפוש</span><span>נקנים אחרי השוואת מחיר, איכות ותכונות.</span><span class="ex">השוואה בין חבילות נופש.</span></div>
+        <div class="card"><span class="t">מוצרים ייחודיים</span><span>מיוחדים, או מותג חזק. הלקוח מוכן להתאמץ.</span><span class="ex">טיול יוקרה לאנטארקטיקה.</span></div>
+        <div class="card"><span class="t">מוצרים לא נדרשים</span><span>הלקוח לא מכיר אותם, או לא מתכנן לקנות.</span><span class="ex">ביטוח נסיעות שהסוכן הציע.</span></div>
+      </div>
+      <p class="mini">אופן הקנייה קובע את אופן השיווק. בתיירות הקנייה רגישה למחיר, ובמשפחה היא נחשבת "מותרות", אחרי מזון, דיור וביגוד.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">מושג 80 · בגרות 2024 · מושג 2022</p>
+      <h2>חבילת תיור</h2>
+      <div class="two">
+        <div>
+          <p>המוצר התיירותי הבסיסי: כמה שירותי נסיעה ותיירות, מספקים שונים, שמפעיל התיירות מציג לציבור <b>כמוצר אחד ובמחיר אחד</b>.</p>
+          <h3 style="margin-top:10px">מה אפשר לכלול</h3>
+          <div class="flow"><span>טיסות</span><span>העברות</span><span>לינה</span><span>ארוחות</span><span>השכרת רכב</span><span>כניסה לאתרים</span><span>סיורים והדרכה</span><span>הופעות ואירועים</span><span>ביטוח</span></div>
+          <p class="mini" style="margin-top:8px">דוגמאות: סוף שבוע עירוני (טיסה, לינה והעברות); שבעה לילות באילת עם טיסות.</p>
+        </div>
+        <div class="card">
+          <h3>עקרונות לבניית חבילה (ספר)</h3>
+          <ol class="steps">
+            <li><span>רמת מלונות אחידה. ואם לא, <b>להתחיל נמוך ולסיים גבוה</b>.</span></li>
+            <li><span>לשלב את האתרים החשובים, ולא בהכרח את היקרים.</span></li>
+            <li><span>לכלול חוויה מקומית ואותנטית: מסעדה אופיינית, פולקלור.</span></li>
+          </ol>
+          <p class="mini">והאטרקציה לא מספיקה לבד: חבילת מרפא צריכה חדרי טיפולים וצוות, וחבילת סקי צריכה מדריכים ורכבלים.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2024</p>
+      <h2>למי מתאים טיול מאורגן</h2>
+      <div class="two">
+        <div>
+          <h3>סוגי לקוחות (ספר)</h3>
+          <ul class="clean">
+            <li><b>חסר ניסיון:</b> חבילה שכוללת הכול, כדי לא להסתכן בבחירה לא נכונה.</li>
+            <li><b>לא דובר שפה זרה:</b> טיול מאורגן, שבו מישהו מתווך בשבילו.</li>
+            <li><b>אוהב חברה:</b> נהנה לטייל בקבוצה.</li>
+            <li><b>אינדיבידואליסט ותייר עצמאי:</b> לא יבחר בטיול מאורגן. אוסף מידע לבד, ונעזר רק בשירותים טכניים.</li>
+            <li><b>בעל עניין מיוחד:</b> צריך תוכנית מותאמת.</li>
+          </ul>
+        </div>
+        <div class="vs">
+          <div class="card"><h3>יתרונות</h3><p class="mini">הכול מתוכנן מראש, רואים אתרים נבחרים, מישהו אחר נוהג, הדרכה מקצועית, אין בעיית שפה, חברה נעימה, ולעיתים מחיר נמוך.</p></div>
+          <div class="card"><h3>חסרונות</h3><p class="mini">חוסר גמישות, קצב שלא מתאים לכולם, צריך לדייק בזמנים, מעט זמן במקום מעניין, עצירות קניות, ומדריך או מלון שלא תמיד מוצלחים.</p></div>
+        </div>
+      </div>
+      <p class="note">אין מוצר אחד לכולם: כל סוג לקוח צריך חבילה אחרת.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide stop" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">מיינו למוצר מוחשי ולמוצר לא מוחשי.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">סדרו את חמש רמות המוצר מהבסיסית ועד המתקדמת.<span class="tag">רצף</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">התאימו לכל לקוח את המוצר המתאים לו.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">סמנו את המאפיינים של המוצר התיירותי.<span class="tag">בחירה מרובה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide stop tint" id="s9" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">ציינו ארבעה מוצרים תיירותיים שאפשר לכלול בחבילת תיור. תארו חבילת תיור שמתאימה לתייר חסר ניסיון, או לתייר שאינו דובר שפה זרה, והסבירו.<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "לב המוצר", ותנו דוגמה.<span class="tag">מושג 75</span><span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "חבילת תיור", ותנו דוגמה.<span class="tag">מושג 80</span><span class="tag real">בגרות 2022</span></div></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop tint" id="s10" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">ציינו שני יתרונות ושני חסרונות של טיול מאורגן.<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">הסבירו מדוע תיירות נחשבת מוצר לא מוחשי.<span class="tag real">בגרות 2023</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">בסרטון ובלוגואים של ערים בישראל מוצגים מוצרים תיירותיים. איזה סוג מוצר הם: מוצר מוחשי או מוצר שירות? נמקו.<span class="tag real">בגרות 2021</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מסכמות · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">הסבירו את המושגים "מוצר מוחשי" ו"מוצר בר קיימא", ותנו דוגמה לכל אחד.<span class="tag off">נשאל בבגרות 2021, 2022</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">בחרו מלון בישראל, והסבירו בעזרתו שלוש מרמות המוצר.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">ציינו שלושה עקרונות לבניית חבילת תיור, והסבירו אחד מהם.<span class="tag">בעקבות הספר</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide bgslide" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="ריף הדולפינים">
+    <span class="credit">מצגת התמונות הרשמית · צילמה: אנט מרגיה</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>מוצר מוחשי = אפשר לגעת ולאגור. תיירות היא מוצר לא מוחשי: שירות וחוויה.</li>
+        <li>שישה מאפיינים: לא מוחשי, ייצור וצריכה יחד, לא נאגר, בלי בעלות, תלוי במקום, חוויה.</li>
+        <li>חמש רמות: לב המוצר, מוחשי, צפוי, מעושר, בכוח.</li>
+        <li>חבילת תיור: כמה שירותים, מחיר אחד. להתחיל נמוך ולסיים גבוה.</li>
+        <li>טיול מאורגן מתאים לחסר ניסיון ולמי שלא דובר שפה. יש לו יתרונות וחסרונות.</li>
+      </ul>
+      <p class="lead">בנושא הבא: תמהיל המוצרים, מחזור החיים, מיצוב ומיתוג.</p>
+    </div>
+  </section>

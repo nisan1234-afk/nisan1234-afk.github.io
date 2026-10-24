@@ -1,0 +1,245 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="חוף נתניה">
+    <span class="credit">חוף נתניה · מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 3</p>
+      <h1>תיירות לשם הנאה</h1>
+      <p class="lead">רוב התיירים באים כדי ליהנות: לבקר קרובים, לנוח בחוף, לטייל, להכיר תרבות או לטפל בגוף. כל קבוצה צריכה מוצר אחר.</p>
+      <div class="chips"><span class="chip">ביקור משפחות</span><span class="chip">סיור משפחות</span><span class="chip">גיל הזהב</span><span class="chip">נופש</span><span class="chip">תיור ותיירות עומק</span><span class="chip">נופש פעיל</span><span class="chip">מרפא וריפוי</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">מפת הנושא</p>
+      <h2>מה נכנס בתוך "הנאה"</h2>
+      <div class="factor" style="grid-template-columns:repeat(4,1fr)">
+        <div><b>לפי מי נוסע</b><span>ביקור משפחות · סיור משפחות · גיל הזהב</span></div>
+        <div><b>לפי רמת הנופש</b><span>תיירות המונים · בינונית · יוקרה</span></div>
+        <div><b>לפי העומק</b><span>תיור (Sightseeing) · תיירות תרבות ועומק</span></div>
+        <div><b>לפי הפעילות</b><span>נופש פעיל · אתגר · מדברית · ספורט · מרפא</span></div>
+      </div>
+      <div class="card">
+        <h3>למה ישראל מושכת תיירי הנאה</h3>
+        <p class="mini">שלוש מטרות הביקור העיקריות של תיירים בישראל (2017, לפי מחוון 2022): <b>תיור וטיול</b>, <b>ביקור קרובים</b> ו<b>צליינות</b>. לפי הספר אין מוצר אחד שמתאים לכולם, ולכן מפלחים את התיירים לפי מטרת הביקור.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2018, 2022 · מושגים 2019, 2025</p>
+      <h2>ביקור משפחות מול סיור משפחות</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">ביקור משפחות</span>
+          <p class="mini">תיירים מחו"ל שבאים לבקר <b>קרובים</b> בישראל. נתח נכבד מהתיירות הנכנסת.</p>
+          <ul class="clean">
+            <li>רובם יהודים, בעיקר מארה"ב ומחבר העמים, ובעיקר בקיץ.</li>
+            <li>לרוב באים לאירוע משפחתי: בר מצווה, חתונה.</li>
+            <li>שהייה ארוכה מהממוצע, ולרוב זה ביקור חוזר.</li>
+            <li>רבים כמעט לא משתמשים במלון ובמסעדות, כי הם גרים אצל הקרובים.</li>
+            <li>יוצאים לסיורים יומיים, כי הקרובים עובדים.</li>
+          </ul>
+          <p class="mini">ובכל זאת התרומה הכלכלית גבוהה, כי השהייה ארוכה.</p>
+        </div>
+        <div class="card">
+          <span class="t">סיור משפחות (טיול משפחות)</span>
+          <p class="mini">המשפחה <b>היא</b> קבוצת המטיילים. המשפחה הגרעינית, ולפעמים גם המורחבת, יוצאת יחד לטייל בארץ או בחו"ל, כדי לבלות זמן איכות.</p>
+          <ul class="clean">
+            <li>עונתי: בעיקר בחופשות בתי הספר ובחגים.</li>
+            <li>צריך להתאים את הטיול לכל הגילים.</li>
+          </ul>
+          <p class="note" style="margin-top:8px"><b>להבחין:</b> בביקור משפחות באים <b>אל</b> המשפחה. בסיור משפחות מטיילים <b>עם</b> המשפחה.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2025 · מושג 2024</p>
+      <h2>גיל הזהב: קהל יעד חשוב</h2>
+      <div class="two">
+        <div>
+          <h3>למה זה קהל חשוב</h3>
+          <ul class="clean">
+            <li>זמן פנוי בשפע, ואפשר לצאת לחופשה ארוכה.</li>
+            <li>הכנסה פנויה (פנסיה), ואין ילדים קטנים בבית.</li>
+            <li>גמישות: לא תלויים בחופשות, ולכן נוסעים גם מחוץ לעונה.</li>
+            <li>סקרנות, ורצון ליצור זיכרונות.</li>
+          </ul>
+          <h3 style="margin-top:10px">המגבלות</h3>
+          <p class="mini">בריאות ותנועה, וחשש לחלות. לכן בונים תוכנית פחות עמוסה, עם זמן למנוחה ומזון מתאים.</p>
+        </div>
+        <div>
+          <div class="card"><h3>טיול כוכב</h3><p class="mini">לנים כל הטיול במלון אחד, ויוצאים ממנו בכל יום לטיול וחוזרים. מתאים לגיל הזהב, כי לא צריך לארוז ולעבור מלון כל יום.</p></div>
+          <div class="card" style="margin-top:10px"><h3>למה שייט מתאים להם</h3><p class="mini">פורקים מזוודות פעם אחת, אין מאמץ פיזי, לא דואגים לארוחות ויש מגוון דיאטות, יש צוות רפואי על האונייה, וסיורי החוף מותאמים.</p></div>
+          <div class="card" style="margin-top:10px"><h3>למה תיירות תרבות מתאימה להם</h3><p class="mini">לא דורשת מאמץ פיזי רב, ונותנת עניין ומשמעות: הרצאות, מוזיאונים, קונצרטים, מופעי אור קולי, סיורי מורשת.</p></div>
+        </div>
+      </div>
+      <p class="seen"><b>גיל הזהב בחבלים:</b><a href="../../coastal/04/#s9">מישור החוף 4 · נתניה מול אשקלון</a><a href="../../jerusalem/01/#s23">ירושלים 1 · מי מגיע לירושלים</a></p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">תיירות נופש · בגרות 2024</p>
+      <h2>נופש: שלוש רמות</h2>
+      <p class="lead">תיירות נופש (Resort) היא חופשה למנוחה, לבילוי ולהתרגעות. שורשיה בטיולים המאורגנים של <b>תומס קוק</b> ברכבת, באמצע המאה ה־19.</p>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">תיירות המונים</span><span class="en">Mass Tourism</span><span>היקף גדול מאוד, הרבה תיירים באותו מקום ובאותו זמן.</span><span class="ex">תמונה של ונציה הצפופה: יעד עירוני מלא תיירים (מחוון 2024).</span></div>
+        <div class="card"><span class="t">רמה בינונית</span><span>שירות טוב, פחות אנשים ויותר שקט.</span><span class="ex">מלון חוף משפחתי.</span></div>
+        <div class="card"><span class="t">תיירות יוקרה</span><span class="en">Luxury Tourism</span><span>שירות, נוחות וייחודיות גבוהים במיוחד, מעט תיירים ומחיר גבוה.</span><span class="ex">אתר נופש אקזוטי ויקר (מחוון 2024).</span></div>
+      </div>
+      <p class="seen"><b>נופש ותיירות 3S נלמדו:</b><a href="../../negev/04/#s2">הנגב 4 · ים חם, אלמוגים ושמש</a><a href="../../coastal/04/#s9">מישור החוף 4 · נתניה מול אשקלון</a></p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2025, 2018 · מושג 2022</p>
+      <h2>תיור מול תיירות עומק</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">תיור · טיול סקירה</span><span class="en">Sightseeing</span>
+          <p class="mini">היכרות <b>כללית ורחבה</b> עם היעד: הרבה אתרים, זמן קצר בכל אחד, הסבר כללי, האתרים המפורסמים. ביקור ראשון הוא לרוב תיור.</p>
+          <p class="mini"><b>דוגמה:</b> חיפה, עכו וראש הנקרה ביום אחד.</p>
+        </div>
+        <div class="card">
+          <span class="t">תיירות תרבות · טיול עומק</span>
+          <p class="mini">היכרות <b>מעמיקה</b> עם נושא, אתר או תקופה: היסטוריה, מורשת, פולקלור ואורחות חיים. התייר רוצה לטייל "אחרת", ומקדיש זמן לאתרים חשובים.</p>
+          <p class="mini"><b>דוגמה:</b> סיור בשכונות החרדיות בירושלים. פעילויות: מוזיאונים, קונצרטים, אתרים ארכאולוגיים, אופרה במצדה, אירוח בכפר דרוזי, פסטיבלים.</p>
+        </div>
+      </div>
+      <p class="note"><b>להבחין:</b> תיור = <b>רוחב</b> (הרבה, בקצרה). תיירות תרבות = <b>עומק</b> (מעט, לעומק). השוני התרבותי בין התייר ליעד מגביר את המשיכה.</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2025 · מושג 2019</p>
+      <h2>נופש פעיל, אתגר, מדבר וספורט</h2>
+      <div class="two">
+        <div>
+          <ul class="clean">
+            <li><b>נופש פעיל:</b> חופשה שבמרכזה פעילות גופנית: הליכה, צלילה, שיט, אופניים, רכיבה.</li>
+            <li><b>תיירות אתגר</b> <span class="tag off">נשאל ב־2019</span>: חלק מהנופש הפעיל. פעילות ספורטיבית בטבע: סנפלינג, ג'יפים, טיפוס, רפטינג.</li>
+            <li><b>תיירות מדברית:</b> לישראל אין אלפים ונהרות גדולים, אבל יש מדבר: ג'יפים, גמלים, מסלולים ומפגש עם בדואים.</li>
+            <li><b>תיירות ספורט:</b> <b>צפייה</b> באירוע ספורט, או מחנה אימון של קבוצה. חופשה עם אופניים היא נופש פעיל, לא תיירות ספורט.</li>
+          </ul>
+        </div>
+        <div class="plan tblwrap"><table>
+          <tr><th>פעילות</th><th>התנאי הפיזי שמאפשר אותה</th></tr>
+          <tr><td class="d">סקי בחרמון</td><td>הר גבוה שיורד בו שלג</td></tr>
+          <tr><td class="d">מסלולי נחלים בגולן</td><td>שפע מקורות מים</td></tr>
+          <tr><td class="d">רכיבה על גמלים</td><td>מדבר</td></tr>
+          <tr><td class="d">אופניים במכתש</td><td>מכתשים ושטח פתוח</td></tr>
+          <tr><td class="d">צלילה באילת</td><td>שמורת אלמוגים</td></tr>
+          <tr><td class="d">תצפית כוכבים</td><td>אין זיהום אור</td></tr>
+          <tr><td class="d">סנפלינג</td><td>מצוקים ואזור הררי</td></tr>
+        </table></div>
+      </div>
+      <p class="seen"><b>כבר נלמד:</b><a href="../../negev/01/#s8">הנגב 1 · נופש פעיל במדבר</a><a href="../../golan/04/#s3">הגולן 4 · החרמון</a><a href="../../deadsea/02/#s2">ים המלח 2 · מדבר יהודה</a></p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2022, 2024, 2025 · מושגים 2021, 2025</p>
+      <h2>תיירות מרפא מול תיירות ריפוי</h2>
+      <div class="vs">
+        <div class="card">
+          <span class="t">תיירות מרפא</span>
+          <p class="mini">ניצול <b>סגולות הטבע</b> לבריאות ולנופש: מעיינות חמים, מים מינרליים, בוץ, אוויר ואקלים, בשילוב מנוחה, ספא ובידור.</p>
+          <div class="plan"><table>
+            <tr><th>אתר</th><th>מיקום</th></tr>
+            <tr><td class="d">ים המלח</td><td>ים המלח</td></tr>
+            <tr><td class="d">חמת גדר</td><td>רמת הגולן</td></tr>
+            <tr><td class="d">חמי טבריה</td><td>הגליל התחתון</td></tr>
+            <tr><td class="d">חמי געש</td><td>מישור החוף</td></tr>
+          </table></div>
+        </div>
+        <div class="card">
+          <span class="t">תיירות ריפוי</span>
+          <p class="mini">נסיעה למדינה אחרת כדי לקבל <b>טיפול רפואי</b>: קליני, ניתוח או שיקום, שאינו קיים בארץ המוצא או שרמתו שם נמוכה. מגיעים לבתי חולים גדולים, גם ממדינות בלי יחסים דיפלומטיים.</p>
+          <p class="mini"><b>התרומה לענף:</b> זו לא תיירות להנאה, אבל השהייה ארוכה, והמשפחה המלווה לנה במלון ומשתמשת במסעדות ובהסעות. לכן היא נכללת בתיירות (מחוון 2024).</p>
+        </div>
+      </div>
+      <p class="seen"><b>מרפא בים המלח נלמד:</b><a href="../../deadsea/01/#s7">ים המלח 1 · חופשה שהיא גם טיפול</a><a href="../../golan/02/#s6">הגולן 2 · חמת גדר</a></p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide stop" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל פעילות לסוג התיירות: חיפה, עכו וראש הנקרה ביום אחד; סיור בשכונות החרדיות; רפטינג בירדן; ניתוח בבית חולים; טבילה בחמי טבריה.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">מיינו לשלוש רמות הנופש: ונציה הצפופה, מלון חוף משפחתי, אי פרטי עם וילות.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">סמנו את המאפיינים של ביקור משפחות.<span class="tag">בחירה מרובה</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">מהו "טיול כוכב", ולמה הוא מתאים לגיל הזהב?<span class="tag">בחירה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop tint" id="s10" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">ציינו שתי סיבות לכך שגיל הזהב הוא קהל יעד חשוב. הסבירו מדוע שייט מתאים לגיל הזהב, וציינו שני יתרונות שלו.<span class="tag real">בגרות 2025</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "תיירות ריפוי", ותנו דוגמה.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2025</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "טיול משפחות" (סיור משפחות), ותנו דוגמה.<span class="tag">מושג</span><span class="tag off">נשאל בבגרות 2025</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">הסבירו את ההבדל בין טיול סקירה (תיור) לטיול עומק, ותנו דוגמה לכל אחד. ציינו שלושה אתרי מרפא בישראל ואת מיקומם.<span class="tag real">בגרות 2025</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">לפניכם שתי תמונות: ונציה הצפופה בתיירים, ואתר נופש אקזוטי עם מעט נופשים. לאיזו קטגוריה של תיירות נופש מתאימה כל תמונה? נמקו.<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">הסבירו מהי תיירות מרפא, וציינו שלושה אתרי מרפא בישראל. הסבירו מהי תיירות ריפוי, ומה תרומתה לענף התיירות.<span class="tag real">בגרות 2024</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">ציינו את שלוש מטרות הביקור העיקריות של תיירים בישראל. הסבירו את ההבדל בין תיירות מרפא לתיירות ריפוי.<span class="tag real">בגרות 2022</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">ציינו שלושה מאפיינים של תיירות ביקור משפחות.<span class="tag real">בגרות 2018, 2022</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">הסבירו מהי תיירות תרבות, וציינו שלוש פעילויות שמתאימות לה בישראל.<span class="tag real">בגרות 2018</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide bgslide" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="חוף נתניה">
+    <span class="credit">מתוך השידור "מישור החוף המרכזי והדרומי", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>ביקור משפחות: באים אל הקרובים, שהייה ארוכה, מעט מלון. סיור משפחות: מטיילים עם המשפחה, בחופשות.</li>
+        <li>גיל הזהב: זמן, כסף וגמישות. טיול כוכב, שייט ותיירות תרבות מתאימים להם.</li>
+        <li>נופש בשלוש רמות: המונים, בינונית, יוקרה.</li>
+        <li>תיור = רוחב. תיירות תרבות = עומק.</li>
+        <li>מרפא = סגולות הטבע. ריפוי = טיפול רפואי.</li>
+      </ul>
+      <p class="lead">בנושא הבא: צליינות, ייחוד הארץ ומגזרים.</p>
+    </div>
+  </section>

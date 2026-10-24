@@ -1,0 +1,216 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="חוף ים המלח">
+    <span class="credit">חוף ים המלח · מתוך השידור "צפון ים המלח", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 9</p>
+      <h1>שיווק מטרה ופילוח שוק</h1>
+      <p class="lead">לים המלח מגיעים חולי פסוריאזיס מגרמניה, משפחות מתל אביב, צליינים מאיטליה ומטיילים צעירים. אי אפשר לפנות לכולם באותה פרסומת. לכן מחלקים את השוק לקבוצות, ובוחרים למי לפנות ואיך.</p>
+      <div class="chips"><span class="chip">שיווק מטרה</span><span class="chip">תמהיל השיווק</span><span class="chip">פילוח ופלח</span><span class="chip">סוגי פילוח</span><span class="chip">אחיד, מבודל, מרוכז</span><span class="chip">שיווק נישות</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">מושג 60 · מושג 2022</p>
+      <h2>שיווק מטרה</h2>
+      <p class="lead">התהליך של קביעת <b>שוקי מטרה</b>, והתאמת תמהיל השיווק לצורכי הלקוחות שבהם, כך שיהיה רווחי לחברה. <b>שוק מטרה</b> הוא קבוצת הלקוחות שהחברה מזהה כקהל היעד העיקרי, ואליה היא מכוונת את מאמצי השיווק.</p>
+      <ol class="steps">
+        <li><span><b>פילוח:</b> מחלקים את כל הלקוחות לקבוצות עם צרכים דומים.</span></li>
+        <li><span><b>הערכה:</b> בודקים כמה כל פלח גדול, רווחי ומתאים לנו.</span></li>
+        <li><span><b>בחירה:</b> בוחרים פלח אחד או כמה, שאליהם נפנה.</span></li>
+        <li><span><b>התאמה:</b> בונים לכל פלח מוצר, מחיר, הפצה ופרסום שמתאימים לו.</span></li>
+      </ol>
+      <p class="seen"><b>פילוח בחבלים:</b><a href="../../deadsea/01/#s13b">ים המלח 1 · מי מגיע לים המלח</a><a href="../../coastal/04/#s13">מישור החוף 4 · מי מגיע לאן</a></p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">מושג 61</p>
+      <h2>תמהיל השיווק: ארבעת ה־P</h2>
+      <p>הכלים שבעזרתם מנהל השיווק מגדיר את האסטרטגיה של הארגון, ומתאים אותה לשוק המטרה.</p>
+      <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+        <div class="card"><span class="en">Product</span><span class="t">מוצר</span><span>תכונות, איכות, שירותים נלווים.</span></div>
+        <div class="card"><span class="en">Price</span><span class="t">מחיר</span><span>לפי העלות, המתחרים, הביקוש והמטרות.</span></div>
+        <div class="card"><span class="en">Place</span><span class="t">הפצה</span><span>הערוצים שמביאים את המוצר ללקוח: סוכנים, אתר, מארגנים.</span></div>
+        <div class="card"><span class="en">Promotion</span><span class="t">קידום</span><span>פרסום, יחסי ציבור, קידום מכירות. נלמד בנושא 10.</span></div>
+      </div>
+      <p class="mini">בתיירות מוסיפים: <b>אנשים</b> (העובדים שנותנים את השירות), <b>תהליך</b>, <b>עדות פיזית</b> (סימן מוחשי לשירות לא מוחשי), <b>חבילה</b> ו<b>שיתוף פעולה</b> בין עסקים.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 62–63 · מושג 2023</p>
+      <h2>פילוח שוק ופלח שוק</h2>
+      <div class="two">
+        <div>
+          <div class="card"><span class="num">מושג 62</span><span class="t">פילוח שוק</span><span>חלוקת כל הלקוחות לקבוצות של אנשים עם צרכים זהים, שנבדלות זו מזו במאפיינים שמסבירים את ההתנהגות הצרכנית שלהן.</span><span class="tag off">נשאל ב־2023</span></div>
+          <div class="card" style="margin-top:10px"><span class="num">מושג 63</span><span class="t">פלח שוק</span><span>קבוצה מזוהה בתוך השוק, שהמשווקים מתאימים לה מוצר.</span><span class="ex">"צליינים קתולים מאיטליה", "משפחות עם ילדים קטנים מהמרכז".</span></div>
+        </div>
+        <div>
+          <h3>למה מפלחים</h3>
+          <ul class="clean">
+            <li>אין מוצר אחד שמתאים לכולם.</li>
+            <li>התקציב מוגבל, וכדאי לכוון אותו לאנשים הנכונים.</li>
+            <li>לפנות לקהלים שבהם לישראל יש יתרון.</li>
+          </ul>
+          <h3 style="margin-top:10px">מתי פלח שווה פנייה (ספר)</h3>
+          <p class="mini">כשהוא גדול מספיק, אנשיו דומים זה לזה, אפשר למדוד אותו, הוא יציב, ויש לנו יתרון בו.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 66–69 · בגרות 2025, 2026</p>
+      <h2>דרכים לפלח</h2>
+      <div class="plan tblwrap"><table>
+        <tr><th>פילוח</th><th>לפי מה</th><th>דוגמה</th></tr>
+        <tr><td class="d">דמוגרפי (66)</td><td>גיל, מין, השכלה, דת, הכנסה, מצב משפחתי</td><td>טיול כוכב בנתניה לגיל הזהב; "תאילנד למשפחות"</td></tr>
+        <tr><td class="d">גיאוגרפי (67)</td><td>מקום מגורים, אקלים, הרגלים של האזור</td><td>חבילה לאילת לתיירים מגרמניה בחורף</td></tr>
+        <tr><td class="d">התנהגותי (68) <span class="tag off">2025</span></td><td>הרגלי קנייה, תדירות שימוש, נאמנות למותג, תגובה להטבות</td><td>מועדון הנוסע המתמיד, מועדון לקוחות של רשת מלונות</td></tr>
+        <tr><td class="d">לפי מטרת הנסיעה (69)</td><td>למה התייר נוסע: נופש, עסקים, דת</td><td>תיירות עסקים, צליינות</td></tr>
+        <tr><td class="d">פסיכוגרפי</td><td>אורח חיים, אישיות וערכים</td><td>מחפשי הרפתקאות</td></tr>
+        <tr><td class="d">לפי תועלת</td><td>התועלת שהלקוח מחפש</td><td>מנוחה, ריפוי, אתגר</td></tr>
+      </table></div>
+      <p class="note">לפי שאלות הבגרות הפתורות, <b>הפילוח לפי מטרת הנסיעה הוא החשוב ביותר</b> בתיירות. תיירות עסקים, למשל, היא פילוח לפי מטרת הנסיעה (או לפי תועלת), לפי מחוון 2026.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">מושגים 64–65, 70–72 · בגרות 2021, 2026 · מושג 2024, 2026</p>
+      <h2>אחיד, מבודל או מרוכז</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="num">מושג 70</span><span class="t">שיווק אחיד</span><span>מתעלמים מההבדלים, ופונים לכל השוק בהצעה אחת. מוצר אחד שמתאים לרוב הקונים.</span><span class="ex">קוקה־קולה בתחילת דרכה: בקבוק אחד, טעם אחד.</span></div>
+        <div class="card"><span class="num">מושג 71</span><span class="t">שיווק מבודל</span><span>בוחרים כמה פלחים, ובונים <b>תמהיל שיווק שונה לכל פלח</b>.</span><span class="ex">ישרוטל: מלון ספורט, מלון יוקרה ומלון מדבר, לקהלים שונים.</span></div>
+        <div class="card"><span class="num">מושג 72</span><span class="t">שיווק מרוכז</span><span>כל המשאבים מכוונים ל<b>פלח אחד</b>. מתאים לעסק קטן, ודורש יצירתיות.</span><span class="ex">מלון שמספק את צורכי ציבור מצומצם, ושולט בשוק הזה (2026).</span></div>
+      </div>
+      <div class="vs">
+        <div><p class="mini"><b>שיווק המוני (מושג 64):</b> שיווק למספר גדול של אנשים, מתוך הנחה שכולם מגיבים לאותו מוצר באותו אופן.</p></div>
+        <div><p class="mini"><b>שיווק הנישות (מושג 65):</b> פנייה לפלח קטן עם צרכים מיוחדים, שהחברות הגדולות לא מטפלות בו. דורש התמחות.<span class="tag real">2024, 2026</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2021 · הדמיה 2018</p>
+      <h2>למה שיווק מבודל מתאים לתיירות</h2>
+      <div class="two">
+        <div>
+          <p>לתיירים יש מטרות שונות מאוד: צליינות, נופש, עסקים, מרפא. כל פלח צריך מוצר ומסר משלו.</p>
+          <ul class="clean" style="margin-top:10px">
+            <li>המכירות גדלות, כי פונים לכמה קהלים.</li>
+            <li><b>הסיכון קטן:</b> השווקים מפוזרים. אם שוק אחד נכשל (למשל בגלל משבר), האחרים מחפים עליו.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>דף פרסומי של משרד התיירות (2021)</h3>
+          <p class="mini">אותו דף פנה לכמה פלחים בבת אחת:</p>
+          <ul class="clean">
+            <li><b>אתגר וספורט:</b> אופניים בנגב, רכבל בחרמון.</li>
+            <li><b>טבע וצפרות:</b> אגמון החולה.</li>
+            <li><b>צליינות:</b> הכותל, הירדנית, הגנים הבהאיים.</li>
+            <li><b>מרפא:</b> ים המלח.</li>
+            <li><b>נופש ותרבות:</b> חוף תל אביב, שוק מחנה יהודה, היכל הספר.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="mini">גם פארק יטבתה בערבה הוא דוגמה לשיווק מבודל: הוא פונה לכמה קהלים שונים, ולכל אחד מציע משהו אחר (בעקבות הדמיה 2018).</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">בגרות 2024, 2025</p>
+      <h2>לזהות את שוק המטרה בסרטון</h2>
+      <div class="vs">
+        <div class="card">
+          <h3>"שבת חורפית בכרמל" (2024)</h3>
+          <p class="mini">שוק המטרה: <b>משפחות</b>. רואים את זה בבילוי המשפחתי, בגיבוש, בכיף ובפעילויות המשותפות שבסרטון.</p>
+        </div>
+        <div class="card">
+          <h3>שירות VIP לאנשי עסקים (2025)</h3>
+          <p class="mini">שוק המטרה: <b>אנשי עסקים מחו"ל</b>. רואים את זה בטרקלין העסקים, בצ'ק־אין המהיר, ברכבי היוקרה ובאבטחה האישית.</p>
+        </div>
+      </div>
+      <p class="note"><b>איך עונים:</b> מגדירים את המושג (שיווק מטרה או שוק מטרה), אומרים מי הקהל, ומביאים <b>ראיה מהסרטון</b>: מה רואים בו שמתאים לקהל הזה.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide stop" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו כל דוגמה לסוג הפילוח: דמוגרפי, גיאוגרפי, התנהגותי, לפי מטרת הנסיעה.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">התאימו כל עסק לאסטרטגיה: אחיד, מבודל, מרוכז.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">סדרו את ארבעת השלבים של שיווק מטרה.<span class="tag">רצף</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">התאימו כל פעולה לרכיב בתמהיל השיווק: מוצר, מחיר, הפצה, קידום.<span class="tag">התאמה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop tint" id="s10" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה פתוחה ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">הסבירו מהו פלח שוק. דף פרסומי של משרד התיירות מציג אופניים בנגב, אגמון החולה, הכותל וים המלח: לאילו שלושה פלחי שוק הוא פונה? מהי האסטרטגיה המתאימה ביותר לשיווק תיירות? נמקו.<span class="tag real">בגרות 2021</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">הסבירו את המושג "שיווק נישה", ותנו דוגמה.<span class="tag">מושג 65</span><span class="tag real">בגרות 2024, 2026</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">הסבירו את המושג "פילוח התנהגותי", ותנו דוגמה.<span class="tag">מושג 68</span><span class="tag real">בגרות 2025</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות מבגרויות · עונים בסטודיו</p>
+      <h2>שאלות 8–10</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">מלון מספק את צורכי ציבור מצומצם של אנשי עסקים. מהי אסטרטגיית השיווק שלו? נמקו. לאיזה סוג פילוח שייכת תיירות עסקים, ומהם שני סוגי פילוח נוספים?<span class="tag real">בגרות 2026</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">הסבירו מהו שיווק מטרה, בהתייחס לסרטון "שבת חורפית בכרמל". מי קהל היעד, ואיך רואים את זה?<span class="tag real">בגרות 2024</span></div></div>
+      <div class="q"><span class="qn">10</span><div class="qt">הסבירו מהו שוק מטרה. מיהו שוק המטרה בסרטון שמציג שירות VIP בנמל התעופה?<span class="tag real">בגרות 2025</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות ומושגים · עונים בסטודיו</p>
+      <h2>שאלות 11–13</h2>
+      <div class="q"><span class="qn">11</span><div class="qt">פארק יטבתה בערבה משתמש בשיווק מבודל. הסבירו מהו שיווק מבודל, ולמה הוא מתאים לתיירות. ציינו והסבירו אסטרטגיית שיווק נוספת.<span class="tag">בעקבות הדמיה 2018</span></div></div>
+      <div class="q"><span class="qn">12</span><div class="qt">הסבירו את המושגים "שיווק מטרה" ו"תמהיל השיווק", ותנו דוגמה.<span class="tag">מושגים 60, 61</span><span class="tag real">בגרות 2022</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">הסבירו את המושגים "פילוח שוק" ו"פלח שוק", ותנו דוגמה מתיירות לישראל.<span class="tag">מושגים 62, 63</span><span class="tag real">בגרות 2023</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide bgslide" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="חוף ים המלח">
+    <span class="credit">מתוך השידור "צפון ים המלח", מערכת השידורים הלאומית</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>שיווק מטרה: פילוח ← הערכה ← בחירה ← התאמת התמהיל.</li>
+        <li>תמהיל השיווק: מוצר, מחיר, הפצה, קידום.</li>
+        <li>פילוח: דמוגרפי, גיאוגרפי, התנהגותי, מטרת נסיעה (החשוב ביותר בתיירות).</li>
+        <li>אחיד = הצעה אחת לכולם. מבודל = תמהיל לכל פלח (המתאים לתיירות). מרוכז = פלח אחד.</li>
+        <li>נישה = פלח קטן עם צרכים מיוחדים, שדורש התמחות.</li>
+      </ul>
+      <p class="lead">בנושא הבא: תקשורת שיווקית.</p>
+    </div>
+  </section>

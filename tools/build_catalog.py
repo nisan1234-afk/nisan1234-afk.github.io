@@ -185,6 +185,7 @@ header.top .wrap{display:flex;align-items:center;gap:14px;padding-block:12px}
 .rtext h2{font-family:"Frank Ruhl Libre",serif;font-size:32px;margin:10px 0 4px;color:var(--olive-d)}
 .rtext p{margin:0 0 12px;color:var(--mute)}
 .rcount{font-size:13px;background:var(--soft);border-radius:999px;padding:3px 10px}
+.xlink{text-decoration:none}.xlink:hover{border-color:var(--olive)}
 .rimg{background-size:cover;background-position:center;min-height:180px}
 .topics{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .topic{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;display:grid;grid-template-columns:minmax(200px,.8fr) 3fr;gap:14px;align-items:center;scroll-margin-top:120px}
@@ -214,7 +215,7 @@ footer{color:var(--mute);font-size:13px;text-align:center;padding:28px 16px 40px
 
 JS = """
 const q=document.getElementById('q');
-function apply(){const v=(q.value||'').trim();document.querySelectorAll('.region').forEach(r=>{let any=false;r.querySelectorAll('.topic').forEach(t=>{const ok=!v||t.dataset.s.includes(v);t.classList.toggle('hide',!ok);any=any||ok});r.classList.toggle('hide',!any)})}
+function apply(){const v=(q.value||'').trim();document.querySelectorAll('.region').forEach(r=>{if(!r.querySelector('.topic'))return;let any=false;r.querySelectorAll('.topic').forEach(t=>{const ok=!v||t.dataset.s.includes(v);t.classList.toggle('hide',!ok);any=any||ok});r.classList.toggle('hide',!any)})}
 if(q)q.addEventListener('input',apply);
 document.querySelectorAll('.tf').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tf').forEach(x=>x.classList.remove('on'));b.classList.add('on');const t=b.dataset.t;document.querySelectorAll('.chips').forEach(c=>{c.classList.toggle('only',t!=='all');c.querySelectorAll('.chip').forEach(ch=>ch.classList.toggle('pick',ch.dataset.t===t))})}));
 """
@@ -241,7 +242,7 @@ page = f"""<!doctype html>
     <h1>חומרי הבגרות בתיירות</h1>
     <p class="sub">מרחב למידה והוראה למורים ולתלמידים</p>
     <p class="lead">כל חבלי הארץ במקום אחד: מצגות עם שאלות בגרות, סרטוני פתיחה, פודקאסטים לחזרה, יחידות לתרגול במט״ח ודפי עבודה מוכנים להדפסה.</p>
-    <div class="btns"><a class="btn p" href="#jerusalem">לחבלי הארץ</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
+    <div class="btns"><a class="btn p" href="#jerusalem">לחבלי הארץ</a><a class="btn s" href="marketing/">לפרק מאפיינים ושיווק</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
     <div class="stats">
       <div class="stat"><b>{len(data)}</b><span>חבלי ארץ</span></div>
       <div class="stat"><b>{n_topics}</b><span>נושאים</span></div>
@@ -252,12 +253,13 @@ page = f"""<!doctype html>
   <div class="himg" style="background-image:url('{IMG['jerusalem']}')"><span>חומות העיר העתיקה, ירושלים</span></div>
 </div></section>
 <div class="bar"><div class="wrap">
-  <div class="row"><b>חבלים:</b>{"".join(navr)}</div>
+  <div class="row"><b>חבלים:</b>{"".join(navr)}<a class="rchip" href="marketing/">מאפיינים ושיווק ←</a></div>
   <div class="row"><b>הצגת:</b><button class="tf on" data-t="all">הכל</button>{tfilter}</div>
 </div></div>
 <main class="wrap">
   <section class="legend"><h2>שבעה סוגי חומר לכל נושא</h2><p>לוחצים על הכפתור הצבעוני ליד הנושא, והחומר נפתח בכרטיסייה חדשה.</p><div class="lgrid">{legend}</div></section>
   {"".join(regs)}
+  <section class="region" id="marketing"><a class="rcard xlink" href="marketing/"><div class="rtext"><span class="rk">פרק נוסף</span><h2>מאפיינים ושיווק</h2><p>גורמים המשפיעים, סוגי תיירות, שירותי תיירות, המוצר, השיווק ופרק המושגים. 11 נושאים בדף נפרד.</p><span class="rcount">למעבר לדף הפרק ←</span></div><div class="rimg" style="background-image:url('marketing/04/img/hero.jpg')"></div></a></section>
 </main>
 <footer>החומרים נבנו במגמת התיירות, ישיבת אלוני הבשן. מקורות התמונות מצוינים בכל שקף. כפתור חיוור = החומר עוד לא מוכן.</footer>
 <script>{JS}</script>
@@ -267,3 +269,71 @@ page = f"""<!doctype html>
 out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, 'index.html')
 open(out, 'w', encoding='utf-8').write(page)
 print(len(data), 'regions', n_topics, 'topics', n_media, 'media', n_cet, 'cet', out)
+
+
+# ================= marketing chapter catalog: tayarut/marketing/index.html =================
+MT = json.load(open('/home/claude/work/mtitles.json', encoding='utf-8'))
+CET_M = {}  # 'NN' -> CET document id, filled when the units are built
+MGROUPS = [
+    ('trait', 'מאפייני התיירות', 'מה משפיע על התיירות לישראל, סוגי התיירות ושירותי התיירות', ['01', '02', '03', '04', '05'], '04/img/hero.jpg'),
+    ('mkt', 'שיווק התיירות', 'המוצר, התמהיל, השיווק והפילוח, והתקשורת השיווקית', ['06', '07', '08', '09', '10'], '07/img/hero.jpg'),
+    ('terms', 'מושגים לבגרות', 'כל מושגי 2026 ומושגים שנשאלו בעבר, עם קישור לשקף שבו לומדים כל מושג', ['11'], '11/img/hero.jpg'),
+]
+MROOT = os.path.join(ROOT, 'marketing'); MBASE = BASE + '/marketing'
+mregs, mnav, mt_count, mv, mp = [], [], 0, 0, 0
+for gi, (gslug, gname, gblurb, nums, gimg) in enumerate(MGROUPS, 1):
+    rows = []
+    for t in nums:
+        p = os.path.join(MROOT, t)
+        if not os.path.isfile(os.path.join(p, 'index.html')):
+            continue
+        mt_count += 1
+        v = f'{MBASE}/{t}/video.html' if ready(os.path.join(p, 'video.html')) else None
+        pc = f'{MBASE}/{t}/podcast.html' if ready(os.path.join(p, 'podcast.html')) else None
+        mv += bool(v); mp += bool(pc)
+        urls = {'deck': f'{MBASE}/{t}/', 'vid': v, 'pod': pc,
+                'cet': f'https://lo.cet.ac.il/player/?document={CET_M[t]}&language=he' if t in CET_M else None,
+                'pdf': f'{MBASE}/{t}/worksheet.pdf' if os.path.exists(os.path.join(p, 'worksheet.pdf')) else None,
+                'doc': f'{MBASE}/{t}/worksheet.docx' if os.path.exists(os.path.join(p, 'worksheet.docx')) else None,
+                'fb': FB.get(f'marketing-{t}')}
+        chips = ''.join(chip(urls[k], k, l) for k, l in TYPES)
+        rows.append(f'<li class="topic" id="marketing-{t}" data-s="{html.escape(gname + " " + MT[t])}">'
+                    f'<div class="tinfo"><span class="tnum">נושא {int(t)}</span><h3>{html.escape(MT[t])}</h3></div>'
+                    f'<div class="chips">{chips}</div></li>')
+    mnav.append(f'<a class="rchip" href="#{gslug}">{gname}<span>{len(rows)}</span></a>')
+    mregs.append(f'<section class="region" id="{gslug}"><div class="rcard">'
+                 f'<div class="rtext"><span class="rk">חלק {gi} מתוך {len(MGROUPS)}</span><h2>{gname}</h2>'
+                 f'<p>{gblurb}</p><span class="rcount">{len(rows)} נושאים</span></div>'
+                 f'<div class="rimg" style="background-image:url(\'{gimg}\')"></div></div>'
+                 f'<ol class="topics">{"".join(rows)}</ol></section>')
+mpage = page
+mpage = mpage.replace('<title>חומרי הבגרות בתיירות · שאלון 880387</title>', '<title>מאפיינים ושיווק · חומרי הבגרות בתיירות</title>')
+a = mpage.index('<section class="hero">'); b = mpage.index('<main class="wrap">')
+mhero = f"""<section class="hero"><div class="wrap">
+  <div>
+    <span class="pill">שאלון 880387 · מאפיינים ושיווק</span>
+    <h1>מאפיינים ושיווק</h1>
+    <p class="sub">הפרק השני של הבחינה, ופרק המושגים</p>
+    <p class="lead">גורמים המשפיעים על התיירות, סוגי תיירות, שירותי תיירות, המוצר התיירותי והשיווק. בכל נושא: מצגת עם שאלות בגרות, דף עבודה, תרגול במט״ח, סרטון ופודקאסט.</p>
+    <div class="btns"><a class="btn p" href="#trait">לנושאים</a><a class="btn s" href="../">לחבלי הארץ</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
+    <div class="stats">
+      <div class="stat"><b>{mt_count}</b><span>נושאים</span></div>
+      <div class="stat"><b>84</b><span>מושגים ברשימת 2026</span></div>
+      <div class="stat"><b>{mv}</b><span>סרטוני פתיחה</span></div>
+      <div class="stat"><b>{mp}</b><span>פודקאסטים</span></div>
+    </div>
+  </div>
+  <div class="himg" style="background-image:url('05/img/hero.jpg')"><span>מרינה אשקלון · מערכת השידורים הלאומית</span></div>
+</div></section>
+<div class="bar"><div class="wrap">
+  <div class="row"><b>חלקים:</b>{"".join(mnav)}<a class="rchip" href="../">← חבלי הארץ</a></div>
+  <div class="row"><b>הצגת:</b><button class="tf on" data-t="all">הכל</button>{tfilter}</div>
+</div></div>
+"""
+mpage = mpage[:a] + mhero + mpage[b:]
+a = mpage.index('<main class="wrap">'); b = mpage.index('</main>')
+mpage = mpage[:a] + f'<main class="wrap">\n  <section class="legend"><h2>שבעה סוגי חומר לכל נושא</h2><p>לוחצים על הכפתור הצבעוני ליד הנושא, והחומר נפתח בכרטיסייה חדשה.</p><div class="lgrid">{legend}</div></section>\n  {"".join(mregs)}\n' + mpage[b:]
+mpage = mpage.replace('placeholder="חיפוש נושא או חבל"', 'placeholder="חיפוש נושא"')
+if len(sys.argv) <= 1:
+    open(os.path.join(MROOT, 'index.html'), 'w', encoding='utf-8').write(mpage)
+    print('marketing catalog', mt_count, 'topics', mv, 'media')
