@@ -32,3 +32,12 @@ pip install python-docx qrcode[pil] playwright --break-system-packages
 cd /home/claude/work && python3 build_catalog.py
 cd /home/claude/nisan1234-afk.github.io && git add -A && git commit -m "..." && git push
 ```
+
+## פרק מאפיינים ושיווק
+| כלי | מה עושה | הרצה |
+|---|---|---|
+| `mk.py` | בונה מצגת שיווק מתוך `tayarut/marketing/NN/body.part` (מעטפת מירושלים 2) | `python3 mk.py 10 "תקשורת שיווקית"` |
+| `checklinks.py` | בודק שכל קישור ועוגן במצגות השיווק קיים | `python3 checklinks.py` |
+| `concepts/gen11.py` | בונה את נושא 11 "מושגים לבגרות" מרשימת 2026 ומהשנים שנשאלו | `python3 concepts/gen11.py` ואז `mk.py 11 "מושגים לבגרות"` |
+| `build_catalog.py` | בונה גם את `tayarut/marketing/index.html` | `python3 build_catalog.py` |
+| `specs/marketing/mNN.py` | SPEC ליחידות מט"ח של השיווק | `python3 mNN.py` (מדפיס total 100) |
