@@ -176,7 +176,7 @@ function parse(md){
     t.what=t.fields['מה לעשות']||t.fields['מה לבדוק']||'';
     t.holder = t.status==='בוצע' ? 'קלוד בענן' : t.status==='טופל' ? null : t.to;
     return t;
-  });
+  }).filter(t=>/^T\d+$/.test(t.id));
 }
 
 function taskHTML(t){
