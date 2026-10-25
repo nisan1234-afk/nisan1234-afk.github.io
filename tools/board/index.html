@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#14182b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="חדר הבקרה">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>חדר הבקרה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&family=Frank+Ruhl+Libre:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ea; --panel:#fffdf8; --ink:#1b1e2b; --muted:#6b6e7b; --line:#e4dfd3;
+  --chip:#efe9dc; --shadow:0 1px 2px rgba(20,24,43,.06),0 6px 20px rgba(20,24,43,.06);
+  --open:#d98a1c; --work:#2f7de1; --back:#8a5cd6; --done:#2e9b62; --stuck:#d4483b;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12152a; --panel:#1b1f38; --ink:#eceaf4; --muted:#9a9cb3; --line:#2b3054;
+  --chip:#252a4a; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}}
+:root[data-theme="dark"]{
+  --bg:#12152a; --panel:#1b1f38; --ink:#eceaf4; --muted:#9a9cb3; --line:#2b3054;
+  --chip:#252a4a; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,sans-serif;font-size:16px;line-height:1.5;
+  padding:0 16px calc(32px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto}
+header{padding:22px 0 14px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+h1{font-family:"Frank Ruhl Libre",serif;font-weight:900;font-size:clamp(28px,7vw,40px);margin:0;line-height:1.05}
+.sub{color:var(--muted);font-size:14px;margin-top:4px}
+.refresh{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:inherit;font-size:14px;
+  padding:8px 14px;border-radius:999px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.refresh svg{width:16px;height:16px}
+.refresh.spin svg{animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(-360deg)}}
+.pulse-line{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:0 0 18px}
+.hb{width:9px;height:9px;border-radius:50%;background:var(--muted);flex:none}
+.hb.ok{background:var(--done);box-shadow:0 0 0 0 rgba(46,155,98,.6);animation:ping 2s infinite}
+.hb.late{background:var(--open)}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(46,155,98,0)}100%{box-shadow:0 0 0 0 rgba(46,155,98,0)}}
+
+h2{font-size:13px;letter-spacing:.04em;color:var(--muted);font-weight:700;margin:26px 0 10px}
+.team{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+@media (max-width:520px){.team{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;
+  scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 8px}.team .agent{scroll-snap-align:start}}
+.agent{background:var(--panel);border-radius:16px;padding:14px;box-shadow:var(--shadow);border:1px solid var(--line);position:relative;overflow:hidden}
+.agent::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--c)}
+.agent .top{display:flex;gap:10px;align-items:center}
+.av{width:40px;height:40px;border-radius:12px;background:var(--c);color:#fff;display:grid;place-items:center;
+  font-weight:800;font-size:13px;flex:none;letter-spacing:-.02em}
+.av.sm{width:26px;height:26px;border-radius:8px;font-size:10px}
+.agent .name{font-weight:700;font-size:16px;line-height:1.2}
+.agent .role{color:var(--muted);font-size:12.5px}
+.agent .now{margin-top:12px;font-size:13.5px;display:flex;gap:7px;align-items:flex-start;min-height:40px}
+.dot{width:8px;height:8px;border-radius:50%;margin-top:7px;flex:none;background:var(--line)}
+.dot.work{background:var(--work);animation:blink 1.4s ease-in-out infinite}
+.dot.wait{background:var(--open)}
+.dot.stuck{background:var(--stuck)}
+@keyframes blink{50%{opacity:.35}}
+.agent .count{position:absolute;top:12px;left:12px;font-size:12px;color:var(--muted);background:var(--chip);border-radius:999px;padding:1px 8px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;text-align:right;font:inherit;color:inherit}
+.stat b{display:block;font-size:26px;line-height:1;font-weight:800;color:var(--k)}
+.stat span{font-size:12.5px;color:var(--muted)}
+.stat.on{outline:2px solid var(--k)}
+
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+@media (max-width:860px){.board{grid-template-columns:1fr}}
+.col h3{margin:0 0 10px;font-size:15px;display:flex;align-items:center;gap:8px}
+.col h3 i{width:10px;height:10px;border-radius:3px;background:var(--k);display:inline-block}
+.col h3 em{font-style:normal;color:var(--muted);font-weight:500;font-size:13px}
+.empty{border:1.5px dashed var(--line);border-radius:14px;padding:16px;color:var(--muted);font-size:14px;text-align:center}
+.task{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:10px;
+  border-inline-start:4px solid var(--k)}
+.task summary{list-style:none;cursor:pointer;padding:12px 14px}
+.task summary::-webkit-details-marker{display:none}
+.task .row1{display:flex;gap:8px;align-items:center;margin-bottom:6px;flex-wrap:wrap}
+.id{font-weight:800;font-size:12px;background:var(--chip);border-radius:6px;padding:1px 7px;direction:ltr}
+.pill{font-size:12px;border-radius:999px;padding:1px 9px;color:#fff;background:var(--k);font-weight:500}
+.date{font-size:12px;color:var(--muted);margin-inline-start:auto}
+.task .t{font-weight:700;font-size:15.5px;line-height:1.35}
+.holder{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted)}
+.holder b{color:var(--ink);font-weight:600}
+.body{padding:0 14px 14px;font-size:14px;border-top:1px solid var(--line);margin-top:2px}
+.body p{margin:10px 0 0;white-space:pre-wrap}
+.body code{background:var(--chip);border-radius:5px;padding:0 5px;font-size:12.5px;direction:ltr;unicode-bidi:isolate;word-break:break-all}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.links a{font-size:13px;color:var(--ink);text-decoration:none;background:var(--chip);border-radius:999px;padding:4px 12px}
+.links a:hover{text-decoration:underline}
+details.donebox>summary{cursor:pointer;color:var(--muted);font-size:14px;margin:18px 0 10px}
+.err{background:var(--stuck);color:#fff;border-radius:12px;padding:12px 14px;margin:12px 0;display:none}
+footer{margin-top:28px;color:var(--muted);font-size:12.5px;text-align:center}
+footer a{color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>חדר הבקרה</h1>
+      <div class="sub">מי עובד על מה באתר התיירות לבגרות</div>
+    </div>
+    <button class="refresh" id="refresh" aria-label="רענון">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5"/></svg>
+      רענון
+    </button>
+  </header>
+  <div class="pulse-line"><span class="hb" id="hb"></span><span id="hbtxt">בודק…</span></div>
+  <div class="err" id="err"></div>
+
+  <h2>הצוות</h2>
+  <div class="team" id="team"></div>
+
+  <h2>משימות</h2>
+  <div class="stats" id="stats"></div>
+  <div style="height:16px"></div>
+  <div class="board" id="board"></div>
+  <details class="donebox" id="donebox"><summary id="donesum">הושלמו</summary><div id="done"></div></details>
+
+  <footer>מתעדכן כל דקה מתוך <a id="src" target="_blank" rel="noopener">TASKS.md</a> · <span id="upd"></span></footer>
+</div>
+<script>
+const REPO='nisan1234-afk/nisan1234-afk.github.io';
+const RAW=`https://raw.githubusercontent.com/${REPO}/main/`;
+const BLOB=`https://github.com/${REPO}/blob/main/`;
+document.getElementById('src').href=BLOB+'tools/TASKS.md';
+
+const TEAM=[
+  {key:'קלוד בענן', ab:'קל', role:'מנהל ובונה', c:'#d97757'},
+  {key:'Codex',     ab:'CX', role:'בודק במחשב, קריאה בלבד', c:'#10a37f'},
+  {key:'GPT',       ab:'GPT',role:'בונה בדפדפן שלו', c:'#5b6cff'},
+  {key:'קלוד מקומי',ab:'קמ', role:'הסקריפט המתוזמן', c:'#b8901f'},
+  {key:'ניסן',      ab:'נ',  role:'מאשר ומתחבר', c:'#d4567d'},
+];
+const ST={
+  'פתוח': {k:'var(--open)', label:'באוויר'},
+  'בעבודה':{k:'var(--work)', label:'בעבודה'},
+  'תקוע': {k:'var(--stuck)',label:'תקוע'},
+  'בוצע': {k:'var(--back)', label:'חזר לקלוד'},
+  'טופל': {k:'var(--done)', label:'הושלם'},
+};
+const COLS=[
+  {id:'air',  title:'באוויר',   sub:'מחכה שמישהו ייקח', st:['פתוח'], k:'var(--open)'},
+  {id:'work', title:'בעבודה',   sub:'מישהו עליה עכשיו', st:['בעבודה','תקוע'], k:'var(--work)'},
+  {id:'back', title:'חזר לקלוד',sub:'תוצאה מחכה לבדיקה', st:['בוצע'], k:'var(--back)'},
+];
+let filter=null;
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>esc(s).replace(/`([^`]+)`/g,'<code>$1</code>').replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');
+const member=n=>TEAM.find(t=>n&&n.includes(t.key))||TEAM.find(t=>n&&t.key.split(' ')[0]===n.trim())||{key:n||'—',ab:'?',role:'',c:'#888'};
+
+function parse(md){
+  const parts=md.split(/^### /m).slice(1);
+  return parts.map(p=>{
+    const lines=p.split('\n');
+    const head=lines.shift().trim();
+    const m=head.match(/^(T\d+)\s*[—-]\s*(.*)$/);
+    const t={id:m?m[1]:head, title:m?m[2]:head, fields:{}, rest:[]};
+    let cur=null;
+    for(const ln of lines){
+      if(/^---\s*$/.test(ln)||/^## /.test(ln)) break;
+      const f=ln.match(/^(סטטוס|מנותב ל|נפתח|הנחיות|מה לעשות|מה לבדוק|פורמט תשובה):\s*(.*)$/);
+      if(f){cur=f[1];t.fields[cur]=f[2];continue}
+      if(cur && ln.trim()) t.fields[cur]+= '\n'+ln;
+    }
+    t.status=(t.fields['סטטוס']||'פתוח').split('|')[0].trim();
+    t.to=(t.fields['מנותב ל']||'').trim();
+    t.what=t.fields['מה לעשות']||t.fields['מה לבדוק']||'';
+    t.holder = t.status==='בוצע' ? 'קלוד בענן' : t.status==='טופל' ? null : t.to;
+    return t;
+  });
+}
+
+function taskHTML(t){
+  const s=ST[t.status]||ST['פתוח'];
+  const h=t.holder?member(t.holder):null;
+  const links=[];
+  if(t.fields['הנחיות']){const p=t.fields['הנחיות'].trim().replace(/`/g,'');links.push(`<a href="${BLOB+esc(p)}" target="_blank" rel="noopener">הנחיות</a>`)}
+  if(t.status==='בוצע'||t.status==='טופל') links.push(`<a href="${BLOB}tools/reviews/${esc(t.id)}.md" target="_blank" rel="noopener">התוצאה</a>`);
+  return `<details class="task" style="--k:${s.k}">
+    <summary>
+      <div class="row1"><span class="id">${esc(t.id)}</span><span class="pill">${s.label}</span><span class="date">${esc(t.fields['נפתח']||'')}</span></div>
+      <div class="t">${fmt(t.title)}</div>
+      ${h?`<div class="holder"><span class="av sm" style="--c:${h.c};background:${h.c}">${h.ab}</span><span>אצל <b>${esc(h.key)}</b>${t.status==='בוצע'?' · בוצע ע״י '+esc(t.to):''}</span></div>`:
+         `<div class="holder">בוצע ע״י <b>${esc(t.to)}</b></div>`}
+    </summary>
+    <div class="body">
+      ${t.what?`<p>${fmt(t.what.trim())}</p>`:''}
+      ${t.fields['פורמט תשובה']?`<p><b>תשובה:</b> ${fmt(t.fields['פורמט תשובה'])}</p>`:''}
+      ${links.length?`<div class="links">${links.join('')}</div>`:''}
+    </div>
+  </details>`;
+}
+
+function render(tasks){
+  // team
+  document.getElementById('team').innerHTML=TEAM.map(m=>{
+    const mine=tasks.filter(t=>t.holder&&member(t.holder).key===m.key);
+    const w=mine.find(t=>t.status==='בעבודה'), st=mine.find(t=>t.status==='תקוע'), op=mine.filter(t=>t.status==='פתוח'), bk=mine.filter(t=>t.status==='בוצע');
+    let dot='', txt='פנוי';
+    if(st){dot='stuck';txt=`תקוע ב־${st.id}: ${st.title}`}
+    else if(w){dot='work';txt=`עובד על ${w.id}: ${w.title}`}
+    else if(bk.length){dot='wait';txt=`צריך לבדוק ${bk.map(t=>t.id).join(', ')}`}
+    else if(op.length){dot='wait';txt=`מחכה לו: ${op.map(t=>t.id+' '+t.title).join(' · ')}`}
+    return `<div class="agent" style="--c:${m.c}">
+      ${mine.length?`<span class="count">${mine.length}</span>`:''}
+      <div class="top"><div class="av">${m.ab}</div><div><div class="name">${esc(m.key)}</div><div class="role">${esc(m.role)}</div></div></div>
+      <div class="now"><span class="dot ${dot}"></span><span>${fmt(txt)}</span></div>
+    </div>`}).join('');
+  // stats
+  const n=st=>tasks.filter(t=>st.includes(t.status)).length;
+  const S=[...COLS.map(c=>({id:c.id,label:c.title,k:c.k,v:n(c.st)})),{id:'done',label:'הושלם',k:'var(--done)',v:n(['טופל'])}];
+  document.getElementById('stats').innerHTML=S.map(s=>`<button class="stat ${filter===s.id?'on':''}" style="--k:${s.k}" data-f="${s.id}"><b>${s.v}</b><span>${s.label}</span></button>`).join('');
+  document.querySelectorAll('.stat').forEach(b=>b.onclick=()=>{filter=filter===b.dataset.f?null:b.dataset.f;render(tasks);
+    if(filter==='done'){document.getElementById('donebox').open=true;document.getElementById('donebox').scrollIntoView({behavior:'smooth'})}
+    else if(filter){document.querySelector(`[data-col="${filter}"]`)?.scrollIntoView({behavior:'smooth',block:'start'})}});
+  // columns
+  document.getElementById('board').innerHTML=COLS.map(c=>{
+    const list=tasks.filter(t=>c.st.includes(t.status));
+    const hide=filter&&filter!=='done'&&filter!==c.id;
+    return `<section class="col" data-col="${c.id}" style="--k:${c.k};${hide?'opacity:.35':''}">
+      <h3><i></i>${c.title} <em>· ${c.sub}</em></h3>
+      ${list.length?list.map(taskHTML).join(''):'<div class="empty">אין כרגע</div>'}
+    </section>`}).join('');
+  const done=tasks.filter(t=>t.status==='טופל');
+  document.getElementById('donesum').textContent=`הושלמו (${done.length})`;
+  document.getElementById('done').innerHTML=done.length?done.map(taskHTML).join(''):'<div class="empty">עוד אין</div>';
+}
+
+async function heartbeat(){
+  const el=document.getElementById('hb'), tx=document.getElementById('hbtxt');
+  try{
+    const r=await fetch(RAW+'tools/reviews/heartbeat.txt?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok) throw 0;
+    const s=(await r.text()).trim(); const d=new Date(s);
+    if(isNaN(d)) throw 0;
+    const min=Math.round((Date.now()-d)/60000);
+    el.className='hb '+(min<=35?'ok':'late');
+    tx.textContent=`המחשב של ניסן בדק לאחרונה ${min<1?'עכשיו':'לפני '+(min<60?min+' דק׳':Math.round(min/60)+' שע׳')}`+(min>35?' · ייתכן שהמחשב כבוי':'');
+  }catch(e){el.className='hb';tx.textContent='הבדיקה המתוזמנת במחשב עוד לא הופעלה'}
+}
+
+async function load(){
+  const btn=document.getElementById('refresh'); btn.classList.add('spin');
+  const err=document.getElementById('err');
+  try{
+    const r=await fetch(RAW+'tools/TASKS.md?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    render(parse(await r.text())); err.style.display='none';
+    document.getElementById('upd').textContent='עודכן '+new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){err.style.display='block';err.textContent='לא הצלחתי לקרוא את לוח המשימות. נסה לרענן בעוד רגע.'}
+  heartbeat();
+  setTimeout(()=>btn.classList.remove('spin'),400);
+}
+document.getElementById('refresh').onclick=load;
+load(); setInterval(load,60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
+</script>
+</body>
+</html>
