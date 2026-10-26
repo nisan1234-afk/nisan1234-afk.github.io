@@ -273,7 +273,7 @@ print(len(data), 'regions', n_topics, 'topics', n_media, 'media', n_cet, 'cet', 
 
 # ================= marketing chapter catalog: tayarut/marketing/index.html =================
 MT = json.load(open('/home/claude/work/mtitles.json', encoding='utf-8'))
-CET_M = {'01': '27915cdf-5b94-4697-a763-8e4b8f492d94', '02': '1ab79647-649a-41d0-82bc-231c238b94b8', '03': '56d5bcf9-3455-43ca-9280-bfad47461119', '04': '3b158ea9-d750-483e-b08f-a540cff697dc', '05': 'b10b4e22-91f8-4f7d-b044-6a00a535d240', '06': 'acdcd932-7c84-45d9-85cc-43c7e1392956', '07': 'f2de8ef0-f931-456b-8f18-3227c5fedad2'}  # 'NN' -> CET document id, filled when the units are built
+CET_M = {'01': '27915cdf-5b94-4697-a763-8e4b8f492d94', '02': '1ab79647-649a-41d0-82bc-231c238b94b8', '03': '56d5bcf9-3455-43ca-9280-bfad47461119', '04': '3b158ea9-d750-483e-b08f-a540cff697dc', '05': 'b10b4e22-91f8-4f7d-b044-6a00a535d240', '06': 'acdcd932-7c84-45d9-85cc-43c7e1392956', '07': 'f2de8ef0-f931-456b-8f18-3227c5fedad2', '08': '1a78b0e5-eb11-4280-993f-da0da6ff5320'}  # 'NN' -> CET document id, filled when the units are built
 MGROUPS = [
     ('trait', 'מאפייני התיירות', 'מה משפיע על התיירות לישראל, סוגי התיירות ושירותי התיירות', ['01', '02', '03', '04', '05'], '04/img/hero.jpg'),
     ('mkt', 'שיווק התיירות', 'המוצר, התמהיל, השיווק והפילוח, והתקשורת השיווקית', ['06', '07', '08', '09', '10'], '07/img/hero.jpg'),
