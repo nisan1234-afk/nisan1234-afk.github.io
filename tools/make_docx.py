@@ -337,6 +337,14 @@ for i, s in enumerate(slides, 1):
 # ---------- part B: questions ----------
 p = para('חלק ב · שאלות', bold=True, size=16, before=0, after=4)
 p.paragraph_format.page_break_before = True
+_prev = p._p.getprevious()
+if _prev is not None and _prev.tag.endswith('}p') and not ''.join(_prev.itertext()).strip():
+    # an empty spacer paragraph right before the break can spill onto its own blank page
+    from docx.text.paragraph import Paragraph as _P
+    _sp = _P(_prev, p._parent)
+    _sp.paragraph_format.space_before = Pt(0); _sp.paragraph_format.space_after = Pt(0); _sp.paragraph_format.line_spacing = Pt(1)
+    for _r in _sp.runs: _r.font.size = Pt(1)
+    _rpr = _prev.get_or_add_pPr().get_or_add_rPr() if hasattr(_prev.get_or_add_pPr(), 'get_or_add_rPr') else None
 soup2 = BeautifulSoup(open(f'{DECK}/index.html', encoding='utf8').read(), 'html.parser')
 for s in soup2.select('section.slide'):
     if not s.select_one('.q'):

@@ -185,6 +185,7 @@ header.top .wrap{display:flex;align-items:center;gap:14px;padding-block:12px}
 .rtext h2{font-family:"Frank Ruhl Libre",serif;font-size:32px;margin:10px 0 4px;color:var(--olive-d)}
 .rtext p{margin:0 0 12px;color:var(--mute)}
 .rcount{font-size:13px;background:var(--soft);border-radius:999px;padding:3px 10px}
+.noq{display:inline-block;margin-top:4px;font-size:12px;color:#8a5a2b;border:1px dashed #c9a27a;border-radius:999px;padding:1px 10px;background:#fbf4ea}
 .xlink{text-decoration:none}.xlink:hover{border-color:var(--olive)}
 .rimg{background-size:cover;background-position:center;min-height:180px}
 .topics{list-style:none;margin:0;padding:0;display:grid;gap:10px}
@@ -259,7 +260,7 @@ page = f"""<!doctype html>
 <main class="wrap">
   <section class="legend"><h2>שבעה סוגי חומר לכל נושא</h2><p>לוחצים על הכפתור הצבעוני ליד הנושא, והחומר נפתח בכרטיסייה חדשה.</p><div class="lgrid">{legend}</div></section>
   {"".join(regs)}
-  <section class="region" id="marketing"><a class="rcard xlink" href="marketing/"><div class="rtext"><span class="rk">פרק נוסף</span><h2>מאפיינים ושיווק</h2><p>גורמים המשפיעים, סוגי תיירות, שירותי תיירות, המוצר, השיווק ופרק המושגים. 11 נושאים בדף נפרד.</p><span class="rcount">למעבר לדף הפרק ←</span></div><div class="rimg" style="background-image:url('marketing/04/img/hero.jpg')"></div></a></section>
+  <section class="region" id="marketing"><a class="rcard xlink" href="marketing/"><div class="rtext"><span class="rk">פרק נוסף</span><h2>מאפיינים ושיווק</h2><p>גורמים המשפיעים, סוגי תיירות, שירותי תיירות, המוצר, השיווק ופרק המושגים, ועוד שני נושאי הרחבה. 13 נושאים בדף נפרד.</p><span class="rcount">למעבר לדף הפרק ←</span></div><div class="rimg" style="background-image:url('marketing/04/img/hero.jpg')"></div></a></section>
 </main>
 <footer>החומרים נבנו במגמת התיירות, ישיבת אלוני הבשן. מקורות התמונות מצוינים בכל שקף. כפתור חיוור = החומר עוד לא מוכן.</footer>
 <script>{JS}</script>
@@ -278,7 +279,9 @@ MGROUPS = [
     ('trait', 'מאפייני התיירות', 'מה משפיע על התיירות לישראל, סוגי התיירות ושירותי התיירות', ['01', '02', '03', '04', '05'], '04/img/hero.jpg'),
     ('mkt', 'שיווק התיירות', 'המוצר, התמהיל, השיווק והפילוח, והתקשורת השיווקית', ['06', '07', '08', '09', '10'], '07/img/hero.jpg'),
     ('terms', 'מושגים לבגרות', 'כל מושגי 2026 ומושגים שנשאלו בעבר, עם קישור לשקף שבו לומדים כל מושג', ['11'], '11/img/hero.jpg'),
+    ('ext', 'הרחבה: לא נשאל בבגרויות', 'פרקים מהספר "ניהול השיווק התיירותי" שלא נשאלו בבגרויות. להעשרה ולהבנה, לא לחזרה לבחינה', ['12', '13'], '12/img/hero.jpg'),
 ]
+MEXT = {'12', '13'}  # topics not asked in any bagrut
 MROOT = os.path.join(ROOT, 'marketing'); MBASE = BASE + '/marketing'
 mregs, mnav, mt_count, mv, mp = [], [], 0, 0, 0
 for gi, (gslug, gname, gblurb, nums, gimg) in enumerate(MGROUPS, 1):
@@ -298,7 +301,8 @@ for gi, (gslug, gname, gblurb, nums, gimg) in enumerate(MGROUPS, 1):
                 'fb': FB.get(f'marketing-{t}')}
         chips = ''.join(chip(urls[k], k, l) for k, l in TYPES)
         rows.append(f'<li class="topic" id="marketing-{t}" data-s="{html.escape(gname + " " + MT[t])}">'
-                    f'<div class="tinfo"><span class="tnum">נושא {int(t)}</span><h3>{html.escape(MT[t])}</h3></div>'
+                    f'<div class="tinfo"><span class="tnum">נושא {int(t)}</span><h3>{html.escape(MT[t])}</h3>'
+                    + ('<span class="noq">לא נשאל בבגרות</span>' if t in MEXT else '') + '</div>'
                     f'<div class="chips">{chips}</div></li>')
     mnav.append(f'<a class="rchip" href="#{gslug}">{gname}<span>{len(rows)}</span></a>')
     mregs.append(f'<section class="region" id="{gslug}"><div class="rcard">'

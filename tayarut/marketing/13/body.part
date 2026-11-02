@@ -1,0 +1,221 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="פארק תמנע">
+    <span class="credit">פארק תמנע · מצגת התמונות הרשמית · צילום: נטע טורקלטויב אבוחצירה</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 13 · הרחבה<span class="tag-ext">לא נשאל בבגרות</span></p>
+      <h1>מכירות ומחקרי שוק</h1>
+      <p class="lead">איך סוכן נסיעות סוגר עסקה? ואיך מלון יודע מה האורחים שלו באמת רוצים? בנושא הזה לומדים על תהליך המכירה, על מערכת המידע השיווקי ועל מחקר שיווקי.</p>
+      <div class="chips"><span class="chip">שיווק ומכירה</span><span class="chip">סגנונות מכירה</span><span class="chip">תהליך המכירה</span><span class="chip">התנגדויות</span><span class="chip">מקורות מידע</span><span class="chip">מחקר שיווקי</span><span class="chip">שאלון ומדגם</span></div>
+      <p class="mini" style="margin-top:10px">נושא הרחבה מתוך הספר "ניהול השיווק התיירותי" (פרקים ז׳–ח׳). הוא לא נשאל בבגרויות, אבל קשור למושגים מכירה אישית, שיווק ישיר, טלמרקטינג ומשוב.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">ניהול מכירות</p>
+      <h2>שיווק ומכירה: מה ההבדל</h2>
+      <div class="vs">
+        <div class="card"><h3>שיווק</h3><p class="mini">התהליך הרחב: זיהוי צרכים, בחירת קהל, מוצר, מחיר, הפצה וקידום.</p></div>
+        <div class="card"><h3>מכירה</h3><p class="mini">להביא לקוח להחלטה ולעסקה.</p></div>
+      </div>
+      <p class="note">השיווק יוצר את התנאים. המכירה מממשת אותם.</p>
+      <div class="two" style="margin-top:10px">
+        <div>
+          <h3>למה איש המכירות חשוב בתיירות</h3>
+          <p class="mini">הלקוח לא יכול לנסות את החופשה מראש. איש המכירות צריך <b>להמחיש</b>, להסביר את היתרונות וליצור <b>ביטחון</b>.</p>
+        </div>
+        <div>
+          <h3>מה איש המכירות עושה</h3>
+          <div class="flow"><span>עוזר להחליט</span><span>מטפל בהזמנה</span><span>מסביר תנאים</span><span>מציע שירותים משלימים</span><span>פותר בעיות</span><span>גובה</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">ניהול מכירות</p>
+      <h2>סגנונות מכירה</h2>
+      <div class="plan tblwrap"><table>
+        <tr><th>סגנון</th><th>יתרונות</th><th>קשיים</th></tr>
+        <tr><td class="d">נציג במשרד החברה</td><td>הלקוח כבר מתעניין. חומרים ועזרה זמינים, ואפשר להשוות חבילות.</td><td>הגעה למשרד היא לא החלטה. צריך לברר מה הלקוח מחפש.</td></tr>
+        <tr><td class="d">סוכן במשרד הלקוח</td><td>מתאים לארגונים. הצעה אישית בסביבה של הלקוח.</td><td>הלקוח לא תמיד פנוי או מוכן. צריך להגיע מוכן.</td></tr>
+        <tr><td class="d">טלפון</td><td>חוסך זמן וכסף. טוב למעקב ולמכירה חוזרת (מלונות, תעופה).</td><td>אין קשר חזותי, ולכן קשה לבנות אמון ולהציג מוצר מורכב.</td></tr>
+        <tr><td class="d">דואר</td><td>קטלוגים והצעות. קשור לשיווק ישיר ולאינטרנט.</td><td>—</td></tr>
+        <tr><td class="d">תערוכות וירידים</td><td>הצגת המוצר, פגישות וקשרים. לאנשי מקצוע, לקהל הרחב או לשניהם.</td><td>—</td></tr>
+      </table></div>
+      <p class="note">הלקוח במרכז: שני לקוחות שמבקשים "יוון" לא רוצים אותו מוצר. אחד מחפש שקט, והשני חיי לילה וספורט.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">ניהול מכירות</p>
+      <h2>שישה שלבים בתהליך המכירה</h2>
+      <div class="factor" style="grid-template-columns:repeat(3,1fr)">
+        <div><span class="cn">1</span><b>איתור לקוחות</b><span>מאגרים, תגובות לפרסום ופילוח.</span></div>
+        <div><span class="cn">2</span><b>הכנה</b><span>מידע על המוצר, החברה והלקוח: מחירים, תנאים וחלופות.</span></div>
+        <div><span class="cn">3</span><b>יצירת קשר</b><span>אווירה נעימה, אמון, הקשבה ומקצועיות.</span></div>
+        <div><span class="cn">4</span><b>הצגה והדגמה</b><span>להדגיש <b>תועלת</b>, ולא רק תכונה: "ליד הרכבת" הופך ל"חוסך זמן וכסף".</span></div>
+        <div><span class="cn">5</span><b>התמודדות עם התנגדויות</b><span>לברר את הסיבה ולהתאים תשובה.</span></div>
+        <div><span class="cn">6</span><b>סגירת העסקה</b><span>הטבה, ייעוץ אישי, הצגת חלופות, או שאלה ישירה.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">ניהול מכירות</p>
+      <h2>התנגדויות, וסגירת העסקה</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">התנגדות מחיר</span><span>"זה יקר לי".</span><span class="ex">להסביר מה כלול, ומה היתרונות מול החלופות.</span></div>
+        <div class="card"><span class="t">התנגדות רעיונית</span><span>הלקוח לא בטוח שהמוצר מתאים לו.</span><span class="ex">להראות איך המוצר עונה על הצורך שלו.</span></div>
+        <div class="card"><span class="t">התנגדות רגשית</span><span>פחד, חשש או חוסר אמון.</span><span class="ex">המלצות של לקוחות, ביטוח, תנאי ביטול גמישים.</span></div>
+      </div>
+      <p class="note">שכנוע לגיטימי הוא לא לחץ. שיטות סגירה שמבוססות על לחץ ("רק היום!") כדאי לבחון בעין ביקורתית.</p>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">מערכות מידע</p>
+      <h2>מערכת מידע שיווקי</h2>
+      <div class="two">
+        <div>
+          <p>החלטות שיווק מתקבלות באי־ודאות. לכן צריך מידע מהימן, רלוונטי ועדכני.</p>
+          <div class="vs">
+            <div class="card"><h3>נתונים</h3><p class="mini">עובדות ומספרים לא מעובדים: 1,000 הזמנות.</p></div>
+            <div class="card"><h3>מידע</h3><p class="mini">נתונים שעובדו ועוזרים להחליט: בקיץ מזמינות יותר משפחות.</p></div>
+          </div>
+        </div>
+        <div class="card">
+          <span class="t">מערכת מידע שיווקי</span>
+          <span>אנשים, אמצעים ותהליכים שאוספים, ממיינים, מנתחים ומעבירים מידע למי שמחליט.</span>
+          <span class="ex">מאפשרת לזהות הזדמנויות, להבין לקוחות, לעקוב אחרי מתחרים ולהקטין סיכון.</span>
+        </div>
+      </div>
+      <p class="note">הרבה מידע זה לא בהכרח טוב. <b>עודף מידע</b> מקשה לזהות מה חשוב.</p>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">מערכות מידע</p>
+      <h2>מה צריך לדעת, ומאיפה</h2>
+      <div class="two">
+        <div>
+          <h3>ארבעה סוגי מידע בתיירות</h3>
+          <ul class="clean">
+            <li><b>לקוחות:</b> מאפיינים, צרכים, הרגלי קנייה ושביעות רצון.</li>
+            <li><b>שוק:</b> מגמות בביקוש, טכנולוגיה והחלטות ממשלה.</li>
+            <li><b>מתחרים:</b> מוצרים, מחירים, חוזקות וחולשות.</li>
+            <li><b>ספקים:</b> מחירים, תנאים, איכות ואמינות.</li>
+          </ul>
+        </div>
+        <div class="plan tblwrap"><table>
+          <tr><th>מקור</th><th>מה זה</th><th>דוגמה</th></tr>
+          <tr><td class="d">מידע פנימי</td><td>נוצר בתוך הארגון, בפעילות השוטפת</td><td>במלון: תפוסה, משך שהייה, הזמנות קודמות</td></tr>
+          <tr><td class="d">מודיעין שיווקי</td><td>איסוף <b>שוטף</b> של מידע על הסביבה החיצונית</td><td>עיתונות כלכלית, אתרי מתחרים, תערוכות</td></tr>
+          <tr><td class="d">מחקר שיווקי</td><td>תהליך <b>מתוכנן</b> שעונה על שאלה <b>מוגדרת</b></td><td>האם כדאי להציע חבילה חדשה למשפחות?</td></tr>
+        </table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">מחקרי שוק</p>
+      <h2>שבעה שלבים במחקר שיווקי</h2>
+      <ol class="steps">
+        <li><span><b>הגדרת הבעיה ויעדי המחקר:</b> שאלה ממוקדת. "אילו שירותים יעודדו משפחות להזמין?", ולא "מה חושבים על מלונות?". דוגמה מהספר: בריטיש איירווייז בדקה אם נוסעים ישלמו על מושב שנפתח למיטה.</span></li>
+        <li><span><b>תוכנית המחקר:</b> איזה מידע אוספים, ובאיזו גישה.</span></li>
+        <li><span><b>כלי המחקר:</b> שאלונים או ציוד ממוכן.</span></li>
+        <li><span><b>תוכנית דגימה:</b> את מי שואלים, כמה, ואיך בוחרים.</span></li>
+        <li><span><b>שיטת התקשרות:</b> פנים אל פנים, טלפון, שאלון ללקוחות או ברשת.</span></li>
+        <li><span><b>ניתוח:</b> מארגנים, בודקים ומחפשים דפוסים. למשל: מרוצים מהמיקום, פחות מההמתנה בקבלה.</span></li>
+        <li><span><b>הצגת הממצאים:</b> ברורה, קשורה לשאלה ומובילה להחלטה: לקצר את התור בקבלה.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">מחקרי שוק</p>
+      <h2>נתונים, גישות וכלים</h2>
+      <div class="cards" style="grid-template-columns:1fr 1fr">
+        <div class="card"><span class="t">נתונים ראשוניים</span><span>נאספים עכשיו, בשביל המחקר הזה. למשל: שאלון לאורחי המלון.</span></div>
+        <div class="card"><span class="t">נתונים משניים</span><span>נאספו בעבר, למטרה אחרת. למשל: דוח של הלשכה המרכזית לסטטיסטיקה.</span></div>
+      </div>
+      <h3 style="margin-top:10px">ארבע גישות לאיסוף</h3>
+      <div class="flow"><span>תצפית</span><span>קבוצת מיקוד (עד כ־10 משתתפים: טובה לגישוש, אי אפשר להכליל)</span><span>סקר</span><span>ניסוי</span></div>
+      <div class="vs" style="margin-top:10px">
+        <div class="card"><h3>שאלות סגורות</h3><p class="mini">כן או לא, בחירה מרובה, דירוג, סולם ליקרט ("מסכים מאוד" עד "לא מסכים בכלל"). קל לנתח.</p></div>
+        <div class="card"><h3>שאלות פתוחות</h3><p class="mini">תשובה חופשית. מעלות רעיונות חדשים, אבל קשה יותר לנתח.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide stop" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">סדרו את שלבי תהליך המכירה לפי הסדר.<span class="tag">רצף</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">התאימו לכל סגנון מכירה את היתרון שלו.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">מיינו: מידע פנימי, מודיעין שיווקי או מחקר שיווקי.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">מיינו לנתונים ראשוניים ולנתונים משניים.<span class="tag">מיון</span></div></div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide stop tint" id="s11" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות פתוחות · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">חברת תיירות מוכרת דרך נציגים במשרד, בטלפון ובירידים. הסבירו את ההבדל בין שיווק למכירה, וציינו שני סגנונות מכירה ויתרון לכל אחד.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">לקוח אומר לסוכן הנסיעות: "החבילה יקרה מדי". איך הסוכן יכול להתמודד עם ההתנגדות? הסבירו.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">במלון בצפון יש ירידה בהזמנות באמצע השבוע. הסבירו מהי מערכת מידע שיווקי, ותנו דוגמה למידע ממקור פנימי ולמידע ממודיעין שיווקי שיעזרו למלון.<span class="tag">בעקבות הספר</span></div></div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop tint" id="s12" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלה מסכמת · עונים בסטודיו</p>
+      <h2>שאלה 8</h2>
+      <div class="q"><span class="qn">8</span><div class="qt">חברה רוצה לבנות חבילות נופש לבני נוער, ולבדוק קודם מה הם רוצים.<span class="tag">בעקבות הספר</span>
+        <span class="sub">א. נסחו את בעיית המחקר ושני יעדים.</span>
+        <span class="sub">ב. הסבירו מה ההבדל בין נתונים ראשוניים למשניים, ותנו מקור לכל סוג.</span>
+        <span class="sub">ג. כתבו שתי שאלות סגורות ושאלה פתוחה אחת לשאלון.</span>
+        <span class="sub">ד. את מי תשאלו? הסבירו למה כדאי לשאול גם את ההורים.</span>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide bgslide" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="פארק תמנע">
+    <span class="credit">מצגת התמונות הרשמית · צילום: נטע טורקלטויב אבוחצירה</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>השיווק יוצר את התנאים, והמכירה מממשת אותם. בתיירות איש המכירות ממחיש ויוצר ביטחון.</li>
+        <li>סגנונות מכירה: במשרד, אצל הלקוח, בטלפון, בדואר ובתערוכות.</li>
+        <li>שישה שלבי מכירה: איתור, הכנה, קשר, הצגה, התנגדויות, סגירה.</li>
+        <li>שלושה מקורות מידע: פנימי, מודיעין שיווקי, מחקר שיווקי.</li>
+        <li>מחקר: בעיה, תוכנית, כלים, מדגם, התקשרות, ניתוח, הצגה. נתונים ראשוניים מול משניים.</li>
+      </ul>
+    </div>
+  </section>

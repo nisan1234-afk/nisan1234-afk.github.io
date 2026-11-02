@@ -1,0 +1,266 @@
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="img/hero.jpg" alt="ראש פינה">
+    <span class="credit">ראש פינה · מצגת התמונות הרשמית</span>
+    <div class="pad">
+      <p class="kick">מאפיינים ושיווק · נושא 12 · הרחבה<span class="tag-ext">לא נשאל בבגרות</span></p>
+      <h1>התנהגות צרכנים</h1>
+      <p class="lead">למה משפחה אחת בוחרת צימר בראש פינה, ומשפחה אחרת מלון באילת? בנושא הזה לומדים מה משפיע על ההחלטה לקנות חופשה, ואיך המשווק משתמש בזה.</p>
+      <div class="chips"><span class="chip">קונה וצרכן</span><span class="chip">בעלי תפקידים</span><span class="chip">מאסלו</span><span class="chip">גורמים משפיעים</span><span class="chip">שלבי ההחלטה</span><span class="chip">דיסוננס קוגניטיבי</span></div>
+      <p class="mini" style="margin-top:10px">נושא הרחבה מתוך הספר "ניהול השיווק התיירותי" (פרק ג׳). הוא לא נשאל בבגרויות, אבל עוזר להבין את פילוח השוק ואת התקשורת השיווקית.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">מושגי יסוד</p>
+      <h2>מה זה התנהגות צרכנים</h2>
+      <p class="lead"><b>התנהגות צרכנים</b> היא הדרך שבה אנשים בוחרים, קונים ומשתמשים במוצרים, ומה משפיע עליהם. מי שמכיר את הלקוחות שלו מתאים להם מוצרים, ולא מבזבז כסף על שיווק שלא עובד.</p>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <tr><th>שוק</th><th>מי קונה, ולמה</th><th>דוגמה</th></tr>
+          <tr><td class="d">צרכנים</td><td>לשימוש אישי או של אחרים</td><td>הורים קונים חופשה משפחתית</td></tr>
+          <tr><td class="d">יצרנים</td><td>ארגונים שקונים כדי לייצר</td><td>מסעדה קונה חומרי גלם</td></tr>
+          <tr><td class="d">מתווכים</td><td>קונים כדי למכור ברווח</td><td>סיטונאי או סוכנות נסיעות</td></tr>
+        </table></div>
+        <div class="cards" style="grid-template-columns:1fr 1fr">
+          <div class="card"><span class="t">קונה</span><span>מי שמבצע את הרכישה ומשלם.</span><span class="ex">ההורים מזמינים את החופשה.</span></div>
+          <div class="card"><span class="t">צרכן</span><span>מי שמשתמש במוצר ונהנה ממנו.</span><span class="ex">כל המשפחה נופשת.</span></div>
+        </div>
+      </div>
+      <p class="note">קונה ≠ צרכן: בתיירות לעיתים קרובות אחד משלם, ואחרים נהנים.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad">
+      <p class="kick">מי מחליט על החופשה</p>
+      <h2>חמישה בעלי תפקידים בהחלטה</h2>
+      <div class="factor" style="grid-template-columns:repeat(5,1fr)">
+        <div><span class="cn">1</span><b>יוזם</b><span>מעלה את הרעיון.</span></div>
+        <div><span class="cn">2</span><b>משפיע</b><span>דעתו משפיעה על הבחירה.</span></div>
+        <div><span class="cn">3</span><b>מחליט</b><span>קובע אם, מה, איך ואיפה.</span></div>
+        <div><span class="cn">4</span><b>קונה</b><span>מבצע את הרכישה.</span></div>
+        <div><span class="cn">5</span><b>צרכן</b><span>משתמש במוצר.</span></div>
+      </div>
+      <div class="card" style="margin-top:12px">
+        <h3>דוגמה: חופשה ביוון</h3>
+        <p class="mini">הבת מציעה לנסוע ליוון (יוזמת). חבר ממליץ על מלון (משפיע). ההורים בוחרים (מחליטים). האב מזמין באתר (קונה). כל המשפחה נופשת (צרכנים).</p>
+      </div>
+      <p class="note">המסקנה למשווק: לפנות גם למי שמשפיע ולמי שיוזם, ולא רק למי שמשלם.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">איך חוקרים צרכנים</p>
+      <h2>ארבע נקודות מבט, שלוש גישות</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <tr><th>נקודת מבט</th><th>במה מתמקדת</th></tr>
+          <tr><td class="d">כלכלית</td><td>הכנסה, מחיר ותועלת. המשאבים מוגבלים, ולכן בוחרים.</td></tr>
+          <tr><td class="d">פסיכולוגית</td><td>מניעים, רגשות, תפיסה, למידה ועמדות.</td></tr>
+          <tr><td class="d">סוציולוגית</td><td>משפחה, קבוצות ומעמד.</td></tr>
+          <tr><td class="d">אנתרופולוגית</td><td>תרבות, ערכים ומסורות.</td></tr>
+        </table></div>
+        <div>
+          <h3>שלוש גישות פסיכולוגיות</h3>
+          <ul class="clean">
+            <li><b>התנהגותית:</b> ההתנהגות היא תגובה לגירוי, כמו מחיר, פרסום או מבצע.</li>
+            <li><b>קוגניטיבית:</b> תהליכי חשיבה: קליטת מידע, עיבוד, זיכרון והחלטה.</li>
+            <li><b>פסיכואנליטית:</b> דחפים ומניעים לא מודעים (פרויד).</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">מחיר גבוה לא תמיד מרתיע. לפעמים הוא <b>סימן לאיכות</b>, ומלון יוקרה מושך לקוחות דווקא בגלל המחיר.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad">
+      <p class="kick">הגורמים המשפיעים · א</p>
+      <h2>גורמים פסיכולוגיים</h2>
+      <div class="cards" style="grid-template-columns:repeat(4,1fr)">
+        <div class="card"><span class="t">הנעה (מוטיבציה)</span><span>כוח פנימי שמניע לפעול. צורך הופך למניע רק כשהוא חזק מספיק.</span><span class="ex">עייפות אחרי שנה עמוסה מניעה להזמין חופשה.</span></div>
+        <div class="card"><span class="t">תפיסה</span><span>איך בוחרים, מארגנים ומפרשים מידע. שמים לב רק לחלק קטן מהמסרים.</span><span class="ex">מתוך עשרות מודעות ביום, זוכרים רק כמה.</span></div>
+        <div class="card"><span class="t">למידה</span><span>מניסיון אישי, או מצפייה באחרים.</span><span class="ex">חופשה טובה מביאה לקנייה חוזרת. חופשה רעה גורמת להימנע.</span></div>
+        <div class="card"><span class="t">אמונות ועמדות</span><span>אמונה היא תפיסה על מוצר. עמדה היא יחס חיובי או שלילי אליו.</span><span class="ex">קל יותר להוסיף אמונה חדשה מאשר לשנות ישנה.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad">
+      <p class="kick">הגורמים המשפיעים · ב</p>
+      <h2>מדרג הצרכים של מאסלו</h2>
+      <div class="two">
+        <div class="plan tblwrap"><table>
+          <tr><th>רמה</th><th>צורך</th><th>בתיירות</th></tr>
+          <tr><td class="d">5</td><td><b>הגשמה עצמית</b></td><td>צמיחה: תרבות, טבע, חלק מהצליינות</td></tr>
+          <tr><td class="d">4</td><td><b>הערכה</b></td><td>מעמד, יוקרה והכרה</td></tr>
+          <tr><td class="d">3</td><td><b>שייכות ואהבה</b></td><td>זמן עם המשפחה והחברים</td></tr>
+          <tr><td class="d">2</td><td><b>ביטחון</b></td><td>הגנה ויציבות</td></tr>
+          <tr><td class="d">1</td><td><b>פיזיולוגי</b></td><td>אוכל, שינה ומנוחה</td></tr>
+        </table></div>
+        <div class="card">
+          <h3>אותו מוצר, צרכים שונים</h3>
+          <p class="mini">שני אורחים באותו מלון יוקרה: אחד בא לנוח (צורך פיזיולוגי), והשני כדי להראות לחברים איפה היה (צורך בהערכה).</p>
+          <p class="mini">מאסלו הוא מודל שעוזר לנתח, ולא חוק קשיח.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide" id="s7" hidden>
+    <div class="pad">
+      <p class="kick">הגורמים המשפיעים · ג</p>
+      <h2>קונפליקטים בין מניעים</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">התקרבות–הימנעות</span><span>רוצה, אבל גם חושש.</span><span class="ex">רוצה טיול ג'יפים, אבל חושש מהסכנה.</span></div>
+        <div class="card"><span class="t">התקרבות–התקרבות</span><span>שתי אפשרויות טובות, ואפשר לבחור רק אחת.</span><span class="ex">שבוע אחד: פריז, או ביקור אצל קרובים בחו"ל.</span></div>
+        <div class="card"><span class="t">הימנעות–הימנעות</span><span>שתי האפשרויות לא נעימות.</span><span class="ex">לא רוצה ללמוד, ולא רוצה להיכשל.</span></div>
+      </div>
+      <p class="note">המשווק צריך להבין לא רק מה הלקוח רוצה, אלא גם <b>מה מונע ממנו</b> לממש את הרצון. למשל: ביטוח שמרגיע את מי שחושש.</p>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide" id="s8" hidden>
+    <div class="pad">
+      <p class="kick">הגורמים המשפיעים · ד</p>
+      <h2>גורמים חברתיים ותרבותיים</h2>
+      <div class="cards" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card"><span class="t">הסביבה הקרובה</span><span>המשפחה משפיעה יותר מכולם. קונפורמיסט מתאים את עצמו לנורמות.</span></div>
+        <div class="card"><span class="t">תרבות</span><span>ערכים ומנהגים שעוברים בין הדורות. מסר שמתאים לתרבות אחת לא תמיד מתאים לאחרת.</span></div>
+        <div class="card"><span class="t">תרבות משנה</span><span>קבוצה עם דת, מוצא או אזור משותפים. צריכה שיווק מותאם.</span></div>
+        <div class="card"><span class="t">מעמד חברתי</span><span>אנשים קונים סמלי מעמד: רמת המלון, מחלקת הטיסה.</span></div>
+        <div class="card"><span class="t">קבוצות</span><span><b>השתייכות:</b> שייך אליה. <b>שאיפה:</b> רוצה להשתייך.</span></div>
+        <div class="card"><span class="t">מנהיג דעה</span><span>משפיע בתחום מסוים, כמו יוצר תוכן שממליץ על יעד.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">איך מחליטים</p>
+      <h2>תהליך קבלת ההחלטות</h2>
+      <div class="two">
+        <div>
+          <ol class="steps">
+            <li><span><b>זיהוי צורך:</b> המשפחה מרגישה שהיא צריכה חופשה.</span></li>
+            <li><span><b>חיפוש מידע:</b> יעדים, מלונות ומחירים.</span></li>
+            <li><span><b>בחירה ראשונית:</b> מצמצמים לכמה יעדים.</span></li>
+            <li><span><b>הערכת חלופות:</b> משווים מחיר, מיקום ושירותים.</span></li>
+            <li><span><b>החלטת רכישה:</b> מזמינים.</span></li>
+          </ol>
+        </div>
+        <div>
+          <div class="vs">
+            <div class="card"><h3>קנייה שגרתית</h3><p class="mini">מוצר מוכר, נקנה מתוך הרגל. מבצעים ופרסום משפיעים.</p></div>
+            <div class="card"><h3>קנייה מורכבת</h3><p class="mini">מחפשים מידע, משווים ושוקלים. חשובים מידע, אמון והפחתת סיכון. חופשה היא בדרך כלל קנייה מורכבת.</p></div>
+          </div>
+          <p class="mini" style="margin-top:8px"><b>מודל התייר (1982):</b> צורך לנסוע ← איסוף מידע ← החלטה ← החוויה ← הערכת שביעות הרצון.</p>
+        </div>
+      </div>
+      <p class="note">המודלים הישנים הניחו תכנון מסודר. "הכול כלול", דילים של הרגע האחרון והאינטרנט שינו את התמונה.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">למה קונים</p>
+      <h2>מניעי קנייה בתיירות</h2>
+      <div class="two">
+        <div>
+          <p><b>מניע קנייה</b> הוא כוח פנימי שמביא לחפש, להשוות ולקנות. יש שני סוגים:</p>
+          <ul class="clean">
+            <li><b>מניע לצאת לחופשה:</b> רוצה לנוח.</li>
+            <li><b>מניע לבחור חופשה מסוימת:</b> בוחר בים המלח בגלל הספא והמרחק הקצר.</li>
+          </ul>
+          <h3 style="margin-top:10px">גורמים אישיים</h3>
+          <div class="flow"><span>אישיות</span><span>סגנון חיים</span><span>ניסיון קודם</span><span>רקע אישי</span><span>בריאות וכושר</span><span>דימוי עצמי</span><span>שלב בחיים</span></div>
+        </div>
+        <div class="vs">
+          <div class="card"><h3>מניע חיובי</h3><p class="mini">להשיג משהו: הנאה, מעמד, הכרה. חופשת הרפתקאות בשביל ריגוש.</p></div>
+          <div class="card"><h3>מניע שלילי</h3><p class="mini">להפחית משהו: פחד או לחץ. חופשה שקטה כדי לברוח מהלחץ.</p></div>
+        </div>
+      </div>
+      <p class="note">לא מספיק לדעת <b>מה</b> הלקוח קונה. צריך לדעת <b>למה</b>. זה הבסיס לפילוח לפי צרכים ותועלת (נושא 9).</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">אחרי הקנייה</p>
+      <h2>דיסוננס קוגניטיבי</h2>
+      <div class="two">
+        <div class="card">
+          <span class="t">דיסוננס קוגניטיבי</span>
+          <span>אי־נוחות שנוצרת כשיש סתירה בין מחשבות ומעשים (לאון פסטינגר, 1957). אחרי קנייה מתחילים לפקפק: "אולי טעיתי?". זה קורה בעיקר כשההוצאה גבוהה, ההתלבטות ארוכה או הסיכון גדול.</span>
+          <span class="ex">זוג הזמין שבוע באיטליה, ואז ראה הצעה זולה יותר.</span>
+        </div>
+        <div>
+          <h3>איך הלקוח מגיב</h3>
+          <div class="flow"><span>חרטה</span><span>ניסיון לבטל</span><span>חיפוש מידע שמצדיק</span><span>הדגשת היתרונות</span></div>
+          <h3 style="margin-top:12px">מה המשווק עושה</h3>
+          <ul class="clean">
+            <li>שומר על קשר אחרי ההזמנה, ומרגיע.</li>
+            <li>שולח מידע שמחזק את הבחירה.</li>
+            <li>מטפל בבעיות מהר.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">השיווק לא נגמר בקנייה. לקוח מרוצה חוזר, נשאר נאמן וממליץ לאחרים (מפה לאוזן).</p>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide stop" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">תרגול מהיר · בסטודיו</p>
+      <h2>שאלות 1–4</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">התאימו לכל בעל תפקיד בהחלטה את התיאור שלו.<span class="tag">התאמה</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">סדרו את חמשת שלבי קבלת ההחלטה לפי הסדר.<span class="tag">רצף</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">מיינו לפי רמות מדרג הצרכים של מאסלו.<span class="tag">מיון</span></div></div>
+      <div class="q"><span class="qn">4</span><div class="qt">איזה מקרה מתאר דיסוננס קוגניטיבי?<span class="tag">בחירה</span></div></div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide stop tint" id="s13" hidden>
+    <img class="bg" src="img/hero.jpg" alt="">
+    <div class="pad">
+      <p class="kick">שאלות פתוחות · עונים בסטודיו</p>
+      <h2>שאלות 5–7</h2>
+      <div class="q"><span class="qn">5</span><div class="qt">הבן הציע לנסוע לרומא אחרי שראה סרטון של יוצר תוכן. האם בדקה המלצות ברשת, האב החליט והזמין, וכל המשפחה נסעה. הגדירו יוזם, משפיע, מחליט, קונה וצרכן, וזהו כל אחד במקרה.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">שני תיירים נמצאים באותו מלון יוקרה: אחד בא לנוח, והשני כדי להציג לחברים. איזה צורך במדרג של מאסלו מניע כל אחד? נמקו.<span class="tag">בעקבות הספר</span></div></div>
+      <div class="q"><span class="qn">7</span><div class="qt">זוג הזמין שבוע באיטליה, ואחר כך מצא הצעה זולה יותר. הסבירו מהו דיסוננס קוגניטיבי, וציינו שתי פעולות שהמלון יכול לעשות כדי להרגיע את הזוג.<span class="tag">בעקבות הספר</span></div></div>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide bgslide" id="s14" hidden>
+    <img class="bg" src="img/hero.jpg" alt="ראש פינה">
+    <span class="credit">מצגת התמונות הרשמית</span>
+    <div class="pad">
+      <p class="kick">סיכום</p>
+      <h2>מה לוקחים מהנושא</h2>
+      <ul class="clean">
+        <li>קונה ≠ צרכן. בהחלטה יש חמישה תפקידים: יוזם, משפיע, מחליט, קונה וצרכן.</li>
+        <li>משפיעים גורמים פסיכולוגיים (הנעה, תפיסה, למידה, עמדות) וגורמים חברתיים (משפחה, תרבות, מעמד, קבוצות).</li>
+        <li>מאסלו: פיזיולוגי, ביטחון, שייכות, הערכה, הגשמה עצמית.</li>
+        <li>חמישה שלבים: צורך, מידע, בחירה ראשונית, הערכת חלופות, רכישה.</li>
+        <li>דיסוננס אחרי הקנייה: השיווק ממשיך גם אחרי ההזמנה.</li>
+      </ul>
+      <p class="lead">בנושא הבא, עוד הרחבה: מכירות ומחקרי שוק.</p>
+    </div>
+  </section>
