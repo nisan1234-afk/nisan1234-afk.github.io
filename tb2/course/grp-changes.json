@@ -60,7 +60,7 @@
       "title": "מחיר חדש אחרי כל שינוי",
       "text": "חוזרים ל-[[Calculation Sheet]] ובודקים שהמחירים התעדכנו. רושמים את המחיר החדש לגודל הקבוצה שהבוחן שואל עליו.",
       "why": "כל שינוי, ביטול או שינוי רווח משנה את המחיר הסופי, והבוחן ישאל עליו.",
-      "shot": "Calculation Sheet אחרי שינוי, עם Total selling price מסומן."
+      "shot": "Calculation Sheet אחרי שינוי, עם Total selling per person מסומן."
     },
     {
       "title": "שליחת ההצעה",

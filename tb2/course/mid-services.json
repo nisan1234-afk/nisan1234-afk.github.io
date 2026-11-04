@@ -42,9 +42,8 @@
     },
     {
       "title": "טיסה: חברה מכרטסת",
-      "text": "בשדה [[Ticketing Airline]] בודקים את החברה המכרטסת. כשמקלידים קוד חברה (למשל LY), המערכת ממלאת לבד ([[EL AL ISRAEL AIRLINES]]). אם הזמנתם באתר אחר (לופטהנזה, סקייסקנר), בודקים שהחברה בשדה מתאימה.",
-      "shot": "שדה החברה המכרטסת עם El Al Israel Airlines נבחר.",
-      "verify": "נבדק במערכת 4.11.26: LY ממלא את EL AL אוטומטית. עדיין לבדוק אם SkyScanner קיים ברשימת Ticketing Airline."
+      "text": "בשדה [[Ticketing Airline]] בודקים את החברה המכרטסת. כשמקלידים קוד חברה (למשל LY), המערכת ממלאת לבד ([[EL AL ISRAEL AIRLINES]]). ברשימה יש גם [[LUFTHANSA]], [[AUSTRIAN AIRLINES]], [[SWISS]], [[BRUSSELS AIRLINES]] ו-[[SKYSCANNER]]: בוחרים לפי האתר שבו הזמנתם.",
+      "shot": "שדה החברה המכרטסת עם El Al Israel Airlines נבחר."
     },
     {
       "title": "טיסה: מחיר לכל נוסע",

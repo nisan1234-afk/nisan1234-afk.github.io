@@ -17,7 +17,7 @@
     },
     {
       "term": "Cost / Markup / Total",
-      "text": "Cost = העלות שלנו לאדם (נטו). Markup = הרווח. Total selling price = מחיר המכירה לאדם."
+      "text": "Cost = העלות שלנו לאדם (נטו). Markup = הרווח. Total selling per person = מחיר המכירה לאדם."
     },
     {
       "term": "Supplements",
@@ -29,7 +29,7 @@
     },
     {
       "term": "מחיר סופי לאדם כולל עמלה",
-      "text": "דגש רשמי לבגרות 2026: צריך לדעת לחשב את המחיר הסופי לאדם כולל העמלה. בדף זה Total selling price בעמודה של גודל הקבוצה שבשאלה: העלות לאדם (Cost per person, כולל חלק החופשיים) ועוד ה-Markup."
+      "text": "דגש רשמי לבגרות 2026: צריך לדעת לחשב את המחיר הסופי לאדם כולל העמלה. בדף זה Total selling per person בעמודה של גודל הקבוצה שבשאלה: העלות לאדם (Cost per person, כולל חלק החופשיים) ועוד ה-Markup."
     }
   ],
   "steps": [
@@ -64,11 +64,10 @@
     },
     {
       "title": "סיכום: עלות, רווח, מחיר",
-      "text": "בחלק הסיכום: [[Cost per person]] (העלות שלנו לאדם), [[Markup]] (הרווח), ו-[[Total selling price]] (מחיר המכירה לאדם).",
+      "text": "בחלק [[Totals]]: [[Cost per person]] (העלות שלנו לאדם), [[Markup]] (הרווח), ו-[[Total selling per person]] (מחיר המכירה לאדם). ה-Markup הוא אחוז מה-Cost per person: למשל 986.55 × 22% = 217.04, ו-986.55 + 217.04 = 1,203.59.",
       "why": "\"עלות נטו\" = Cost. \"מחיר מכירה\" = Total. \"עלות כוללת\" בשאלה = לרוב כולל רווח.",
-      "shot": "שלוש השורות Cost per person, Markup, Total selling price מסומנות.",
-      "trap": "כששואלים \"מחיר לאדם\" בבחינה, עונים Total selling price (כולל עמלה), לא Cost per person. זו טעות שמופיעה בדגשים של 2026.",
-      "verify": "לבדיקה במערכת: שה-Markup מחושב כאחוז מה-Cost per person (Cost × אחוז), כדי שתלמיד יוכל לחשב ידנית את המחיר הסופי לאדם ולבדוק את המערכת."
+      "shot": "שלוש השורות Cost per person, Markup, Total selling per person מסומנות.",
+      "trap": "כששואלים \"מחיר לאדם\" בבחינה, עונים Total selling per person (כולל עמלה), לא Cost per person. זו טעות שמופיעה בדגשים של 2026."
     },
     {
       "title": "תוספות והנחות",
@@ -115,11 +114,11 @@
     },
     {
       "q": "מה העלות, הרווח ומחיר המכירה לאדם בקבוצה של 20, ואיפה רואים אותם?",
-      "a": "בעמודה של 20 ב-Calculation Sheet: Cost per person = העלות, Markup = הרווח, Total selling price = מחיר המכירה לאדם."
+      "a": "בעמודה של 20 ב-Calculation Sheet: Cost per person = העלות, Markup = הרווח, Total selling per person = מחיר המכירה לאדם."
     },
     {
       "q": "איך מגיעים למחיר הסופי לאדם כולל עמלה?",
-      "a": "עלויות קבוצתיות לאדם + עלויות אישיות (כולל חלק החופשיים) = Cost per person. מוסיפים את ה-Markup באחוזים, ומקבלים Total selling price. זה המחיר הסופי לאדם בחדר זוגי."
+      "a": "עלויות קבוצתיות לאדם + עלויות אישיות (כולל חלק החופשיים) = Cost per person. מוסיפים את ה-Markup באחוזים, ומקבלים Total selling per person. זה המחיר הסופי לאדם בחדר זוגי."
     },
     {
       "q": "אילו תוספות והנחות מופיעות בתחתית הדף?",
@@ -129,10 +128,10 @@
   "check": [
     "אתם יודעים לקרוא Net per person בכל עמודה",
     "אתם יודעים לקרוא Total individual expenses",
-    "אתם יודעים איפה Cost per person, Markup ו-Total selling price",
+    "אתם יודעים איפה Cost per person, Markup ו-Total selling per person",
     "אתם יודעים איפה Single Supplement",
     "עצרתם וקראתם לבוחן לפני שינויים",
-    "רשמתי את המחיר הסופי לאדם (Total selling price, כולל עמלה) לגודל הקבוצה שבשאלה."
+    "רשמתי את המחיר הסופי לאדם (Total selling per person, כולל עמלה) לגודל הקבוצה שבשאלה."
   ],
   "sources": [
     "TB_master §9, §8.10",

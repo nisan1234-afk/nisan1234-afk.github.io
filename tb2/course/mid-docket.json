@@ -37,9 +37,8 @@
     },
     {
       "title": "דוקט ידני חדש",
-      "text": "לוחצים על אייקון המעטפה בשורה העליונה ← [[New Manual Travel File]] ← [[Individual]].",
-      "shot": "אייקון המעטפה בשורה העליונה, והתפריט עם New Manual Travel File ו-Individual מסומנים.",
-      "verify": "בחוברת כתוב ״New Manuel Tarvel File״ (שגיאות הקלדה). לבדוק את הכיתוב המדויק במערכת."
+      "text": "לוחצים על אייקון המעטפה בשורה העליונה ← [[New Manual Travel File]] ← [[Individual]]. אפשר גם מהכפתור [[New Manual Travel File]] בראש כל דוקט פתוח.",
+      "shot": "אייקון המעטפה בשורה העליונה, והתפריט עם New Manual Travel File ו-Individual מסומנים."
     },
     {
       "title": "נוסע ראשון",
