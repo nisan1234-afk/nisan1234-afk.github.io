@@ -109,7 +109,13 @@ function saveStep_(user, body) {
     status: 'בתהליך', step: step, total: total, percent: percent, updated: now,
     started: sh.getRange(ROWS.started, col).getValue() ? null : now
   });
-  updateRegistry_(user, ss, { unit: unit.title, step: total ? step + ' / ' + total : step });
+  // מספר דוקט/הצעה שנרשם באמצע היחידה (חלון החובה במדריך)
+  const dk = String(body.docket == null ? '' : body.docket).replace(/[^\d]/g, '');
+  if (/^\d{1,9}$/.test(dk)) {
+    sh.getRange(ROWS.docket, col).setValue("'" + dk);
+    upsertProgress_(user, unit, { docket: "'" + dk, updated: now });
+  }
+  updateRegistry_(user, ss, { unit: unit.title, step: total ? step + ' / ' + total : step, docket: /^\d{1,9}$/.test(dk) ? dk : null });
   upsertProgress_(user, unit, done ? { updated: now } : {
     status: 'בתהליך', step: step, total: total, percent: percent, updated: now
   });

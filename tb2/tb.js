@@ -126,7 +126,7 @@
     store('tbLast', { unit: unit.id, i: step });
     saveLocal();
     if (guest) return;
-    pendingStep = unitPayload(unit, { step: step });
+    pendingStep = unitPayload(unit, p.docket ? { step: step, docket: p.docket, record: unit.record } : { step: step });
     flushStep();
   }
   function flushStep() {
@@ -296,6 +296,7 @@
     var n = unit.steps.length;
     var base = '#u/' + unit.id + '/';
     var html = headHtml(unit, i);
+    if (needsDocket(unit, i)) { renderGate(unit, i); return; }
     if (i === 0) {
       html += '<article class="tb-card tb-intro"><h2>' + unit.icon + ' ' + esc(unit.title) + '</h2>' +
         '<p><b>מה עושים:</b> ' + rich(unit.goal) + '</p><div class="tb-why"><b>💡 למה זה חשוב</b>' + rich(unit.why) + '</div>' +
@@ -325,6 +326,53 @@
       el.addEventListener('keydown', function (e) { if (e.key === 'Enter') openZoom(el); });
     });
     window.scrollTo(0, 0);
+  }
+
+  // ---------- חובה לרשום מספר דוקט/הצעה ----------
+  // יחידה שפותחת דוקט (docketAt = מספר השלב שבו מתקבל המספר): אחרי השלב הזה אי אפשר להמשיך בלי מספר.
+  // יחידה שממשיכה דוקט קיים (docketAt = 0): שואלים לפני שלב 1 באיזה דוקט עובדים.
+  var DOCKET_RE = { docket: /^\d{6}$/, proposal: /^\d{1,9}$/ };
+  function needsDocket(unit, i) {
+    if (unit.record === 'none' || i <= (unit.docketAt || 0)) return false;
+    var p = progress[unit.id] || {};
+    return !(p.done || p.docket);
+  }
+  function renderGate(unit, i) {
+    keepAwake(true);
+    var opener = !!unit.docketAt;
+    var label = RECORD_LABEL[unit.record] || 'מספר הדוקט';
+    var last = store(unit.record === 'proposal' ? 'tbLastProposal' : 'tbLastDocket') || '';
+    var base = '#u/' + unit.id + '/';
+    var title = opener ? '✋ רגע! רושמים את ' + label : (unit.record === 'proposal' ? '📄 באיזו הצעת מחיר עובדים?' : '📂 באיזה דוקט עובדים?');
+    var text = opener
+      ? 'עכשיו קיבלתם ' + label + ' בטרוול בוסטר. מקלידים אותו כאן כדי להמשיך. כך המורה יודע מה לבדוק.'
+      : 'היחידה הזו ממשיכה ' + (unit.record === 'proposal' ? 'הצעת מחיר קיימת' : 'דוקט קיים') + '. מקלידים את המספר ' + (unit.record === 'proposal' ? 'שלה' : 'שלו') + ' מטרוול בוסטר. ' +
+        (unit.record === 'proposal' ? '' : 'אם עוד אין לכם דוקט, עושים קודם את היחידה "מלון ראשון".');
+    app.innerHTML = headHtml(unit, i) + '<article class="tb-card"><h2>' + title + '</h2><p class="tb-text">' + esc(text) + '</p>' +
+      '<form class="tb-form" id="tbGate" novalidate><label for="tbGateNum">' + label + '</label>' +
+      '<input id="tbGateNum" inputmode="numeric" autocomplete="off" maxlength="9" placeholder="' + (unit.record === 'proposal' ? '1234' : '154081') + '" value="' + esc(opener ? '' : last) + '">' +
+      (!opener && last ? '<p class="tb-text" style="margin:4px 0 0;font-size:.85rem">הוזן המספר האחרון שלכם. אם זה לא אותו דוקט, מתקנים.</p>' : '') +
+      '<p class="msg" id="tbGateMsg"></p><button class="btn btn-primary" style="width:100%" type="submit">שמירה והמשך</button></form></article>' +
+      '<nav class="tb-nav"><a class="btn" href="' + base + Math.max(0, (unit.docketAt || 0)) + '">הקודם</a><span></span></nav>';
+    var input = document.getElementById('tbGateNum');
+    var msg = document.getElementById('tbGateMsg');
+    input.addEventListener('input', function () { input.value = input.value.replace(/[^\d]/g, ''); });
+    document.getElementById('tbGate').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = input.value.trim();
+      if (!DOCKET_RE[unit.record].test(v)) {
+        msg.textContent = unit.record === 'proposal' ? 'רק ספרות.' : 'מספר דוקט הוא 6 ספרות (למשל 154081). מעתיקים אותו מהכותרת בטרוול בוסטר, אחרי #.';
+        input.focus(); return;
+      }
+      var p = progress[unit.id] || (progress[unit.id] = { unit_id: unit.id, step: 0, percent: 0, steps_total: unit.steps.length });
+      p.docket = v;
+      store(unit.record === 'proposal' ? 'tbLastProposal' : 'tbLastDocket', v);
+      saveLocal();
+      if (!guest) { pendingStep = unitPayload(unit, { step: Math.max(1, i - 1), docket: v, record: unit.record }); flushStep(); }
+      renderUnit(unit, i);
+    });
+    window.scrollTo(0, 0);
+    setTimeout(function () { input.focus(); }, 50);
   }
 
   function renderCheckpoint(unit) {
@@ -360,6 +408,7 @@
       var done = function () {
         progress[unit.id] = Object.assign(progress[unit.id] || {}, { unit_id: unit.id, done: true, docket: docket, note: note, step: unit.steps.length, percent: 100, steps_total: unit.steps.length });
         store('tbLast', null);
+        if (docket) store(unit.record === 'proposal' ? 'tbLastProposal' : 'tbLastDocket', docket);
         saveLocal();
         renderDone(unit, docket);
       };

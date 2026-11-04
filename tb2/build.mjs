@@ -15,7 +15,7 @@ const units = readdirSync(join(DIR, 'course')).filter((f) => f.endsWith('.json')
   .sort((a, b) => TRACK_ORDER[a.track] - TRACK_ORDER[b.track] || a.order - b.order)
   .map((u) => ({
     id: u.id, track: u.track, icon: u.icon, title: u.title, goal: u.goal, why: u.why,
-    record: RECORD(u),
+    record: RECORD(u), docketAt: u.docketAt || 0,
     before: u.before || [], oral: u.oral || [], check: u.check || [],
     steps: u.steps.map((s, i) => {
       const sh = shots[`${u.id}:${i + 1}`];
