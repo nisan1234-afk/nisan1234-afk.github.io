@@ -2395,7 +2395,7 @@ window.TB_UNITS = [
    },
    {
     "title": "שולחים את ה-Itinerary",
-    "text": "לוחצים [[Send Page]] (המעטפה), מקלידים את הכתובת שהמורה או הבוחן נתנו, ולוחצים [[Send]].",
+    "text": "לוחצים [[Send Page]] (המעטפה), מקלידים כתובת: בתרגול [[mordehaynisan@gmail.com]], ובבחינה הכתובת שהבוחן נותן, ולוחצים [[Send]].",
     "trap": "לא שולחים לכתובת אמיתית של לקוח או של מישהו אחר בלי הנחיה של המורה."
    },
    {
@@ -2409,7 +2409,7 @@ window.TB_UNITS = [
    },
    {
     "title": "שולחים את ה-Travel File Details",
-    "text": "לוחצים [[Send Page]], מקלידים את הכתובת שהמורה או הבוחן נתנו, ולוחצים [[Send]]. חוזרים לדוקט."
+    "text": "לוחצים [[Send Page]], מקלידים כתובת: בתרגול [[mordehaynisan@gmail.com]], ובבחינה הכתובת שהבוחן נותן, ולוחצים [[Send]]. חוזרים לדוקט."
    },
    {
     "title": "שם ומספר דוקט בנושא",
@@ -3408,7 +3408,7 @@ window.TB_UNITS = [
    },
    {
     "title": "שולחים Travel File Details",
-    "text": "לוחצים [[Travel File Details]] (נטען לאט), ואז [[Send Page]], כתובת מייל ו-[[Send]].",
+    "text": "לוחצים [[Travel File Details]] (נטען לאט), ואז [[Send Page]]. בתרגול שולחים ל-[[mordehaynisan@gmail.com]], ובבחינה לכתובת שהבוחן נותן. לוחצים [[Send]].",
     "why": "בקבוצה אין שם מחיר לכל שירות. יש חישוב כולל: נוסעים, [[Single Supplement]], [[Free of Charge]], סך לתשלום, מקדמה שהתקבלה ויתרה."
    }
   ]
@@ -5374,7 +5374,7 @@ window.TB_UNITS = [
    },
    {
     "title": "[[Travel File Details]]",
-    "text": "בדוקט לוחצים [[Travel File Details]] ← [[Send Page]]. נפתח חלון מייל: ב-[[To]] רושמים את המייל שבשאלה, הנושא כבר ממולא ([[Booking Details]] ומספר הדוקט). ב-[[Add Attachment]] מצרפים את קובץ הצילומים, לוחצים [[Send]], ואז [[Back to Travel File]].",
+    "text": "בדוקט לוחצים [[Travel File Details]] ← [[Send Page]]. נפתח חלון מייל: ב-[[To]] רושמים בתרגול [[mordehaynisan@gmail.com]], ובבחינה את המייל שבשאלה, הנושא כבר ממולא ([[Booking Details]] ומספר הדוקט). ב-[[Add Attachment]] מצרפים את קובץ הצילומים, לוחצים [[Send]], ואז [[Back to Travel File]].",
     "why": "הבוחן מקבל מייל עם מספר הדוקט בכותרת ושני קבצים: פירוט הדוקט, וקובץ הצילומים והמפה.",
     "img": "mid-send-8",
     "hl": [
