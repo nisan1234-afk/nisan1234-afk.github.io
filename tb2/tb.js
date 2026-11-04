@@ -77,6 +77,7 @@
   function showLogin(reason) {
     keepAwake(false);
     app.innerHTML = '<section class="tb-card tb-login"><div class="big">✈️</div><h2>טרוול בוסטר צעד-צעד</h2>' +
+      '<p style="display:inline-block;margin:4px 0 10px;padding:4px 12px;border-radius:999px;background:#c2410c;color:#fff;font-weight:700;font-size:.9rem">🆕 גרסה חדשה · תשפ״ז · כולל מידענות</p>' +
       '<p class="tb-text">' + esc(reason || 'נכנסים עם חשבון הגוגל שלכם. ההתקדמות נשמרת בגיליון אישי שנפתח לכם בדרייב, כולל מה שכבר עשיתם בטלפון הזה.') + '</p>' +
       '<div id="tbGoogleBtn" class="tb-gbtn"></div>' +
       '<p style="margin-top:18px"><a href="#" id="tbGuest">להמשיך בלי כניסה</a></p></section>';
