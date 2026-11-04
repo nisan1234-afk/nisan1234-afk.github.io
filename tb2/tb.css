@@ -169,3 +169,9 @@ button { cursor: pointer; }
 .tb-oral summary { font-weight: 700; cursor: pointer; line-height: 1.5; }
 .tb-oral p { margin: 8px 0 0; line-height: 1.6; color: var(--forest); }
 button.tb-sheetlink { border: 0; font-family: inherit; cursor: pointer; }
+
+/* לשוניות אתרים מעל צילום (Hertz / Avis / Ofran...) */
+.tb-sites { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.tb-site { font: inherit; font-size: 0.85rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: inherit; cursor: pointer; direction: ltr; }
+.tb-site.on { background: #1f3a33; color: #fff; border-color: #1f3a33; }
+.tb-site:focus-visible { outline: 2px solid #c2410c; outline-offset: 2px; }

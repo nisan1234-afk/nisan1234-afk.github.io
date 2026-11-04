@@ -233,12 +233,46 @@
     var st = box ? ' style="width:' + (10000 / box[2]) + '%;height:' + (10000 / box[3]) + '%;left:' + (-box[0] * 100 / box[2]) + '%;top:' + (-box[1] * 100 / box[3]) + '%"' : '';
     return '<div class="tb-stage' + (box ? ' cropped' : '') + '"' + st + '><img src="img/' + esc(step.img) + '.webp" alt="צילום מסך: ' + esc(step.title) + '">' + hls + '</div>';
   }
+  // צילום אחד לשלב, או כמה צילומים מאתרים שונים (sites) עם לשוניות לבחירת האתר
+  var currentView = null;
+  function viewsOf(step) {
+    var v = step.img ? [{ name: step.site || '', img: step.img, hl: step.hl, title: step.title }] : [];
+    (step.sites || []).forEach(function (s) { v.push({ name: s.name, img: s.img, hl: s.hl, title: step.title }); });
+    return v;
+  }
+  function shotInner(view) {
+    var box = focusBox(view.hl);
+    return '<div class="tb-shot' + (box ? ' is-cropped' : '') + '" data-zoom role="button" tabindex="0" aria-label="הגדלת הצילום"' +
+      (box ? ' data-box="' + box.join(',') + '"' : '') + '>' + stageHtml(view, box) + '</div>' +
+      '<small class="tb-shot-hint">' + (box ? 'מוצג רק האזור החשוב · נגיעה מראה את כל המסך' : 'הסימון הכתום = איפה לוחצים · נגיעה מגדילה') + '</small>';
+  }
   function shotHtml(step) {
-    if (!step.img) return '';
-    var box = focusBox(step.hl);
-    return '<figure style="margin:12px 0 0"><div class="tb-shot' + (box ? ' is-cropped' : '') + '" data-zoom role="button" tabindex="0" aria-label="הגדלת הצילום"' +
-      (box ? ' data-box="' + box.join(',') + '"' : '') + '>' + stageHtml(step, box) + '</div>' +
-      '<small class="tb-shot-hint">' + (box ? 'מוצג רק האזור החשוב · נגיעה מראה את כל המסך' : 'הסימון הכתום = איפה לוחצים · נגיעה מגדילה') + '</small></figure>';
+    var views = viewsOf(step);
+    if (!views.length) { currentView = null; return ''; }
+    currentView = views[0];
+    var tabs = views.length > 1 ? '<div class="tb-sites" role="tablist" aria-label="באיזה אתר">' + views.map(function (v, k) {
+      return '<button type="button" role="tab" class="tb-site' + (k ? '' : ' on') + '" aria-selected="' + (k ? 'false' : 'true') + '" data-site="' + k + '">' + esc(v.name || 'אתר ' + (k + 1)) + '</button>';
+    }).join('') + '</div>' : (views[0].name ? '<div class="tb-sites"><span class="tb-site on">' + esc(views[0].name) + '</span></div>' : '');
+    return '<figure style="margin:12px 0 0">' + tabs + '<div class="tb-shotwrap">' + shotInner(views[0]) + '</div></figure>';
+  }
+  function wireShot(step) {
+    var views = viewsOf(step);
+    app.querySelectorAll('.tb-site').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var k = Number(b.getAttribute('data-site'));
+        currentView = views[k];
+        app.querySelectorAll('.tb-site').forEach(function (x) { x.classList.toggle('on', x === b); x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        app.querySelector('.tb-shotwrap').innerHTML = shotInner(currentView);
+        wireZoom();
+        sizeCrops();
+      });
+    });
+  }
+  function wireZoom() {
+    app.querySelectorAll('[data-zoom]').forEach(function (el) {
+      el.addEventListener('click', function () { openZoom(el); });
+      el.addEventListener('keydown', function (e) { if (e.key === 'Enter') openZoom(el); });
+    });
   }
   // גובה התצוגה הממוקדת נקבע לפי יחס התמונה, שידוע רק אחרי טעינה
   function sizeCrops() {
@@ -321,10 +355,8 @@
     if (i >= 1 && i <= n) saveStep(unit, i);
     if (i > n + 1) wireCheckpoint(unit);
     sizeCrops();
-    app.querySelectorAll('[data-zoom]').forEach(function (el) {
-      el.addEventListener('click', function () { openZoom(el); });
-      el.addEventListener('keydown', function (e) { if (e.key === 'Enter') openZoom(el); });
-    });
+    wireZoom();
+    if (i >= 1 && i <= n) wireShot(unit.steps[i - 1]);
     window.scrollTo(0, 0);
   }
 
@@ -442,7 +474,7 @@
   var currentStep = null;
   function openZoom() {
     if (!currentStep) return;
-    zoomShot.innerHTML = stageHtml(currentStep, null);
+    zoomShot.innerHTML = stageHtml(currentView || currentStep, null);
     zoom.hidden = false;
   }
   function closeZoom() { zoom.hidden = true; zoomShot.innerHTML = ''; }

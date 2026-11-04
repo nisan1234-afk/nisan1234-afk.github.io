@@ -19,11 +19,17 @@ const units = readdirSync(join(DIR, 'course')).filter((f) => f.endsWith('.json')
     before: u.before || [], oral: u.oral || [], check: u.check || [],
     steps: u.steps.map((s, i) => {
       const sh = shots[`${u.id}:${i + 1}`];
-      if (sh && !existsSync(join(DIR, 'img', sh.img + '.webp'))) problems.push(`חסר img/${sh.img}.webp`);
+      if (sh && sh.img && !existsSync(join(DIR, 'img', sh.img + '.webp'))) problems.push(`חסר img/${sh.img}.webp`);
       const o = { title: s.title, text: s.text };
       if (s.why) o.why = s.why;
       if (s.trap) o.trap = s.trap;
-      if (sh) { o.img = sh.img; o.hl = sh.hl; }
+      if (sh) {
+        if (sh.img) { o.img = sh.img; o.hl = sh.hl; if (sh.site) o.site = sh.site; }
+        if (sh.sites) {
+          o.sites = sh.sites;
+          sh.sites.forEach((s) => { if (!existsSync(join(DIR, 'img', s.img + '.webp'))) problems.push(`חסר img/${s.img}.webp`); });
+        }
+      }
       return o;
     }),
   }));
