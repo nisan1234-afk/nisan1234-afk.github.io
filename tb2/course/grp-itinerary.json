@@ -30,7 +30,7 @@
       "text": "עוברים ללשונית [[Itinerary]].",
       "trap": "לא עובדים בתצוגת [[Itinerary Horizontal]]. עובדים בתצוגה השנייה.",
       "shot": "לשונית Itinerary פתוחה, עם שתי התצוגות; התצוגה שעובדים בה מסומנת.",
-      "verify": "hishtalmut_04 אומר לא לעבוד ב-Itinerary Horizontal, ו-00_docs_summary קורא לשלב הזה \"Horizontal-Itinerary\". לבדוק במערכת באיזו תצוגה מגדירים תאריכים."
+      "verify": "hishtalmut_04 אומר לא לעבוד ב-Itinerary Horizontal, ו-00_docs_summary קורא לשלב הזה \"Horizontal-Itinerary\". לבדוק במערכת באיזו תצוגה מגדירים תאריכים. | סתירה חדשה: חוברת קבוצות 2025-26 אומרת דווקא \"בלשונית Itinerary - Horizontal ממלאים את תאריך ההתחלה ואת מספר הימים או הלילות, ולוחצים Create Itinerary\". לבדוק במערכת ולעדכן את ה-trap."
     },
     {
       "title": "תאריך התחלה ומשך",
@@ -111,6 +111,7 @@
     "00_docs_summary: קבוצות — הצעת מחיר 3-5",
     "hishtalmut_04 חלק ג׳ לשונית 3",
     "hishtalmut_06 §7 שלבים ג-ה",
-    "hishtalmut_09 §3 שלבים 3-5"
+    "hishtalmut_09 §3 שלבים 3-5",
+    "tb-study/02-fit-groups.md (חוברות 2025-26, בחינות לדוגמה תשפ״ד, שלבי עבודה ירון, מצגת ש״ת) §3.4"
   ]
 }

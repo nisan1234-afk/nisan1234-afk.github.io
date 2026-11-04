@@ -32,7 +32,7 @@
       "text": "מסמנים V ב-[[Include FIT Rate]] ולוחצים [[Find]].",
       "trap": "בלי הסימון חלק מהאתרים לא יופיעו.",
       "shot": "תיבת Include FIT Rate עם V, וכפתור Find, מסומנים.",
-      "verify": "שם התיבה: hishtalmut_04 — \"Include FIT Rate\"; hishtalmut_09 — \"Include FIT\". לבדוק את הנוסח המדויק."
+      "verify": "שם התיבה: hishtalmut_04 — \"Include FIT Rate\"; hishtalmut_09 — \"Include FIT\". לבדוק את הנוסח המדויק. | חוברת קבוצות 2025-26: \"Include FIT rate\"."
     },
     {
       "title": "לא מקלידים שם אתר",
@@ -100,6 +100,7 @@
     "00_docs_summary: קבוצות — הצעת מחיר 7",
     "hishtalmut_04 חלק ג׳ פעילויות",
     "hishtalmut_06 §7 שלב ז",
-    "hishtalmut_09 §3 שלב 7"
+    "hishtalmut_09 §3 שלב 7",
+    "tb-study/02-fit-groups.md (חוברות 2025-26, בחינות לדוגמה תשפ״ד, שלבי עבודה ירון, מצגת ש״ת) §3.4"
   ]
 }

@@ -43,7 +43,7 @@
       "title": "ספק: בין הרים",
       "text": "בשדה הספק בוחרים [[Ben Harim]], כמו ביחידת ההעברה.",
       "shot": "שדה הספק עם Ben Harim נבחר.",
-      "verify": "בחוברת השדה נקרא כאן Reserved through. לבדוק את שם השדה בטופס Guide ידני."
+      "verify": "בחוברת השדה נקרא כאן Reserved through. לבדוק את שם השדה בטופס Guide ידני. | חוברת FIT 2025-26 (סיור פרטי ידני): השדה נקרא Reserved through, ובוחרים Ben Harim."
     },
     {
       "title": "תאריך ושעה",
@@ -97,6 +97,7 @@
     "00_docs_summary: הזמנות מחוץ למערכת — סיור פרטי",
     "hishtalmut_02 §5 (רישום בטרוול בוסטר), §6 (Activity מול Guide)",
     "hishtalmut_04 חלק א׳ (Passengers & Pricing במדריך)",
-    "hishtalmut_09 §2 (שעה בסיור פרטי)"
+    "hishtalmut_09 §2 (שעה בסיור פרטי)",
+    "tb-study/02-fit-groups.md (חוברות 2025-26, בחינות לדוגמה תשפ״ד, שלבי עבודה ירון, מצגת ש״ת) §2.7"
   ]
 }

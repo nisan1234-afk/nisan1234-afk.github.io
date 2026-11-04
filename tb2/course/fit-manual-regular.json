@@ -26,7 +26,7 @@
       "text": "בחלק [[Services]]: החץ שליד [[Add Services]] ← [[Add Manual Service]] ← [[Activities]].",
       "trap": "לא [[Guide]]. Guide הוא רק לסיור פרטי.",
       "shot": "רשימת סוגי השירותים הידניים. לסמן את [[Activities]].",
-      "verify": "הכיתוב המדויק ברשימה: Activities או Activity."
+      "verify": "הכיתוב המדויק ברשימה: Activities או Activity. | חוברת FIT 2025-26: Add Manual Services ← Activities, ו-Destination לפי 2 האותיות הראשונות של האזור."
     },
     {
       "title": "שם, יעד וספק",
@@ -108,6 +108,7 @@
     "00_docs_summary: הזמנות מחוץ למערכת — סיור רגולרי",
     "hishtalmut_02 §6",
     "hishtalmut_04 חלק א׳ (שעת איסוף, מחיר לכל נוסע)",
-    "hishtalmut_09 §2 (הערת רפי על שעת איסוף, שמות טיולים דומים)"
+    "hishtalmut_09 §2 (הערת רפי על שעת איסוף, שמות טיולים דומים)",
+    "tb-study/02-fit-groups.md (חוברות 2025-26, בחינות לדוגמה תשפ״ד, שלבי עבודה ירון, מצגת ש״ת) §2.8"
   ]
 }

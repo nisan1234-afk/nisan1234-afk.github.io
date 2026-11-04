@@ -41,7 +41,7 @@
       "text": "ממלאים את החלוקה בפועל: [[Persons in Double]] ו-[[Persons in Single]]. אם בשאלה כתוב מספר חדרים — ממלאים בשדה החדרים. אם כתוב מספר אנשים — בשדה הנוסעים. השדה השני מתחשב לבד.",
       "trap": "\"20 חדרים זוגיים\" זה 40 איש. קוראים בשאלה אם מדובר בחדרים או בנוסעים.",
       "shot": "חלון Create Travel File עם עמודת חדרים ועמודת נוסעים, שתיהן מסומנות.",
-      "verify": "כפתור הסיום בחלון: hishtalmut_04 — Create; hishtalmut_06 ו-00_docs_summary — OK. לבדוק."
+      "verify": "כפתור הסיום בחלון: hishtalmut_04 — Create; hishtalmut_06 ו-00_docs_summary — OK. לבדוק. | חוברת קבוצות 2025-26: מזינים מספר אנשים בזוגי וביחיד ולוחצים OK. בבחינה לדוגמה MADOR כתוב בחדרים: \"18 חדרים זוגיים + 3 חדרי יחיד\"."
     },
     {
       "title": "רושמים את מספר הדוקט",
@@ -67,7 +67,7 @@
       "why": "בחיים האמיתיים כל ספק מקבל בקשה נפרדת ומאשר אותה. אין אישור גורף.",
       "trap": "לא מאשרים את השורה הוורודה ואת שורת ההערה.",
       "shot": "חלון Reservation של שירות, עם Reserve, Report and Confirm מסומן.",
-      "verify": "סתירה במקורות: TB_master, hishtalmut_04 ו-hishtalmut_09 — עיפרון → Reservation → Reserve, Report and Confirm; 00_docs_summary — עיפרון → Status OK → Save & Exit. לבדוק במערכת איזו דרך עובדת בדוקט קבוצתי (ואם שתיהן — איזו החוברת מלמדת)."
+      "verify": "סתירה במקורות: TB_master, hishtalmut_04 ו-hishtalmut_09 — עיפרון → Reservation → Reserve, Report and Confirm; 00_docs_summary — עיפרון → Status OK → Save & Exit. לבדוק במערכת איזו דרך עובדת בדוקט קבוצתי (ואם שתיהן — איזו החוברת מלמדת). | חוברת קבוצות 2025-26 (§3.9) מלמדת: עיפרון ← משנים Status ל-OK ← SAVE & EXIT, לכל שירות בנפרד. זה מחזק את הדרך של 00_docs_summary."
     },
     {
       "title": "בודקים שאושר",
@@ -122,6 +122,7 @@
     "00_docs_summary: Create Travel File, דוקט קבוצתי",
     "hishtalmut_04 חלק ז׳",
     "hishtalmut_06 §2, §3, §7 שלבים יב-יג",
-    "hishtalmut_09 §5, §6 שינויים אחרי פתיחת דוקט"
+    "hishtalmut_09 §5, §6 שינויים אחרי פתיחת דוקט",
+    "tb-study/02-fit-groups.md (חוברות 2025-26, בחינות לדוגמה תשפ״ד, שלבי עבודה ירון, מצגת ש״ת) §1, §3.8, §3.9"
   ]
 }

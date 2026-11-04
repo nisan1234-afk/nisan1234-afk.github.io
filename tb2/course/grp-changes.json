@@ -37,7 +37,7 @@
       "text": "בוחרים את היום. בהמבורגר שליד היום בוחרים [[Edit Day]], ואז [[Remarks]]. פותחים את הרשימה ובוחרים את מספר ההערה מהשאלה. [[OK]] ואחר כך [[Save]].",
       "trap": "בוחרים הערה שיש בה טקסט. הערה ריקה לא תופיע בדוקט.",
       "shot": "תפריט ההמבורגר של יום עם Edit Day, ורשימת Remarks פתוחה.",
-      "verify": "hishtalmut_04 ו-TB_master: \"Edit Day\" → \"Remarks\"; hishtalmut_06: \"Itinerary Day\" / \"Day\" → \"Remark\". לבדוק את שמות הפריטים בתפריט."
+      "verify": "hishtalmut_04 ו-TB_master: \"Edit Day\" → \"Remarks\"; hishtalmut_06: \"Itinerary Day\" / \"Day\" → \"Remark\". לבדוק את שמות הפריטים בתפריט. | חוברת קבוצות 2025-26: המבורגר של היום ← Edit Day ← שדה Remark ← בחירה מהרשימה (למשל \"Israel 2\") ← OK."
     },
     {
       "title": "ביטול שירות",
@@ -54,7 +54,7 @@
       "title": "רווח לכל ההצעה",
       "text": "לשינוי ה-[[Markup]] הכללי: בחלק ה-[[Totals]] / ה-[[Markup]] לוחצים [[Edit]], משנים את האחוז ולוחצים [[OK]]. השינוי חל על הכול.",
       "shot": "שורת ה-Markup הכללי עם כפתור Edit מסומן.",
-      "verify": "המקורות סותרים בדרך: TB_master — \"Totals → Edit\"; hishtalmut_04 — \"בלשונית ה-Markup לוחצים Edit\"; 00_docs_summary — \"Totals → Add Markup → Edit\". לבדוק את הנתיב המדויק."
+      "verify": "המקורות סותרים בדרך: TB_master — \"Totals → Edit\"; hishtalmut_04 — \"בלשונית ה-Markup לוחצים Edit\"; 00_docs_summary — \"Totals → Add Markup → Edit\". לבדוק את הנתיב המדויק. | חוברת קבוצות 2025-26: בחלק Totals לוחצים Add Markup ואז Edit, משנים ולוחצים OK."
     },
     {
       "title": "מחיר חדש אחרי כל שינוי",
@@ -66,7 +66,7 @@
       "title": "שליחת ההצעה",
       "text": "לוחצים [[Print]] ובוחרים [[Itinerary]] או [[Send Proposal by Mail]], לפי השאלה. מקלידים כתובת מייל ולוחצים [[Continue]].",
       "shot": "תפריט Print עם Itinerary ו-Send Proposal by Mail מסומנים, ושדה המייל.",
-      "verify": "00_docs_summary מוסיף אחרי Continue לחיצה על SEND. לבדוק אם יש מסך נוסף אחרי Continue."
+      "verify": "00_docs_summary מוסיף אחרי Continue לחיצה על SEND. לבדוק אם יש מסך נוסף אחרי Continue. | חוברת קבוצות 2025-26: Print ← ITINERARY ← Continue ← גוללים ← SEND ← מייל ← SEND. ההצעה: Print ← SEND PROPOSAL BY MAIL ← מייל ← Send."
     }
   ],
   "oral": [
@@ -92,13 +92,15 @@
     "ההערה שנבחרה מכילה טקסט",
     "השירות שבוטל לא מופיע במסלול",
     "רשמתם את המחיר החדש אחרי השינויים",
-    "ההצעה נשלחה למייל שבשאלה"
+    "ההצעה נשלחה למייל שבשאלה",
+    "אחרי השינויים רשמתם שוב את המחיר הסופי לאדם כולל עמלה, לגודל הקבוצה שבשאלה"
   ],
   "sources": [
     "TB_master §8.11-8.12",
     "00_docs_summary: קבוצות — שינויים, שליחה",
     "hishtalmut_04 חלק ה׳, חלק ו׳",
     "hishtalmut_06 §7 שלב יא",
-    "hishtalmut_09 §4 השינויים בתרגיל"
+    "hishtalmut_09 §4 השינויים בתרגיל",
+    "tb-study/02-fit-groups.md (חוברות 2025-26, בחינות לדוגמה תשפ״ד, שלבי עבודה ירון, מצגת ש״ת) §3.6, §3.7"
   ]
 }
