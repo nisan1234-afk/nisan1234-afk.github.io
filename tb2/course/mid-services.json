@@ -4,7 +4,7 @@
   "order": 8,
   "icon": "✍️",
   "title": "הזנת שירותים ידנית לדוקט",
-  "goal": "להזין לדוקט Outgoing את הטיסה, המלון, הרכב והאטרקציה דרך Add Manual Service, עם השעות, הספק, המטבע והמחיר הנכונים.",
+  "goal": "להזין לדוקט [[Outgoing]] את הטיסה, המלון, הרכב והאטרקציה דרך [[Add Manual Service]], עם השעות, הספק, המטבע והמחיר הנכונים.",
   "why": "בתיירות יוצאת כל שירות מוזמן באתר חיצוני, ובטרוול בוסטר רק רושמים אותו. הבוחן בודק שהשעות מתואמות: כניסה למלון ואיסוף רכב אחרי הנחיתה, ומחיר נכון לכל נוסע.",
   "before": [
     {
@@ -43,7 +43,7 @@
     },
     {
       "title": "טיסה: חברה מכרטסת",
-      "text": "בוחרים את החברה המכרטסת לפי האתר שבו הזמנתם: [[El Al Israel Airlines]] לאתר אל על; Lufthansa, Austrian Airlines, Brussels Airlines או Swiss לאתר לופטהנזה; ו-[[SkyScanner]] לאתר סקייסקנר.",
+      "text": "בוחרים את החברה המכרטסת לפי האתר שבו הזמנתם: [[El Al Israel Airlines]] לאתר אל על; [[Lufthansa]], [[Austrian Airlines]], [[Brussels Airlines]] או [[Swiss]] לאתר לופטהנזה; ו-[[SkyScanner]] לאתר סקייסקנר.",
       "shot": "שדה החברה המכרטסת עם El Al Israel Airlines נבחר.",
       "verify": "שם השדה של החברה המכרטסת בטופס, ואם SkyScanner באמת קיים ברשימה."
     },
@@ -54,7 +54,7 @@
     },
     {
       "title": "מלון: פרטים",
-      "text": "[[Add Manual Service]] ← [[Hotel]]. מזינים [[Hotel Name]], בוחרים [[Destination]] מהרשימה, [[Board Basis]], וב-[[Reserved through]] בוחרים Booking, Expedia או Hotels.com לפי האתר.",
+      "text": "[[Add Manual Service]] ← [[Hotel]]. מזינים [[Hotel Name]], בוחרים [[Destination]] מהרשימה, [[Board Basis]], וב-[[Reserved through]] בוחרים [[Booking]], [[Expedia]] או [[Hotels.com]] לפי האתר.",
       "shot": "טופס Hotel עם שם המלון, היעד, בסיס האירוח ו-Reserved through מסומנים."
     },
     {
@@ -77,25 +77,25 @@
     {
       "title": "רכב: בלי תחנת איסוף",
       "text": "את [[Pick up station]] לא צריך להזין השנה. נקודת האיסוף מופיעה בצילום הרכב במסמך. עוברים ל-[[Passengers & Pricing]], בודקים [[Currency]], מזינים [[Supplier Price]] ← [[Calc]] ← [[Save & Exit]].",
-      "why": "בחוברת יש הוראות ל-Pick up station ול-Add New Station. בתשפ״ז זה בוטל.",
+      "why": "בחוברת יש הוראות ל-[[Pick up station]] ול-[[Add New Station]]. בתשפ״ז זה בוטל.",
       "shot": "השדה Pick up station בטופס (מסומן כ״לא צריך השנה״), ו-Passengers & Pricing של הרכב.",
       "verify": "לבדוק שהמערכת מאפשרת Save & Exit בלי Pick up station (שהשדה לא חובה)."
     },
     {
-      "title": "אטרקציה: Activities",
+      "title": "אטרקציה: [[Activities]]",
       "text": "[[Add Manual Service]] ← [[Activities]]. רושמים [[Name]], [[Destination]], וב-[[Service Provider]] בוחרים [[Live Tickets]]. מזינים תאריך התחלה וסיום של הפעילות ומשנים סטטוס ל-[[OK]].",
       "shot": "טופס Activities עם השם, היעד והספק Live Tickets מסומנים."
     },
     {
       "title": "אטרקציה: מחיר ובדיקה",
-      "text": "ב-[[Passengers & Pricing]] בודקים [[Currency]], מזינים [[Supplier Price]] לכל נוסע, [[Calc]] ← [[Save & Exit]]. בדוקט מופיעות עכשיו ארבע שורות: טיסה, מלון, רכב ו-Activity.",
+      "text": "ב-[[Passengers & Pricing]] בודקים [[Currency]], מזינים [[Supplier Price]] לכל נוסע, [[Calc]] ← [[Save & Exit]]. בדוקט מופיעות עכשיו ארבע שורות: טיסה, מלון, רכב ו-[[Activity]].",
       "trap": "מזינים אטרקציה אחת. לא שלוש כמו בחוברת.",
       "shot": "חלק Services בדוקט עם ארבע השורות. לסמן כל שורה."
     }
   ],
   "oral": [
     {
-      "q": "למה כל השירותים בדוקט Outgoing נכנסים דרך Add Manual Service?",
+      "q": "למה כל השירותים בדוקט [[Outgoing]] נכנסים דרך [[Add Manual Service]]?",
       "a": "כי בתיירות יוצאת הכול מוזמן מחוץ למערכת, באתרים כמו אל על, בוקינג ואוויס. בטרוול בוסטר רק רושמים את מה שהוזמן."
     },
     {
@@ -118,10 +118,10 @@
   "check": [
     "יש בדוקט טיסה הלוך וחזור, עם חברה מכרטסת לפי האתר",
     "הכניסה למלון לפחות שעתיים אחרי הנחיתה (או 15:00)",
-    "Reserved through של המלון = האתר שבו הוזמן",
+    "[[Reserved through]] של המלון = האתר שבו הוזמן",
     "איסוף הרכב לפחות שעה אחרי הנחיתה, וספק לפי החברה",
-    "אטרקציה אחת עם הספק Live Tickets",
-    "בכל שירות: מטבע נכון, Supplier Price, Calc וסטטוס OK"
+    "אטרקציה אחת עם הספק [[Live Tickets]]",
+    "בכל שירות: מטבע נכון, [[Supplier Price]], [[Calc]] וסטטוס [[OK]]"
   ],
   "sources": [
     "00-guidelines §5.2 (בלי נקודת איסוף), §5.4 (אטרקציה אחת), §6.5",
