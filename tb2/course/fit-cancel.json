@@ -38,20 +38,20 @@
       "shot": "תפריט ההמבורגר פתוח. לסמן את [[Cancel Reservation]] בירוק ואת [[Delete Transaction]] באדום."
     },
     {
-      "title": "מהמערכת, אחרי אישור",
-      "text": "עיפרון ← [[Reservation]] ← [[Cancel, Report and Confirm]]. מתקבל X אדום מיד, והביטול כבר דווח לספק.",
+      "title": "מהמערכת, אחרי אישור: דיווח",
+      "text": "עיפרון ← [[Reservation]] ← [[Report Cancellation]] ← [[Back to Travel File]]. הביטול דווח לספק, אבל עוד לא אושר. ממשיכים לשלב האישור.",
       "trap": "אחרי אישור לא מבטלים מההמבורגר. אם ניסיתם וקיבלתם הודעה שההזמנה כבר דווחה למלון, לא ללחוץ OK. סוגרים (Back) ומבטלים דרך העיפרון.",
       "shot": "לשונית Reservation של הזמנה מאושרת. לסמן את [[Cancel, Report and Confirm]].",
-      "verify": "סתירה במקורות: בחוברת הביטול אחרי אישור הוא תמיד בשני שלבים (Report Cancellation ואז Confirm Cancellation). בהשתלמות ירון מלמד Cancel, Report and Confirm בלחיצה אחת, ושני שלבים רק במקרה של עיגול כתום. לבדוק במערכת שהכפתור קיים ומוביל ל-X אדום."
+      "verify": "הוכרע לפי חוברת FIT 2025-26 (ביטול הזמנה שדווחה ואושרה) (סדר עדיפות: מפגש 6.1.26 ← חוברות 2025-26 ← האתר). בעבר: Cancel, Report and Confirm בלחיצה אחת (מההשתלמות), ושני שלבים רק בעיגול כתום. שלבים 3–4 עודכנו בהתאם. תיאור הצילום (shot) של השלב עדיין מזכיר Cancel, Report and Confirm וצריך לצלם מחדש."
     },
     {
-      "title": "עיגול כתום: שלב 1",
-      "text": "אם בטעות לחצתם OK על הודעת השגיאה בהמבורגר, מופיע עיגול כתום (Request for Cancellation). נכנסים לעיפרון ← [[Reservation]] ← [[Report Cancellation]] ← [[Back to Travel File]].",
+      "title": "עיגול כתום",
+      "text": "אם בטעות לחצתם OK על ההודעה בהמבורגר, מופיע עיגול כתום ([[Request for Cancellation]]). מטפלים בו באותה דרך: עיפרון ← [[Reservation]] ← [[Report Cancellation]] ← [[Back to Travel File]], וממשיכים לשלב הבא.",
       "shot": "שורה עם עיגול כתום, ולשונית Reservation עם [[Report Cancellation]] מסומן."
     },
     {
-      "title": "עיגול כתום: שלב 2",
-      "text": "שוב עיפרון ← [[Reservation]] ← [[Confirm Cancellation]]. אם יש שם או מספר ביטול בשאלה, מזינים אותם ← [[OK]]. מתקבל X אדום. אם עדיין כתום, חוזרים על התהליך.",
+      "title": "אישור הביטול",
+      "text": "שוב עיפרון ← [[Reservation]] ← [[Confirm Cancellation]]. אם יש שם מאשר או מספר ביטול בשאלה, מזינים אותם ← [[OK]]. מתקבל X אדום. אם עדיין כתום, חוזרים על התהליך.",
       "why": "ביטול הוא פעולה רגישה, ולכן המערכת דורשת שני שלבים.",
       "shot": "לשונית Reservation עם [[Confirm Cancellation]] מסומן, ואחר כך השורה עם X אדום."
     },
@@ -104,6 +104,7 @@
     "00_docs_summary: ביטול",
     "hishtalmut_02 §7, §10, §12 (ביטול אחרי שובר)",
     "hishtalmut_04 חלק א׳ (ביטולים ושינויים)",
-    "hishtalmut_09 §2 (Revision, Reservation History), §5 (מלכודת ביטול בטעות)"
+    "hishtalmut_09 §2 (Revision, Reservation History), §5 (מלכודת ביטול בטעות)",
+    "חוברת FIT 2025-26"
   ]
 }

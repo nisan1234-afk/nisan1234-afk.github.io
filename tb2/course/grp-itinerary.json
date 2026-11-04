@@ -53,7 +53,7 @@
       "title": "פותחים את Transport",
       "text": "לוחצים על [[Transport]] בצד שמאל. לכל יום יש עיגולים ([[Full Day]], [[Half Day]], [[None]]) = הבחירה הכללית ליום, וריבועים ([[Transfer]], תוספת ערב) = תוספות.",
       "shot": "חלון Transport פתוח; העיגולים והריבועים מסומנים בשני צבעים.",
-      "verify": "שם התוספת לערב/לילה: hishtalmut_04 — \"Night Tour\" (?); hishtalmut_06 — \"Night Activity\". לבדוק את השם על המסך."
+      "verify": "לבדיקה במערכת: שם התוספת לערב/לילה בחלון Transport ובחלון Guide: Night Tour או Night Activity. החוברת כותבת רק \"תוספת לילה\" / \"תוספת ערב\" בעברית."
     },
     {
       "title": "יום הגעה: None ו-Transfer",
