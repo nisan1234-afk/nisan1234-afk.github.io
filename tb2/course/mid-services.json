@@ -80,8 +80,7 @@
       "title": "רכב: בלי תחנת איסוף",
       "text": "את [[Pick up station]] לא צריך להזין השנה. נקודת האיסוף מופיעה בצילום הרכב במסמך. עוברים ל-[[Passengers & Pricing]], בודקים [[Currency]], ומזינים את מחיר הרכב פעם אחת, ליד הנוסע הראשון בלבד ← [[Calc]] ← [[Save & Exit]].",
       "why": "בחוברת יש הוראות ל-[[Pick up station]] ול-[[Add New Station]]. בתשפ״ז זה בוטל.",
-      "shot": "השדה Pick up station בטופס (מסומן כ״לא צריך השנה״), ו-Passengers & Pricing של הרכב.",
-      "verify": "נבדק במערכת 4.11.26: נשמר בלי Pick up station. מחיר הרכב הוזן פעם אחת לנוסע הראשון; לבדוק אם המחוון מצפה לחלוקה בין הנוסעים."
+      "shot": "השדה Pick up station בטופס (מסומן כ״לא צריך השנה״), ו-Passengers & Pricing של הרכב."
     },
     {
       "title": "אטרקציה: [[Activities]]",
