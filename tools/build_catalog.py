@@ -48,7 +48,10 @@ CET = {
     ('valleys', '01'): 'bc675790-0f2c-4eb9-b3db-2e7840a2d33d',
     ('valleys', '02'): '5248eda7-635d-4df8-9e89-a4845655734b',
     ('valleys', '03'): '92dc100d-0e92-403f-abc0-374e18eaec46',
+    ('jerusalem', '01-ar'): '143f5bbb-bb28-44a3-a258-b29b5ef1b6c4',
+    ('jerusalem', '01-ru'): 'c1a398a0-9acd-4f13-918c-2c9e4195364b',
 }
+LANG_HE = {'ar': 'ערבית', 'ru': 'רוסית'}
 
 def ready(f):
     return os.path.exists(f) and 'media-status" content="pending' not in open(f, encoding='utf-8').read()
@@ -64,7 +67,7 @@ for slug, name, blurb in REGIONS:
         title = re.search(r'<title>([^<]*)</title>', open(os.path.join(p, 'index.html'), encoding='utf-8').read()).group(1)
         title = title.split(' · ', 1)[-1]
         topics.append({
-            'n': int(t), 'title': title,
+            'n': int(t.split('-')[0]), 'lang': LANG_HE.get(t.split('-')[1]) if '-' in t else None, 'title': title,
             'deck': f'{BASE}/{slug}/{t}/',
             'video': f'{BASE}/{slug}/{t}/video.html' if ready(os.path.join(p, 'video.html')) else None,
             'podcast': f'{BASE}/{slug}/{t}/podcast.html' if ready(os.path.join(p, 'podcast.html')) else None,
@@ -75,7 +78,7 @@ for slug, name, blurb in REGIONS:
         })
     data.append({'slug': slug, 'name': name, 'blurb': blurb, 'topics': topics})
 
-n_topics = sum(len(r['topics']) for r in data)
+n_topics = sum(1 for r in data for t in r['topics'] if not t.get('lang'))
 n_media = sum(1 for r in data for t in r['topics'] if t['video'])
 n_cet = sum(1 for r in data for t in r['topics'] if t['cet'])
 
@@ -112,7 +115,7 @@ def chip(url, k, label):
 n_pod = sum(1 for r in data for t in r['topics'] if t['podcast'])
 regs, navr = [], []
 for i, r in enumerate(data, 1):
-    navr.append(f'<a class="rchip" href="#{r["slug"]}">{r["name"]}<span>{len(r["topics"])}</span></a>')
+    navr.append(f'<a class="rchip" href="#{r["slug"]}">{r["name"]}<span>{len([x for x in r["topics"] if not x.get("lang")])}</span></a>')
     rows = []
     for t in r['topics']:
         nn = t["deck"].rstrip("/").split("/")[-1]
@@ -122,12 +125,12 @@ for i, r in enumerate(data, 1):
         search = html.escape(r["name"] + " " + t["title"])
         rows.append(
             f'<li class="topic" id="{r["slug"]}-{nn}" data-s="{search}">'
-            f'<div class="tinfo"><span class="tnum">נושא {t["n"]}</span><h3>{html.escape(t["title"])}</h3></div>'
+            f'<div class="tinfo"><span class="tnum">נושא {t["n"]}{(" · " + t["lang"]) if t.get("lang") else ""}</span><h3>{html.escape(t["title"])}</h3></div>'
             f'<div class="chips">{chips}</div></li>')
     regs.append(
         f'<section class="region" id="{r["slug"]}"><div class="rcard">'
         f'<div class="rtext"><span class="rk">חבל {i} מתוך {len(data)}</span><h2>{r["name"]}</h2>'
-        f'<p>{r["blurb"]}</p><span class="rcount">{len(r["topics"])} נושאים</span></div>'
+        f'<p>{r["blurb"]}</p><span class="rcount">{len([x for x in r["topics"] if not x.get("lang")])} נושאים</span></div>'
         f'<div class="rimg" style="background-image:url(\'{IMG[r["slug"]]}\')"></div></div>'
         f'<ol class="topics">{"".join(rows)}</ol></section>')
 
