@@ -1,0 +1,885 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>القدس · افتتاحية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;700&family=Noto+Sans+Arabic:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"Noto Naskh Arabic","Frank Ruhl Libre","David Libre",Georgia,serif;
+  --body:"Noto Sans Arabic","Heebo","Assistant","Arial Hebrew",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:right}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+</style>
+
+<div class="deck" dir="rtl" lang="ar">
+  <div class="bar"><b>القدس ومحيطها</b><span>الموضوع 1 · افتتاحية · <a class="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfPH4yVHpoVDgWuujNlOalr5OQ58aG-LXlM2PoRxTDdiMylSA/viewform?usp=pp_url&entry.1210554402=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D%201%20%D7%A4%D7%AA%D7%99%D7%97%D7%94" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">ملاحظات المعلّمين</a></span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+
+  <!-- 1 -->
+
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="../01/img/hero-oldcity.jpg" alt="منظر علوي لجبل الهيكل / الحرم الشريف والبلدة القديمة في القدس">
+    <span class="credit">من عرض القدس الخاص بالتخصص</span>
+    <div class="pad">
+      <p class="kick">منطقة القدس · الموضوع 1</p>
+      <h1>القدس: افتتاحية</h1>
+      <p class="lead">أهم مدينة سياحية في إسرائيل: تقع على سلسلة جبلية بارتفاع 800 متر، بين الشفيلا والصحراء، وهي مقدّسة لثلاث ديانات. تقريبًا ثلاثة من كل أربعة سياح يصلون إلى إسرائيل يزورونها أيضًا. في هذا الموضوع سنفهم لماذا.</p>
+      <div class="chips"><span class="chip">الموقع والمشهد الطبيعي</span><span class="chip">المناخ</span><span class="chip">الديانات الثلاث</span><span class="chip">بيت لحم والخليل</span><span class="chip">معطيات</span><span class="chip">أنواع السياحة</span><span class="chip">عوامل مؤثّرة</span><span class="chip">تخطيط مسار</span><span class="chip">مصطلحات</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">بطاقة هوية</p>
+      <h2>القدس بالأرقام</h2>
+      <div class="facts">
+        <div class="fact"><span class="n">نحو 800 م</span><span class="l">ارتفاع جبال القدس</span></div>
+        <div class="fact"><span class="n">نحو 4,000</span><span class="l">سنة تاريخ، منذ المدينة اليبوسية</span></div>
+        <div class="fact"><span class="n">3</span><span class="l">ديانات تقدّس المدينة</span></div>
+        <div class="fact"><span class="n">4</span><span class="l">أحياء في البلدة القديمة</span></div>
+        <div class="fact"><span class="n">8</span><span class="l">أبواب في السور، سبعة منها مفتوحة</span></div>
+        <div class="fact"><span class="n">نحو 70</span><span class="l">اسمًا أُطلقت على المدينة</span></div>
+        <div class="fact"><span class="n">1981</span><span class="l">البلدة القديمة موقع تراث عالمي</span></div>
+        <div class="fact"><span class="n">74%</span><span class="l">من السياح الوافدين زاروها (2017)</span></div>
+      </div>
+      <div class="two">
+        <p class="lead">القدس عاصمة إسرائيل وأكبر مدنها، ومركز لكل قطاعات السياحة: الحجّ، التاريخ والآثار، الثقافة، الذكرى والتخليد، والسياحة الحضرية (תיירות עירונית).</p>
+        <figure><img src="../01/img/illustrated-map.jpg" alt="خريطة مصوّرة لمواقع القدس" style="aspect-ratio:16/10;object-position:top"><figcaption>خريطة سياحية مصوّرة للقدس · من عرض القدس الخاص بالتخصص</figcaption></figure>
+      </div>
+      <details class="more"><summary>إثراء</summary><div class="body">
+        <p>من أسماء المدينة: صهيون، شاليم، يبوس، مدينة داود، "يِفيه نوف" (جميلة المنظر) وأريئيل. تعدّد الأسماء يعكس مكانتها المركزية في الثقافة اليهودية، وقد كُتبت عنها في الشعر العبري مئات القصائد، مثل "أورشليم من ذهب" لنعومي شيمر.</p>
+        <p>بنى سور البلدة القديمة السلطان العثماني سليمان القانوني قبل نحو 500 سنة. أحد الأبواب، باب الرحمة، مغلق، وبحسب التقليد اليهودي سيُفتح عند مجيء المسيح.</p>
+        <p class="src">معطى 74%: تقرير مراقب الدولة عن القدس (2019)، بحسب معطيات 2017. إعلان اليونسكو غير مذكور في الكتاب.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad two maptwo">
+      <div class="mapwrap map">
+        <svg viewBox="0 0 600 638.9" role="img" aria-labelledby="mapT mapD" style="direction:ltr"><title id="mapT">خريطة منطقة القدس</title><desc id="mapD">خط الساحل بحسب معطيات Natural Earth، والمواقع الحقيقية للبلدات في منطقة القدس ومحيطها.</desc>
+<rect class="m-sea" x="0" y="0" width="600" height="638.9"/><path class="m-land" d="M24.3,385.6 L44.2,356.8 L50.2,342.2 L63.9,324.6 L117.5,233.5 L164.4,127.5 L174.9,110.9 L192.5,52.8 L192.5,39.3 L200.2,35.2 L211.5,0.0 L600.0,0.0 L600.0,638.9 L0.0,638.9 L0.0,410.8 L24.3,385.6 Z"/>
+<clipPath id="landclip"><path d="M24.3,385.6 L44.2,356.8 L50.2,342.2 L63.9,324.6 L117.5,233.5 L164.4,127.5 L174.9,110.9 L192.5,52.8 L192.5,39.3 L200.2,35.2 L211.5,0.0 L600.0,0.0 L600.0,638.9 L0.0,638.9 L0.0,410.8 L24.3,385.6 Z"/></clipPath>
+<g clip-path="url(#landclip)"><path class="m-hills" d="M347.7,0.0 L336.4,112.0 L336.4,210.8 L325.2,276.6 L297.2,375.4 L280.4,474.2 L291.6,638.9 L364.5,638.9 L392.5,507.1 L437.4,408.3 L476.6,309.5 L504.7,210.8 L515.9,112.0 L521.5,0.0 Z"/><path class="m-desert" d="M521.5,0.0 L515.9,112.0 L504.7,210.8 L476.6,309.5 L437.4,408.3 L392.5,507.1 L364.5,638.9 L600.0,638.9 L600.0,0.0 Z"/></g>
+<path class="m-road" d="M197.5,45.8 L324.3,185.4 L397.8,206.9 L467.9,226.1"/><text class="m-zone" x="224" y="329" text-anchor="middle">الشفيلا</text><text class="m-zone" x="393" y="474" text-anchor="middle">جبال يهودا</text><text class="m-zone" x="544" y="461" text-anchor="middle">صحراء يهودا</text><text class="m-zone" x="84" y="145" text-anchor="middle" transform="rotate(-62 84 145)">البحر المتوسط</text><circle class="m-pt m-pt-big" cx="467.9" cy="226.1" r="9"/><text class="m-lab m-big" x="479.9" y="233.1" text-anchor="start">القدس</text><circle class="m-pt" cx="449.9" cy="273.1" r="6"/><text class="m-lab m-md" x="461.9" y="280.1" text-anchor="start">بيت لحم</text><circle class="m-pt" cx="392.4" cy="386.9" r="6"/><text class="m-lab m-md" x="404.4" y="393.9" text-anchor="start">الخليل</text><circle class="m-pt" cx="503.6" cy="225.9" r="5"/><text class="m-lab m-sm" x="503.6" y="211.9" text-anchor="middle">معاليه أدوميم</text><circle class="m-pt" cx="420.6" cy="209.2" r="5"/><text class="m-lab m-sm" x="420.6" y="195.2" text-anchor="middle">مفسيرت تسيون</text><circle class="m-pt" cx="329.8" cy="245.7" r="5"/><text class="m-lab m-sm" x="317.8" y="252.7" text-anchor="end">بيت شيمش</text><circle class="m-pt" cx="324.3" cy="185.4" r="5"/><text class="m-lab m-sm" x="312.3" y="192.4" text-anchor="end">اللطرون</text><circle class="m-pt" cx="397.8" cy="206.9" r="5"/><text class="m-lab m-sm" x="397.8" y="232.9" text-anchor="middle">أبو غوش</text><path class="m-peak" d="M514.1,99.5 L522.1,84.5 L530.1,99.5 Z"/><text class="m-lab m-peak" x="510.1" y="99.5" text-anchor="end">جبل بعل حاتسور</text><circle class="m-pt" cx="219.4" cy="571.8" r="6"/><text class="m-lab m-md" x="231.4" y="578.8" text-anchor="start">بئر السبع</text><circle class="m-pt" cx="197.5" cy="45.8" r="6"/><text class="m-lab m-md" x="209.5" y="52.8" text-anchor="start">يافا</text>
+<g class="m-scale"><line x1="20" y1="614.9" x2="79.1" y2="614.9"/><text x="49.55" y="604.9" text-anchor="middle">10 كم</text></g>
+<g class="m-north"><path d="M570,576.9 l9,24 l-9,-7 l-9,7 Z"/><text x="570" y="568.9" text-anchor="middle">ش</text></g></svg>
+        <div class="inset"><svg viewBox="0 0 150 319.5" role="img" aria-label="موقع المنطقة في البلاد"><rect class="m-sea" width="150" height="319.5"/><path class="m-land" d="M0.0,174.7 L15.2,165.6 L23.8,156.8 L32.6,145.5 L41.6,130.6 L48.5,115.7 L57.1,89.4 L64.2,54.0 L64.6,46.8 L66.2,44.6 L70.1,45.8 L72.5,43.3 L75.0,23.9 L78.2,20.7 L79.2,17.8 L80.1,18.4 L82.1,14.0 L82.4,11.6 L81.0,9.6 L83.5,7.0 L85.1,0.0 L150.0,0.0 L150.0,319.5 L65.8,319.5 L66.6,313.4 L68.0,310.1 L65.5,306.8 L62.1,312.3 L58.6,313.8 L55.6,319.5 L0.0,319.5 L0.0,174.7 Z"/><path class="m-lake" d="M104.4,178.2 L102.5,180.6 L103.4,182.4 L103.0,183.4 L100.7,184.8 L96.5,184.2 L95.0,182.7 L94.7,180.4 L93.0,177.7 L92.6,174.9 L93.4,172.9 L95.5,173.3 L96.9,171.6 L99.6,174.2 L104.1,176.6 L104.4,178.2 Z M108.3,133.4 L106.0,148.7 L107.2,154.3 L105.3,163.4 L105.5,165.2 L103.9,166.9 L102.5,167.2 L103.0,162.4 L101.7,162.4 L98.3,166.0 L96.5,165.6 L95.9,164.2 L95.0,156.9 L95.5,154.0 L95.0,150.6 L96.5,146.5 L96.0,142.6 L100.7,133.4 L102.7,131.3 L106.3,130.6 L108.2,131.6 L108.3,133.4 Z M111.7,41.9 L111.4,51.7 L109.0,54.5 L107.5,54.3 L106.8,51.4 L105.6,50.4 L103.4,46.3 L103.9,43.8 L106.0,41.5 L108.5,40.1 L110.0,40.3 L111.7,41.9 Z"/><rect class="m-ibox" x="27.3" y="102.2" width="73.0" height="77.5"/></svg></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p class="kick">الموقع</p>
+        <h2>حدود المنطقة</h2>
+        <p>منطقة القدس منطقة جبلية: جبال يهودا، وفي وسطها جبال القدس التي يصل ارتفاعها إلى نحو 800 متر.</p>
+        <div class="compass">
+          <div><b>الشمال</b>جبل بعل حاتسور</div>
+          <div><b>الجنوب</b>سهل بئر السبع</div>
+          <div><b>الغرب</b>الشفيلا</div>
+          <div><b>الشرق</b>صحراء يهودا</div>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--hills)"></i>جبال يهودا</span>
+          <span><i class="sw" style="background:var(--desert)"></i>صحراء يهودا</span>
+          <span><i class="sw" style="background:var(--land)"></i>الشفيلا والسهل الساحلي</span>
+          <span><i class="sw" style="background:transparent;border:2px dashed var(--copper)"></i>الطريق التاريخي من يافا</span>
+        </div>
+        <details class="more"><summary>إثراء</summary><div class="body">
+          <p>تقع القدس على بُعد نحو 60 كم من البحر المتوسط. قربها من مناطق مختلفة جدًا، الجبل والشفيلا والصحراء، يجعلها قاعدة مبيت للرحلات في المنطقة كلها.</p>
+          <p class="src">الخريطة: خط الساحل بحسب معطيات Natural Earth. البلدات في مواقعها الحقيقية. أشرطة المشهد الطبيعي مرسومة بشكل تقريبي.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">لماذا هنا بالذات</p>
+      <h2>مدينة على قمة الجبل</h2>
+      <div class="profile"><svg viewBox="0 0 900 300" style="direction:ltr" role="img" aria-labelledby="pfT pfD"><title id="pfT">مقطع عرضي من البحر المتوسط عبر القدس حتى أطراف صحراء يهودا</title><desc id="pfD">من مستوى سطح البحر يرتفع المقطع إلى نحو 800 متر في القدس. معظم المطر يهطل على المنحدر الغربي، وشرقي المدينة تبدأ الصحراء.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.5"/></marker></defs>
+<path class="p-ground" d="M50.0,250.0 L138.9,243.7 L227.8,235.2 L316.7,220.4 L383.3,203.6 L450.0,182.4 L516.7,131.8 L572.2,98.0 L627.8,85.3 L661.1,81.1 L694.4,76.9 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3 L850.0,280.0 L50.0,280.0 Z"/><path class="p-line" d="M50.0,250.0 L138.9,243.7 L227.8,235.2 L316.7,220.4 L383.3,203.6 L450.0,182.4 L516.7,131.8 L572.2,98.0 L627.8,85.3 L661.1,81.1 L694.4,76.9 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3"/>
+<path class="p-desertband" d="M716.7,280.0 L716.7,110.7 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3 L850.0,280.0 Z"/>
+<rect class="p-sea" x="5.6" y="250.0" width="45.4" height="30"/>
+<circle cx="661.1" cy="81.1" r="6" fill="var(--olive)"/>
+<text class="p-tb" x="661.1" y="65.1" text-anchor="middle">القدس · نحو 800 م</text>
+<text class="p-t" x="72.2" y="240.0" text-anchor="start">البحر المتوسط · 0 م</text>
+<text class="p-t" x="272.2" y="216.9" text-anchor="middle">الشفيلا</text>
+<text class="p-t" x="538.9" y="154.9" text-anchor="middle">منحدر غربي: ماطر</text>
+<text class="p-t" x="794.4" y="201.3" text-anchor="middle">صحراء يهودا</text>
+<g class="p-cloud"><ellipse cx="383.3" cy="38" rx="52" ry="15"/><ellipse cx="527.8" cy="30" rx="44" ry="17"/></g>
+<g style="color:var(--ink-3)"><path class="p-arrow" d="M116.7,48 C216.7,32 305.6,32 383.3,36"/><path class="p-arrow" d="M705.6,46 C750.0,54 783.3,70 816.7,96"/></g>
+<text class="p-t" x="138.9" y="78" text-anchor="middle">رياح رطبة من البحر</text>
+<text class="p-t" x="850" y="70" text-anchor="end">هواء هابط يجفّ</text>
+<line class="p-axis" x1="50.0" y1="280.0" x2="850.0" y2="280.0"/>
+<text class="p-t" x="50.0" y="294" text-anchor="middle">شاطئ البحر</text>
+<text class="p-t" x="661.1" y="294" text-anchor="middle">نحو 60 كم من البحر</text>
+</svg></div>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p><b>صحراء في ظلّ المطر.</b> تصل غيوم المطر من البحر المتوسط وتُسقط معظم أمطارها على المنحدر الغربي للجبل. عندما يهبط الهواء شرقًا يسخن ويجفّ، ولذلك تبدأ صحراء يهودا شرقي المدينة مباشرة.</p>
+          <p><b>ماذا يعني ذلك للسياحة؟</b> من نقاط المشاهدة في المدينة تُرى الصحراء، وخلال دقائق من السفر تنتقل من مشهد أخضر إلى مشهد صحراوي.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p><b>لماذا قامت المدينة هنا؟</b> على قمة سلسلة الجبال يمرّ الطريق القديم من الشمال إلى الجنوب، ومن هنا تنزل طرق غربًا إلى البحر وشرقًا إلى أريحا. قرب المدينة القديمة نبع جيحون، والجبل المرتفع كان سهل الدفاع.</p>
+          <p class="src">الارتفاعات والمسافات تقريبية. المقطع تخطيطي.</p>
+        </div>
+      </div>
+      <details class="more"><summary>إثراء</summary><div class="body">
+        <p>تقع القدس على خط تقسيم المياه: مياه الأمطار التي تهطل غربي المدينة تجري نحو البحر المتوسط، وما يهطل شرقيها يجري شرقًا نحو الغور (الشقّ السوري الإفريقي). على امتداد السلسلة يمرّ اليوم شارع 60، الذي يُسمّى "طريق الآباء"، لأنه بحسب التقليد سار فيه آباء الأمة. وعلى امتداده تقع الخليل وبيت لحم والقدس.<span class="tag-ext">إثراء، ليس من الكتاب</span></p>
+        <p>يهطل في القدس بالمعدّل نحو 550 ملم من المطر في السنة، وعلى مسافة قصيرة شرقيها تنخفض الكمية بشكل حادّ.<span class="tag-ext">إثراء، ليس من الكتاب</span></p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad side-photo">
+      <figure><img src="../01/img/judean-hills.jpg" alt="مشهد جبال يهودا المكسوّة بالأحراش مع إزهار القريضة (اللوطم)"><figcaption>جبال يهودا · من درس بوابة وزارة التربية والتعليم</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p class="kick">المشهد الطبيعي</p>
+        <h2>جبال يهودا</h2>
+        <ul class="clean">
+          <li><b>الصخر:</b> في الأساس حجر جيري ودولوميت.</li>
+          <li><b>الغطاء النباتي:</b> في الماضي غطّت الأحراش الجبال. اليوم يوجد حرش طبيعي في الأساس في جبال القدس.</li>
+          <li><b>محميات طبيعية:</b> أُعلنت مناطق في جبال القدس محمياتٍ طبيعية.</li>
+          <li><b>رحلات:</b> مسارات مشي ودرّاجات، ينابيع ونقاط مشاهدة، على بُعد قصير من المدينة.</li>
+        </ul>
+        <details class="more"><summary>إثراء</summary><div class="body">
+          <p><b>حجر القدس.</b> الحجر الجيري هو أيضًا حجر البناء في المدينة. في عام 1918 قرّر الحاكم البريطاني رونالد ستورز أن يُكسى كل مبنى في القدس بالحجر. لذلك تبدو المدينة كلها بلون واحد، وهذا جزء من هويتها كهدف سياحي.<span class="tag-ext">إثراء، ليس من الكتاب</span></p>
+          <p><b>مصاطب وينابيع.</b> على منحدرات الجبال بنى المزارعون عبر الأجيال مصاطب (سلاسل) زراعية، وبين الجبال تتفجّر ينابيع. وقد أصبح كلاهما مركزًا شائعًا للرحلات في جبال القدس.<span class="tag-ext">إثراء، ليس من الكتاب</span></p>
+          <p><b>محمية طبيعية (שמורת טבע):</b> منطقة محميّة أُعلنت للحفاظ على الحيوانات والنباتات فيها.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad side-photo">
+      <figure><img src="../01/img/armon.jpg" alt="منتزه أرمون هنتسيف والمنظر على المدينة"><figcaption>منتزه أرمون هنتسيف · من عرض القدس الخاص بالتخصص</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">المناخ والفصول</p>
+        <h2>باردة شتاءً، جافّة صيفًا</h2>
+        <div class="tblwrap"><table class="cl">
+          <tr><th>الفصل</th><th>الطقس</th><th>ماذا يعني ذلك للسائح</th></tr>
+          <tr><td><b>الشتاء</b></td><td>بارد وماطر، وأحيانًا ثلج</td><td>الثلج في المدينة يجذب زوّارًا من كل البلاد. عيد الميلاد يجلب الحجاج إلى بيت لحم.</td></tr>
+          <tr><td><b>الربيع والخريف</b></td><td>لطيف</td><td>الفصلان الأنسب للجولات سيرًا على الأقدام. عيد الفصح اليهودي وعيد الفصح المسيحي وعيد العُرُش هي مواسم الذروة.</td></tr>
+          <tr><td><b>الصيف</b></td><td>حارّ وجافّ، وأمسيات منعشة</td><td>جولات في الصباح والمساء، مهرجانات وعروض في أمسيات الصيف.</td></tr>
+        </table></div>
+        <p class="src">المناخ غير مذكور في كتاب التعليم. هذه الشريحة إثراء.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide stop tint" id="s7" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">محطة تمرين · الإجابة في الاستوديو</p>
+      <h2>تمرين: الأسئلة 1–3</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">اذكروا الحدود الأربعة لمنطقة القدس.<span class="tag">تمرين</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">يهطل في القدس نحو 550 ملم من المطر في السنة، لكن على مسافة قصيرة شرقيها تبدأ صحراء. اشرحوا لماذا.<span class="tag">بأسلوب البجروت</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">اذكروا ميزتين جغرافيتين لمنطقة القدس، واشرحوا كيف تؤثّر إحداهما على السياحة.<span class="tag">بأسلوب البجروت</span></div></div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide bgslide" id="s8" hidden>
+    <img class="bg" src="../01/img/temple-mount.jpg" alt="جبل الهيكل / الحرم الشريف من الأعلى">
+    <span class="credit">من عرض القدس الخاص بالتخصص</span>
+    <div class="pad">
+      <p class="kick">لماذا يأتون</p>
+      <h2>جبل واحد، ثلاث ديانات</h2>
+      <p class="lead">القدس مقدّسة لليهودية والمسيحية والإسلام، وهي لكل واحدة منها مكان لا بديل له. في الشرائح الثلاث القادمة سنتعرّف على ما هو مقدّس لكل ديانة، وعلى ما يفعله الحاجّ من كل ديانة في المدينة.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">الديانات الثلاث · اليهودية</p>
+      <h2>المدينة التي يُصلّى نحوها</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>على جبل الهيكل، جبل الموريا، قام الهيكل الأول والثاني. وبحسب التقليد، هناك جرت قصة ربط إسحاق (العقيدة)، وهناك عُقد العهد بين الله وإبراهيم. يصلّي اليهود في كل العالم باتجاه القدس.</p>
+          <ul class="clean">
+            <li><b>حائط المبكى (الحائط الغربي):</b> الجدار الاستنادي الذي بناه هيرودس حول جبل الهيكل في أيام الهيكل الثاني، وهو أقرب بقايا الهيكل. بحسب التقليد "لا تفارق الشخيناه (الحضرة الإلهية) الحائط الغربي أبدًا"، ولذلك فهو المكان الأقدس لليهود.</li>
+            <li><b>جبل الزيتون:</b> المقبرة اليهودية القديمة. بحسب التقليد، المدفونون فيه سيكونون أول من يُبعثون.</li>
+            <li><b>قبر داود:</b> بحسب التقليد، في مغارة على جبل صهيون.</li>
+            <li><b>مدينة داود:</b> القدس القديمة، التي احتلّها الملك داود وجعلها عاصمته.</li>
+          </ul>
+        </div>
+        <figure><img src="../01/img/kotel.jpg" alt="ساحة حائط المبكى (الحائط الغربي)" style="aspect-ratio:4/3"><figcaption>الحائط الغربي · تصوير يعيل دور · عرض الصور الرسمي</figcaption></figure>
+      </div>
+      <details class="more"><summary>ماذا يفعل السائح اليهودي هنا</summary><div class="body">
+        <p>الصلاة عند الحائط، احتفالات بار متسفا وبات متسفا (بلوغ سنّ الفرائض)، بركة الكهنة الجماعية عند الحائط في أيام الوسط من عيد الفصح اليهودي وعيد العُرُش، وزيارة مواقع تروي التاريخ اليهودي: الحي اليهودي، أنفاق الحائط الغربي ومدينة داود.</p>
+        <p>في بجروت 2019 طُلب من الطلاب تخطيط جولة ليومين لعائلة يهودية من خارج البلاد جاءت للاحتفال بـ"بار متسفا" عند الحائط. سنعود إلى هذا السؤال في نهاية الموضوع.</p>
+        <div class="gal">
+          <figure><img src="../01/img/tunnels.jpg" alt="أنفاق الحائط الغربي"><h3>أنفاق الحائط الغربي</h3><p>امتداد الحائط تحت بيوت الحي الإسلامي.</p></figure>
+          <figure><img src="../01/img/city-david.jpg" alt="مدينة داود"><h3>مدينة داود</h3><p>القدس القديمة ونفق حزقيا.</p></figure>
+          <figure><img src="../01/img/david-tomb.jpg" alt="قبر داود"><h3>قبر داود</h3><p>بحسب التقليد، على جبل صهيون.</p></figure>
+        </div>
+        <p class="src">الصور: عرض الصور الرسمي.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">الديانات الثلاث · المسيحية</p>
+      <h2>مدينة الأيام الأخيرة ليسوع</h2>
+      <p>بحسب الإيمان المسيحي، في القدس تناول يسوع العشاء الأخير، واعتُقل، وحوكم، وصُلب، ودُفن، وقام من بين الأموات وصعد إلى السماء. لذلك يرمز كل موقع مسيحي تقريبًا في المدينة إلى أحد هذه الأحداث.</p>
+      <div class="gal">
+        <figure><img src="../01/img/cenacle.jpg" alt="علّية العشاء الأخير"><span class="yr">جبل صهيون</span><h3>علّية العشاء الأخير</h3><p>هنا تناول يسوع وتلاميذه عشاء الفصح.</p></figure>
+        <figure><img src="../01/img/all-nations.jpg" alt="كنيسة جميع الأمم"><span class="yr">جبل الزيتون</span><h3>جتسماني</h3><p>كنيسة جميع الأمم، في البستان الذي صلّى فيه يسوع قبل اعتقاله.</p></figure>
+        <figure><img src="../01/img/via-dolorosa.jpg" alt="طريق الآلام (فيا دولوروزا)"><span class="yr">الحي المسيحي</span><h3>طريق الآلام</h3><p>14 محطة في الطريق إلى الصلب. الخمس الأخيرة داخل كنيسة القيامة.</p></figure>
+        <figure><img src="../01/img/sepulchre.jpg" alt="كنيسة القيامة"><span class="yr">الحي المسيحي</span><h3>كنيسة القيامة</h3><p>مكان الصلب والدفن والقيامة. ذروة زيارة الحاجّ.</p></figure>
+        <figure><img src="../01/img/ascension.jpg" alt="كنيسة الصعود"><span class="yr">جبل الزيتون</span><h3>كنيسة الصعود</h3><p>المكان الذي صعد منه يسوع إلى السماء.</p></figure>
+      </div>
+      <p class="src">الصور: عرض الصور الرسمي (بيكيويكي، مواقع تراث ويكيبيديا).</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">الديانات الثلاث · الطوائف المسيحية</p>
+      <h2>لكل طائفة مواقعها</h2>
+      <div class="two">
+        <div class="tblwrap"><table class="streams">
+          <tr><th>الطائفة</th><th>من هم</th><th>ما المهمّ لهم في القدس</th></tr>
+          <tr><td>الكاثوليك</td><td>بقيادة البابا في روما</td><td>طريق الآلام، كنيسة القيامة، الكنائس على جبل الزيتون. الفرنسيسكان يحرسون الأماكن المقدّسة باسم الكنيسة.</td></tr>
+          <tr><td>الأرثوذكس</td><td>المسيحية الشرقية: يونان، روس وغيرهم</td><td>كنيسة القيامة واحتفال "النار المقدّسة" (سبت النور) في السبت الذي يسبق الفصح. كنيسة مريم المجدلية الروسية.</td></tr>
+          <tr><td>البروتستانت</td><td>طوائف الإصلاح الديني، تشدّد على دراسة الكتاب المقدّس</td><td>بستان القبر، خارج الأسوار. مواقع بسيطة، بلا طقوس حولها.</td></tr>
+          <tr><td>الأرمن</td><td>أول شعب اعتمد المسيحية دينًا رسميًا</td><td>الحي الأرمني وكاتدرائية القديس يعقوب.</td></tr>
+          <tr><td>الأحباش</td><td>الكنيسة الإثيوبية</td><td>دير على سطح كنيسة القيامة.</td></tr>
+        </table></div>
+        <div class="vs" style="grid-template-columns:1fr 1fr">
+          <figure><img src="../01/img/sepulchre-in.jpg" alt="احتفال النار المقدّسة في كنيسة القيامة"><figcaption>احتفال النار المقدّسة · من عرض القدس</figcaption></figure>
+          <figure><img src="../01/img/magdalene.jpg" alt="كنيسة مريم المجدلية"><figcaption>كنيسة مريم المجدلية الروسية · عرض الصور الرسمي</figcaption></figure>
+        </div>
+      </div>
+      <details class="more"><summary>إثراء</summary><div class="body">
+        <p>كنيسة القيامة مقسّمة بين عدّة كنائس: الروم الأرثوذكس والكاثوليك والأرمن يملكون معظم المساحة، وللأقباط والأحباش والسريان أجزاء صغيرة. يُحافَظ على هذا التقسيم بترتيب قديم يُسمّى "الوضع القائم" (الستاتيكو). مفتاح الكنيسة بيد عائلة مسلمة، كي لا تسيطر أي كنيسة على الباب.<span class="tag-ext">إثراء، ليس من الكتاب</span></p>
+        <p>يحتفل الكاثوليك بعيد الميلاد في 25 كانون الأول، والأرثوذكس في بداية كانون الثاني. لذلك يستمرّ موسم الحجّ إلى بيت لحم عدّة أسابيع.<span class="tag-ext">إثراء، ليس من الكتاب</span></p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">سؤال يتكرّر في البجروت</p>
+      <h2>أين دُفن يسوع؟ جوابان</h2>
+      <div class="vs">
+        <div>
+          <figure><img src="../01/img/sepulchre.jpg" alt="كنيسة القيامة" style="object-position:top"><figcaption>عرض الصور الرسمي · بيكيويكي</figcaption></figure>
+          <h3>كنيسة القيامة</h3>
+          <p>داخل البلدة القديمة، في الحي المسيحي. هنا، بحسب معظم التقاليد المسيحية، كانت تلّة الجلجلة التي صُلب عليها يسوع، وهنا دُفن وقام.</p>
+          <p><b>يؤمن بها:</b> الكاثوليك والأرثوذكس، وتقريبًا كل الطوائف القديمة.</p>
+        </div>
+        <div>
+          <figure><img src="../01/img/garden-tomb.jpg" alt="بستان القبر"><figcaption>عرض الصور الرسمي · بيكيويكي</figcaption></figure>
+          <h3>بستان القبر</h3>
+          <p>خارج الأسوار، شمالي باب العامود. مغارة دفن قديمة في بستان هادئ، قرب صخرة يذكّر شكلها بجمجمة. حُدّد كقبر يسوع في القرن الـ19.</p>
+          <p><b>يؤمن به:</b> قسم من البروتستانت.</p>
+        </div>
+      </div>
+      <p class="note">في بجروت 2023 سُئل الطلاب: "اذكروا الموقعين اللذين يُعتبران مكان دفن يسوع، وأي طائفة تؤمن بكل واحد منهما".</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="s13" hidden>
+    <div class="pad">
+      <p class="kick">الديانات الثلاث · الإسلام</p>
+      <h2>"المسجد الأقصى": المسجد الأبعد</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>بحسب العقيدة الإسلامية، أُسري بالنبي محمد في ليلة واحدة من مكة إلى القدس، ومن الحرم الشريف عُرج به إلى السماء، وهناك فُرضت عليه الصلاة. لذلك فإن الحرم الشريف (جبل الهيكل) هو ثالث أقدس مكان في الإسلام، بعد مكة والمدينة.</p>
+          <ul class="clean">
+            <li><b>المسجد الأقصى:</b> أُقيم أول مرة سنة 705 للميلاد. معنى اسمه "الأبعد"، نسبةً إلى رحلة الإسراء. أقدم وأهمّ مساجد البلاد.</li>
+            <li><b>قبة الصخرة:</b> بُنيت في أواخر القرن السابع فوق الصخرة التي عُرج منها النبي محمد إلى السماء بحسب العقيدة. والصخرة نفسها، بحسب التقليد اليهودي، هي "حجر الأساس" (إيفن هشتيا).</li>
+          </ul>
+        </div>
+        <div class="vs" style="grid-template-columns:1fr">
+          <figure><img src="../01/img/aqsa.jpg" alt="المسجد الأقصى" style="aspect-ratio:16/9"><figcaption>المسجد الأقصى · من عرض القدس الخاص بالتخصص</figcaption></figure>
+          <figure><img src="../01/img/dome.jpg" alt="قبة الصخرة" style="aspect-ratio:16/9"><figcaption>قبة الصخرة · تصوير يعيل دور · عرض الصور الرسمي</figcaption></figure>
+        </div>
+      </div>
+      <details class="more"><summary>إثراء</summary><div class="body">
+        <p>في أيام الجمعة، وخاصة في شهر رمضان، يصل إلى الحرم الشريف عدد كبير جدًا من المصلّين. الدخول إلى قبة الصخرة مسموح للمسلمين فقط. يزور اليهود والسياح الساحة في ساعات محدّدة، وصلاة اليهود في المكان ممنوعة.</p>
+        <p>جبل الهيكل / الحرم الشريف موقع حسّاس جدًا من الناحية الدينية والسياسية، والأحداث فيه تؤثّر على السياحة في المدينة كلها.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="s14" hidden>
+    <div class="pad">
+      <p class="kick">محيط القدس</p>
+      <h2>مدن الحجّ</h2>
+      <div class="gal">
+        <figure><img src="../01/img/nativity.jpg" alt="كنيسة المهد"><span class="yr">بيت لحم · المسيحية</span><h3>كنيسة المهد</h3><p>بُنيت فوق المغارة التي وُلد فيها يسوع بحسب التقليد. من أقدم الكنائس في العالم، وموقع تراث عالمي. في عيد الميلاد تمتلئ المدينة بالحجاج.</p></figure>
+        <figure><img src="../01/img/rachel.jpg" alt="قبر راحيل"><span class="yr">مدخل بيت لحم · اليهودية</span><h3>قبر راحيل</h3><p>قبر راحيل الأمّ. مكان صلاة، خاصة للنساء، اللواتي يأتين للدعاء من أجل الإنجاب ومن أجل أولادهنّ.</p></figure>
+        <figure><img src="../01/img/machpela.jpg" alt="مغارة المكفيلا (الحرم الإبراهيمي)"><span class="yr">الخليل · اليهودية والإسلام</span><h3>مغارة المكفيلا (الحرم الإبراهيمي)</h3><p>قبور إبراهيم وإسحاق ويعقوب، وسارة ورفقة وليئة. مقدّسة لليهود والمسلمين، ولذلك هي مقسّمة بينهم.</p></figure>
+        <figure><img src="../01/img/herodion.jpg" alt="هيروديون"><span class="yr">قرب بيت لحم · تاريخ</span><h3>هيروديون</h3><p>جبل بناه هيرودس، وعليه قصر وقلعة. وهناك أيضًا دُفن، بحسب الأبحاث.</p></figure>
+      </div>
+      <details class="more"><summary>متروبولين القدس</summary><div class="body">
+        <div class="two">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p><b>متروبولين (מטרופולין):</b> مدينة أمّ تحيط بها بلدات تتلقّى منها خدمات التعليم والعمل والثقافة والصحة.</p>
+            <p>يشمل متروبولين القدس ضواحي مثل معاليه أدوميم ومفسيرت تسيون وبيت شيمش، وكذلك موشافات وكيبوتسات. في بعض الكيبوتسات في جبال القدس فنادق وضيافة ريفية. بيت لحم والخليل تقعان في مناطق السلطة الفلسطينية، ويصل السياح إليهما أيضًا.</p>
+          </div>
+          <figure><img src="../01/img/metro.jpg" alt="أحياء ضواحٍ على سلسلة جبلية" style="aspect-ratio:16/10"><figcaption>من درس بوابة وزارة التربية والتعليم</figcaption></figure>
+        </div>
+      </div></details>
+      <details class="more"><summary>أبو غوش: بلدة واحدة، عدّة ديانات</summary><div class="body">
+        <p>قرية أبو غوش المسلمة، غربي القدس على الطريق التاريخي من يافا، مثال على بلدة فيها مواقع مقدّسة لعدّة ديانات: كنيسة البعث (القيامة) الصليبية من القرن الـ12، وكنيسة نوتردام على التلّة التي استقرّ عليها تابوت العهد في قرية يعاريم، بحسب التوراة. وفي القرية أيضًا مطاعم حمّص مشهورة ومهرجان للموسيقى الصوتية.</p>
+        <p>في بجروت 2024 طُلب من الطلاب ذكر "بلدة في محيط القدس فيها موقع مقدّس لعدّة ديانات". في مفتاح الإجابات الرسمي: الخليل ومغارة المكفيلا. أبو غوش أيضًا مثال جيّد.</p>
+        <p class="src">الصور: عرض الصور الرسمي. المكفيلا: تصوير رافيت شتاينبرغ.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide stop tint" id="s15" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">محطة تمرين · الإجابة في الاستوديو</p>
+      <h2>تمرين: الأسئلة 4–6</h2>
+      <div class="q"><span class="qn">4</span><div class="qt">اذكروا لكل ديانة من الديانات، اليهودية والمسيحية والإسلام، موقعًا مركزيًا واحدًا في القدس مقدّسًا لها، واشرحوا لماذا هو مقدّس لهذه الديانة.<span class="tag real">من بنك أسئلة البجروت</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">لكل طائفة مسيحية مواقع مهمّة لها بشكل خاص في القدس. اذكروا طائفتين، ولكل طائفة موقعًا واحدًا مهمًّا لها مع شرح السبب.<span class="tag">تمرين</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">في محيط القدس تقع كنيسة المهد في بيت لحم وهيروديون. اذكروا لكل موقع ما الذي يجذب إليه السياح، وأي نوع من السياحة يمثّل.<span class="tag">بأسلوب البجروت</span></div></div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="s16" hidden>
+    <div class="pad two">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">معطيات سياحية</p>
+        <div class="big-num">74%</div>
+        <h3>من السياح الذين دخلوا إسرائيل في 2017 زاروا القدس</h3>
+        <p>نحو 2.7 مليون من أصل نحو 3.6 مليون. أعلى نسبة بين السياح المسيحيين.</p>
+        <div class="bars" aria-label="نسبة زوّار القدس بحسب الديانة، 2017">
+          <div class="row"><span>سياح مسيحيون</span><span class="track"><i style="width:82%"></i></span><span class="v">82%</span></div>
+          <div class="row"><span>سياح مسلمون</span><span class="track"><i style="width:73%"></i></span><span class="v">73%</span></div>
+          <div class="row"><span>سياح يهود</span><span class="track"><i style="width:70%"></i></span><span class="v">70%</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <h3>المواقع التي زارها السياح في القدس</h3>
+        <p class="src">النسبة من مجمل السياح إلى إسرائيل، 2016</p>
+        <div class="bars">
+          <div class="row"><span>حائط المبكى</span><span class="track"><i style="width:67%"></i></span><span class="v">67%</span></div>
+          <div class="row"><span>الحي اليهودي</span><span class="track"><i style="width:62%"></i></span><span class="v">62%</span></div>
+          <div class="row"><span>كنيسة القيامة</span><span class="track"><i style="width:52%"></i></span><span class="v">52%</span></div>
+          <div class="row"><span>طريق الآلام</span><span class="track"><i style="width:43%"></i></span><span class="v">43%</span></div>
+          <div class="row"><span>جبل الزيتون</span><span class="track"><i style="width:43%"></i></span><span class="v">43%</span></div>
+        </div>
+        <p class="note">السائح اليهودي يزور أيضًا كنيسة القيامة، والسائح المسيحي يزور أيضًا حائط المبكى. المواقع الكبيرة تجذب الجميع تقريبًا.</p>
+        <p class="src">المصدر: تقرير مراقب الدولة عن القدس (2019)، فصل السياحة.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="s17" hidden>
+    <div class="pad">
+      <p class="kick">أنواع السياحة</p>
+      <h2>كل قطاعات السياحة في مدينة واحدة</h2>
+      <div class="tblwrap"><table class="cl">
+        <tr><th>نوع السياحة</th><th>أمثلة في القدس ومحيطها</th></tr>
+        <tr><td><b>الحجّ اليهودي</b></td><td>حائط المبكى، قبر داود، مغارة المكفيلا، قبر راحيل</td></tr>
+        <tr><td><b>الحجّ المسيحي</b></td><td>كنيسة القيامة، طريق الآلام، جتسماني، عين كارم، بيت لحم</td></tr>
+        <tr><td><b>الحجّ الإسلامي</b></td><td>الحرم الشريف: المسجد الأقصى وقبة الصخرة</td></tr>
+        <tr><td><b>التاريخ والآثار</b></td><td>مدينة داود، أنفاق الحائط الغربي، الكاردو، البيت المحروق، هيروديون</td></tr>
+        <tr><td><b>الثقافة والتراث</b></td><td>متحف إسرائيل، متحف أراضي الكتاب المقدّس، بيت عجنون، أحياء مثل مئة شعاريم ويمين موشيه</td></tr>
+        <tr><td><b>سياحة حضرية وترفيه</b></td><td>سوق محانيه يهودا، شارع المشاة بن يهودا، نحلات شيفع، الحي الألماني، مجمّع المحطة الأولى</td></tr>
+        <tr><td><b>الذكرى والتخليد</b></td><td>ياد فاشيم، جبل هرتسل، تلّة الذخيرة</td></tr>
+        <tr><td><b>الطبيعة والمشهد</b></td><td>جبل الزيتون، جبل المشارف، منتزه أرمون هنتسيف، نُصب كينيدي، محميات في جبال القدس</td></tr>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="s18" hidden>
+    <div class="pad">
+      <p class="kick">عاصمة</p>
+      <h2>مؤسسات الدولة كمواقع للزيارة</h2>
+      <div class="gal">
+        <figure><img src="../01/img/knesset.jpg" alt="الكنيست"><span class="yr">جفعات رام · 1966</span><h3>الكنيست</h3><p>السلطة التشريعية. زيارة بتنسيق مسبق يومي الأحد والخميس، وفيها أعمال لشاغال.</p></figure>
+        <figure><img src="../01/img/supreme-court.jpg" alt="المحكمة العليا"><span class="yr">جفعات رام · 1992</span><h3>المحكمة العليا</h3><p>عمارة تدمج القديم بالجديد. جولات مرشدة بالتنسيق.</p></figure>
+        <figure><img src="../01/img/shrine.jpg" alt="مقام الكتاب"><span class="yr">جفعات رام</span><h3>متحف إسرائيل</h3><p>المتحف الوطني. في "مقام الكتاب" مخطوطات قمران، وفي الخارج نموذج القدس أيام الهيكل الثاني.</p></figure>
+        <figure><img src="../01/img/library.jpg" alt="المكتبة الوطنية"><span class="yr">جفعات رام</span><h3>المكتبة الوطنية</h3><p>كنوز مطبوعات الدولة والشعب اليهودي، في مبنى جديد يمكن التجوّل فيه.</p></figure>
+        <figure><img src="../01/img/yadvashem.jpg" alt="قاعة الأسماء في ياد فاشيم"><span class="yr">جبل الذكرى</span><h3>ياد فاشيم</h3><p>متحف الكارثة (الهولوكوست). يزوره كل ضيف رسمي للدولة.</p></figure>
+        <figure><img src="../01/img/herzl.jpg" alt="جبل هرتسل"><span class="yr">830 م</span><h3>جبل هرتسل</h3><p>المقبرة الوطنية: قبر هرتسل وعظماء الأمة، ومنذ 2017 قاعة ذكرى قتلى حروب إسرائيل.</p></figure>
+      </div>
+      <details class="more"><summary>لماذا يُدرج ياد فاشيم في كل زيارة رسمية</summary><div class="body">
+        <p>بحسب مفتاح الإجابات لبجروت 2026: الزيارة تعرّف الزوّار على التاريخ اليهودي وعلى إبادة الشعب اليهودي في الكارثة، وفي الوقت نفسه على الدولة المزدهرة التي بُنيت بعدها. وهي تخلق تماهيًا مع إسرائيل كبيت للشعب اليهودي.</p>
+        <p class="src">الصور: عرض الصور الرسمي. الأوصاف ملخّصة من مفاتيح الإجابات الرسمية لعام 2026.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="s19" hidden>
+    <div class="pad">
+      <p class="kick">سياحة حضرية وترفيه</p>
+      <h2>القدس في المساء</h2>
+      <div class="gal">
+        <figure><img src="../01/img/mahane.jpg" alt="سوق محانيه يهودا"><h3>سوق محانيه يهودا</h3><p>سوق طعام نابض بالحياة في النهار، وفي المساء مطاعم وحانات وفنّ شارع.</p></figure>
+        <figure><img src="../01/img/nahalat.jpg" alt="نحلات شيفع"><h3>نحلات شيفع</h3><p>الحي الثالث الذي بُني خارج الأسوار. رُمّم وأصبح مركزًا للسهر الليلي.</p></figure>
+        <figure><img src="../01/img/ben-yehuda.jpg" alt="شارع المشاة بن يهودا"><h3>شارع المشاة بن يهودا</h3><p>ممشى في مركز المدينة فيه مطاعم ومقاهٍ ومحلات.</p></figure>
+        <figure><img src="../01/img/scopus.jpg" alt="جبل المشارف"><h3>نقاط مشاهدة</h3><p>جبل المشارف وجبل الزيتون ومنتزه أرمون هنتسيف تُطلّ على البلدة القديمة وعلى صحراء يهودا.</p></figure>
+      </div>
+      <p class="note">سؤال يتكرّر في البجروت (2024): موقع متحف، موقع للسهر الليلي، موقع للأطفال الصغار، وموقع هو رمز للسلطة. للأطفال الصغار تُقبل الإجابات: حديقة الحيوانات التوراتية، متحف العلوم وأكواريوم إسرائيل.</p>
+    </div>
+  </section>
+
+  <!-- 19b -->
+  <section class="slide" id="s19b" hidden>
+    <div class="pad">
+      <p class="kick">نقاط مشاهدة</p>
+      <h2>من أين نُطلّ على البلدة القديمة</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ul class="clean">
+            <li><b>جبل الزيتون</b> (من الشرق): نقطة المشاهدة المشهورة. ترى أمامك جبل الهيكل / الحرم الشريف وقبة الصخرة والأسوار، وفي الأسفل المقبرة اليهودية القديمة.</li>
+            <li><b>جبل المشارف</b> (من الشمال الشرقي): قرب الجامعة العبرية. ترى البلدة القديمة من جهة الغرب، وصحراء يهودا من جهة الشرق.</li>
+            <li><b>منتزه أرمون هنتسيف</b> (من الجنوب): ممشى طويل يُطلّ على البلدة القديمة وعلى مدينة داود من الجهة الجنوبية.</li>
+          </ul>
+        </div>
+        <figure><svg viewBox="0 0 560 420" role="img" aria-label="رسم تخطيطي: نقاط المشاهدة حول البلدة القديمة" style="direction:ltr;width:100%;height:auto;max-height:430px;font-family:var(--body)">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--copper)"/></marker></defs>
+  <rect x="0" y="0" width="560" height="420" rx="14" fill="var(--land)"/>
+  <path d="M390 40 Q430 120 420 210 Q415 300 380 390" fill="none" stroke="var(--hills)" stroke-width="40" stroke-linecap="round" opacity=".8"/>
+  <text x="500" y="310" font-size="13" fill="var(--ink-3)" text-anchor="middle">سلسلة جبل الزيتون</text>
+  <rect x="210" y="160" width="120" height="110" rx="6" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+  <text x="270" y="210" font-size="17" font-weight="700" fill="var(--ink)" text-anchor="middle">البلدة</text>
+  <text x="270" y="232" font-size="17" font-weight="700" fill="var(--ink)" text-anchor="middle">القديمة</text>
+  <circle cx="410" cy="70" r="9" fill="var(--olive)"/><text x="410" y="50" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">جبل المشارف</text>
+  <line x1="400" y1="80" x2="335" y2="155" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <circle cx="420" cy="215" r="9" fill="var(--olive)"/><text x="420" y="248" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">جبل الزيتون</text>
+  <line x1="408" y1="215" x2="338" y2="215" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <circle cx="270" cy="370" r="9" fill="var(--olive)"/><text x="270" y="400" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">منتزه أرمون هنتسيف</text>
+  <line x1="270" y1="358" x2="270" y2="278" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <g transform="translate(60,70)"><circle r="26" fill="var(--paper)" stroke="var(--rule)"/><path d="M0,-18L6,0L0,-4L-6,0z" fill="var(--ink)"/><text y="-30" font-size="13" text-anchor="middle" fill="var(--ink-2)">الشمال</text></g>
+  <text x="20" y="408" font-size="12" fill="var(--ink-3)">رسم تخطيطي، ليس بمقياس رسم</text>
+</svg></figure>
+      </div>
+      <p class="note">بجروت 2021: "من أي المواقع نُطلّ على البلدة القديمة؟" بحسب خريطة. يُستحسن تذكّر اتجاه كل نقطة مشاهدة أيضًا.</p>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="slide bgslide" id="s20" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="ممشى الأسوار">
+    <span class="credit">ممشى الأسوار · عرض الصور الرسمي</span>
+    <div class="pad">
+      <p class="kick">عوامل مؤثّرة على السياحة</p>
+      <h2>ما الذي يرفع السياحة إلى القدس وما الذي يخفّضها</h2>
+      <div class="factor">
+        <div><span class="cn">الوضع الجيوسياسي (מצב גאופוליטי) · مصطلح 13</span><b>الحرب والأمن</b><span>بحسب تقرير صحفي من تشرين الثاني 2024، ورد في بجروت 2025، كان نحو خُمس الفنادق في البلاد على وشك الإغلاق. تضرّرت القدس بشكل خاص، لأنها تعتمد على السياحة الوافدة (תיירות נכנסת) وعلى الحجاج.</span></div>
+        <div><span class="cn">المصطلحان 14–15</span><b>تحذيرات السفر (אזהרות מסע)</b><span>تنشر الدول لمواطنيها تحذيرات من السفر، فتُلغي مجموعات الحجاج رحلاتها.</span></div>
+        <div><span class="cn">المصطلحان 4–5</span><b>المواسم</b><span>مواسم الذروة (עונות שיא) في الأعياد: الفصح اليهودي والفصح المسيحي، العُرُش، عيد الميلاد. ومواسم الركود (עונות שפל) في بقية السنة.</span></div>
+        <div><span class="cn">حدث ضخم (אירוע־על) · مصطلح 16</span><b>أحداث كبرى</b><span>انطلق سباق "جيرو ديتاليا" من القدس عام 2018 وبُثّ إلى العالم كله. ماراثون القدس ومهرجان الأنوار يجذبان الزوّار كل سنة.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 -->
+  <section class="slide" id="s21" hidden>
+    <div class="pad side-photo">
+      <figure><img src="../01/img/latrun.jpg" alt="دير اللطرون على الطريق من يافا إلى القدس"><figcaption>دير اللطرون، على الطريق التاريخي إلى القدس · تصوير يسرائيل باركر، بيكيويكي · عرض الصور الرسمي</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">الوصول والمبيت</p>
+        <h2>كيف نصل، وأين نبيت</h2>
+        <ul class="clean">
+          <li><b>الطريق التاريخي:</b> نزل الحجاج من السفينة في ميناء يافا وصعدوا إلى القدس عبر اللطرون وأبو غوش. لذلك توجد على امتداد الطريق أديرة وكنائس استضافتهم.</li>
+          <li><b>اليوم:</b> شارع 1، شارع 443، قطار سريع من تل أبيب ومطار بن غوريون، وقطار خفيف داخل المدينة.<span class="tag-ext">إثراء</span></li>
+          <li><b>المبيت:</b> فنادق بكل المستويات، نُزُل للحجاج (هوسبيس)، وضيافة ريفية في الكيبوتسات في الجبال. وفي بيت لحم فنادق للحجاج.</li>
+        </ul>
+        <details class="more"><summary>إثراء</summary><div class="body">
+          <p><b>فندق الملك داود:</b> فندق فاخر من أيام الانتداب، وهو اليوم دار الضيافة الرسمية للدولة لكبار الضيوف.</p>
+          <p><b>مجموعة أم سائح مستقلّ:</b> مجموعات الحجاج تبيت عادةً في فنادق كبيرة وتصل بالحافلة. السياح المستقلّون يختارون غالبًا فندق بوتيك أو شقة، ويتجوّلون مشيًا وبالقطار الخفيف.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 -->
+  <section class="slide" id="s22" hidden>
+    <div class="pad">
+      <p class="kick">تحدّيات</p>
+      <h2>ما مشاكل القدس كهدف سياحي؟</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>في تقرير نشره عام 2019 وجد مراقب الدولة عدّة مشاكل تتكرّر:</p>
+          <ul class="clean">
+            <li>لا توجد جهة واحدة تركّز السياحة في المدينة.</li>
+            <li>معلومات سياحية غير محدّثة، ولافتات ناقصة أو بلغة واحدة.</li>
+            <li>أوساخ وصيانة رديئة في مناطق مكتظّة بالسياح، مثل باب العامود.</li>
+            <li>نقص في مراحيض عامة سليمة في البلدة القديمة.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="card"><span class="num">مصطلح 22</span><span class="t">القدرة الاستيعابية (כושר נשיאה)</span><span>الحدّ الأقصى من الاستخدام الذي يمكن القيام به في موقع أو مورد، دون المسّ بصورته أو بإمكانية استخدامه بالطريقة نفسها في المستقبل.</span><span class="ex">في الأعياد، تصل ساحة الحائط الغربي وأزقّة البلدة القديمة إلى حدّ القدرة الاستيعابية.</span></div>
+        </div>
+      </div>
+      <p class="src">المصدر: تقرير مراقب الدولة عن القدس (2019)، فصل السياحة.</p>
+    </div>
+  </section>
+
+  <!-- 23 -->
+  <section class="slide" id="s23" hidden>
+    <div class="pad">
+      <p class="kick">جماهير الهدف</p>
+      <h2>من يأتي إلى القدس، وعمّا يبحث</h2>
+      <div class="aud">
+        <div><b>اليهود</b><span>من البلاد ومن الشتات: حائط المبكى، الحي اليهودي، بار متسفا وبات متسفا</span></div>
+        <div><b>الحجاج المسيحيون</b><span>كاثوليك وأرثوذكس وبروتستانت، ولكل طائفة مواقعها</span></div>
+        <div><b>المسلمون</b><span>زيارة الحرم الشريف والحرم الإبراهيمي</span></div>
+        <div><b>هواة التاريخ والآثار</b><span>مدينة داود، أنفاق الحائط الغربي، الكاردو، برج داود (القلعة)</span></div>
+        <div><b>العائلات</b><span>حديقة الحيوانات التوراتية، متحف العلوم، أكواريوم إسرائيل</span></div>
+        <div><b>مجموعات تربوية</b><span>ياد فاشيم، الكنيست، جبل هرتسل</span></div>
+        <div><b>كبار السنّ</b><span>جولات ملائمة وممشيات سهلة الوصول، مثل أرمون هنتسيف</span></div>
+        <div><b>سياح عائدون</b><span>جولات معمّقة: أحياء، أسواق، أديرة</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 -->
+  <section class="slide" id="s24" hidden>
+    <div class="pad">
+      <p class="kick">مهارة بجروت</p>
+      <h2>كيف نجيب عن سؤال تخطيط مسار</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ol class="steps">
+            <li><span><b>اقرأوا من هو الجمهور وما هدفه.</b> حجاج، عائلة، مجموعة في موضوع واحد.</span></li>
+            <li><span><b>اختاروا مواقع تلائم الجمهور،</b> لا مجرّد مواقع مشهورة.</span></li>
+            <li><span><b>رتّبوا بحسب القرب:</b> منطقة واحدة في كل نصف يوم، بلا تنقّل ذهابًا وإيابًا.</span></li>
+            <li><span><b>حدّدوا مدّة مكوث واقعية</b> في كل موقع، من ساعة إلى ثلاث ساعات.</span></li>
+            <li><span><b>علّلوا كل اختيار بجملة واحدة.</b> التعليل يساوي نقاطًا.</span></li>
+          </ol>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p class="note">مثال: مجموعة "تجليت" (شباب يهود من الخارج) تأتي ليومين إلى القدس لتتعرّف على الهوية اليهودية وإسرائيل اليوم. خطّطوا جولة من خمسة مواقع.</p>
+          <div class="plan"><table>
+            <tr><th>اليوم</th><th>الموقع</th><th>الوقت</th><th>لماذا</th></tr>
+            <tr><td class="d">اليوم 1</td><td>حائط المبكى</td><td>ساعة ونصف</td><td>أقدس مكان لليهود، تجربة هوية</td></tr>
+            <tr><td class="d"></td><td>الحي اليهودي والكاردو</td><td>ساعتان</td><td>قريب من الحائط، القدس اليهودية عبر العصور</td></tr>
+            <tr><td class="d"></td><td>سوق محانيه يهودا</td><td>ساعة ونصف مساءً</td><td>طعام وأجواء القدس اليوم</td></tr>
+            <tr><td class="d">اليوم 2</td><td>ياد فاشيم</td><td>3 ساعات</td><td>الكارثة، وأهمية البيت للشعب اليهودي</td></tr>
+            <tr><td class="d"></td><td>جبل هرتسل</td><td>ساعة ونصف</td><td>قرب ياد فاشيم: صاحب رؤية الدولة وقادتها</td></tr>
+          </table></div>
+          <p class="src">حلّ نموذجي. المواقع نفسها سنتعلّمها في المواضيع القادمة.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25 -->
+  <section class="slide stop tint" id="s25" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">محطة تمرين · الإجابة في الاستوديو</p>
+      <h2>تمرين: الأسئلة 7–9</h2>
+      <div class="q"><span class="qn">7</span><div class="qt">اذكروا اسمَي موقعين مهمّين في القدس يمكن إدراجهما في برنامج لحجاج مسيحيين، واشرحوا مصدر أهمية كل موقع.<span class="tag real">بجروت 2019</span></div></div>
+      <div class="q"><span class="qn">8</span><div class="qt">الضيوف الرسميون لدولة إسرائيل يزورون دائمًا تقريبًا متحف الكارثة في القدس. اذكروا اسم الموقع، واشرحوا سببين لإدراجه في برامج الزيارات الرسمية.<span class="tag real">في أعقاب بجروت 2026</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">في القدس توجد مؤسسات الحكم والثقافة لدولة إسرائيل. اذكروا ثلاثًا منها يمكن زيارتها، وصِفوا واحدة منها.<span class="tag real">في أعقاب بجروت 2026</span></div></div>
+    </div>
+  </section>
+
+  <!-- 26 -->
+  <section class="slide" id="s26" hidden>
+    <div class="pad">
+      <p class="kick">مصطلحات للبجروت</p>
+      <h2>مصطلحات من الموضوع</h2>
+      <div class="cards">
+        <div class="card"><span class="num">مصطلح 8</span><span class="t">السياحة الداخلية (תיירות פנים)</span><span class="en">Domestic tourism</span><span>خروج الشخص من نطاق سكنه وعمله، داخل بلده، للمتعة.</span><span class="ex">عائلة من حيفا تأتي لعطلة نهاية أسبوع في القدس.</span></div>
+        <div class="card"><span class="num">مصطلح 9</span><span class="t">السياحة الوافدة (תיירות נכנסת)</span><span class="en">Incoming tourism</span><span>حركة سياح يصلون من خارج الدولة التي اختاروها هدفًا لزيارتهم.</span><span class="ex">مجموعة حجاج من إيطاليا في كنيسة القيامة.</span></div>
+        <div class="card"><span class="num">مصطلح 11</span><span class="t">زائر يوم (מבקר יום)</span><span>سائح يمكث في المكان حتى 24 ساعة، دون مبيت.</span><span class="ex">مسافر على سفينة ينزل في ميناء أسدود ويصعد إلى القدس لبضع ساعات.</span></div>
+        <div class="card"><span class="num">مصطلح 16</span><span class="t">حدث ضخم (אירוע־על)</span><span class="en">Mega event</span><span>حدث كبير وقصير، يتطلّب بناء منشآت خاصة وله تبعات طويلة الأمد.</span><span class="ex">انطلاق "جيرو ديتاليا" في القدس، 2018.</span></div>
+        <div class="card"><span class="num">مصطلح 22</span><span class="t">القدرة الاستيعابية (כושר נשיאה)</span><span>أقصى استخدام ممكن لموقع أو مورد دون المسّ بصورته أو بإمكانية استخدامه بالطريقة نفسها مستقبلًا.</span><span class="ex">ساحة الحائط الغربي في الأعياد.</span></div>
+        <div class="card"><span class="num">مصطلح 33</span><span class="t">السياحة الحضرية (תיירות עירונית)</span><span>سياحة تتركّز في زيارة المدن: ثقافة، ترفيه، تسوّق، أعمال، فعاليات ومواقع تاريخية. المدينة هدف بذاتها.</span><span class="ex">في القدس: البلدة القديمة، متحف إسرائيل، سوق محانيه يهودا.</span></div>
+      </div>
+      <p class="src">الأرقام والتعريفات بحسب قائمة "مصطلحات للبجروت 2026".</p>
+    </div>
+  </section>
+
+  <!-- 27 -->
+  <section class="slide stop tint" id="s27" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">محطة تمرين · الإجابة في الاستوديو</p>
+      <h2>تمرين: السؤالان 10–11</h2>
+      <div class="q"><span class="qn">10</span><div class="qt">اشرحوا مصطلح "حدث ضخم"، وأعطوا مثالًا على حدث كهذا جرى في القدس.<span class="tag">مصطلحات، كما في البجروت</span></div></div>
+      <div class="q"><span class="qn">11</span><div class="qt">اشرحوا مصطلح "القدرة الاستيعابية"، وأعطوا مثالًا على موقع في القدس يظهر فيه.<span class="tag">مصطلحات، كما في البجروت</span></div></div>
+    </div>
+  </section>
+
+  <!-- 28 -->
+  <section class="slide stop tint" id="s28" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">أسئلة ختامية · الإجابة في الاستوديو</p>
+      <h2>الأسئلة 12–14</h2>
+      <div class="q"><span class="qn">12</span><div class="qt">اذكروا ثلاثة عوامل جعلت القدس أهمّ مدينة سياحية في إسرائيل.<span class="tag real">من بنك أسئلة البجروت</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">اذكروا بلدة في محيط القدس فيها موقع مقدّس لعدّة ديانات. ما هو الموقع، ولأي ديانات هو مقدّس ولماذا؟<span class="tag real">بجروت 2024</span></div></div>
+      <div class="q"><span class="qn">14</span><div class="qt">خلال الحرب انخفضت السياحة في كل البلاد، لكن القدس تضرّرت بشكل خاص. اشرحوا لماذا.<span class="tag real">بجروت 2025</span></div></div>
+      <p class="src">أجيبوا عن الأسئلة الثلاثة. في الامتحان نفسه تختارون أحيانًا جزءًا من البنود، فاقرأوا التعليمات جيدًا.</p>
+    </div>
+  </section>
+
+  <!-- 29 -->
+  <section class="slide bgslide" id="s29" hidden>
+    <img class="bg" src="../01/img/olives.jpg" alt="جبل الزيتون">
+    <span class="credit">جبل الزيتون · عرض الصور الرسمي</span>
+    <div class="pad">
+      <p class="kick">تلخيص</p>
+      <h2>ماذا نأخذ من الافتتاحية</h2>
+      <ul class="clean" style="color:#EDE7DA">
+        <li>تقع المنطقة على جبال يهودا، بين الشفيلا في الغرب وصحراء يهودا في الشرق. شرقي المدينة صحراء، لأنها في ظلّ المطر للجبل.</li>
+        <li>جبل الهيكل / الحرم الشريف مقدّس لليهودية والإسلام، وفي المدينة جرت الأحداث المركزية في حياة يسوع. لكل طائفة مسيحية مواقعها.</li>
+        <li>بيت لحم والخليل تكمّلان القدس: ميلاد يسوع، قبر راحيل ومغارة المكفيلا (الحرم الإبراهيمي).</li>
+        <li>نحو 3 من كل 4 سياح إلى إسرائيل يزورون القدس، ولذلك تؤثّر عليها الحرب وتحذيرات السفر والمواسم بشكل خاص.</li>
+        <li>في تخطيط مسار: الجمهور، مواقع ملائمة، ترتيب بحسب القرب، الوقت والتعليل.</li>
+      </ul>
+      <p class="lead">في الموضوع القادم: الخطّ الزمني للقدس، من المدينة اليبوسية حتى 1967.</p>
+    </div>
+  </section>
+</div>
+
+<nav class="nav" dir="rtl" aria-label="التنقّل بين الشرائح">
+  <button type="button" id="prev" class="ghost">السابق</button>
+  <span class="count" id="count" aria-live="polite">1 / 29</span>
+  <button type="button" id="next">التالي</button>
+</nav>
+
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowLeft'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowRight'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx>0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
