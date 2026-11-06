@@ -1,0 +1,889 @@
+<!doctype html><html lang="ru" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Иерусалим · введение</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&family=Rubik:wght@300;400;500;700&display=swap">
+<style>
+/* Layout: one full-screen slide at a time. Limestone page, ink type, olive for knowledge, copper for practice stops. Photos run edge to edge where they carry the story. */
+:root{
+  --bg:#EDEBE5; --paper:#F8F7F3; --ink:#1B232B; --ink-2:#4B555E; --ink-3:#7A838B; --rule:#D3CFC4;
+  --olive:#4E5E2A; --olive-soft:#E1E6D0; --copper:#A4511F; --copper-soft:#F4E3D4; --sky:#C9D7DE; --sea:#BFD3DC;
+  --land:#ECE6D6; --hills:#D9CFAE; --desert:#EBD3A8; --lake:#8FB4C6;
+  --display:"PT Serif",Georgia,"Times New Roman",serif;
+  --body:"Rubik","Segoe UI",Arial,sans-serif;
+  --step-0:clamp(16px,1.05vw + 10px,19px); --step-1:clamp(19px,1.3vw + 11px,23px); --step-2:clamp(24px,2vw + 12px,34px); --step-3:clamp(30px,3.4vw + 12px,56px); --step-4:clamp(40px,5.5vw + 12px,88px);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12171B; --paper:#1A2026; --ink:#ECE8DE; --ink-2:#B7BCBF; --ink-3:#8A9196; --rule:#2E373E;
+  --olive:#B6C77E; --olive-soft:#273020; --copper:#E8A877; --copper-soft:#36261B; --sky:#22313A; --sea:#1E2F38;
+  --land:#2A2C28; --hills:#3D3A2C; --desert:#4A3D27; --lake:#4E7F95; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.deck{max-width:1180px;margin:0 auto;padding-block:16px 104px}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);padding-block:4px 12px}
+.bar b{font-family:var(--display);font-weight:700;color:var(--ink);font-size:17px}
+.prog{height:3px;background:var(--rule);border-radius:3px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;width:0;background:var(--olive);transition:width .35s ease}
+.slide{background:var(--paper);border-radius:18px;overflow:hidden;min-height:min(78vh,760px);display:flex;flex-direction:column;position:relative}
+.pad{padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;gap:18px;min-width:0}
+.kick{font-size:13px;letter-spacing:.08em;font-weight:500;color:var(--olive);margin:0}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.15;text-wrap:balance;font-weight:700}
+h1{font-size:var(--step-4);font-weight:900}
+h2{font-size:var(--step-3)}
+h3{font-size:var(--step-1)}
+p{margin:0;max-width:64ch}
+.lead{font-size:var(--step-1);color:var(--ink-2);line-height:1.55}
+.src{font-size:13px;color:var(--ink-3)}
+ul.clean{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+ul.clean li{padding-inline-start:20px;position:relative}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.72em;width:8px;height:8px;border-radius:50%;background:var(--olive)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(18px,3vw,40px);align-items:start}
+.two>*{min-width:0}
+.maptwo{grid-template-columns:1.25fr .75fr}
+@media (max-width:820px){.two,.maptwo{grid-template-columns:1fr}}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.fact{background:var(--paper);padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fact .n{font-family:var(--display);font-size:var(--step-2);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.fact .l{font-size:14px;color:var(--ink-2)}
+figure{margin:0;display:flex;flex-direction:column;gap:6px;min-width:0}
+figure img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block;background:var(--rule)}
+figcaption{font-size:12px;color:var(--ink-3)}
+details.more{border-top:1px dashed var(--rule);padding-top:12px;margin-top:4px}
+details.more summary{cursor:pointer;font-weight:500;color:var(--olive);font-size:15px;list-style:none;display:inline-flex;gap:8px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--olive-soft);font-size:15px}
+details.more[open] summary::before{content:"−"}
+details.more .body{margin-top:10px;display:flex;flex-direction:column;gap:10px;font-size:16px;color:var(--ink-2);max-width:72ch}
+.tag-ext{display:inline-block;font-size:11px;letter-spacing:.04em;border:1px solid var(--ink-3);color:var(--ink-3);border-radius:99px;padding:0 7px;margin-inline-start:6px;vertical-align:2px}
+/* hero */
+.hero{position:relative;min-height:min(82vh,780px);color:#F6F2E8;justify-content:flex-end}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.86) 0%,rgba(12,16,20,.45) 45%,rgba(12,16,20,.05) 75%)}
+.hero .pad{position:relative;z-index:1;gap:14px}
+.hero .kick{color:#D6E2A8}
+.hero .lead{color:#E7E1D3}
+.hero .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:14px;border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:3px 12px}
+/* map */
+.map svg{width:100%;height:auto;display:block;border-radius:12px}
+.m-sea{fill:var(--sea)} .m-land{fill:var(--land)} .m-hills{fill:var(--hills);opacity:.85} .m-desert{fill:var(--desert);opacity:.8}
+.m-lake{fill:var(--lake)} .m-river{fill:none;stroke:var(--lake);stroke-width:2}
+.m-road{fill:none;stroke:var(--copper);stroke-width:2.5;stroke-dasharray:7 6;stroke-linecap:round}
+.m-pt{fill:var(--ink)} .m-pt-big{fill:var(--olive);stroke:var(--paper);stroke-width:3}
+.m-peak{fill:var(--ink)}
+.m-lab{font-family:var(--body);fill:var(--ink);font-size:19px;font-weight:500;paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.m-big{font-size:30px;font-weight:700;font-family:var(--display)} .m-sm{font-size:16px;font-weight:400}
+.m-zone{font-family:var(--display);font-size:24px;fill:var(--ink-2);opacity:.75;letter-spacing:.06em}
+.m-lake-lab{font-family:var(--display);font-size:20px;fill:var(--ink);opacity:.8}
+.m-scale line{stroke:var(--ink);stroke-width:3} .m-scale text,.m-north text{font-family:var(--body);font-size:16px;fill:var(--ink)}
+.m-north path{fill:var(--ink)}
+.m-ibox{fill:none;stroke:var(--copper);stroke-width:2.5}
+.inset{position:absolute;bottom:12px;inset-inline-end:12px;width:min(22%,110px);border-radius:8px;overflow:hidden;box-shadow:0 0 0 1px var(--rule)}
+.inset svg{display:block;width:100%;height:auto}
+.mapwrap{position:relative}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.compass{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.compass div{border:1px solid var(--rule);border-radius:10px;padding:10px 14px}
+.compass b{display:block;font-size:13px;color:var(--olive);font-weight:500}
+/* profile */
+.profile svg{width:100%;height:auto;display:block}
+.p-ground{fill:var(--hills)} .p-sea{fill:var(--sea)} .p-dead{fill:var(--lake)}
+.p-line{fill:none;stroke:var(--ink);stroke-width:2}
+.p-axis{stroke:var(--rule);stroke-width:1} .p-zero{stroke:var(--ink-3);stroke-dasharray:4 4}
+.p-t{font-family:var(--body);font-size:13px;fill:var(--ink-2)} .p-tb{font-family:var(--body);font-size:14px;font-weight:700;fill:var(--ink)}
+.p-rain{fill:var(--olive);opacity:.85} .p-cloud{fill:var(--ink-3);opacity:.35}
+.p-arrow{fill:none;stroke:var(--ink-3);stroke-width:1.5;marker-end:url(#arr)}
+/* religions */
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+.tri figure img{aspect-ratio:4/3}
+.tri h3{margin-top:6px}
+.tri p{font-size:16px;color:var(--ink-2)}
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bars .row{display:grid;grid-template-columns:9.5em 1fr 3.2em;gap:10px;align-items:center;font-size:15px}
+.bars .track{height:14px;background:var(--olive-soft);border-radius:7px;overflow:hidden}
+.bars .track i{display:block;height:100%;background:var(--olive);border-radius:7px}
+.bars .v{font-variant-numeric:tabular-nums;font-weight:700;text-align:end}
+.big-num{font-family:var(--display);font-weight:900;font-size:clamp(64px,10vw,140px);line-height:.9;color:var(--olive)}
+/* practice */
+.stop{background:var(--copper-soft)}
+.stop .kick{color:var(--copper)}
+.q{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;padding-block:14px;border-bottom:1px solid color-mix(in srgb,var(--copper) 25%,transparent)}
+.q:last-child{border-bottom:0}
+.qn{font-family:var(--display);font-weight:900;font-size:clamp(28px,3vw,40px);color:var(--copper);line-height:1;min-width:1.2em;text-align:center}
+.qt{min-width:0;font-size:var(--step-1);line-height:1.5}
+.qt .sub{display:block;font-size:16px;color:var(--ink-2);margin-top:4px}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:1px 10px;border-radius:99px;border:1px solid var(--copper);color:var(--copper);margin-inline-start:8px;vertical-align:3px;white-space:nowrap}
+.tag.real{background:var(--copper);color:var(--paper)}
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.card .num{font-size:12px;color:var(--ink-3)}
+.card .t{font-family:var(--display);font-weight:700;font-size:var(--step-1)}
+.card .en{font-size:13px;color:var(--ink-3);direction:ltr;text-align:left}
+.card .ex{font-size:15px;color:var(--ink-2);border-top:1px dashed var(--rule);padding-top:6px;margin-top:4px}
+.pics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:760px){.pics{grid-template-columns:1fr}}
+.pics figure img{aspect-ratio:3/2}
+.city h3{margin-top:4px}
+.city p{font-size:16px;color:var(--ink-2)}
+.aud{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.aud div{border-inline-start:3px solid var(--olive);padding:4px 14px}
+.aud b{display:block;font-family:var(--display);font-size:var(--step-1)}
+.aud span{font-size:15px;color:var(--ink-2)}
+.side-photo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,40px);align-items:stretch}
+.side-photo>*{min-width:0}
+.side-photo figure img{min-height:260px;max-height:520px}
+@media (max-width:820px){.side-photo{grid-template-columns:1fr}}
+table.cl{border-collapse:collapse;width:100%;font-size:15px}
+table.cl th,table.cl td{border-bottom:1px solid var(--rule);padding:8px 6px;text-align:start;vertical-align:top}
+table.cl th{font-weight:500;color:var(--ink-3);font-size:13px}
+.tblwrap{overflow-x:auto}
+/* nav */
+.nav{position:fixed;inset:auto 0 0 0;z-index:5;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-top:1px solid var(--rule);
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;justify-content:center;align-items:center;gap:14px}
+.nav button{font:inherit;font-size:15px;font-weight:500;border:1px solid var(--olive);background:var(--olive);color:var(--paper);border-radius:10px;padding:9px 22px;cursor:pointer}
+.nav button.ghost{background:transparent;color:var(--olive)}
+.nav button:disabled{opacity:.35;cursor:default}
+button:focus-visible,summary:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.count{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:14px;min-width:4.5em;text-align:center}
+@media (prefers-reduced-motion:no-preference){.slide:not([hidden]){animation:in .35s ease}@keyframes in{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* additions: photo-backed slides, galleries, comparison, method */
+.bgslide{position:relative;color:#F6F2E8;justify-content:flex-end}
+.bgslide>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bgslide::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(12,16,20,.9) 0%,rgba(12,16,20,.55) 50%,rgba(12,16,20,.15) 85%)}
+.bgslide .pad{position:relative;z-index:1}
+.bgslide .kick{color:#D6E2A8}
+.bgslide .lead,.bgslide p{color:#E9E3D5}
+.bgslide .credit{position:absolute;top:12px;inset-inline-start:16px;z-index:1;font-size:11px;color:rgba(255,255,255,.75)}
+.tint{position:relative;isolation:isolate}
+.tint>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.12;z-index:-1;filter:grayscale(.3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gal figure img{aspect-ratio:4/3}
+.gal h3{font-size:18px;margin-top:2px}
+.gal p{font-size:15px;color:var(--ink-2);line-height:1.55}
+.gal .yr{font-size:12px;color:var(--copper);font-weight:500}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.5vw,28px)}
+.vs>div{display:flex;flex-direction:column;gap:10px;min-width:0}
+.vs figure img{aspect-ratio:16/10}
+@media (max-width:760px){.vs{grid-template-columns:1fr}}
+.streams{border-collapse:collapse;width:100%;font-size:15px}
+.streams th,.streams td{border-bottom:1px solid var(--rule);padding:9px 8px;text-align:start;vertical-align:top}
+.streams th{font-size:13px;font-weight:500;color:var(--ink-3)}
+.streams td:first-child{font-family:var(--display);font-weight:700;font-size:17px;white-space:nowrap}
+.steps{counter-reset:st;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:st;display:grid;grid-template-columns:2em 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(st);font-family:var(--display);font-weight:900;font-size:22px;color:var(--olive);line-height:1.2}
+.plan{border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+.plan table{border-collapse:collapse;width:100%;font-size:15px}
+.plan th,.plan td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:start;vertical-align:top}
+.plan th{background:var(--olive-soft);font-weight:500;font-size:13px}
+.plan td.d{font-family:var(--display);font-weight:700;white-space:nowrap}
+.note{border-inline-start:3px solid var(--copper);padding:6px 14px;font-size:15px;color:var(--ink-2);background:var(--copper-soft);border-radius:0 8px 8px 0}
+/* ru: Hebrew bagrut terms shown in parentheses */
+bdi[lang="he"]{font-family:"Heebo",Arial,sans-serif;white-space:nowrap}
+.card .he-t{display:block;font-family:var(--body);line-height:1.3}
+.card .he-t,.factor b bdi{font-size:.72em;white-space:nowrap;font-weight:500;color:var(--ink-2)}
+/* ru: longer text, so wider concept cards and one-row gallery on desktop */
+@media (min-width:900px){#s26 .cards{grid-template-columns:repeat(3,1fr)}#s18 .gal{grid-template-columns:repeat(6,1fr)}#s18 .gal figure img{aspect-ratio:1/1}#s2 .facts{grid-template-columns:repeat(4,1fr)}#s2 .fact{padding:10px 14px}#s12 .vs figure img{aspect-ratio:16/7}#s4 .profile svg{max-height:250px}}
+.factor{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.factor div{border:1px solid var(--rule);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--paper)}
+.factor b{font-family:var(--display);font-size:var(--step-1)}
+.factor span{font-size:15px;color:var(--ink-2)}
+.factor .cn{font-size:12px;color:var(--olive);font-weight:500}
+.p-desertband{fill:var(--desert);opacity:.95}
+</style>
+
+<div class="deck" dir="ltr" lang="ru">
+  <div class="bar"><b>Иерусалим и окрестности</b><span>Тема 1 · Введение · <a class="fb" href="https://docs.google.com/forms/d/e/1FAIpQLSfPH4yVHpoVDgWuujNlOalr5OQ58aG-LXlM2PoRxTDdiMylSA/viewform?usp=pp_url&entry.1210554402=%D7%99%D7%A8%D7%95%D7%A9%D7%9C%D7%99%D7%9D%201%20%D7%A4%D7%AA%D7%99%D7%97%D7%94" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">Отзыв учителей</a></span></div>
+  <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+
+  <!-- 1 -->
+  <section class="slide hero" id="s1">
+    <img src="../01/img/hero-oldcity.jpg" alt="Вид сверху на Храмовую гору и Старый город Иерусалима">
+    <span class="credit">Из презентации профиля об Иерусалиме</span>
+    <div class="pad">
+      <p class="kick">Регион Иерусалим · тема 1</p>
+      <h1>Иерусалим: введение</h1>
+      <p class="lead">Самый важный для туризма город Израиля: он стоит на горном хребте высотой 800 метров, между Шфелой и пустыней, и свят для трёх религий. Почти три из четырёх туристов, приезжающих в Израиль, бывают и здесь. В этой теме разберёмся почему.</p>
+      <div class="chips"><span class="chip">Расположение и ландшафт</span><span class="chip">Климат</span><span class="chip">Три религии</span><span class="chip">Вифлеем и Хеврон</span><span class="chip">Данные</span><span class="chip">Виды туризма</span><span class="chip">Факторы влияния</span><span class="chip">Планирование маршрута</span><span class="chip">Понятия</span></div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="slide" id="s2" hidden>
+    <div class="pad">
+      <p class="kick">Паспорт города</p>
+      <h2>Иерусалим в цифрах</h2>
+      <div class="facts">
+        <div class="fact"><span class="n">≈800&nbsp;м</span><span class="l">высота гор Иерусалима</span></div>
+        <div class="fact"><span class="n">≈4000</span><span class="l">лет истории (с иевусеев)</span></div>
+        <div class="fact"><span class="n">3</span><span class="l">религии считают город святым</span></div>
+        <div class="fact"><span class="n">4</span><span class="l">квартала в Старом городе</span></div>
+        <div class="fact"><span class="n">8</span><span class="l">ворот в стене, семь открыты</span></div>
+        <div class="fact"><span class="n">≈70</span><span class="l">имён у города</span></div>
+        <div class="fact"><span class="n">1981</span><span class="l">Старый город — всемирное наследие</span></div>
+        <div class="fact"><span class="n">74%</span><span class="l">въездных туристов были здесь (2017)</span></div>
+      </div>
+      <div class="two">
+        <p class="lead">Столица и крупнейший город Израиля. Здесь все секторы туризма: паломничество (<bdi lang="he">צליינות</bdi>), история и археология, культура, память и увековечение, городской туризм.</p>
+        <figure><img src="../01/img/illustrated-map.jpg" alt="Иллюстрированная карта достопримечательностей Иерусалима" style="aspect-ratio:16/10;object-position:top"><figcaption>Иллюстрированная туристическая карта Иерусалима · из презентации профиля об Иерусалиме</figcaption></figure>
+      </div>
+      <details class="more"><summary>Подробнее</summary><div class="body">
+        <p>Среди имён города: Сион, Шалем, Иевус, Город Давида, Йефе-Ноф и Ариэль. Обилие имён отражает его центральное место в еврейской культуре, а в поэзии на иврите ему посвящены сотни песен, например «Золотой Иерусалим» Наоми Шемер.</p>
+        <p>Стену Старого города построил османский султан Сулейман Великолепный около 500 лет назад. Одни из ворот, Золотые (Ворота милосердия), замурованы и, по преданию, откроются с приходом Мессии.</p>
+        <p class="src">Данные о 74%: доклад Государственного контролёра об Иерусалиме (2019), по данным 2017 года. Признания ЮНЕСКО в учебнике нет.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="slide" id="s3" hidden>
+    <div class="pad two maptwo">
+      <div class="mapwrap map">
+        <svg viewBox="0 0 600 638.9" role="img" aria-labelledby="mapT mapD" style="direction:ltr"><title id="mapT">Карта региона Иерусалим</title><desc id="mapD">Береговая линия по данным Natural Earth и реальное расположение населённых пунктов региона Иерусалим и его окрестностей.</desc>
+<rect class="m-sea" x="0" y="0" width="600" height="638.9"/><path class="m-land" d="M24.3,385.6 L44.2,356.8 L50.2,342.2 L63.9,324.6 L117.5,233.5 L164.4,127.5 L174.9,110.9 L192.5,52.8 L192.5,39.3 L200.2,35.2 L211.5,0.0 L600.0,0.0 L600.0,638.9 L0.0,638.9 L0.0,410.8 L24.3,385.6 Z"/>
+<clipPath id="landclip"><path d="M24.3,385.6 L44.2,356.8 L50.2,342.2 L63.9,324.6 L117.5,233.5 L164.4,127.5 L174.9,110.9 L192.5,52.8 L192.5,39.3 L200.2,35.2 L211.5,0.0 L600.0,0.0 L600.0,638.9 L0.0,638.9 L0.0,410.8 L24.3,385.6 Z"/></clipPath>
+<g clip-path="url(#landclip)"><path class="m-hills" d="M347.7,0.0 L336.4,112.0 L336.4,210.8 L325.2,276.6 L297.2,375.4 L280.4,474.2 L291.6,638.9 L364.5,638.9 L392.5,507.1 L437.4,408.3 L476.6,309.5 L504.7,210.8 L515.9,112.0 L521.5,0.0 Z"/><path class="m-desert" d="M521.5,0.0 L515.9,112.0 L504.7,210.8 L476.6,309.5 L437.4,408.3 L392.5,507.1 L364.5,638.9 L600.0,638.9 L600.0,0.0 Z"/></g>
+<path class="m-road" d="M197.5,45.8 L324.3,185.4 L397.8,206.9 L467.9,226.1"/><text class="m-zone" x="224" y="329" text-anchor="middle">Шфела</text><text class="m-zone" x="393" y="474" text-anchor="middle"><tspan x="393">Иудейские</tspan><tspan x="393" dy="28">горы</tspan></text><text class="m-zone" x="540" y="461" text-anchor="middle"><tspan x="540">Иудейская</tspan><tspan x="540" dy="28">пустыня</tspan></text><text class="m-zone" x="84" y="145" text-anchor="middle" transform="rotate(-62 84 145)">Средиземное море</text><circle class="m-pt m-pt-big" cx="467.9" cy="226.1" r="9"/><text class="m-lab m-big" x="596" y="257" text-anchor="end">Иерусалим</text><circle class="m-pt" cx="449.9" cy="273.1" r="6"/><text class="m-lab m-md" x="461.9" y="280.1" text-anchor="start">Вифлеем</text><circle class="m-pt" cx="392.4" cy="386.9" r="6"/><text class="m-lab m-md" x="404.4" y="393.9" text-anchor="start">Хеврон</text><circle class="m-pt" cx="503.6" cy="225.9" r="5"/><text class="m-lab m-sm" x="503.6" y="211.9" text-anchor="middle">Маале-Адумим</text><circle class="m-pt" cx="420.6" cy="209.2" r="5"/><text class="m-lab m-sm" x="420.6" y="195.2" text-anchor="middle">Мевасерет-Цион</text><circle class="m-pt" cx="329.8" cy="245.7" r="5"/><text class="m-lab m-sm" x="317.8" y="252.7" text-anchor="end">Бейт-Шемеш</text><circle class="m-pt" cx="324.3" cy="185.4" r="5"/><text class="m-lab m-sm" x="312.3" y="192.4" text-anchor="end">Латрун</text><circle class="m-pt" cx="397.8" cy="206.9" r="5"/><text class="m-lab m-sm" x="397.8" y="232.9" text-anchor="middle">Абу-Гош</text><path class="m-peak" d="M514.1,99.5 L522.1,84.5 L530.1,99.5 Z"/><text class="m-lab m-peak" x="510.1" y="99.5" text-anchor="end">гора Бааль-Хацор</text><circle class="m-pt" cx="219.4" cy="571.8" r="6"/><text class="m-lab m-md" x="231.4" y="578.8" text-anchor="start">Беэр-Шева</text><circle class="m-pt" cx="197.5" cy="45.8" r="6"/><text class="m-lab m-md" x="209.5" y="52.8" text-anchor="start">Яффо</text>
+<g class="m-scale"><line x1="20" y1="614.9" x2="79.1" y2="614.9"/><text x="49.55" y="604.9" text-anchor="middle">10 км</text></g>
+<g class="m-north"><path d="M570,576.9 l9,24 l-9,-7 l-9,7 Z"/><text x="570" y="568.9" text-anchor="middle">С</text></g></svg>
+        <div class="inset"><svg viewBox="0 0 150 319.5" role="img" aria-label="Положение региона в стране"><rect class="m-sea" width="150" height="319.5"/><path class="m-land" d="M0.0,174.7 L15.2,165.6 L23.8,156.8 L32.6,145.5 L41.6,130.6 L48.5,115.7 L57.1,89.4 L64.2,54.0 L64.6,46.8 L66.2,44.6 L70.1,45.8 L72.5,43.3 L75.0,23.9 L78.2,20.7 L79.2,17.8 L80.1,18.4 L82.1,14.0 L82.4,11.6 L81.0,9.6 L83.5,7.0 L85.1,0.0 L150.0,0.0 L150.0,319.5 L65.8,319.5 L66.6,313.4 L68.0,310.1 L65.5,306.8 L62.1,312.3 L58.6,313.8 L55.6,319.5 L0.0,319.5 L0.0,174.7 Z"/><path class="m-lake" d="M104.4,178.2 L102.5,180.6 L103.4,182.4 L103.0,183.4 L100.7,184.8 L96.5,184.2 L95.0,182.7 L94.7,180.4 L93.0,177.7 L92.6,174.9 L93.4,172.9 L95.5,173.3 L96.9,171.6 L99.6,174.2 L104.1,176.6 L104.4,178.2 Z M108.3,133.4 L106.0,148.7 L107.2,154.3 L105.3,163.4 L105.5,165.2 L103.9,166.9 L102.5,167.2 L103.0,162.4 L101.7,162.4 L98.3,166.0 L96.5,165.6 L95.9,164.2 L95.0,156.9 L95.5,154.0 L95.0,150.6 L96.5,146.5 L96.0,142.6 L100.7,133.4 L102.7,131.3 L106.3,130.6 L108.2,131.6 L108.3,133.4 Z M111.7,41.9 L111.4,51.7 L109.0,54.5 L107.5,54.3 L106.8,51.4 L105.6,50.4 L103.4,46.3 L103.9,43.8 L106.0,41.5 L108.5,40.1 L110.0,40.3 L111.7,41.9 Z"/><rect class="m-ibox" x="27.3" y="102.2" width="73.0" height="77.5"/></svg></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p class="kick">Расположение</p>
+        <h2>Границы региона</h2>
+        <p>Регион горный: Иудейские горы, а в их центре — Иерусалимские горы высотой около 800 метров.</p>
+        <div class="compass">
+          <div><b>Север</b>гора Бааль-Хацор</div>
+          <div><b>Юг</b>Беэр-Шевская долина</div>
+          <div><b>Запад</b>Шфела</div>
+          <div><b>Восток</b>Иудейская пустыня</div>
+        </div>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--hills)"></i>Иудейские горы</span>
+          <span><i class="sw" style="background:var(--desert)"></i>Иудейская пустыня</span>
+          <span><i class="sw" style="background:var(--land)"></i>Шфела и Прибрежная равнина</span>
+          <span><i class="sw" style="background:transparent;border:2px dashed var(--copper)"></i>Исторический путь из Яффо</span>
+        </div>
+        <details class="more"><summary>Подробнее</summary><div class="body">
+          <p>Иерусалим находится примерно в 60 км от Средиземного моря. Рядом с ним очень разные ландшафты — горы, Шфела и пустыня, поэтому он служит базой для ночёвки во время экскурсий по всему региону.</p>
+          <p class="src">Карта: береговая линия по данным Natural Earth. Населённые пункты — на своих реальных местах. Ландшафтные полосы показаны приблизительно.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="slide" id="s4" hidden>
+    <div class="pad">
+      <p class="kick">Почему именно здесь</p>
+      <h2>Город на горном хребте</h2>
+      <div class="profile"><svg viewBox="0 0 900 300" style="direction:ltr" role="img" aria-labelledby="pfT pfD"><title id="pfT">Поперечный разрез от Средиземного моря через Иерусалим к краю Иудейской пустыни</title><desc id="pfD">От уровня моря местность поднимается примерно до 800 метров в Иерусалиме. Большая часть дождей выпадает на западном склоне, а к востоку от города начинается пустыня.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="currentColor" stroke-width="1.5"/></marker></defs>
+<path class="p-ground" d="M50.0,250.0 L138.9,243.7 L227.8,235.2 L316.7,220.4 L383.3,203.6 L450.0,182.4 L516.7,131.8 L572.2,98.0 L627.8,85.3 L661.1,81.1 L694.4,76.9 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3 L850.0,280.0 L50.0,280.0 Z"/><path class="p-line" d="M50.0,250.0 L138.9,243.7 L227.8,235.2 L316.7,220.4 L383.3,203.6 L450.0,182.4 L516.7,131.8 L572.2,98.0 L627.8,85.3 L661.1,81.1 L694.4,76.9 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3"/>
+<path class="p-desertband" d="M716.7,280.0 L716.7,110.7 L727.8,114.9 L772.2,148.7 L816.7,169.8 L850.0,180.3 L850.0,280.0 Z"/>
+<rect class="p-sea" x="5.6" y="250.0" width="45.4" height="30"/>
+<circle cx="661.1" cy="81.1" r="6" fill="var(--olive)"/>
+<text class="p-tb" x="668" y="65.1" text-anchor="end">Иерусалим · ок. 800 м</text>
+<text class="p-t" x="72.2" y="240.0" text-anchor="start">Средиземное море · 0 м</text>
+<text class="p-t" x="272.2" y="216.9" text-anchor="middle">Шфела</text>
+<text class="p-t" x="538.9" y="154.9" text-anchor="middle">западный склон: дождливо</text>
+<text class="p-t" x="794.4" y="201.3" text-anchor="middle">Иудейская пустыня</text>
+<g class="p-cloud"><ellipse cx="383.3" cy="38" rx="52" ry="15"/><ellipse cx="527.8" cy="30" rx="44" ry="17"/></g>
+<g style="color:var(--ink-3)"><path class="p-arrow" d="M116.7,48 C216.7,32 305.6,32 383.3,36"/><path class="p-arrow" d="M705.6,46 C750.0,54 783.3,70 816.7,96"/></g>
+<text class="p-t" x="138.9" y="78" text-anchor="middle">влажный ветер с моря</text>
+<text class="p-t" x="850" y="70" text-anchor="end">воздух опускается и высыхает</text>
+<line class="p-axis" x1="50.0" y1="280.0" x2="850.0" y2="280.0"/>
+<text class="p-t" x="50.0" y="294" text-anchor="middle">берег моря</text>
+<text class="p-t" x="661.1" y="294" text-anchor="middle">ок. 60 км от моря</text>
+</svg></div>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p><b>Пустыня в дождевой тени (<bdi lang="he">מדבר בצל גשם</bdi>).</b> Облака с моря проливают почти весь дождь на западном склоне. Спускаясь на восток, воздух нагревается и сохнет, поэтому сразу за городом — Иудейская пустыня.</p>
+          <p><b>Что это даёт туризму?</b> Из города видна пустыня, а за минуты езды зелень сменяется пустыней.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p><b>Почему город здесь?</b> По хребту шла дорога с севера на юг, отсюда пути вели к морю и к Иерихону. Рядом бил источник Гихон, гору легко было оборонять.</p>
+          <p class="src">Высоты и расстояния приблизительные. Разрез схематический.</p>
+        </div>
+      </div>
+      <details class="more"><summary>Подробнее</summary><div class="body">
+        <p>Иерусалим стоит на водоразделе: дождевая вода к западу от города стекает в Средиземное море, а к востоку — на восток, в рифтовую долину. Вдоль хребта сегодня проходит шоссе 60, его называют «Дорогой праотцев», потому что, по преданию, по ней ходили праотцы народа. На этой дороге лежат Хеврон, Вифлеем и Иерусалим.<span class="tag-ext">Дополнение, не из учебника</span></p>
+        <p>В Иерусалиме выпадает в среднем около 550 мм осадков в год, а совсем недалеко к востоку их количество резко падает.<span class="tag-ext">Дополнение, не из учебника</span></p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="slide" id="s5" hidden>
+    <div class="pad side-photo">
+      <figure><img src="../01/img/judean-hills.jpg" alt="Лесистые Иудейские горы с цветущим ладанником"><figcaption>Иудейские горы · из урока на портале Министерства просвещения</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <p class="kick">Ландшафт</p>
+        <h2>Иудейские горы</h2>
+        <ul class="clean">
+          <li><b>Порода:</b> в основном известняк и доломит.</li>
+          <li><b>Растительность:</b> когда-то горы покрывали маквисы — заросли кустарников и низких деревьев. Сегодня природный маквис сохранился в основном в Иерусалимских горах.</li>
+          <li><b>Заповедники:</b> часть Иерусалимских гор объявлена заповедниками.</li>
+          <li><b>Прогулки:</b> пешие и велосипедные маршруты, источники и смотровые площадки недалеко от города.</li>
+        </ul>
+        <details class="more"><summary>Подробнее</summary><div class="body">
+          <p><b>Иерусалимский камень.</b> Известняк — ещё и строительный камень города. В 1918 году британский губернатор Рональд Сторрс постановил, что каждое здание в Иерусалиме должно быть облицовано камнем. Поэтому весь город одного цвета, и это часть его облика как туристического направления.<span class="tag-ext">Дополнение, не из учебника</span></p>
+          <p><b>Террасы и источники.</b> На склонах гор земледельцы веками строили террасы — сельскохозяйственные ступени, а между горами бьют источники. И то и другое стало популярными местами прогулок в Иерусалимских горах.<span class="tag-ext">Дополнение, не из учебника</span></p>
+          <p><b>Заповедник (<bdi lang="he">שמורת טבע</bdi>):</b> охраняемая территория, объявленная такой, чтобы сохранить её животный и растительный мир.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section class="slide" id="s6" hidden>
+    <div class="pad side-photo">
+      <figure><img src="../01/img/armon.jpg" alt="Променад Армон-ха-Нацив и вид на город"><figcaption>Променад Армон-ха-Нацив · из презентации профиля об Иерусалиме</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">Климат и сезоны</p>
+        <h2>Прохладно зимой, сухо летом</h2>
+        <div class="tblwrap"><table class="cl">
+          <tr><th>Сезон</th><th>Погода</th><th>Что это значит для туриста</th></tr>
+          <tr><td><b>Зима</b></td><td>Холодно и дождливо, иногда снег</td><td>Снег в городе привлекает гостей со всей страны. Рождество приводит паломников в Вифлеем.</td></tr>
+          <tr><td><b>Весна и осень</b></td><td>Приятно</td><td>Лучшее время для пеших экскурсий. Песах, христианская Пасха и Суккот — пик сезона.</td></tr>
+          <tr><td><b>Лето</b></td><td>Жарко и сухо, вечера прохладные</td><td>Экскурсии утром и вечером, фестивали и концерты летними вечерами.</td></tr>
+        </table></div>
+        <p class="src">Климата нет в учебнике. Этот слайд — дополнение.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section class="slide stop tint" id="s7" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">Остановка: практика · отвечаем в Студии</p>
+      <h2>Практика: вопросы 1–3</h2>
+      <div class="q"><span class="qn">1</span><div class="qt">Назовите четыре границы региона Иерусалим.<span class="tag">Практика</span></div></div>
+      <div class="q"><span class="qn">2</span><div class="qt">В Иерусалиме выпадает около 550 мм осадков в год, но совсем недалеко к востоку от него начинается пустыня. Объясните почему.<span class="tag">В стиле багрута</span></div></div>
+      <div class="q"><span class="qn">3</span><div class="qt">Назовите две географические особенности региона Иерусалим и объясните, как одна из них влияет на туризм.<span class="tag">В стиле багрута</span></div></div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section class="slide bgslide" id="s8" hidden>
+    <img class="bg" src="../01/img/temple-mount.jpg" alt="Храмовая гора сверху">
+    <span class="credit">Из презентации профиля об Иерусалиме</span>
+    <div class="pad">
+      <p class="kick">Зачем сюда едут</p>
+      <h2>Одна гора, три религии</h2>
+      <p class="lead">Иерусалим свят для иудаизма, христианства и ислама, и ни одной из них его нечем заменить. В следующих трёх слайдах узнаем, что свято для каждой религии и что делает в городе её паломник.</p>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section class="slide" id="s9" hidden>
+    <div class="pad">
+      <p class="kick">Три религии · иудаизм</p>
+      <h2>Город, куда обращены молитвы</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>На Храмовой горе (Мориа) стояли Первый и Второй Храмы; по преданию, здесь — жертвоприношение Исаака и союз Бога с Авраамом. Евреи молятся лицом к Иерусалиму.</p>
+          <ul class="clean">
+            <li><b>Стена Плача (Западная стена):</b> подпорная стена Храмовой горы работы Ирода, ближайший к Храму остаток. «Шхина не покидает Западную стену» — главная святыня евреев.</li>
+            <li><b>Масличная гора:</b> древнее еврейское кладбище; похороненные тут, по преданию, воскреснут первыми.</li>
+            <li><b>Гробница Давида:</b> по преданию, в пещере на Сионе.</li>
+            <li><b>Город Давида:</b> древний Иерусалим, завоёванный Давидом, — его столица.</li>
+          </ul>
+        </div>
+        <figure><img src="../01/img/kotel.jpg" alt="Площадь у Стены Плача" style="aspect-ratio:4/3"><figcaption>Стена Плача · фото: Яэль Дор · официальная фотопрезентация</figcaption></figure>
+      </div>
+      <details class="more"><summary>Что делает здесь еврейский турист</summary><div class="body">
+        <p>Молитва у Стены Плача, бар-мицва и бат-мицва, массовое благословение коэнов у Стены в полупраздничные дни Песаха и Суккота, посещение мест, которые рассказывают еврейскую историю: Еврейский квартал, туннели Западной стены и Город Давида.</p>
+        <p>На багруте 2019 года нужно было спланировать двухдневную экскурсию для еврейской семьи из-за границы, которая приехала отпраздновать бар-мицву у Стены Плача. Мы вернёмся к этому вопросу в конце темы.</p>
+        <div class="gal">
+          <figure><img src="../01/img/tunnels.jpg" alt="Туннели Западной стены"><h3>Туннели Западной стены</h3><p>Продолжение Стены под домами Мусульманского квартала.</p></figure>
+          <figure><img src="../01/img/city-david.jpg" alt="Город Давида"><h3>Город Давида</h3><p>Древний Иерусалим и туннель Езекии.</p></figure>
+          <figure><img src="../01/img/david-tomb.jpg" alt="Гробница Давида"><h3>Гробница Давида</h3><p>По преданию, на горе Сион.</p></figure>
+        </div>
+        <p class="src">Фото: официальная фотопрезентация.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="s10" hidden>
+    <div class="pad">
+      <p class="kick">Три религии · христианство</p>
+      <h2>Город последних дней Иисуса</h2>
+      <p>По христианской вере, в Иерусалиме Иисус совершил Тайную вечерю, был арестован, осуждён, распят, погребён, воскрес и вознёсся на небо. Почти каждое христианское место города связано с одним из этих событий.</p>
+      <div class="gal">
+        <figure><img src="../01/img/cenacle.jpg" alt="Горница Тайной вечери"><span class="yr">гора Сион</span><h3>Горница Тайной вечери</h3><p>Здесь Иисус и апостолы ели пасхальную трапезу.</p></figure>
+        <figure><img src="../01/img/all-nations.jpg" alt="Церковь Всех Наций"><span class="yr">Масличная гора</span><h3>Гефсимания</h3><p>Церковь Всех Наций в саду, где Иисус молился перед арестом.</p></figure>
+        <figure><img src="../01/img/via-dolorosa.jpg" alt="Виа Долороза"><span class="yr">Христианский квартал</span><h3>Виа Долороза</h3><p>14 остановок на пути к распятию. Последние пять — внутри храма Гроба Господня.</p></figure>
+        <figure><img src="../01/img/sepulchre.jpg" alt="Храм Гроба Господня"><span class="yr">Христианский квартал</span><h3>Храм Гроба Господня</h3><p>Место распятия, погребения и воскресения. Главная точка паломничества.</p></figure>
+        <figure><img src="../01/img/ascension.jpg" alt="Церковь Вознесения"><span class="yr">Масличная гора</span><h3>Церковь Вознесения</h3><p>Место, откуда Иисус вознёсся на небо.</p></figure>
+      </div>
+      <p class="src">Фото: официальная фотопрезентация (Pikiwiki, «Википедия: объекты наследия»).</p>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="s11" hidden>
+    <div class="pad">
+      <p class="kick">Три религии · течения христианства</p>
+      <h2>У каждого течения свои места</h2>
+      <div class="two">
+        <div class="tblwrap"><table class="streams">
+          <tr><th>Течение</th><th>Кто они</th><th>Что важно в Иерусалиме</th></tr>
+          <tr><td>Католики</td><td>Во главе — Папа Римский</td><td>Виа Долороза, храм Гроба Господня, церкви Масличной горы. Святыни от имени Церкви охраняют францисканцы.</td></tr>
+          <tr><td>Православные</td><td>Восточные: греки, русские и др.</td><td>Храм Гроба Господня, Благодатный огонь в субботу перед Пасхой. Русская церковь Марии Магдалины.</td></tr>
+          <tr><td>Протестанты</td><td>Реформация, упор на Писание</td><td>Сад Гробницы за стенами. Простые места без обрядов.</td></tr>
+          <tr><td>Армяне</td><td>Первыми сделали христианство госрелигией</td><td>Армянский квартал, собор Св. Иакова.</td></tr>
+          <tr><td>Эфиопы</td><td>Эфиопская церковь</td><td>Монастырь на крыше храма Гроба Господня.</td></tr>
+        </table></div>
+        <div class="vs" style="grid-template-columns:1fr 1fr">
+          <figure><img src="../01/img/sepulchre-in.jpg" alt="Схождение Благодатного огня в храме Гроба Господня"><figcaption>Благодатный огонь · из презентации об Иерусалиме</figcaption></figure>
+          <figure><img src="../01/img/magdalene.jpg" alt="Церковь Марии Магдалины"><figcaption>Русская церковь Марии Магдалины · официальная фотопрезентация</figcaption></figure>
+        </div>
+      </div>
+      <details class="more"><summary>Подробнее</summary><div class="body">
+        <p>Храм Гроба Господня разделён между несколькими церквями: большую часть держат греки-православные, католики и армяне, а у коптов, эфиопов и сирийцев есть небольшие части. Раздел держится на старом соглашении — «статус-кво». Ключ от храма хранит мусульманская семья, чтобы ни одна церковь не распоряжалась дверью.<span class="tag-ext">Дополнение, не из учебника</span></p>
+        <p>Католики празднуют Рождество 25 декабря, а православные — в начале января. Поэтому паломнический сезон в Вифлееме длится несколько недель.<span class="tag-ext">Дополнение, не из учебника</span></p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" id="s12" hidden>
+    <div class="pad">
+      <p class="kick">Вопрос, который повторяется на багруте</p>
+      <h2>Где похоронен Иисус? Два ответа</h2>
+      <div class="vs">
+        <div>
+          <figure><img src="../01/img/sepulchre.jpg" alt="Храм Гроба Господня" style="object-position:top"><figcaption>Официальная фотопрезентация · Pikiwiki</figcaption></figure>
+          <h3>Храм Гроба Господня</h3>
+          <p>Христианский квартал. По большинству традиций, здесь Голгофа: тут Иисуса распяли, погребли, и тут он воскрес.</p>
+          <p><b>Признают:</b> католики, православные, почти все древние течения.</p>
+        </div>
+        <div>
+          <figure><img src="../01/img/garden-tomb.jpg" alt="Сад Гробницы"><figcaption>Официальная фотопрезентация · Pikiwiki</figcaption></figure>
+          <h3>Сад Гробницы</h3>
+          <p>За стенами, севернее Дамасских ворот: древняя пещера-гробница в саду у скалы в форме черепа. Признана гробницей Иисуса в XIX веке.</p>
+          <p><b>Признают:</b> часть протестантов.</p>
+        </div>
+      </div>
+      <p class="note">Багрут 2023: «Назовите два места, считающиеся местом погребения Иисуса, и какое течение признаёт каждое».</p>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide" id="s13" hidden>
+    <div class="pad">
+      <p class="kick">Три религии · ислам</p>
+      <h2>«Отдалённейшая мечеть»</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>По вере мусульман, Мухаммед за одну ночь перенёсся из Мекки в Иерусалим, с Храмовой горы вознёсся на небо и там получил повеление молиться. Поэтому Храмовая гора (по-арабски «аль-Харам аш-Шариф») — третье по святости место ислама после Мекки и Медины.</p>
+          <ul class="clean">
+            <li><b>Мечеть аль-Акса:</b> впервые построена в 705 г. н. э. Название значит «отдалённейшая» — в память о ночном путешествии Мухаммеда. Древнейшая и важнейшая мечеть страны.</li>
+            <li><b>Купол Скалы:</b> построен в конце VII века над скалой, с которой, по вере мусульман, Мухаммед вознёсся на небо. Та же скала по еврейской традиции — Камень Основания.</li>
+          </ul>
+        </div>
+        <div class="vs" style="grid-template-columns:1fr">
+          <figure><img src="../01/img/aqsa.jpg" alt="Мечеть аль-Акса" style="aspect-ratio:16/9"><figcaption>Мечеть аль-Акса · из презентации профиля об Иерусалиме</figcaption></figure>
+          <figure><img src="../01/img/dome.jpg" alt="Купол Скалы" style="aspect-ratio:16/9"><figcaption>Купол Скалы · фото: Яэль Дор · официальная фотопрезентация</figcaption></figure>
+        </div>
+      </div>
+      <details class="more"><summary>Подробнее</summary><div class="body">
+        <p>По пятницам, а особенно в месяц Рамадан, на Храмовую гору приходит очень много молящихся. Вход в Купол Скалы разрешён только мусульманам. Евреи и туристы посещают площадь в установленные часы, а молитва евреев там запрещена.</p>
+        <p>Храмовая гора — очень чувствительное место в религиозном и политическом смысле, и события на ней влияют на туризм во всём городе.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="s14" hidden>
+    <div class="pad">
+      <p class="kick">Окрестности Иерусалима</p>
+      <h2>Города паломничества</h2>
+      <div class="gal">
+        <figure><img src="../01/img/nativity.jpg" alt="Базилика Рождества"><span class="yr">Вифлеем · христианство</span><h3>Базилика Рождества</h3><p>Над пещерой, где, по преданию, родился Иисус. Из древнейших церквей мира, объект ЮНЕСКО. На Рождество — паломники.</p></figure>
+        <figure><img src="../01/img/rachel.jpg" alt="Гробница Рахели"><span class="yr">Въезд в Вифлеем · иудаизм</span><h3>Гробница Рахели</h3><p>Гробница праматери Рахели. Молятся в основном женщины — о детях и их рождении.</p></figure>
+        <figure><img src="../01/img/machpela.jpg" alt="Пещера Махпела"><span class="yr">Хеврон · иудаизм и ислам</span><h3>Пещера Махпела</h3><p>Гробницы Авраама, Исаака, Иакова, Сарры, Ревекки, Лии. Свята для евреев и мусульман, разделена между ними.</p></figure>
+        <figure><img src="../01/img/herodion.jpg" alt="Иродион"><span class="yr">У Вифлеема · история</span><h3>Иродион</h3><p>Гора Ирода с дворцом и крепостью; там же, по данным учёных, его могила.</p></figure>
+      </div>
+      <details class="more"><summary>Иерусалимская метрополия</summary><div class="body">
+        <div class="two">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <p><b>Метрополия (<bdi lang="he">מטרופולין</bdi>):</b> главный город и поселения вокруг него, которые получают от него услуги образования, занятости, культуры и здравоохранения.</p>
+            <p>Иерусалимская метрополия включает пригороды — Маале-Адумим, Мевасерет-Цион и Бейт-Шемеш, а также мошавы и кибуцы. В некоторых кибуцах Иерусалимских гор есть гостиницы и сельский туризм. Вифлеем и Хеврон находятся на территории Палестинской автономии, и туристы ездят и туда.</p>
+          </div>
+          <figure><img src="../01/img/metro.jpg" alt="Пригородные кварталы на хребте" style="aspect-ratio:16/10"><figcaption>Из урока на портале Министерства просвещения</figcaption></figure>
+        </div>
+      </div></details>
+      <details class="more"><summary>Абу-Гош: одно поселение, несколько религий</summary><div class="body">
+        <p>Мусульманская деревня Абу-Гош к западу от Иерусалима, на историческом пути из Яффо, — пример поселения с местами, святыми для нескольких религий: церковь Воскресения крестоносцев XII века и церковь Нотр-Дам на холме, где, по Танаху, в Кирьят-Йеариме стоял Ковчег Завета. В деревне также знаменитые хумусные и фестиваль вокальной музыки.</p>
+        <p>На багруте 2024 года нужно было назвать «населённый пункт в окрестностях Иерусалима, где есть место, святое для нескольких религий». В официальных критериях оценки (<bdi lang="he">מחוון</bdi>): Хеврон и Пещера Махпела. Абу-Гош — тоже хороший пример.</p>
+        <p class="src">Фото: официальная фотопрезентация. Махпела: фото Равит Штейнберг.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide stop tint" id="s15" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">Остановка: практика · отвечаем в Студии</p>
+      <h2>Практика: вопросы 4–6</h2>
+      <div class="q"><span class="qn">4</span><div class="qt">Для каждой из религий — иудаизма, христианства и ислама — назовите одно главное святое для неё место в Иерусалиме и объясните, почему оно для неё свято.<span class="tag real">Из банка багрута</span></div></div>
+      <div class="q"><span class="qn">5</span><div class="qt">У каждого течения христианства есть особо важные для него места в Иерусалиме. Назовите два течения и для каждого — одно важное для него место; объясните почему.<span class="tag">Практика</span></div></div>
+      <div class="q"><span class="qn">6</span><div class="qt">В окрестностях Иерусалима находятся Базилика Рождества в Вифлееме и Иродион. Для каждого места укажите, чем оно привлекает туристов и какой вид туризма представляет.<span class="tag">В стиле багрута</span></div></div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="s16" hidden>
+    <div class="pad two">
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">Данные о туризме</p>
+        <div class="big-num">74%</div>
+        <h3>туристов, въехавших в Израиль в 2017 году, побывали в Иерусалиме</h3>
+        <p>Около 2,7 млн из примерно 3,6 млн. Самая высокая доля — среди туристов-христиан.</p>
+        <div class="bars" aria-label="Доля посетивших Иерусалим по религии, 2017">
+          <div class="row"><span>Туристы-христиане</span><span class="track"><i style="width:82%"></i></span><span class="v">82%</span></div>
+          <div class="row"><span>Туристы-мусульмане</span><span class="track"><i style="width:73%"></i></span><span class="v">73%</span></div>
+          <div class="row"><span>Туристы-евреи</span><span class="track"><i style="width:70%"></i></span><span class="v">70%</span></div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <h3>Какие места посещали туристы в Иерусалиме</h3>
+        <p class="src">Доля от всех туристов в Израиле, 2016</p>
+        <div class="bars">
+          <div class="row"><span>Стена Плача</span><span class="track"><i style="width:67%"></i></span><span class="v">67%</span></div>
+          <div class="row"><span>Еврейский квартал</span><span class="track"><i style="width:62%"></i></span><span class="v">62%</span></div>
+          <div class="row"><span>Храм Гроба Господня</span><span class="track"><i style="width:52%"></i></span><span class="v">52%</span></div>
+          <div class="row"><span>Виа Долороза</span><span class="track"><i style="width:43%"></i></span><span class="v">43%</span></div>
+          <div class="row"><span>Масличная гора</span><span class="track"><i style="width:43%"></i></span><span class="v">43%</span></div>
+        </div>
+        <p class="note">И еврейский турист заходит в храм Гроба Господня, и христианский — к Стене Плача. Главные места привлекают почти всех.</p>
+        <p class="src">Источник: доклад Государственного контролёра об Иерусалиме (2019), глава о туризме.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide" id="s17" hidden>
+    <div class="pad">
+      <p class="kick">Виды туризма</p>
+      <h2>Все секторы туризма в одном городе</h2>
+      <div class="tblwrap"><table class="cl">
+        <tr><th>Вид туризма</th><th>Примеры в Иерусалиме и окрестностях</th></tr>
+        <tr><td><b>Еврейское паломничество</b></td><td>Стена Плача, гробница Давида, Пещера Махпела, гробница Рахели</td></tr>
+        <tr><td><b>Христианское паломничество</b></td><td>Храм Гроба Господня, Виа Долороза, Гефсимания, Эйн-Карем, Вифлеем</td></tr>
+        <tr><td><b>Мусульманское паломничество</b></td><td>Храмовая гора: мечеть аль-Акса и Купол Скалы</td></tr>
+        <tr><td><b>История и археология</b></td><td>Город Давида, туннели Западной стены, Кардо, Сожжённый дом, Иродион</td></tr>
+        <tr><td><b>Культура и наследие</b></td><td>Музей Израиля, Музей стран Библии, дом Агнона, кварталы Меа-Шеарим и Йемин-Моше</td></tr>
+        <tr><td><b>Городской туризм и досуг</b></td><td>Рынок Махане-Иегуда, пешеходная улица Бен-Иегуда, Нахалат-Шива, Немецкая колония, комплекс «Первая станция»</td></tr>
+        <tr><td><b>Память и увековечение</b></td><td>Яд ва-Шем, гора Герцля, Гиват-ха-Тахмошет (Арсенальная горка)</td></tr>
+        <tr><td><b>Природа и пейзаж</b></td><td>Масличная гора, гора Скопус, променад Армон-ха-Нацив, Яд Кеннеди, заповедники Иерусалимских гор</td></tr>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="s18" hidden>
+    <div class="pad">
+      <p class="kick">Столица</p>
+      <h2>Посещаем госучреждения</h2>
+      <div class="gal">
+        <figure><img src="../01/img/knesset.jpg" alt="Кнессет"><span class="yr">Гиват-Рам · 1966</span><h3>Кнессет</h3><p>Парламент. По записи, в вс и чт; можно увидеть и работы Шагала.</p></figure>
+        <figure><img src="../01/img/supreme-court.jpg" alt="Верховный суд"><span class="yr">Гиват-Рам · 1992</span><h3>Верховный суд</h3><p>Здание сочетает старое и новое. Экскурсии с гидом по записи.</p></figure>
+        <figure><img src="../01/img/shrine.jpg" alt="Храм Книги"><span class="yr">Гиват-Рам</span><h3>Музей Израиля</h3><p>Нацмузей. В Храме Книги — кумранские свитки, снаружи — макет Иерусалима эпохи Второго Храма.</p></figure>
+        <figure><img src="../01/img/library.jpg" alt="Национальная библиотека"><span class="yr">Гиват-Рам</span><h3>Национальная библиотека</h3><p>Печатные сокровища страны и еврейского народа; экскурсии по новому зданию.</p></figure>
+        <figure><img src="../01/img/yadvashem.jpg" alt="Зал имён в Яд ва-Шем"><span class="yr">Гора Памяти</span><h3>Яд ва-Шем</h3><p>Музей Холокоста. Его посещает каждый официальный гость страны.</p></figure>
+        <figure><img src="../01/img/herzl.jpg" alt="Гора Герцля"><span class="yr">830 м</span><h3>Гора Герцля</h3><p>Нацкладбище: могилы Герцля и великих людей, с 2017 г. — Зал памяти павших воинов.</p></figure>
+      </div>
+      <details class="more"><summary>Почему Яд ва-Шем входит в каждый государственный визит</summary><div class="body">
+        <p>По критериям оценки багрута 2026 года: визит знакомит гостей с еврейской историей и уничтожением еврейского народа в Холокосте, а заодно — с процветающим государством, построенным после него. Он вызывает солидарность с Израилем как домом еврейского народа.</p>
+        <p class="src">Фото: официальная фотопрезентация. Описания кратко изложены по официальным критериям оценки 2026 года.</p>
+      </div></details>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide" id="s19" hidden>
+    <div class="pad">
+      <p class="kick">Городской туризм и досуг</p>
+      <h2>Вечерний Иерусалим</h2>
+      <div class="gal">
+        <figure><img src="../01/img/mahane.jpg" alt="Рынок Махане-Иегуда"><h3>Рынок Махане-Иегуда</h3><p>Днём — шумный продуктовый рынок, вечером — рестораны, бары и уличное искусство.</p></figure>
+        <figure><img src="../01/img/nahalat.jpg" alt="Нахалат-Шива"><h3>Нахалат-Шива</h3><p>Третий квартал за стенами. После реставрации — центр ночной жизни.</p></figure>
+        <figure><img src="../01/img/ben-yehuda.jpg" alt="Пешеходная улица Бен-Иегуда"><h3>Улица Бен-Иегуда</h3><p>Пешеходная улица в центре города с ресторанами, кафе и магазинами.</p></figure>
+        <figure><img src="../01/img/scopus.jpg" alt="Гора Скопус"><h3>Смотровые площадки</h3><p>С горы Скопус, Масличной горы и променада Армон-ха-Нацив видны Старый город и Иудейская пустыня.</p></figure>
+      </div>
+      <p class="note">Вопрос, который повторяется на багруте (2024): музей, место ночных развлечений, место для маленьких детей и место — символ власти. Для маленьких детей засчитываются Библейский зоопарк, Музей науки и Аквариум Израиля.</p>
+    </div>
+  </section>
+
+  <!-- 19b -->
+  <section class="slide" id="s19b" hidden>
+    <div class="pad">
+      <p class="kick">Смотровые площадки</p>
+      <h2>Откуда смотрят на Старый город</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ul class="clean">
+            <li><b>Масличная гора</b> (на востоке): самая известная смотровая площадка. Напротив — Храмовая гора, Купол Скалы и стены, а внизу — древнее еврейское кладбище.</li>
+            <li><b>Гора Скопус</b> (на северо-востоке): рядом с Еврейским университетом. На западе виден Старый город, на востоке — Иудейская пустыня.</li>
+            <li><b>Променад Армон-ха-Нацив</b> (на юге): длинный променад с видом на Старый город и Город Давида с южной стороны.</li>
+          </ul>
+        </div>
+        <figure><svg viewBox="0 0 560 420" role="img" aria-label="Схема: смотровые площадки вокруг Старого города" style="direction:ltr;width:100%;height:auto;max-height:430px;font-family:var(--body)">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0L10,5L0,10z" fill="var(--copper)"/></marker></defs>
+  <rect x="0" y="0" width="560" height="420" rx="14" fill="var(--land)"/>
+  <path d="M390 40 Q430 120 420 210 Q415 300 380 390" fill="none" stroke="var(--hills)" stroke-width="40" stroke-linecap="round" opacity=".8"/>
+  <text x="490" y="310" font-size="13" fill="var(--ink-3)" text-anchor="middle"><tspan x="490">хребет</tspan><tspan x="490" dy="16">Масличной горы</tspan></text>
+  <rect x="210" y="160" width="120" height="110" rx="6" fill="var(--paper)" stroke="var(--ink)" stroke-width="3"/>
+  <text x="270" y="210" font-size="17" font-weight="700" fill="var(--ink)" text-anchor="middle">Старый</text>
+  <text x="270" y="232" font-size="17" font-weight="700" fill="var(--ink)" text-anchor="middle">город</text>
+  <circle cx="410" cy="70" r="9" fill="var(--olive)"/><text x="410" y="50" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">гора Скопус</text>
+  <line x1="400" y1="80" x2="335" y2="155" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <circle cx="420" cy="215" r="9" fill="var(--olive)"/><text x="420" y="248" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">Масличная гора</text>
+  <line x1="408" y1="215" x2="338" y2="215" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <circle cx="270" cy="370" r="9" fill="var(--olive)"/><text x="270" y="400" font-size="16" font-weight="700" fill="var(--ink)" text-anchor="middle">променад Армон-ха-Нацив</text>
+  <line x1="270" y1="358" x2="270" y2="278" stroke="var(--copper)" stroke-width="2.5" stroke-dasharray="6 5" marker-end="url(#ar)"/>
+  <g transform="translate(60,70)"><circle r="26" fill="var(--paper)" stroke="var(--rule)"/><path d="M0,-18L6,0L0,-4L-6,0z" fill="var(--ink)"/><text y="-30" font-size="13" text-anchor="middle" fill="var(--ink-2)">север</text></g>
+  <text x="20" y="408" font-size="12" fill="var(--ink-3)">Схема, не в масштабе</text>
+</svg></figure>
+      </div>
+      <p class="note">Багрут 2021: «С каких мест открывается вид на Старый город?» — по карте. Полезно запомнить и направление каждой площадки.</p>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="slide bgslide" id="s20" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="Променад по городским стенам">
+    <span class="credit">Променад по стенам · официальная фотопрезентация</span>
+    <div class="pad">
+      <p class="kick">Факторы, влияющие на туризм</p>
+      <h2>Что поднимает и что снижает туризм в Иерусалиме</h2>
+      <div class="factor">
+        <div><span class="cn">Геополитическая ситуация (<bdi lang="he">מצב גאופוליטי</bdi>) · понятие 13</span><b>Война и безопасность</b><span>По статье от ноября 2024 года, которая вошла в багрут 2025 года, около пятой части гостиниц страны были на грани закрытия. Иерусалим пострадал особенно, ведь он зависит от въездного туризма и паломников.</span></div>
+        <div><span class="cn">Понятия 14–15</span><b>Предупреждения о поездках (<bdi lang="he">אזהרות מסע</bdi>)</b><span>Страны предупреждают своих граждан об опасности поездок, и группы паломников отменяют туры.</span></div>
+        <div><span class="cn">Понятия 4–5</span><b>Сезоны</b><span>Высокий сезон (<bdi lang="he">עונת שיא</bdi>) — в праздники: Песах и Пасха, Суккот, Рождество. В остальное время — низкий сезон (<bdi lang="he">עונת שפל</bdi>).</span></div>
+        <div><span class="cn">Мегасобытие (<bdi lang="he">אירוע־על</bdi>) · понятие 16</span><b>Крупные события</b><span>«Джиро д’Италия» стартовала в Иерусалиме в 2018 году, трансляцию смотрел весь мир. Иерусалимский марафон и Фестиваль света каждый год привлекают гостей.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 -->
+  <section class="slide" id="s21" hidden>
+    <div class="pad side-photo">
+      <figure><img src="../01/img/latrun.jpg" alt="Монастырь Латрун на дороге из Яффо в Иерусалим"><figcaption>Монастырь Латрун на историческом пути в Иерусалим · фото: Исраэль Паркер, Pikiwiki · официальная фотопрезентация</figcaption></figure>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <p class="kick">Доступ и ночлег</p>
+        <h2>Как добраться и где ночевать</h2>
+        <ul class="clean">
+          <li><b>Исторический путь:</b> паломники сходили с корабля в порту Яффо и поднимались в Иерусалим через Латрун и Абу-Гош. Поэтому вдоль дороги стоят монастыри и церкви, которые их принимали.</li>
+          <li><b>Сегодня:</b> шоссе 1 и 443, скоростной поезд из Тель-Авива и аэропорта Бен-Гурион, а в городе — скоростной трамвай.<span class="tag-ext">Дополнение</span></li>
+          <li><b>Ночлег:</b> гостиницы любого уровня, странноприимные дома для паломников (хосписы) и сельский туризм в горных кибуцах. В Вифлееме есть гостиницы для паломников.</li>
+        </ul>
+        <details class="more"><summary>Подробнее</summary><div class="body">
+          <p><b>Отель «Царь Давид» (King David):</b> роскошный отель времён британского мандата, сегодня — официальная резиденция государства для важных гостей.</p>
+          <p><b>Группа или самостоятельно:</b> группы паломников обычно живут в больших гостиницах и ездят на автобусе. Самостоятельные туристы чаще выбирают бутик-отель или квартиру и передвигаются пешком и на трамвае.</p>
+        </div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22 -->
+  <section class="slide" id="s22" hidden>
+    <div class="pad">
+      <p class="kick">Проблемы</p>
+      <h2>Какие проблемы у Иерусалима как направления?</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p>В докладе 2019 года Государственный контролёр нашёл ряд повторяющихся проблем:</p>
+          <ul class="clean">
+            <li>Нет единого органа, который координирует туризм в городе.</li>
+            <li>Устаревшая туристическая информация; указателей не хватает или они только на одном языке.</li>
+            <li>Грязь и плохое содержание в людных туристических местах, например у Дамасских ворот.</li>
+            <li>Нехватка исправных общественных туалетов в Старом городе.</li>
+          </ul>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <div class="card"><span class="num">понятие 22</span><span class="t">Допустимая нагрузка <span class="he-t">(<bdi lang="he">כושר נשיאה</bdi>)</span></span><span>Максимальная степень использования места или ресурса, не вредящая его образу и возможности так же пользоваться им в будущем.</span><span class="ex">В праздники площадь у Стены Плача и переулки Старого города доходят до предела допустимой нагрузки.</span></div>
+        </div>
+      </div>
+      <p class="src">Источник: доклад Государственного контролёра об Иерусалиме (2019), глава о туризме.</p>
+    </div>
+  </section>
+
+  <!-- 23 -->
+  <section class="slide" id="s23" hidden>
+    <div class="pad">
+      <p class="kick">Аудитории</p>
+      <h2>Кто приезжает в Иерусалим и что ищет</h2>
+      <div class="aud">
+        <div><b>Евреи</b><span>из Израиля и диаспоры: Стена Плача, Еврейский квартал, бар-/бат-мицва</span></div>
+        <div><b>Христианские паломники</b><span>католики, православные, протестанты — у каждого свои места</span></div>
+        <div><b>Мусульмане</b><span>Храмовая гора и Пещера Махпела</span></div>
+        <div><b>Любители истории</b><span>Город Давида, туннели Стены, Кардо, Башня Давида</span></div>
+        <div><b>Семьи</b><span>Библейский зоопарк, Музей науки, Аквариум Израиля</span></div>
+        <div><b>Образовательные группы</b><span>Яд ва-Шем, Кнессет, гора Герцля</span></div>
+        <div><b>Пожилые туристы</b><span>адаптированные экскурсии, доступные променады</span></div>
+        <div><b>Повторные туристы</b><span>глубже: кварталы, рынки, монастыри</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 24 -->
+  <section class="slide" id="s24" hidden>
+    <div class="pad">
+      <p class="kick">Навык для багрута</p>
+      <h2>Как планировать маршрут</h2>
+      <div class="two">
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <ol class="steps">
+            <li><span><b>Кто аудитория, какая цель?</b> Паломники, семья, тематическая группа.</span></li>
+            <li><span><b>Места под аудиторию,</b> а не просто известные.</span></li>
+            <li><span><b>Порядок по близости:</b> один район на полдня, без метаний.</span></li>
+            <li><span><b>Реальное время</b> на каждое место: 1–3 часа.</span></li>
+            <li><span><b>Обоснование каждого выбора</b> одним предложением — за него дают баллы.</span></li>
+          </ol>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <p class="note">Пример: «Таглит» (молодые евреи из-за границы) на два дня в Иерусалиме — узнать еврейскую идентичность и Израиль сегодня. Спланируйте экскурсию из пяти мест.</p>
+          <div class="plan"><table>
+            <tr><th>День</th><th>Место</th><th>Время</th><th>Почему</th></tr>
+            <tr><td class="d">День 1</td><td>Стена Плача</td><td>1,5 ч</td><td>Святыня евреев, опыт идентичности</td></tr>
+            <tr><td class="d"></td><td>Еврейский квартал, Кардо</td><td>2 ч</td><td>Рядом; еврейский Иерусалим в веках</td></tr>
+            <tr><td class="d"></td><td>Махане-Иегуда</td><td>1,5 ч, вечер</td><td>Еда и атмосфера сегодня</td></tr>
+            <tr><td class="d">День 2</td><td>Яд ва-Шем</td><td>3 ч</td><td>Холокост и значение своего дома</td></tr>
+            <tr><td class="d"></td><td>Гора Герцля</td><td>1,5 ч</td><td>Рядом: провидец и лидеры страны</td></tr>
+          </table></div>
+          <p class="src">Пример решения. Сами места разберём в следующих темах.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 25 -->
+  <section class="slide stop tint" id="s25" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">Остановка: практика · отвечаем в Студии</p>
+      <h2>Практика: вопросы 7–9</h2>
+      <div class="q"><span class="qn">7</span><div class="qt">Назовите два важных места в Иерусалиме, которые можно включить в программу для христианских паломников, и объясните, в чём важность каждого из них.<span class="tag real">Багрут 2019</span></div></div>
+      <div class="q"><span class="qn">8</span><div class="qt">Официальные гости Государства Израиль почти всегда посещают музей Холокоста в Иерусалиме. Назовите это место и объясните две причины, по которым оно входит в программы государственных визитов.<span class="tag real">По мотивам багрута 2026</span></div></div>
+      <div class="q"><span class="qn">9</span><div class="qt">В Иерусалиме находятся органы власти и учреждения культуры Государства Израиль. Назовите три из них, которые можно посетить, и опишите одно.<span class="tag real">По мотивам багрута 2026</span></div></div>
+    </div>
+  </section>
+
+  <!-- 26 -->
+  <section class="slide" id="s26" hidden>
+    <div class="pad">
+      <p class="kick">Понятия для багрута</p>
+      <h2>Понятия темы</h2>
+      <div class="cards">
+        <div class="card"><span class="num">понятие 8</span><span class="t">Внутренний туризм <span class="he-t">(<bdi lang="he">תיירות פנים</bdi>)</span></span><span class="en">Domestic tourism</span><span>Выезд за пределы места жительства и работы внутри своей страны ради удовольствия.</span><span class="ex">Семья из Хайфы приезжает на выходные в Иерусалим.</span></div>
+        <div class="card"><span class="num">понятие 9</span><span class="t">Въездной туризм <span class="he-t">(<bdi lang="he">תיירות נכנסת</bdi>)</span></span><span class="en">Incoming tourism</span><span>Поток туристов из-за рубежа в страну, выбранную ими для поездки.</span><span class="ex">Группа паломников из Италии в храме Гроба Господня.</span></div>
+        <div class="card"><span class="num">понятие 11</span><span class="t">Однодневный посетитель <span class="he-t">(<bdi lang="he">מבקר יום</bdi>)</span></span><span>Турист, который проводит в месте до 24 часов, без ночёвки.</span><span class="ex">Пассажир круизного лайнера сходит в Ашдоде и едет на пару часов в Иерусалим.</span></div>
+        <div class="card"><span class="num">понятие 16</span><span class="t">Мегасобытие <span class="he-t">(<bdi lang="he">אירוע־על</bdi>)</span></span><span class="en">Mega event</span><span>Крупное и короткое событие, требующее особых сооружений, с долгосрочными последствиями.</span><span class="ex">Старт «Джиро д’Италия» в Иерусалиме, 2018.</span></div>
+        <div class="card"><span class="num">понятие 22</span><span class="t">Допустимая нагрузка <span class="he-t">(<bdi lang="he">כושר נשיאה</bdi>)</span></span><span>Максимальная степень использования места или ресурса, не вредящая его образу и возможности так же пользоваться им в будущем.</span><span class="ex">Площадь у Стены Плача в праздники.</span></div>
+        <div class="card"><span class="num">понятие 33</span><span class="t">Городской туризм <span class="he-t">(<bdi lang="he">תיירות עירונית</bdi>)</span></span><span>Посещение городов: культура, досуг, покупки, бизнес, события, история. Город — самостоятельная цель.</span><span class="ex">Старый город, Музей Израиля, рынок Махане-Иегуда.</span></div>
+      </div>
+      <p class="src">Номера и определения — по списку «Понятия для багрута 2026».</p>
+    </div>
+  </section>
+
+  <!-- 27 -->
+  <section class="slide stop tint" id="s27" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">Остановка: практика · отвечаем в Студии</p>
+      <h2>Практика: вопросы 10–11</h2>
+      <div class="q"><span class="qn">10</span><div class="qt">Объясните понятие «мегасобытие» (<bdi lang="he">אירוע־על</bdi>) и приведите пример такого события в Иерусалиме.<span class="tag">Понятия, как на багруте</span></div></div>
+      <div class="q"><span class="qn">11</span><div class="qt">Объясните понятие «допустимая нагрузка» (<bdi lang="he">כושר נשיאה</bdi>) и приведите пример места в Иерусалиме, где оно проявляется.<span class="tag">Понятия, как на багруте</span></div></div>
+    </div>
+  </section>
+
+  <!-- 28 -->
+  <section class="slide stop tint" id="s28" hidden>
+    <img class="bg" src="../01/img/walls.jpg" alt="">
+    <div class="pad">
+      <p class="kick">Итоговые вопросы · отвечаем в Студии</p>
+      <h2>Вопросы 12–14</h2>
+      <div class="q"><span class="qn">12</span><div class="qt">Назовите три фактора, которые сделали Иерусалим самым важным туристическим городом Израиля.<span class="tag real">Из банка багрута</span></div></div>
+      <div class="q"><span class="qn">13</span><div class="qt">Назовите населённый пункт в окрестностях Иерусалима, где есть место, святое для нескольких религий. Что это за место, для каких религий оно свято и почему?<span class="tag real">Багрут 2024</span></div></div>
+      <div class="q"><span class="qn">14</span><div class="qt">Во время войны туризм упал по всей стране, но Иерусалим пострадал особенно. Объясните почему.<span class="tag real">Багрут 2025</span></div></div>
+      <p class="src">Ответьте на все три вопроса. На самом экзамене иногда выбирают только часть пунктов, так что внимательно читайте инструкции.</p>
+    </div>
+  </section>
+
+  <!-- 29 -->
+  <section class="slide bgslide" id="s29" hidden>
+    <img class="bg" src="../01/img/olives.jpg" alt="Масличная гора">
+    <span class="credit">Масличная гора · официальная фотопрезентация</span>
+    <div class="pad">
+      <p class="kick">Итоги</p>
+      <h2>Что мы берём из введения</h2>
+      <ul class="clean" style="color:#EDE7DA">
+        <li>Регион лежит на Иудейских горах, между Шфелой на западе и Иудейской пустыней на востоке. К востоку от города — пустыня, потому что она в дождевой тени горы.</li>
+        <li>Храмовая гора свята для иудаизма и ислама, а в городе произошли главные события жизни Иисуса. У каждого христианского течения свои места.</li>
+        <li>Вифлеем и Хеврон дополняют Иерусалим: Рождество Иисуса, гробница Рахели и Пещера Махпела.</li>
+        <li>Около 3 из 4 туристов в Израиле бывают в Иерусалиме, поэтому война, предупреждения о поездках и сезоны влияют на него особенно сильно.</li>
+        <li>Планирование маршрута: аудитория, подходящие места, порядок по близости, время и обоснование.</li>
+      </ul>
+      <p class="lead">В следующей теме: хронология Иерусалима — от иевусейского города до 1967 года.</p>
+    </div>
+  </section>
+</div>
+
+<nav class="nav" dir="ltr" aria-label="Навигация по слайдам">
+  <button type="button" id="prev" class="ghost">Назад</button>
+  <span class="count" id="count" aria-live="polite">1 / 29</span>
+  <button type="button" id="next">Далее</button>
+</nav>
+
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0, prev=document.getElementById('prev'), next=document.getElementById('next'), count=document.getElementById('count'), prog=document.getElementById('prog');
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.hidden=k!==i;});
+    prev.disabled=i===0; next.disabled=i===slides.length-1;
+    count.textContent=(i+1)+' / '+slides.length;
+    prog.style.width=((i+1)/slides.length*100)+'%';
+    window.scrollTo(0,0);
+  }
+  prev.addEventListener('click',function(){show(i-1);});
+  next.addEventListener('click',function(){show(i+1);});
+  document.addEventListener('keydown',function(e){
+    var t=e.target; if(t&&t.closest&&t.closest('summary,button,input'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'||e.key===' '){e.preventDefault();show(i+1);}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(i-1);}
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null)return; var dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){ dx<0?show(i+1):show(i-1); }
+  });
+  var h=(location.hash||'').replace('#','');
+  var start=slides.findIndex(function(s){return s.id===h;});
+  show(start>=0?start:0);
+  window.addEventListener('hashchange',function(){var k=slides.findIndex(function(s){return s.id===location.hash.slice(1);});if(k>=0)show(k);});
+})();
+</script>
+</body></html>
