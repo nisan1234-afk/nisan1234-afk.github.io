@@ -1,4 +1,4 @@
-const CACHE = 'toranut-v1';
+const CACHE = 'toranut-v2';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', e => {

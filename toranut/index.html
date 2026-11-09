@@ -5,328 +5,272 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>תורנות כיתה</title>
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#14322E">
+<meta name="theme-color" content="#185FA5">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --board:#14322E;
-  --board-soft:#1D4640;
-  --chalk:#F2C230;
-  --page:#EEF0EC;
+  --page:#F4F3EF;
   --card:#FFFFFF;
-  --line:#D5D9D3;
-  --text:#1B211F;
-  --muted:#6B746F;
-  --stop:#B2472F;
+  --line:#E4E2DC;
+  --text:#1F2421;
+  --muted:#6F7471;
+  --blue-bg:#E6F1FB;
+  --blue:#0C447C;
+  --blue-strong:#185FA5;
+  --soft:#F1EFE8;
+  --amber-bg:#FAEEDA;
+  --amber:#633806;
+  --red:#A32D2D;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
 body{
   background:var(--page);color:var(--text);
   font-family:'Assistant',system-ui,sans-serif;font-size:17px;line-height:1.5;
-  padding:0 0 env(safe-area-inset-bottom);
 }
-.wrap{max-width:480px;margin:0 auto;padding:0 16px 40px}
+.wrap{max-width:440px;margin:0 auto;padding:16px 16px 40px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
 
-header{display:flex;align-items:baseline;justify-content:space-between;padding:20px 0 14px}
-header h1{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
-header time{font-size:15px;color:var(--muted)}
+.date{text-align:center;color:var(--muted);font-size:14px;margin:0 0 12px}
 
-.board{
-  background:var(--board);color:#fff;border-radius:18px;
-  padding:26px 22px;text-align:center;
-}
-.board.quiet{background:var(--board-soft)}
-.board .role{font-size:14px;font-weight:600;color:var(--chalk);margin:0 0 10px}
-.board .name{font-size:clamp(28px,8vw,38px);font-weight:800;margin:0;line-height:1.15;letter-spacing:-.02em}
-.board .name.small{font-size:clamp(20px,5.5vw,26px)}
-.board .meta{font-size:14px;color:#A9BDB8;margin:12px 0 0}
-.board .flag{
-  display:inline-block;margin-top:14px;background:var(--board-soft);
-  color:#fff;font-size:13px;font-weight:600;border-radius:99px;padding:5px 14px;
-}
+.today{background:var(--blue-bg);color:var(--blue);border-radius:14px;padding:20px 16px;text-align:center}
+.today .label{font-size:14px;font-weight:600;margin:0}
+.today .name{font-size:clamp(28px,8vw,34px);font-weight:800;line-height:1.15;margin:6px 0}
+.today .when{font-size:13px;margin:0}
+.today.off{background:var(--amber-bg);color:var(--amber)}
 
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 10px}
-button{font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;border-radius:12px;border:1px solid transparent;transition:transform .08s ease}
+.next{background:var(--soft);border-radius:10px;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.next span{font-size:14px;color:var(--muted)}
+.next strong{font-size:16px}
+
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+button{font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;border-radius:10px;border:1px solid #C9C6BE;background:#fff;color:var(--text);min-height:50px;padding:0 10px;transition:transform .08s ease}
 button:active{transform:scale(.97)}
-button:focus-visible{outline:3px solid var(--board);outline-offset:2px}
-.btn-main{background:var(--board);color:#fff;padding:15px 0}
-.btn-alt{background:var(--card);color:var(--stop);border-color:var(--line);padding:15px 0}
-.btn-wide{width:100%;background:var(--chalk);color:#3A2C00;padding:15px 0;font-weight:800}
-.btn-ghost{background:none;border:1px solid var(--line);color:var(--muted);padding:13px 0;width:100%;margin-top:8px;font-weight:600}
+button:disabled{opacity:.5;cursor:default}
+button.primary{background:var(--blue-strong);border-color:var(--blue-strong);color:#fff}
 
-.roster{margin-top:28px}
-.roster h2{font-size:16px;font-weight:800;margin:0 0 4px}
-.roster p.hint{margin:0 0 12px;font-size:14px;color:var(--muted)}
-.row{
-  display:flex;align-items:center;gap:10px;background:var(--card);
-  border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:7px;
-}
-.row.off{opacity:.5}
-.row .who{flex:1;min-width:0}
-.row .who b{display:block;font-weight:600;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.row .who span{font-size:13px;color:var(--muted)}
-.tally{
-  background:var(--page);border-radius:8px;min-width:32px;height:32px;
-  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;
-}
-.mini{background:none;border:1px solid var(--line);border-radius:9px;width:34px;height:34px;font-size:17px;font-weight:600;color:var(--muted);display:flex;align-items:center;justify-content:center;padding:0}
+h2{font-size:14px;font-weight:600;color:var(--muted);margin:22px 0 4px}
+.row{display:flex;justify-content:space-between;padding:8px 2px;border-bottom:1px solid var(--line);font-size:16px}
+.row:last-child{border-bottom:none}
+.row.me{font-weight:800;color:var(--blue)}
+.row b{font-weight:600;min-width:24px;text-align:left}
 
-dialog{border:none;border-radius:16px;padding:22px;max-width:320px;width:calc(100% - 40px);font-family:inherit}
-dialog::backdrop{background:rgba(10,20,18,.55)}
-dialog h3{margin:0 0 4px;font-size:18px}
-dialog p{margin:0 0 16px;font-size:14px;color:var(--muted)}
-input{font-family:inherit;font-size:16px;width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;margin-bottom:12px}
-.dlg-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.status{text-align:center;color:var(--muted);font-size:15px;padding:30px 0}
+.status.err{color:var(--red)}
+.foot{text-align:center;color:var(--muted);font-size:12px;margin-top:14px}
 
-#toast{
-  position:fixed;inset-inline:16px;bottom:18px;max-width:448px;margin:0 auto;
-  background:var(--board);color:#fff;border-radius:12px;padding:13px 16px;
-  font-size:15px;text-align:center;opacity:0;pointer-events:none;transition:opacity .2s
-}
-#toast.show{opacity:1}
-#toast.bad{background:var(--stop)}
-.loading{text-align:center;color:var(--muted);padding:60px 0}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:10}
+.sheet[hidden]{display:none}
+.sheet .box{background:#fff;width:100%;max-width:440px;border-radius:18px 18px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+.sheet h3{margin:0;font-size:19px}
+.sheet p{margin:4px 0 14px;color:var(--muted);font-size:14px}
+.sheet select,.sheet input{width:100%;height:48px;font-family:inherit;font-size:17px;border:1px solid #C9C6BE;border-radius:10px;padding:0 12px;background:#fff;margin-bottom:12px}
+.sheet .btns{display:grid;grid-template-columns:2fr 1fr;gap:8px}
+.sheet .msg{color:var(--red);font-size:14px;min-height:20px;margin:-6px 0 8px}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header>
-    <h1>תורנות כיתה</h1>
-    <time id="today"></time>
-  </header>
-
-  <div id="app"><p class="loading">טוען…</p></div>
+  <div class="card" id="main">
+    <div class="status" id="status">טוען…</div>
+  </div>
+  <div class="foot" id="foot"></div>
 </div>
 
-<dialog id="addDlg">
-  <h3>הוספת תורנות</h3>
-  <p id="addWho"></p>
-  <input type="date" id="addDate">
-  <div class="dlg-actions">
-    <button class="btn-main" id="addOk">הוסף</button>
-    <button class="btn-alt" id="addCancel">ביטול</button>
+<div class="sheet" id="swapSheet" hidden>
+  <div class="box">
+    <h3 id="swapTitle">מי מחליף?</h3>
+    <p id="swapSub"></p>
+    <select id="swapSelect"></select>
+    <div class="msg" id="swapMsg"></div>
+    <div class="btns">
+      <button class="primary" id="swapOk">אישור</button>
+      <button data-close>ביטול</button>
+    </div>
   </div>
-</dialog>
+</div>
 
-<dialog id="pauseDlg">
-  <h3>יום ללא תורנות</h3>
-  <p>אף אחד לא ייספר ביום הזה ואיש לא יאבד את מקומו בתור.</p>
-  <input type="date" id="pauseDate">
-  <input type="text" id="pauseReason" placeholder="סיבה, למשל טיול שנתי">
-  <div class="dlg-actions">
-    <button class="btn-main" id="pauseOk">אישור</button>
-    <button class="btn-alt" id="pauseCancel">ביטול</button>
+<div class="sheet" id="offSheet" hidden>
+  <div class="box">
+    <h3>היום אין תורנות</h3>
+    <p>התורן של היום יעבור ליום התורנות הבא.</p>
+    <input id="offReason" placeholder="למה? למשל: טיול" maxlength="40">
+    <div class="msg" id="offMsg"></div>
+    <div class="btns">
+      <button class="primary" id="offOk">אישור</button>
+      <button data-close>ביטול</button>
+    </div>
   </div>
-</dialog>
-
-<div id="toast"></div>
+</div>
 
 <script>
 const API = 'https://script.google.com/macros/s/AKfycbyhIkiWWWAqlniCTgua_yM9cE0cwFRACp8rF3Zb76zSrYVx4O5unMdCcJNfE1XjoPgh/exec';
 const KEY = 'tor-9k4m2xq7';
+const EDIT = new URLSearchParams(location.search).get('edit') === '1';
 
-let state = null;
+let data = null;
 let busy = false;
 
-function api(params){
-  return new Promise((resolve,reject)=>{
-    const cb = 'cb'+Date.now()+Math.floor(Math.random()*1000);
-    const url = new URL(API);
-    Object.keys(params).forEach(k=>url.searchParams.set(k,params[k]));
-    url.searchParams.set('key',KEY);
-    url.searchParams.set('callback',cb);
-
-    const script = document.createElement('script');
-    const timer = setTimeout(()=>{cleanup();reject(new Error('אין תשובה מהשרת'));},20000);
-
-    function cleanup(){clearTimeout(timer);delete window[cb];script.remove();}
-
-    window[cb] = data=>{
-      cleanup();
-      if(data && data.ok) resolve(data);
-      else reject(new Error(data && data.error ? data.error : 'שגיאה לא ידועה'));
+function call(action, extra) {
+  return new Promise(function (resolve, reject) {
+    const cb = 'cb' + Date.now() + Math.floor(Math.random() * 1000);
+    const p = new URLSearchParams(Object.assign({ key: KEY, action: action, callback: cb }, extra || {}));
+    const s = document.createElement('script');
+    const timer = setTimeout(function () { done(); reject(new Error('אין תשובה מהשרת')); }, 30000);
+    function done() { clearTimeout(timer); delete window[cb]; s.remove(); }
+    window[cb] = function (res) {
+      done();
+      if (res && res.ok) resolve(res); else reject(new Error((res && res.error) || 'שגיאה'));
     };
-    script.onerror = ()=>{cleanup();reject(new Error('אין חיבור לרשת'));};
-    script.src = url.toString();
-    document.body.appendChild(script);
+    s.onerror = function () { done(); reject(new Error('בעיית חיבור')); };
+    s.src = API + '?' + p.toString();
+    document.body.appendChild(s);
   });
 }
 
-function toast(msg,bad){
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = bad ? 'show bad' : 'show';
-  clearTimeout(t._t);
-  t._t = setTimeout(()=>{t.className='';},2600);
+/* "אלקובי ינון" -> "ינון אלקובי" */
+function display(name) {
+  const parts = String(name).trim().split(/\s+/);
+  if (parts.length < 2) return name;
+  const n = (parts[0] === 'בן' && parts.length > 2) ? 2 : 1;
+  return parts.slice(n).join(' ') + ' ' + parts.slice(0, n).join(' ');
 }
 
-async function call(params,okMsg){
-  if(busy) return;
+function esc(t) {
+  return String(t).replace(/[&<>"']/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+  });
+}
+
+function active() {
+  return data.students.filter(function (s) { return s.active; }).sort(function (a, b) {
+    return a.done - b.done || display(a.name).localeCompare(display(b.name), 'he');
+  });
+}
+
+function render() {
+  const d = data;
+  let h = '<p class="date">תורנות כיתה · יום ' + esc(d.dayName) + ' ' + esc(d.date.replace(/\.\d{4}$/, '')) + '</p>';
+
+  if (d.off) {
+    h += '<div class="today off"><p class="label">היום אין תורנות</p>' +
+         '<div class="name" style="font-size:22px">' + esc(d.offReason || '') + '</div></div>';
+  } else if (d.current) {
+    h += '<div class="today"><p class="label">תורן היום</p>' +
+         '<div class="name">' + esc(display(d.current.name)) + '</div>' +
+         '<p class="when">מהצהריים עד הערב</p></div>';
+  } else {
+    h += '<div class="today off"><p class="label">אין תלמיד זמין</p></div>';
+  }
+
+  if (d.next) {
+    const label = d.next.isTomorrow ? 'מחר' : 'יום ' + d.next.dayName + ' ' + d.next.date.replace(/\.\d{4}$/, '');
+    h += '<div class="next"><span>' + esc(label) + '</span><strong>' + esc(display(d.next.name)) + '</strong></div>';
+  }
+
+  if (EDIT && !d.off && d.current) {
+    h += '<div class="actions">' +
+         '<button id="btnSwap">🔄 החלפת תורן</button>' +
+         '<button id="btnOff">🚫 היום אין תורנות</button></div>';
+  }
+
+  h += '<h2>כמה כל אחד עשה</h2>';
+  const cur = d.current && !d.off ? d.current.name : '';
+  active().forEach(function (s) {
+    h += '<div class="row' + (s.name === cur ? ' me' : '') + '"><span>' + esc(display(s.name)) +
+         '</span><b>' + s.done + '</b></div>';
+  });
+
+  document.getElementById('main').innerHTML = h;
+  document.getElementById('foot').textContent = EDIT ? 'מצב אחראי' : '';
+
+  const bs = document.getElementById('btnSwap');
+  if (bs) bs.onclick = openSwap;
+  const bo = document.getElementById('btnOff');
+  if (bo) bo.onclick = openOff;
+}
+
+function openSwap() {
+  const cur = data.current.name;
+  document.getElementById('swapTitle').textContent = 'מי מחליף את ' + display(cur).split(' ')[0] + '?';
+  document.getElementById('swapSub').textContent = display(cur) + ' יישאר ראשון בתור ולא ייחשב לו.';
+  const sel = document.getElementById('swapSelect');
+  sel.innerHTML = '<option value="">בחר תלמיד</option>' + active().filter(function (s) {
+    return s.name !== cur;
+  }).map(function (s) {
+    return '<option value="' + esc(s.name) + '">' + esc(display(s.name)) + ' (' + s.done + ')</option>';
+  }).join('');
+  document.getElementById('swapMsg').textContent = '';
+  document.getElementById('swapSheet').hidden = false;
+}
+
+function openOff() {
+  document.getElementById('offReason').value = '';
+  document.getElementById('offMsg').textContent = '';
+  document.getElementById('offSheet').hidden = false;
+}
+
+function closeSheets() {
+  document.querySelectorAll('.sheet').forEach(function (s) { s.hidden = true; });
+}
+
+async function act(btn, msgEl, action, extra) {
+  if (busy) return;
   busy = true;
-  try{
-    state = await api(params);
+  btn.disabled = true;
+  const old = btn.textContent;
+  btn.textContent = 'שומר…';
+  try {
+    data = await call(action, extra);
+    closeSheets();
     render();
-    if(okMsg) toast(okMsg);
-  }catch(err){
-    toast(err.message,true);
-  }finally{
+  } catch (e) {
+    msgEl.textContent = e.message;
+  } finally {
     busy = false;
+    btn.disabled = false;
+    btn.textContent = old;
   }
 }
 
-function esc(s){
-  return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-}
-
-function today10(){
-  const d = new Date();
-  const m = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
-  return d.getFullYear()+'-'+m+'-'+day;
-}
-
-function rosterHtml(){
-  let html = '<section class="roster"><h2>כל התלמידים</h2>'+
-    '<p class="hint">המספר הוא סך התורנויות. + מוסיף תורנות, והכפתור השני מפעיל או משבית.</p>';
-
-  state.students.forEach(s=>{
-    html += '<div class="row'+(s.active?'':' off')+'">'+
-      '<div class="tally">'+s.done+'</div>'+
-      '<div class="who"><b>'+esc(s.name)+'</b><span>'+(s.last?'אחרון ב-'+s.last:'טרם היה')+'</span></div>'+
-      '<button class="mini" data-add="'+esc(s.name)+'" aria-label="הוספת תורנות">+</button>'+
-      '<button class="mini" data-toggle="'+esc(s.name)+'" data-active="'+(s.active?'1':'0')+'" aria-label="'+(s.active?'השבתה':'הפעלה')+'">'+(s.active?'✓':'✕')+'</button>'+
-      '</div>';
-  });
-
-  return html + '</section>';
-}
-
-function render(){
-  document.getElementById('today').textContent = 'יום ' + state.dayName + ', ' + state.date;
-  const app = document.getElementById('app');
-  let html = '';
-
-  if(state.off){
-    html += '<div class="board quiet">'+
-      '<p class="role">אין תורנות היום</p>'+
-      '<p class="name small">'+esc(state.offReason)+'</p>'+
-      '</div>'+
-      '<button class="btn-ghost" id="refresh">רענון</button>';
-
-  }else if(!state.current){
-    html += '<div class="board"><p class="name">אין תורן זמין</p>'+
-      '<p class="meta">כל התלמידים מסומנים כלא פעילים.</p></div>';
-
-  }else{
-    const c = state.current;
-    const lastText = c.last ? 'תורנות אחרונה ב-' + c.last : 'טרם היה תורן';
-
-    html += '<div class="board">'+
-      '<p class="role">'+(state.completed?'התורן שסיים היום':'התורן של היום')+'</p>'+
-      '<p class="name">'+esc(c.name)+'</p>'+
-      '<p class="meta">'+c.done+' תורנויות, '+lastText+'</p>'+
-      (state.skipped.length ? '<span class="flag">דולגו היום: '+state.skipped.length+'</span>' : '')+
-      '</div>';
-
-    if(state.completed){
-      html += '<button class="btn-ghost" id="refresh">רענון</button>';
-    }else{
-      html += '<div class="actions">'+
-        '<button class="btn-main" id="done">בוצע</button>'+
-        '<button class="btn-alt" id="skip">דלג</button>'+
-        '</div>'+
-        '<button class="btn-wide" id="copy">העתקת ההודעה לוואטסאפ</button>';
-    }
-  }
-
-  html += '<button class="btn-ghost" id="pause">דילוג על יום שלם</button>';
-  html += rosterHtml();
-
-  app.innerHTML = html;
-  wire();
-}
-
-function wire(){
-  const done = document.getElementById('done');
-  if(done) done.onclick = ()=>call({action:'done'},'נרשם: בוצע');
-
-  const skip = document.getElementById('skip');
-  if(skip) skip.onclick = ()=>call({action:'skip'},'נרשם: דולג');
-
-  const refresh = document.getElementById('refresh');
-  if(refresh) refresh.onclick = ()=>call({action:'state'});
-
-  const copy = document.getElementById('copy');
-  if(copy) copy.onclick = copyMessage;
-
-  document.getElementById('pause').onclick = openPause;
-
-  document.querySelectorAll('[data-add]').forEach(b=>{
-    b.onclick = ()=>openAdd(b.getAttribute('data-add'));
-  });
-  document.querySelectorAll('[data-toggle]').forEach(b=>{
-    b.onclick = ()=>{
-      const name = b.getAttribute('data-toggle');
-      const nowActive = b.getAttribute('data-active') === '1';
-      call({action:'toggle',name:name,active:nowActive?'0':'1'},
-           nowActive ? name+' הושבת' : name+' הופעל');
-    };
-  });
-}
-
-async function copyMessage(){
-  const text = state.message || '';
-  try{
-    await navigator.clipboard.writeText(text);
-    toast('ההודעה הועתקה');
-  }catch(e){
-    const ta = document.createElement('textarea');
-    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
-    document.body.appendChild(ta); ta.select();
-    try{ document.execCommand('copy'); toast('ההודעה הועתקה'); }
-    catch(e2){ toast('ההעתקה נכשלה',true); }
-    ta.remove();
-  }
-}
-
-let addTarget = null;
-function openAdd(name){
-  addTarget = name;
-  document.getElementById('addWho').textContent = name;
-  document.getElementById('addDate').value = today10();
-  document.getElementById('addDlg').showModal();
-}
-document.getElementById('addCancel').onclick = ()=>document.getElementById('addDlg').close();
-document.getElementById('addOk').onclick = ()=>{
-  const date = document.getElementById('addDate').value;
-  document.getElementById('addDlg').close();
-  call({action:'add',name:addTarget,date:date}, 'נוספה תורנות ל'+addTarget);
+document.getElementById('swapOk').onclick = function () {
+  const name = document.getElementById('swapSelect').value;
+  const msg = document.getElementById('swapMsg');
+  if (!name) { msg.textContent = 'בחר תלמיד קודם'; return; }
+  act(this, msg, 'swap', { name: name });
 };
-
-function openPause(){
-  document.getElementById('pauseDate').value = today10();
-  document.getElementById('pauseReason').value = '';
-  document.getElementById('pauseDlg').showModal();
-}
-document.getElementById('pauseCancel').onclick = ()=>document.getElementById('pauseDlg').close();
-document.getElementById('pauseOk').onclick = ()=>{
-  const date = document.getElementById('pauseDate').value;
-  const reason = document.getElementById('pauseReason').value;
-  if(!date){ toast('צריך לבחור תאריך',true); return; }
-  document.getElementById('pauseDlg').close();
-  call({action:'pause',date:date,reason:reason}, 'נקבע יום ללא תורנות');
+document.getElementById('swapSelect').onchange = function () {
+  document.getElementById('swapMsg').textContent = '';
 };
+document.getElementById('offOk').onclick = function () {
+  const reason = document.getElementById('offReason').value.trim();
+  act(this, document.getElementById('offMsg'), 'pause', { reason: reason || 'יום ללא תורנות' });
+};
+document.querySelectorAll('[data-close]').forEach(function (b) { b.onclick = closeSheets; });
+document.querySelectorAll('.sheet').forEach(function (s) {
+  s.addEventListener('click', function (e) { if (e.target === s && !busy) closeSheets(); });
+});
 
-call({action:'state'});
-
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js').catch(()=>{});
+async function load() {
+  try {
+    data = await call('state');
+    render();
+  } catch (e) {
+    document.getElementById('main').innerHTML =
+      '<div class="status err">' + esc(e.message) + '<br><br><button onclick="location.reload()">נסה שוב</button></div>';
+  }
 }
+
+document.addEventListener('visibilitychange', function () {
+  if (!document.hidden && data && !busy) load();
+});
+
+load();
+
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
 </script>
 </body>
 </html>
