@@ -34,7 +34,11 @@ body{
 .wrap{max-width:440px;margin:0 auto;padding:16px 16px 40px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px}
 
-.date{text-align:center;color:var(--muted);font-size:14px;margin:0 0 12px}
+.date{text-align:center;font-size:17px;font-weight:600;margin:0 0 2px}
+.stamp{text-align:center;color:var(--muted);font-size:13px;margin:0 0 12px}
+.publish{width:100%;margin-top:8px;background:#1D7A4E;border-color:#1D7A4E;color:#fff}
+.pubinfo{text-align:center;color:var(--muted);font-size:13px;margin:6px 0 0}
+.pubinfo.ok{color:#1D7A4E;font-weight:600}
 
 .today{background:var(--blue-bg);color:var(--blue);border-radius:14px;padding:20px 16px;text-align:center}
 .today .label{font-size:14px;font-weight:600;margin:0}
@@ -113,6 +117,7 @@ const EDIT = new URLSearchParams(location.search).get('edit') === '1';
 
 let data = null;
 let busy = false;
+let justPublished = false;
 
 function call(action, extra) {
   return new Promise(function (resolve, reject) {
@@ -153,7 +158,12 @@ function active() {
 
 function render() {
   const d = data;
-  let h = '<p class="date">תורנות כיתה · יום ' + esc(d.dayName) + ' ' + esc(d.date.replace(/\.\d{4}$/, '')) + '</p>';
+  let h = '<p class="date">תורנות כיתה · יום ' + esc(d.dayName) + ', ' + esc(d.date) + '</p>';
+  if (!EDIT) {
+    h += '<p class="stamp">' + (d.publishedAt ? 'פורסם ב־' + esc(d.publishedAt) : '&nbsp;') + '</p>';
+  } else {
+    h += '<p class="stamp">מצב עריכה · השינויים יופיעו לכולם רק אחרי "פרסם"</p>';
+  }
 
   if (d.off) {
     h += '<div class="today off"><p class="label">היום אין תורנות</p>' +
@@ -177,6 +187,12 @@ function render() {
          '<button id="btnOff">🚫 היום אין תורנות</button></div>';
   }
 
+  if (EDIT) {
+    h += '<button class="publish" id="btnPub">📢 פרסם</button>' +
+         '<p class="pubinfo' + (justPublished ? ' ok' : '') + '" id="pubInfo">' +
+         (justPublished ? '✓ פורסם עכשיו' : (d.publishedAt ? 'פורסם לאחרונה: ' + esc(d.publishedAt) : 'עוד לא פורסם')) + '</p>';
+  }
+
   h += '<h2>כמה כל אחד עשה</h2>';
   const cur = d.current && !d.off ? d.current.name : '';
   active().forEach(function (s) {
@@ -191,6 +207,29 @@ function render() {
   if (bs) bs.onclick = openSwap;
   const bo = document.getElementById('btnOff');
   if (bo) bo.onclick = openOff;
+  const bp = document.getElementById('btnPub');
+  if (bp) bp.onclick = publish;
+}
+
+async function publish() {
+  if (busy) return;
+  const btn = document.getElementById('btnPub');
+  const info = document.getElementById('pubInfo');
+  busy = true;
+  btn.disabled = true;
+  btn.textContent = 'מפרסם…';
+  try {
+    data = await call('publish');
+    justPublished = true;
+    render();
+  } catch (e) {
+    info.textContent = e.message;
+    info.className = 'pubinfo';
+    btn.disabled = false;
+    btn.textContent = '📢 פרסם';
+  } finally {
+    busy = false;
+  }
 }
 
 function openSwap() {
@@ -225,6 +264,7 @@ async function act(btn, msgEl, action, extra) {
   btn.textContent = 'שומר…';
   try {
     data = await call(action, extra);
+    justPublished = false;
     closeSheets();
     render();
   } catch (e) {
@@ -256,7 +296,7 @@ document.querySelectorAll('.sheet').forEach(function (s) {
 
 async function load() {
   try {
-    data = await call('state');
+    data = await call(EDIT ? 'state' : 'published');
     render();
   } catch (e) {
     document.getElementById('main').innerHTML =
