@@ -51,6 +51,14 @@ const plain = (t) => String(t || '').replace(/\[\[(.+?)\]\]/g, '$1');
 writeFileSync(join(DIR, 'bot-context.json'), JSON.stringify({
   built: new Date().toISOString(),
   kb: readFileSync(join(DIR, 'bot/knowledge.md'), 'utf8'),
+  exercises: (() => {
+    const w = {}; new Function('window', readFileSync(join(DIR, 'exercises.js'), 'utf8'))(w);
+    return (w.TB_EXERCISES || []).map((e) => ({
+      id: e.id, track: e.track, level: e.level, title: e.title,
+      text: e.parts.map((p) => p.title + ': ' + plain(p.story) + '\n' + p.items.map((it, i) => '- ' + plain(it.text)).join('\n')).join('\n'),
+      oral: (e.oral || []).map(plain), key: (e.key || []).map(plain), solution: (e.solution || []).map(plain),
+    }));
+  })(),
   units: units.map((u) => ({
     id: u.id, track: u.track, title: u.title, goal: plain(u.goal),
     steps: u.steps.map((s) => ({ t: plain(s.title), x: plain(s.text) + (s.trap ? ' | מלכודת: ' + plain(s.trap) : '') })),

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Frank+Ruhl+Libre:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="tb.css?v=3">
+  <link rel="stylesheet" href="tb.css?v=5">
   <style>
     .ex { max-width: 760px; margin: 0 auto; padding: 16px 16px 80px; line-height: 1.65; }
     .ex h1 { font-family: 'Frank Ruhl Libre', serif; font-size: 1.7rem; margin: 6px 0 2px; color: var(--forest); }
@@ -59,6 +59,7 @@
       <span class="tb-mark">TB</span>
       <span><strong>טרוול בוסטר צעד-צעד</strong><small id="who">תרגילים בסגנון בגרות</small></span>
     </a>
+    <span class="tb-top-actions"><button type="button" class="tb-sheetlink tb-askbtn" id="tbAsk" hidden>💡 רמז</button></span>
   </header>
   <main class="ex" id="app"><p class="tb-loading">טוען…</p></main>
 
@@ -71,7 +72,7 @@
     var EX = window.TB_EXERCISES || [];
     var app = document.getElementById('app');
     var LEVELS = { 1: 'רמה 1 · חימום', 2: 'רמה 2', 3: 'רמה 3 · כמו בבחינה' };
-    var TRACK = { FIT: 'FIT · לקוח פרטי', GRP: 'קבוצות' };
+    var TRACK = { FIT: 'FIT · לקוח פרטי', GRP: 'קבוצות', MID: 'מידענות · תיירות יוצאת' };
     var REC = { docket: 'מספר הדוקט', proposal: 'מספר הצעת המחיר' };
 
     function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -103,7 +104,7 @@
     function renderList() {
       var html = '<h1>תרגילים בסגנון בגרות</h1><p class="meta">מתחילים מרמה 1. כל תרגיל: קוראים הכול, מסמנים בשני צבעים, ועובדים בטרוול בוסטר. בסוף כל חלק קוראים למורה.</p>' +
         '<p class="note">' + esc(where()) + '</p>';
-      ['FIT', 'GRP'].forEach(function (t) {
+      ['FIT', 'GRP', 'MID'].forEach(function (t) {
         var list = EX.filter(function (e) { return e.track === t; });
         if (!list.length) return;
         html += '<div class="tb-track">' + TRACK[t] + '</div><ul class="cards">' + list.map(function (e) {
@@ -185,7 +186,23 @@
     var id = (/[?&]id=([a-z0-9-]+)/.exec(location.search) || [])[1];
     var ex = id && EX.filter(function (e) { return e.id === id; })[0];
     if (ex) renderEx(ex); else renderList();
+
+    // בוט רמזים: רק בתוך תרגיל, ורק אחרי כניסה עם גוגל (במדריך)
+    if (ex) {
+      window.TB_BOT = { mode: 'hint', exerciseId: ex.id, guide: './' };
+      window.TB = {
+        api: function (action, params) {
+          if (!online) return Promise.reject(new Error('LOGIN'));
+          return api(action, params);
+        },
+        isGuest: function () { return !online; },
+        login: function () { location.href = './'; },
+        unitById: function () { return null; },
+        rich: rich, esc: esc
+      };
+    }
   })();
   </script>
+  <script src="bot.js?v=4"></script>
 </body>
 </html>

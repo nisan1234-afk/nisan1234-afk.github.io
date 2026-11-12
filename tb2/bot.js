@@ -8,8 +8,13 @@
   if (!TB || !btn || !(window.TB_CONFIG || {}).api) return;
   btn.hidden = false;
 
+  // מצב רמזים (דף התרגילים): window.TB_BOT = { mode: 'hint', exerciseId, guide: './' }
+  var MODE = window.TB_BOT || {};
+  var HINT = MODE.mode === 'hint';
+  var KEY = HINT ? 'tbBotHint:' + MODE.exerciseId : 'tbBot';
+  var GUIDE = MODE.guide || '';
   var history = [];
-  try { history = JSON.parse(sessionStorage.getItem('tbBot') || '[]') || []; } catch (_) {}
+  try { history = JSON.parse(sessionStorage.getItem(KEY) || '[]') || []; } catch (_) {}
   var image = null; // {mime, data, url}
   var busy = false;
 
@@ -19,7 +24,7 @@
   panel.setAttribute('role', 'dialog');
   panel.setAttribute('aria-label', 'שאלה לבוט');
   panel.innerHTML =
-    '<header class="tb-bot-head"><b>💬 העוזר של טרוול בוסטר</b>' +
+    '<header class="tb-bot-head"><b>' + (HINT ? '💡 רמזים לתרגיל' : '💬 העוזר של טרוול בוסטר') + '</b>' +
     '<span><button type="button" class="tb-bot-clear" title="שיחה חדשה">שיחה חדשה</button>' +
     '<button type="button" class="tb-bot-close" aria-label="סגירה">✕</button></span></header>' +
     '<div class="tb-bot-log" aria-live="polite"></div>' +
@@ -28,7 +33,7 @@
     '<div class="tb-bot-row">' +
     '<label class="tb-bot-cam" title="צילום במצלמה" aria-label="צילום במצלמה">📷<input type="file" accept="image/*" capture="environment" hidden></label>' +
     '<label class="tb-bot-cam" title="תמונה מהגלריה" aria-label="תמונה מהגלריה">🖼️<input type="file" accept="image/*" hidden></label>' +
-    '<textarea rows="1" maxlength="1500" placeholder="מה לא ברור?"></textarea>' +
+    '<textarea rows="1" maxlength="1500" placeholder="' + (HINT ? 'על מה צריך רמז?' : 'מה לא ברור?') + '"></textarea>' +
     '<button type="submit" class="tb-bot-send" aria-label="שליחה">➤</button></div>' +
     '<small class="tb-bot-note">הבוט יכול לטעות. כשלא בטוחים, שואלים את המורה.</small></form>';
   document.body.appendChild(panel);
@@ -39,7 +44,7 @@
   var files = panel.querySelectorAll('input[type=file]');
   var preview = panel.querySelector('.tb-bot-preview');
 
-  function save() { try { sessionStorage.setItem('tbBot', JSON.stringify(history.slice(-20))); } catch (_) {} }
+  function save() { try { sessionStorage.setItem(KEY, JSON.stringify(history.slice(-20))); } catch (_) {} }
   function where() {
     var m = /^#u\/([a-z0-9-]+)\/(\d+)$/.exec(location.hash);
     return m ? { unit_id: m[1], step: Number(m[2]) } : {};
@@ -50,7 +55,7 @@
       return '<div class="tb-bot-msg me">' + (h.img ? '<span class="tb-bot-imgtag">📷 צילום מסך</span>' : '') + TB.esc(h.text || '').replace(/\n/g, '<br>') + '</div>';
     }
     var links = (h.links || []).map(function (l) {
-      return '<a class="tb-bot-link" href="#u/' + TB.esc(l.unit) + '/' + Number(l.step) + '">📖 ' + TB.esc(l.label) + '</a>';
+      return '<a class="tb-bot-link"' + (HINT ? ' target="_blank" rel="noopener"' : '') + ' href="' + GUIDE + '#u/' + TB.esc(l.unit) + '/' + Number(l.step) + '">📖 ' + TB.esc(l.label) + '</a>';
     }).join('');
     return '<div class="tb-bot-msg bot' + (h.error ? ' err' : '') + '">' + TB.rich(h.text || '').replace(/\n/g, '<br>') + links + '</div>';
   }
@@ -63,7 +68,9 @@
       return;
     }
     form.hidden = false;
-    var html = history.length ? history.map(msgHtml).join('') :
+    var html = history.length ? history.map(msgHtml).join('') : HINT ?
+      '<div class="tb-bot-empty"><p><b>תקועים בתרגיל? אני נותן רמזים, לא תשובות.</b></p>' +
+      '<p>כתבו באיזה סעיף אתם ומה לא מסתדר. אפשר לצלם את המסך עם 📷 או לבחור תמונה עם 🖼️.</p><p>צריכים עוד? בקשו "עוד רמז".</p></div>' :
       '<div class="tb-bot-empty"><p><b>אפשר לשאול כל דבר על טרוול בוסטר ובין הרים.</b></p>' +
       '<p>למשל: "איך מאשרים הזמנה עם סימן שאלה?"</p><p>תקועים במסך? מצלמים אותו עם 📷, או בוחרים תמונה מהגלריה עם 🖼️, ושואלים "מה עושים עכשיו?"</p></div>';
     log.innerHTML = html + (extra || '');
@@ -77,7 +84,7 @@
   panel.querySelector('.tb-bot-clear').addEventListener('click', function () { history = []; save(); clearImage(); render(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !panel.hidden) close(); });
   // קישור לשלב: סוגרים את הבוט ועוברים לשלב
-  log.addEventListener('click', function (e) { if (e.target.closest('.tb-bot-link')) close(); });
+  log.addEventListener('click', function (e) { if (!HINT && e.target.closest('.tb-bot-link')) close(); });
 
   // גובה תיבת הטקסט גדל עם הכתיבה; Enter שולח (Shift+Enter = שורה חדשה)
   ta.addEventListener('input', function () { ta.style.height = 'auto'; ta.style.height = Math.min(ta.scrollHeight, 120) + 'px'; });
@@ -137,7 +144,7 @@
     clearImage();
     render('<div class="tb-bot-msg bot wait">חושב…</div>');
     var at = where();
-    TB.api('ask', { question: q, image: sentImage ? { mime: sentImage.mime, data: sentImage.data } : null, history: past, unit_id: at.unit_id || '', step: at.step || 0 })
+    TB.api('ask', { question: q, image: sentImage ? { mime: sentImage.mime, data: sentImage.data } : null, history: past, unit_id: at.unit_id || '', step: at.step || 0, mode: HINT ? 'hint' : '', exercise_id: HINT ? MODE.exerciseId : '' })
       .then(function (d) {
         history.push({ role: 'bot', text: d.answer, links: d.links || [] });
       })

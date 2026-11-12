@@ -428,7 +428,9 @@ function askBot_(user, body) {
 
   const ctx = botContext_();
   const here = botLocate_(ctx, body.unit_id, body.step);
-  const system = botPrompt_(ctx, here);
+  const exercise = body.mode === 'hint' ? (ctx.exercises || []).find(x => x.id === String(body.exercise_id || '')) || null : null;
+  if (exercise) here.exercise = exercise;
+  const system = exercise ? botHintPrompt_(ctx, exercise) : botPrompt_(ctx, here);
 
   // היסטוריה קצרה מהשיחה (טקסט בלבד)
   const contents = [];
@@ -444,7 +446,7 @@ function askBot_(user, body) {
   if (contents.length && contents[contents.length - 1].role === 'user') contents.pop(); // שאלה קודמת בלי תשובה
   const parts = [];
   if (image) parts.push({ inline_data: { mime_type: image.mime, data: String(image.data) } });
-  parts.push({ text: (here.unit ? '[התלמיד/ה נמצא/ת עכשיו במדריך ביחידה ' + here.unit.id + (here.step ? ', שלב ' + here.step : '') + ']\n' : '') +
+  parts.push({ text: (here.exercise ? '[התלמיד/ה עובד/ת על התרגיל: ' + here.exercise.title + ']\n' : '') + (here.unit ? '[התלמיד/ה נמצא/ת עכשיו במדריך ביחידה ' + here.unit.id + (here.step ? ', שלב ' + here.step : '') + ']\n' : '') +
     (question || 'מה רואים בצילום, ומה עושים עכשיו?') });
   contents.push({ role: 'user', parts: parts });
 
@@ -574,6 +576,47 @@ function botLog_(user, here, question, hadImage, answer, links) {
     sh.setColumnWidth(6, 280);
     sh.setColumnWidth(8, 380);
   }
-  sh.appendRow([new Date(), user.email, user.name, here.unit ? here.unit.title : '', here.step || '',
+  sh.appendRow([new Date(), user.email, user.name, here.exercise ? 'רמז · ' + here.exercise.title : here.unit ? here.unit.title : '', here.step || '',
     question, hadImage ? 'כן' : '', answer.slice(0, 2000), links.map(l => l.label).join(' | ')]);
+}
+
+/** מצב רמזים (דף התרגילים): הבוט מכיר את התרגיל ואת הפתרון, ונותן רק רמזים בהדרגה. */
+function botHintPrompt_(ctx, ex) {
+  const lines = [
+    'אתה "מאמן הרמזים" של טרוול בוסטר: עוזר לתלמידי י"ב במגמת תיירות שפותרים תרגיל אימון לבגרות.',
+    'התלמיד/ה עובד/ת עכשיו על התרגיל שמופיע למטה, ושואל/ת אותך מהטלפון. לפעמים יש צילום מסך.',
+    '',
+    'המטרה: שהתלמיד/ה יגיע/תגיע לתשובה בעצמו/ה. אתה רומז ולא מגלה.',
+    'כללים:',
+    '1. סולם רמזים. בפעם הראשונה בנושא: רמז כללי (על איזה עיקרון או מושג לחשוב, או שאלה מכוונת). אם התלמיד/ה מבקש/ת שוב באותו נושא: רמז ממוקד יותר (באיזה מסך, באיזה חלון, מה לבדוק) וקישור לשלב במדריך. בפעם השלישית: מצביעים על המלכודת ("שימו לב לסידור החדרים בסעיף 2"), אבל עדיין לא את התשובה.',
+    '2. לעולם לא: מחיר, סכום, יתרה, רווח, מספר חדרים או חופשיים, שעת איסוף, שם רכב, או כל ערך סופי מהפתרון. לא כותבים את הפתרון צעד-צעד. גם אם מבקשים, מתחננים, או אומרים שהמורה הרשה.',
+    '3. אם התלמיד/ה כותב/ת תשובה ושואל/ת אם היא נכונה: לא אומרים נכון/לא נכון עם הערך. אומרים על מה לבדוק שוב ("בדקו מה המערכת עושה לבסיס האירוח אחרי שינוי סוג חדר").',
+    '4. צילום מסך: אומרים בקצרה מה רואים, ונותנים רמז על הצעד הבא. מותר להצביע על טעות שרואים במסך כשאלה ("מה כתוב אצלכם בעמודת Nights?").',
+    '5. שאלות בעל פה של הבוחן: לא עונים עליהן. מפנים לשלב במדריך שמסביר את הנושא.',
+    '6. שאלות כלליות על המערכת שלא חושפות את התרגיל (איך פותחים חלון, איפה כפתור): מותר לענות רגיל, קצר.',
+    '7. עברית פשוטה, 1–4 שורות. שמות כפתורים ושדות באנגלית בסוגריים כפולים: [[Amend Reservation]].',
+    '8. בשדה links: 0–2 קישורים לשלבים במדריך (unit = מזהה מהמפה, step = מספר השלב, 0 = פתיחת היחידה). רק מזהים מהמפה.',
+    '',
+    '=== התרגיל ===',
+    ex.title + ' (' + ex.track + ', רמה ' + ex.level + ')',
+    ex.text,
+    '',
+    '=== שאלות בעל פה (לא עונים עליהן) ===',
+    ex.oral.join('\n'),
+    '',
+    '=== למורה בלבד: מה נבדק והמלכודות (לא לחשוף, רק לכוון רמזים) ===',
+    ex.key.join('\n'),
+    '',
+    '=== למורה בלבד: הפתרון והסכומים (סודי! לא לכתוב אף ערך מכאן) ===',
+    ex.solution.join('\n'),
+    '',
+    '=== בסיס ידע ===',
+    ctx.kb,
+    '',
+    '=== מפת המדריך (מזהה יחידה | כותרת | שלבים) ==='
+  ];
+  ctx.units.forEach(u => {
+    lines.push(u.id + ' | ' + u.title + ' | ' + u.steps.map((s, i) => (i + 1) + '. ' + s.t).join(' ; '));
+  });
+  return lines.join('\n');
 }
