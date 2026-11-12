@@ -223,3 +223,5 @@ body.tb-bot-open { overflow: hidden; }
 .tb-bot-preview img { display: block; max-height: 90px; max-width: 160px; border-radius: 10px; border: 1px solid var(--line); }
 .tb-bot-preview button { position: absolute; top: -8px; left: -8px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: var(--ink); color: var(--white); font-size: .8rem; }
 .tb-bot-note { display: block; margin-top: 6px; color: var(--muted); font-size: .75rem; text-align: center; }
+.tb-bot-head b { font-size: .95rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tb-bot-head button { white-space: nowrap; }

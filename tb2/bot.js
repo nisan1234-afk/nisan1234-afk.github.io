@@ -26,7 +26,8 @@
     '<form class="tb-bot-form" novalidate>' +
     '<div class="tb-bot-preview" hidden><img alt="הצילום שצירפתם"><button type="button" aria-label="הסרת הצילום">✕</button></div>' +
     '<div class="tb-bot-row">' +
-    '<label class="tb-bot-cam" title="צירוף צילום מסך">📷<input type="file" accept="image/*" hidden></label>' +
+    '<label class="tb-bot-cam" title="צילום במצלמה" aria-label="צילום במצלמה">📷<input type="file" accept="image/*" capture="environment" hidden></label>' +
+    '<label class="tb-bot-cam" title="תמונה מהגלריה" aria-label="תמונה מהגלריה">🖼️<input type="file" accept="image/*" hidden></label>' +
     '<textarea rows="1" maxlength="1500" placeholder="מה לא ברור?"></textarea>' +
     '<button type="submit" class="tb-bot-send" aria-label="שליחה">➤</button></div>' +
     '<small class="tb-bot-note">הבוט יכול לטעות. כשלא בטוחים, שואלים את המורה.</small></form>';
@@ -35,7 +36,7 @@
   var log = panel.querySelector('.tb-bot-log');
   var form = panel.querySelector('form');
   var ta = panel.querySelector('textarea');
-  var file = panel.querySelector('input[type=file]');
+  var files = panel.querySelectorAll('input[type=file]');
   var preview = panel.querySelector('.tb-bot-preview');
 
   function save() { try { sessionStorage.setItem('tbBot', JSON.stringify(history.slice(-20))); } catch (_) {} }
@@ -84,29 +85,43 @@
     if (e.key === 'Enter' && !e.shiftKey && !e.isComposing && window.matchMedia('(pointer: fine)').matches) { e.preventDefault(); form.requestSubmit(); }
   });
 
-  // צילום מסך: מקטינים בטלפון לפני השליחה (עד 1400 פיקסלים, JPEG)
-  function clearImage() { image = null; preview.hidden = true; file.value = ''; }
+  // תמונה (מצלמה או גלריה): מקטינים בטלפון לפני השליחה (עד 1600 פיקסלים, JPEG).
+  // טוענים דרך כתובת זמנית (objectURL) ולא כ-dataURL, כי צילום מצלמה גדול נכשל בטלפונים.
+  function clearImage() { image = null; preview.hidden = true; files.forEach(function (f) { f.value = ''; }); }
   preview.querySelector('button').addEventListener('click', clearImage);
-  file.addEventListener('change', function () {
-    var f = file.files && file.files[0];
-    if (!f) return;
-    var reader = new FileReader();
-    reader.onload = function () {
-      var img = new Image();
-      img.onload = function () {
-        var max = 1400, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
-        var c = document.createElement('canvas');
-        c.width = Math.round(w * k); c.height = Math.round(h * k);
-        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-        var url = c.toDataURL('image/jpeg', 0.82);
-        image = { mime: 'image/jpeg', data: url.split(',')[1], url: url };
-        preview.querySelector('img').src = url;
-        preview.hidden = false;
-      };
-      img.onerror = function () { alert('לא הצלחתי לפתוח את התמונה. נסו צילום אחר.'); clearImage(); };
-      img.src = reader.result;
-    };
-    reader.readAsDataURL(f);
+  function drawScaled(src, w, h) {
+    var max = 1600, k = Math.min(1, max / Math.max(w, h));
+    var c = document.createElement('canvas');
+    c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+    c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+    var url = c.toDataURL('image/jpeg', 0.82);
+    image = { mime: 'image/jpeg', data: url.split(',')[1], url: url };
+    preview.querySelector('img').src = url;
+    preview.hidden = false;
+  }
+  function failImage() {
+    clearImage();
+    history.push({ role: 'bot', text: 'לא הצלחתי לפתוח את התמונה. נסו לצלם שוב, או לבחור אותה מהגלריה.', error: true });
+    save(); render();
+  }
+  function loadImage(f) {
+    if (window.createImageBitmap) {
+      createImageBitmap(f).then(function (bmp) { drawScaled(bmp, bmp.width, bmp.height); if (bmp.close) bmp.close(); })
+        .catch(function () { loadViaImg(f); });
+    } else loadViaImg(f);
+  }
+  function loadViaImg(f) {
+    var url = URL.createObjectURL(f);
+    var img = new Image();
+    img.onload = function () { drawScaled(img, img.naturalWidth, img.naturalHeight); URL.revokeObjectURL(url); };
+    img.onerror = function () { URL.revokeObjectURL(url); failImage(); };
+    img.src = url;
+  }
+  files.forEach(function (input) {
+    input.addEventListener('change', function () {
+      var f = input.files && input.files[0];
+      if (f) loadImage(f);
+    });
   });
 
   form.addEventListener('submit', function (e) {
