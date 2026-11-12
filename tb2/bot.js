@@ -65,7 +65,7 @@
     form.hidden = false;
     var html = history.length ? history.map(msgHtml).join('') :
       '<div class="tb-bot-empty"><p><b>אפשר לשאול כל דבר על טרוול בוסטר ובין הרים.</b></p>' +
-      '<p>למשל: "איך מאשרים הזמנה עם סימן שאלה?"</p><p>תקועים במסך? מצלמים אותו עם 📷 ושואלים "מה עושים עכשיו?"</p></div>';
+      '<p>למשל: "איך מאשרים הזמנה עם סימן שאלה?"</p><p>תקועים במסך? מצלמים אותו עם 📷, או בוחרים תמונה מהגלריה עם 🖼️, ושואלים "מה עושים עכשיו?"</p></div>';
     log.innerHTML = html + (extra || '');
     log.scrollTop = log.scrollHeight;
   }
