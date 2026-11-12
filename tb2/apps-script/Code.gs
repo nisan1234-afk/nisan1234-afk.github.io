@@ -12,6 +12,9 @@
  *  - עמוד המורה פתוח רק לבעל/ת הסקריפט, ולמיילים נוספים שרשומים ב-Script Properties תחת teachers
  *    (מופרדים בפסיק).
  *
+ *  - בוט עזרה (action = ask): התלמיד/ה שואל/ת, אפשר עם צילום מסך, ו-Gemini עונה עם קישור לשלב במדריך.
+ *    צריך מפתח Gemini ב-Script Properties תחת gemini_key. ר' "בוט העזרה" בסוף הקובץ.
+ *
  * התקנה: ר' tb/apps-script/README.md (העתקה של הקובץ הזה, הרצה אחת של setup, ופריסה).
  * הכול נוצר אוטומטית בדרייב של מי שמריץ את הסקריפט. אין צורך לערוך כלום בקובץ.
  */
@@ -20,7 +23,7 @@ const CLIENT_ID = '988232727899-pajp4mhs43tet1phcu3rc8c8mutsgpme.apps.googleuser
 const GUIDE_URL = 'https://nisan1234-afk.github.io/tb/';
 const FOLDER_NAME = 'טרוול בוסטר — גיליונות תלמידים';
 const REGISTRY_NAME = 'טרוול בוסטר — כל התלמידים';
-const UNIT_ID_RE = /^(base|fit|grp|ex)-[a-z0-9-]{2,40}$/;
+const UNIT_ID_RE = /^(base|fit|grp|mid|ex)-[a-z0-9-]{2,40}$/;
 
 // שורות בכל לשונית חלק-למידה. שורה 1 מוסתרת ומחזיקה את מזהה היחידה (כך אפשר לשנות כותרת בלי לשבור).
 const ROWS = {
@@ -44,7 +47,8 @@ function doPost(e) {
       hello: () => hello_(user),
       step: () => withLock_(() => saveStep_(user, body)),
       complete: () => withLock_(() => complete_(user, body)),
-      teacher: () => teacherSummary_(user)
+      teacher: () => teacherSummary_(user),
+      ask: () => askBot_(user, body)
     };
     if (!handlers[body.action]) return json_({ ok: false, error: 'פעולה לא מוכרת' });
     return json_({ ok: true, data: handlers[body.action]() });
@@ -387,4 +391,189 @@ function withLock_(fn) {
 
 function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);
+}
+
+// ========== בוט העזרה ==========
+// Script Properties:
+//   gemini_key   — מפתח מ-Google AI Studio (חובה)
+//   gemini_model — לא חובה. ברירת מחדל: gemini-flash-latest (תמיד הגרסה העדכנית של Flash)
+//   bot_daily    — לא חובה. כמה שאלות לתלמיד/ה ביום. ברירת מחדל: 40
+//   bot_off      — לא חובה. כתבו 1 כדי לכבות את הבוט (למשל ביום בחינה)
+// כל שאלה נרשמת בגיליון המרכזי, בלשונית "שאלות לבוט".
+
+const BOT_CONTEXT_URL = 'https://nisan1234-afk.github.io/tb2/bot-context.json';
+const BOT_TAB = 'שאלות לבוט';
+const BOT_HEADERS = ['זמן', 'מייל', 'שם', 'יחידה', 'שלב', 'שאלה', 'צילום', 'תשובה', 'קישורים'];
+const BOT_TRACKS = { BASE: 'יסודות', FIT: 'FIT', GRP: 'קבוצות', MID: 'מידענות' };
+
+function askBot_(user, body) {
+  const props = PropertiesService.getScriptProperties();
+  if (props.getProperty('bot_off') === '1') throw new Error('הבוט כבוי כרגע. שאלו את המורה.');
+  const key = props.getProperty('gemini_key');
+  if (!key) throw new Error('הבוט עוד לא הוגדר (חסר מפתח). ספרו למורה.');
+
+  const question = String(body.question || '').trim().slice(0, 1500);
+  const image = body.image && typeof body.image === 'object' ? body.image : null;
+  if (image && (!/^image\/(jpeg|png|webp)$/.test(String(image.mime)) || String(image.data || '').length > 4000000)) throw new Error('הצילום לא נתמך או גדול מדי');
+  if (!question && !image) throw new Error('כתבו שאלה או צרפו צילום מסך');
+
+  // מגבלה יומית לכל תלמיד/ה
+  const daily = Number(props.getProperty('bot_daily')) || 40;
+  const cache = CacheService.getScriptCache();
+  const today = Utilities.formatDate(new Date(), 'Asia/Jerusalem', 'yyyyMMdd');
+  const countKey = 'botn:' + today + ':' + user.email;
+  const used = Number(cache.get(countKey)) || 0;
+  if (used >= daily && !isTeacher_(user.email)) throw new Error('הגעתם למספר השאלות להיום (' + daily + '). שאלו את המורה, או נסו מחר.');
+  cache.put(countKey, String(used + 1), 6 * 3600);
+
+  const ctx = botContext_();
+  const here = botLocate_(ctx, body.unit_id, body.step);
+  const system = botPrompt_(ctx, here);
+
+  // היסטוריה קצרה מהשיחה (טקסט בלבד)
+  const contents = [];
+  (Array.isArray(body.history) ? body.history.slice(-6) : []).forEach(h => {
+    const text = String(h && h.text || '').slice(0, 1500);
+    if (!text) return;
+    const role = h.role === 'bot' ? 'model' : 'user';
+    const prev = contents[contents.length - 1];
+    if (!prev && role === 'model') return; // השיחה מתחילה תמיד בתלמיד/ה
+    if (prev && prev.role === role) prev.parts[0].text += '\n' + text; // שתי הודעות רצופות מאותו צד = אחת
+    else contents.push({ role: role, parts: [{ text: text }] });
+  });
+  if (contents.length && contents[contents.length - 1].role === 'user') contents.pop(); // שאלה קודמת בלי תשובה
+  const parts = [];
+  if (image) parts.push({ inline_data: { mime_type: image.mime, data: String(image.data) } });
+  parts.push({ text: (here.unit ? '[התלמיד/ה נמצא/ת עכשיו במדריך ביחידה ' + here.unit.id + (here.step ? ', שלב ' + here.step : '') + ']\n' : '') +
+    (question || 'מה רואים בצילום, ומה עושים עכשיו?') });
+  contents.push({ role: 'user', parts: parts });
+
+  const model = props.getProperty('gemini_model') || 'gemini-flash-latest';
+  const res = UrlFetchApp.fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { 'x-goog-api-key': key },
+    muteHttpExceptions: true,
+    payload: JSON.stringify({
+      system_instruction: { parts: [{ text: system }] },
+      contents: contents,
+      generationConfig: {
+        temperature: 0.3,
+        maxOutputTokens: 4096,
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: 'OBJECT',
+          properties: {
+            answer: { type: 'STRING' },
+            links: { type: 'ARRAY', items: { type: 'OBJECT', properties: { unit: { type: 'STRING' }, step: { type: 'INTEGER' } }, required: ['unit', 'step'] } }
+          },
+          required: ['answer']
+        }
+      }
+    })
+  });
+  const code = res.getResponseCode();
+  if (code === 429) throw new Error('הבוט עמוס עכשיו. נסו שוב בעוד דקה.');
+  if (code !== 200) {
+    console.error('Gemini ' + code + ': ' + res.getContentText().slice(0, 500));
+    throw new Error('הבוט לא הצליח לענות (' + code + '). נסו שוב.');
+  }
+  const out = JSON.parse(res.getContentText());
+  const cand = out.candidates && out.candidates[0];
+  const raw = cand && cand.content && cand.content.parts ? cand.content.parts.map(p => p.text || '').join('') : '';
+  let parsed = null;
+  try { parsed = JSON.parse(raw); } catch (_) { parsed = { answer: raw, links: [] }; }
+  const answer = String(parsed.answer || '').trim() || 'לא הצלחתי לענות על זה. נסו לנסח אחרת, או שאלו את המורה.';
+
+  // רק קישורים לשלבים שקיימים באמת
+  const links = [];
+  (parsed.links || []).forEach(l => {
+    const u = ctx.units.find(x => x.id === String(l.unit));
+    const n = Math.round(Number(l.step) || 0);
+    if (!u || n < 0 || n > u.steps.length || links.length >= 3) return;
+    if (links.some(x => x.unit === u.id && x.step === n)) return;
+    links.push({ unit: u.id, step: n, label: u.title + (n ? ' · שלב ' + n + ': ' + u.steps[n - 1].t : '') });
+  });
+
+  try { botLog_(user, here, question, !!image, answer, links); } catch (err) { console.error(err); }
+  return { answer: answer, links: links, left: Math.max(0, daily - used - 1) };
+}
+
+/** הקשר הבוט מהאתר (bot-context.json), במטמון לשעה. נשמר בחלקים כי לכל ערך במטמון יש תקרה. */
+function botContext_() {
+  const cache = CacheService.getScriptCache();
+  const n = Number(cache.get('botctx:n')) || 0;
+  if (n) {
+    const keys = []; for (let i = 0; i < n; i++) keys.push('botctx:' + i);
+    const got = cache.getAll(keys);
+    if (keys.every(k => got[k] != null)) {
+      try { return JSON.parse(keys.map(k => got[k]).join('')); } catch (_) {}
+    }
+  }
+  const res = UrlFetchApp.fetch(BOT_CONTEXT_URL + '?t=' + Date.now(), { muteHttpExceptions: true });
+  if (res.getResponseCode() !== 200) throw new Error('לא הצלחתי לטעון את חומר המדריך לבוט');
+  const text = res.getContentText('UTF-8');
+  const ctx = JSON.parse(text);
+  const SIZE = 30000, chunks = {};
+  for (let i = 0; i * SIZE < text.length; i++) chunks['botctx:' + i] = text.slice(i * SIZE, (i + 1) * SIZE);
+  const count = Object.keys(chunks).length;
+  try { cache.putAll(chunks, 3600); cache.put('botctx:n', String(count), 3600); } catch (_) {}
+  return ctx;
+}
+
+function botLocate_(ctx, unitId, step) {
+  const unit = ctx.units.find(u => u.id === String(unitId || '')) || null;
+  const n = unit ? Math.round(Number(step) || 0) : 0;
+  return { unit: unit, step: unit && n >= 1 && n <= unit.steps.length ? n : 0 };
+}
+
+/** ההנחיה לבוט: כללים + בסיס ידע + מפת כל השלבים + טקסט מלא של החלק שבו התלמיד/ה נמצא/ת. */
+function botPrompt_(ctx, here) {
+  const track = here.unit ? here.unit.track : '';
+  const lines = [];
+  lines.push(
+    'אתה "העוזר של טרוול בוסטר": עוזר לתלמידי י"ב במגמת תיירות שמתרגלים את מערכת Travel Booster לקראת הבגרות.',
+    'התלמיד/ה עובד/ת במחשב בטרוול בוסטר, ושואל/ת אותך מהטלפון. לפעמים יש צילום מסך מהמחשב או מהטלפון.',
+    '',
+    'כללים:',
+    '1. עונים בעברית פשוטה, קצר: 2–6 שורות. צעד-צעד כשצריך, עם מספור.',
+    '2. שמות של כפתורים, שדות וחלונות באנגלית כותבים בדיוק כמו במערכת, ועוטפים בסוגריים כפולים: [[Add Services]], [[Report and Confirm]].',
+    '3. כשיש צילום: קודם אומרים בקצרה מה רואים בו (איזה מסך, מה מסומן, הודעת שגיאה), ורק אז מה עושים עכשיו. אם הצילום לא ברור, מבקשים צילום קרוב יותר.',
+    '4. מסתמכים רק על החומר למטה. אם אין בו תשובה, אומרים שלא בטוחים וממליצים לשאול את המורה. לא ממציאים מסכים או כפתורים.',
+    '5. לא פותרים במקום התלמיד/ה תרגיל שלם ולא נותנים מחירים או תשובות סופיות לתרגיל. מסבירים את הדרך ומכוונים לשלב במדריך.',
+    '6. בשדה links מחזירים 0–3 קישורים לשלבים במדריך שמסבירים בדיוק את הנושא: unit = מזהה היחידה מהמפה, step = מספר השלב (0 = פתיחת היחידה). רק מזהים ומספרים שמופיעים במפה.',
+    '7. שאלות שלא קשורות לטרוול בוסטר, לבין הרים או לבגרות בתיירות: עונים בנימוס שאתה עוזר רק בזה.',
+    '',
+    '=== בסיס ידע ===',
+    ctx.kb,
+    '',
+    '=== מפת המדריך (מזהה יחידה | כותרת | שלבים) ==='
+  );
+  ctx.units.forEach(u => {
+    lines.push(u.id + ' | ' + (BOT_TRACKS[u.track] || u.track) + ' · ' + u.title + ' | ' + u.steps.map((s, i) => (i + 1) + '. ' + s.t).join(' ; '));
+  });
+  const full = ctx.units.filter(u => u.track === 'BASE' || (track && u.track === track));
+  lines.push('', '=== הטקסט המלא של השלבים' + (track ? ' (' + (BOT_TRACKS[track] || track) + ' ויסודות)' : ' (יסודות)') + ' ===');
+  full.forEach(u => {
+    lines.push('', '## ' + u.id + ' — ' + u.title, 'מטרה: ' + u.goal);
+    u.steps.forEach((s, i) => lines.push((i + 1) + '. ' + s.t + ': ' + s.x));
+  });
+  if (here.unit) lines.push('', 'התלמיד/ה נמצא/ת עכשיו ביחידה ' + here.unit.id + ' (' + here.unit.title + ')' +
+    (here.step ? ', שלב ' + here.step + ': ' + here.unit.steps[here.step - 1].t : '') + '. כנראה שהשאלה קשורה לזה.');
+  return lines.join('\n');
+}
+
+function botLog_(user, here, question, hadImage, answer, links) {
+  const ss = getRegistry_();
+  let sh = ss.getSheetByName(BOT_TAB);
+  if (!sh) {
+    sh = ss.insertSheet(BOT_TAB);
+    sh.setRightToLeft(true);
+    sh.getRange(1, 1, 1, BOT_HEADERS.length).setValues([BOT_HEADERS]).setFontWeight('bold').setBackground('#173d37').setFontColor('#ffffff');
+    sh.setFrozenRows(1);
+    sh.setColumnWidth(6, 280);
+    sh.setColumnWidth(8, 380);
+  }
+  sh.appendRow([new Date(), user.email, user.name, here.unit ? here.unit.title : '', here.step || '',
+    question, hadImage ? 'כן' : '', answer.slice(0, 2000), links.map(l => l.label).join(' | ')]);
 }

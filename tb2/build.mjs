@@ -45,4 +45,15 @@ const full = readdirSync(join(DIR, 'course')).filter((f) => f.endsWith('.json') 
   .map((u) => ({ ...u, record: RECORD(u), steps: u.steps.map((s, i) => ({ ...s, ...(shots[`${u.id}:${i + 1}`] || {}) })) }));
 writeFileSync(join(DIR, 'course-review.js'), '/* נוצר אוטומטית ע"י build.mjs */\nwindow.TB_COURSE = ' + JSON.stringify(full) + ';\n');
 writeFileSync(join(DIR, 'units.js'), '/* נוצר אוטומטית מ-course/*.json ע"י build.mjs — לא לערוך ידנית. */\nwindow.TB_UNITS = ' + JSON.stringify(units, null, 1) + ';\n');
+
+// הקשר לבוט העזרה: בסיס הידע (bot/knowledge.md) + כל השלבים, בטקסט פשוט. השרת (Code.gs) קורא את הקובץ הזה מהאתר.
+const plain = (t) => String(t || '').replace(/\[\[(.+?)\]\]/g, '$1');
+writeFileSync(join(DIR, 'bot-context.json'), JSON.stringify({
+  built: new Date().toISOString(),
+  kb: readFileSync(join(DIR, 'bot/knowledge.md'), 'utf8'),
+  units: units.map((u) => ({
+    id: u.id, track: u.track, title: u.title, goal: plain(u.goal),
+    steps: u.steps.map((s) => ({ t: plain(s.title), x: plain(s.text) + (s.trap ? ' | מלכודת: ' + plain(s.trap) : '') })),
+  })),
+}));
 console.log(`units.js: ${units.length} יחידות, ${units.reduce((n, u) => n + u.steps.length, 0)} שלבים, ${units.reduce((n, u) => n + u.steps.filter((s) => s.img).length, 0)} עם צילום`);

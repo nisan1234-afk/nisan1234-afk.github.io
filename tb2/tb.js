@@ -581,5 +581,14 @@
       })
       .then(function () { loaded = true; if (!/^#u\//.test(location.hash)) renderHome(); }, function () {});
   }
+  // ממשק קטן לבוט העזרה (bot.js)
+  window.TB = {
+    api: api,
+    isGuest: function () { return guest || !tokenValid(); },
+    login: function () { try { sessionStorage.removeItem('tbGuest'); } catch (_) {} showLogin('כדי לשאול את הבוט נכנסים עם גוגל. ההתקדמות שלכם נשמרת.'); },
+    unitById: unitById,
+    rich: rich,
+    esc: esc
+  };
   start();
 })();
