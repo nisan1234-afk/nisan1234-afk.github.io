@@ -7,15 +7,18 @@ FB=_json.load(open("/home/claude/work/feedback_links.json",encoding="utf-8"))
 ROOT = '/home/claude/nisan1234-afk.github.io/tayarut'
 BASE = 'https://nisan1234-afk.github.io/tayarut'
 
-REGIONS = [  # order, slug, display name, short blurb
+REGIONS = [  # order, slug, display name, short blurb  (the 4 expected this year first)
     ('jerusalem', 'ירושלים', 'העיר העתיקה, שלוש הדתות, העיר החדשה'),
+    ('galilee', 'הגליל', 'הגליל העליון, צפת, טבריה וסובב כינרת'),
+    ('negev', 'הנגב, הערבה ואילת', 'מכתשים, מורשת, הערבה ואילת'),
+    ('golan', 'רמת הגולן', 'נוף געשי, מים, היסטוריה וצפון הגולן'),
     ('deadsea', 'ים המלח ומדבר יהודה', 'המקום הנמוך בעולם, נופש פעיל, מצדה וקומראן'),
     ('valleys', 'העמקים', 'עמק יזרעאל, בית שאן והגלבוע'),
     ('coastal', 'מישור החוף', 'עכו, חיפה, תל אביב–יפו, השרון והדרום'),
-    ('galilee', 'הגליל', 'הגליל העליון, צפת, טבריה וסובב כינרת'),
-    ('golan', 'רמת הגולן', 'נוף געשי, מים, היסטוריה וצפון הגולן'),
-    ('negev', 'הנגב, הערבה ואילת', 'מכתשים, מורשת, הערבה ואילת'),
 ]
+# regions expected in this year's exam (no official focus yet; reverse of last year). Edit when the focus is published.
+STAR = {'jerusalem', 'galilee', 'negev', 'golan'}
+STAR_NOTE = 'צפוי להיבחן השנה. עדיין לא פורסם מיקוד, ולכן זו הערכה לפי החבלים של השנה שעברה.'
 
 # CET "My Studio" units: (region, topic) -> player document id
 CET = {
@@ -115,7 +118,8 @@ def chip(url, k, label):
 n_pod = sum(1 for r in data for t in r['topics'] if t['podcast'])
 regs, navr = [], []
 for i, r in enumerate(data, 1):
-    navr.append(f'<a class="rchip" href="#{r["slug"]}">{r["name"]}<span>{len([x for x in r["topics"] if not x.get("lang")])}</span></a>')
+    st = r["slug"] in STAR
+    navr.append(f'<a class="rchip{" star" if st else ""}" href="#{r["slug"]}">{"★ " if st else ""}{r["name"]}<span>{len([x for x in r["topics"] if not x.get("lang")])}</span></a>')
     rows = []
     for t in r['topics']:
         nn = t["deck"].rstrip("/").split("/")[-1]
@@ -129,8 +133,8 @@ for i, r in enumerate(data, 1):
             f'<div class="chips">{chips}</div></li>')
     regs.append(
         f'<section class="region" id="{r["slug"]}"><div class="rcard">'
-        f'<div class="rtext"><span class="rk">חבל {i} מתוך {len(data)}</span><h2>{r["name"]}</h2>'
-        f'<p>{r["blurb"]}</p><span class="rcount">{len([x for x in r["topics"] if not x.get("lang")])} נושאים</span></div>'
+        f'<div class="rtext"><span class="rk">חבל {i} מתוך {len(data)}</span><h2>{r["name"]}{' <span class="star" title="' + STAR_NOTE + '">★</span>' if st else ""}</h2>'
+        f'<p>{r["blurb"]}</p>{'<span class="snote">★ ' + STAR_NOTE + '</span>' if st else ""}<span class="rcount">{len([x for x in r["topics"] if not x.get("lang")])} נושאים</span></div>'
         f'<div class="rimg" style="background-image:url(\'{IMG[r["slug"]]}\')"></div></div>'
         f'<ol class="topics">{"".join(rows)}</ol></section>')
 
@@ -187,6 +191,9 @@ header.top .wrap{display:flex;align-items:center;gap:14px;padding-block:12px}
 .rk{display:inline-block;background:var(--rust);color:#fff;font-size:12px;border-radius:999px;padding:2px 10px}
 .rtext h2{font-family:"Frank Ruhl Libre",serif;font-size:32px;margin:10px 0 4px;color:var(--olive-d)}
 .rtext p{margin:0 0 12px;color:var(--mute)}
+.star{color:#c8901a}
+.rchip.star{border-color:#e2c27a;background:#fdf6e3}
+.snote{display:block;font-size:13px;color:#7a5000;margin:-4px 0 12px}
 .rcount{font-size:13px;background:var(--soft);border-radius:999px;padding:3px 10px}
 .noq{display:inline-block;margin-top:4px;font-size:12px;color:#8a5a2b;border:1px dashed #c9a27a;border-radius:999px;padding:1px 10px;background:#fbf4ea}
 .xlink{text-decoration:none}.xlink:hover{border-color:var(--olive)}
