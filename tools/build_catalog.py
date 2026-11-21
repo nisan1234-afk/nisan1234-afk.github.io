@@ -253,7 +253,7 @@ page = f"""<!doctype html>
     <h1>חומרי הבגרות בתיירות</h1>
     <p class="sub">מרחב למידה והוראה למורים ולתלמידים</p>
     <p class="lead">כל חבלי הארץ במקום אחד: מצגות עם שאלות בגרות, סרטוני פתיחה, פודקאסטים לחזרה, יחידות לתרגול במט״ח ודפי עבודה מוכנים להדפסה.</p>
-    <div class="btns"><a class="btn p" href="#jerusalem">לחבלי הארץ</a><a class="btn s" href="marketing/">לפרק מאפיינים ושיווק</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
+    <div class="btns"><a class="btn p" href="#jerusalem">לחבלי הארץ</a><a class="btn s" href="marketing/">לפרק מאפיינים ושיווק</a><a class="btn s" href="concepts/">מושגים ומשחקים</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
     <div class="stats">
       <div class="stat"><b>{len(data)}</b><span>חבלי ארץ</span></div>
       <div class="stat"><b>{n_topics}</b><span>נושאים</span></div>
@@ -264,7 +264,7 @@ page = f"""<!doctype html>
   <div class="himg" style="background-image:url('{IMG['jerusalem']}')"><span>חומות העיר העתיקה, ירושלים</span></div>
 </div></section>
 <div class="bar"><div class="wrap">
-  <div class="row"><b>חבלים:</b>{"".join(navr)}<a class="rchip" href="marketing/">מאפיינים ושיווק ←</a></div>
+  <div class="row"><b>חבלים:</b>{"".join(navr)}<a class="rchip" href="marketing/">מאפיינים ושיווק ←</a><a class="rchip" href="concepts/">מושגים ומשחקים ←</a></div>
   <div class="row"><b>הצגת:</b><button class="tf on" data-t="all">הכל</button>{tfilter}</div>
 </div></div>
 <main class="wrap">
@@ -329,7 +329,7 @@ mhero = f"""<section class="hero"><div class="wrap">
     <h1>מאפיינים ושיווק</h1>
     <p class="sub">הפרק השני של הבחינה, ופרק המושגים</p>
     <p class="lead">גורמים המשפיעים על התיירות, סוגי תיירות, שירותי תיירות, המוצר התיירותי והשיווק. בכל נושא: מצגת עם שאלות בגרות, דף עבודה, תרגול במט״ח, סרטון ופודקאסט.</p>
-    <div class="btns"><a class="btn p" href="#trait">לנושאים</a><a class="btn s" href="../">לחבלי הארץ</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
+    <div class="btns"><a class="btn p" href="#trait">לנושאים</a><a class="btn s" href="../">לחבלי הארץ</a><a class="btn s" href="../concepts/">מושגים ומשחקים</a><a class="btn s" href="{FORM}" target="_blank" rel="noopener">משוב מורים</a></div>
     <div class="stats">
       <div class="stat"><b>{mt_count}</b><span>נושאים</span></div>
       <div class="stat"><b>84</b><span>מושגים ברשימת 2026</span></div>

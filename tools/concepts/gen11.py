@@ -54,7 +54,7 @@ out.append('''  <section class="slide hero" id="s1">
       <p class="kick">מאפיינים ושיווק · נושא 11</p>
       <h1>מושגים לבגרות</h1>
       <p class="lead">כל 84 המושגים מרשימת 2026, ועוד מושגים שנשאלו בבגרות בשנים קודמות. ליד כל מושג: באילו שנים נשאל, ובאיזה שקף לומדים אותו.</p>
-      <div class="chips"><span class="chip">פרק 1 בבחינה</span><span class="chip">5 מתוך 10</span><span class="chip">6 נקודות למושג</span><span class="chip">8 מחוונים, 2018–2026</span></div>
+      <div class="chips"><span class="chip">פרק 1 בבחינה</span><span class="chip">5 מתוך 10</span><span class="chip">6 נקודות למושג</span><span class="chip">8 מחוונים, 2018–2026</span><a class="chip" href="../../concepts/" style="text-decoration:none;font-weight:700;color:inherit;background:rgba(255,255,255,.18)">לרשימה עם פירושים ולמשחקים ←</a></div>
     </div>
   </section>''')
 out.append('''  <section class="slide" id="s2" hidden>
