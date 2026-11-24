@@ -136,6 +136,11 @@ body.big .sheet{font-size:19px}body.big .tw textarea,body.big .cz,body.big .t se
 @media(max-width:900px){.mid{padding-inline-start:12px}.saved{display:none}.sheet{width:calc(100% - 24px)}.pg{top:auto;bottom:10px;height:56px;width:56px}.pg::before{display:none}.pg.prv{right:96px}.pg.nxt{left:12px}.pg svg{background:#fff;border-radius:50%;width:44px;height:44px;padding:11px;box-shadow:0 1px 4px #0003}}
 @media(max-width:640px){.det b{font-size:14px;line-height:18px}.det span{display:none}.logo{display:none}.rail{width:64px}.rbtn{width:64px}.stage{right:64px}.drawer{right:64px;width:calc(100vw - 64px)}.qt{padding:16px}.sh{padding:14px 16px}
  .t,.t tbody,.t tr,.t td{display:block}.t thead{display:none}.t tr{border:1px solid #000;margin-bottom:10px}.t td{border:0}.t td.pic{width:auto}.gate .sh{grid-template-columns:1fr;padding:20px}.gmeta{justify-self:start}}
+.fsb{display:flex;align-items:center;gap:6px;height:38px;border-radius:38px;border:0;background:var(--lime);color:#161B24;font:700 14px var(--ui);padding:0 14px;white-space:nowrap}
+.fsb svg{width:16px;height:16px}
+.emb-note{background:#fff7cc;color:#3a3000;font:14px var(--ui);padding:10px 14px;border-radius:3px;display:grid;gap:8px}
+.emb-note .fsb{justify-self:start}
+@media(max-width:1100px){.mid{padding-inline-end:12px}.sheet{width:calc(100% - 150px)}.pg{width:60px}.pg.prv{right:calc(84px + 8px)}.pg.nxt{left:8px}.pg::before{width:180px;height:180px;top:41px}.saved{display:none}.det b{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.drawer,.dct svg{transition:none}}
 </style>
 </head>
@@ -161,6 +166,13 @@ const $=id=>document.getElementById(id);
 function save(){try{localStorage.setItem(KEY(),JSON.stringify({ans:S.ans,left:S.left,page:S.page}))}catch(e){}
  const s=$("saved");if(s)s.textContent="נשמר "+new Date().toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"})}
 function load(){try{const d=JSON.parse(localStorage.getItem(KEY())||"null");if(d){S.ans=d.ans||{};S.left=d.left??S.left;S.page=d.page||0}}catch(e){}}
+const EMB=(()=>{try{return window.self!==window.top}catch(e){return true}})();
+const FSI=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6V1h5M10 1h5v5M15 10v5h-5M6 15H1v-5"/></svg>`;
+function goFull(){const el=document.documentElement;const ok=el.requestFullscreen&&document.fullscreenEnabled;
+ if(ok){el.requestFullscreen().catch(()=>openTab())}else openTab()}
+function openTab(){window.open(location.href,"_blank","noopener")}
+const fsBtn=id=>EMB?`<button type="button" class="fsb" id="${id}">${FSI}פתיחה במסך מלא</button>`:"";
+document.addEventListener("fullscreenchange",()=>document.querySelectorAll(".fsb").forEach(b=>b.style.display=document.fullscreenElement?"none":""));
 const filled=k=>String(S.ans[k]||"").trim()!=="";
 const mmss=s=>{s=Math.max(0,s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return h+":"+String(m).padStart(2,"0")+":"+String(x).padStart(2,"0")};
 
@@ -202,8 +214,9 @@ const app=$("app");
 function loginView(){
  app.innerHTML=`<div class="login"><div class="lcard"><header>${LOGO}<div><b>סימולטור בגרות</b>${esc(EXAM.subject)} · ${esc(EXAM.kind)}</div></header>
  <form id="lf" novalidate><label>מספר זהות<input id="lid" inputmode="numeric" autocomplete="off"></label><label>שם הנבחן<input id="lnm" autocomplete="off"></label>
- <label>סיסמה לפתיחת הבחינה<input id="lpw" inputmode="numeric" autocomplete="off"></label><div class="lerr" id="lerr"></div>
+ <label>סיסמה לפתיחת הבחינה<input id="lpw" inputmode="numeric" autocomplete="off"></label>${EMB?`<div class="emb-note">מומלץ לעבוד במסך מלא, כמו בבחינה האמיתית.${fsBtn("fs1")}</div>`:""}<div class="lerr" id="lerr"></div>
  <button class="btn l">המשך</button><div class="disc" style="margin:0">לתרגול: הסיסמה היא ${esc(EXAM.practiceCode)}</div></form></div></div>`;
+ if(EMB)$("fs1").onclick=goFull;
  $("lf").addEventListener("submit",e=>{e.preventDefault();const id=$("lid").value.trim(),nm=$("lnm").value.trim(),pw=$("lpw").value.trim();
   if(!/^\d{5,9}$/.test(id))return $("lerr").textContent="יש להקליד מספר זהות תקין";
   if(!nm)return $("lerr").textContent="יש להקליד שם";
@@ -214,7 +227,7 @@ function loginView(){
 /* ===== מעטפת הנגן ===== */
 function shell(){
  app.innerHTML=`<header class="top">${LOGO}<div class="det"><b>${esc(EXAM.subject)}, ${esc(EXAM.kind)}, ${esc(EXAM.session)}, שאלון ${esc(EXAM.code)}</b><span>${I.user}${esc(S.name)}</span></div>
- <div class="mid"><span class="saved" id="saved"></span><div class="clock" id="clock" title="זמן שנותר"><span id="tm"></span></div><button class="circ" id="bfont" aria-label="גודל טקסט" title="גודל טקסט"><span>A<i>א</i></span></button></div>
+ <div class="mid">${fsBtn("fs2")}<span class="saved" id="saved"></span><div class="clock" id="clock" title="זמן שנותר"><span id="tm"></span></div><button class="circ" id="bfont" aria-label="גודל טקסט" title="גודל טקסט"><span>A<i>א</i></span></button></div>
  <button class="x" id="bx" aria-label="יציאה">${I.x}</button></header>
  <aside class="rail" aria-label="תפריט"><div class="cap"></div><button class="rbtn" id="bnav">${I.nav}ניווט</button>
  <div class="rest"><button class="rbtn" id="bdraft">${I.draft}טיוטה</button><button class="rbtn" id="bend">${I.end}סיום</button></div></aside>
@@ -223,6 +236,7 @@ function shell(){
  <aside class="drawer" id="drawer" aria-label="ניווט"></aside>
  <div class="draft" id="draft"><header>טיוטה (לא נבדקת)</header><textarea id="dtx" aria-label="טיוטה"></textarea></div>
  <div class="modal" id="modal"><div class="mcard" id="mcard"></div></div>`;
+ if(EMB)$("fs2").onclick=goFull;
  $("bfont").onclick=()=>document.body.classList.toggle("big");
  $("bnav").onclick=()=>drawer();
  $("bdraft").onclick=()=>{const o=$("draft").classList.toggle("open");$("bdraft").classList.toggle("on",o)};
