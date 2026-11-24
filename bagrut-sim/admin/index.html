@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>סימולטור בגרות – ניהול מורה</title>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* VOICE: practical teacher console, calm and dense
+   IDEA: the exam player's own control room: same slate frame and lime marker
+   PICTURE: the live tracking table of a running exam
+   COLOUR and TYPE: #3A4A69 frame, #EDEFF8 panels, #BAD104 accent, white sheets; Assistant
+   LAYOUT: top bar, tab row, one working sheet per tab, side drawer for a student */
+:root{--main:#3A4A69;--panel:#EDEFF8;--stage:#DDDFEB;--lime:#BAD104;--link:#0090E5;--err:#E41B56;--ok:#5c7a00;--ink:#161B24;--mut:#6a7489}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--stage);color:var(--ink);font:16px/1.5 Assistant,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--lime);outline-offset:1px}
+.top{background:var(--main);color:#fff;display:flex;align-items:center;gap:14px;padding:0 20px;height:60px;position:sticky;top:0;z-index:10}
+.top b{font-size:18px}.top .sp{flex:1}.top small{color:#D7E0F2}
+.tabs{display:flex;gap:4px;padding:12px 20px 0;overflow-x:auto;background:var(--stage);position:sticky;top:60px;z-index:9}
+.tabs button{border:0;background:#c9cde0;color:var(--main);font-weight:700;padding:10px 18px;border-radius:6px 6px 0 0;white-space:nowrap;min-height:44px}
+.tabs button.on{background:#fff;box-shadow:inset 0 3px 0 var(--lime)}
+main{padding:0 20px 60px}
+.sheet{background:#fff;border-radius:0 6px 6px 6px;padding:22px;max-width:1240px}
+h2{margin:0 0 14px;font-size:22px;color:var(--main)}
+h3{margin:22px 0 8px;font-size:18px;color:var(--main)}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin-bottom:14px}
+label{display:grid;gap:4px;font-weight:700;color:var(--main);font-size:14px}
+input,select,textarea{border:1px solid #b9bfd3;border-radius:4px;padding:8px 10px;font-size:16px;background:#fff;min-height:42px}
+textarea{width:100%;min-height:120px;resize:vertical}
+.btn{border:0;border-radius:4px;background:var(--main);color:#fff;font-weight:700;padding:0 18px;min-height:42px}
+.btn.l{background:var(--lime);color:var(--ink)}
+.btn.g{background:var(--panel);color:var(--main)}
+.btn.r{background:#fbe3ea;color:var(--err)}
+.btn:disabled{opacity:.5;cursor:default}
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{background:var(--panel);color:var(--main);text-align:right;font-weight:700;padding:8px;border-bottom:2px solid #d4d8e6;white-space:nowrap}
+td{padding:7px 8px;border-bottom:1px solid #e6e8f1;vertical-align:middle}
+td input[type=text],td input[type=number]{min-height:34px;padding:4px 8px;width:100%}
+td input[type=checkbox]{width:20px;height:20px}
+.scroll{overflow-x:auto}
+.num{text-align:left;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tag{display:inline-block;border-radius:10px;padding:1px 10px;font-size:13px;font-weight:700;white-space:nowrap}
+.t-new{background:#eceef4;color:var(--mut)}.t-act{background:#e2f1ff;color:#0a5d99}.t-sub{background:#eef6cf;color:var(--ok)}.t-err{background:#fbe3ea;color:var(--err)}
+.code{font:800 40px/1 Assistant;letter-spacing:6px;color:var(--main);background:var(--panel);padding:10px 18px;border-radius:6px;display:inline-block}
+.msg{min-height:22px;font-size:14px;color:var(--mut)}.msg.e{color:var(--err)}
+.hint{color:var(--mut);font-size:14px;margin:4px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.card{border:1px solid #dfe2ee;border-radius:6px;padding:14px;background:#fbfbfe}
+.card b{color:var(--main)}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:min(760px,100vw);background:#fff;box-shadow:6px 0 24px #0003;z-index:30;overflow-y:auto;padding:20px;transform:translateX(-105%);transition:transform .2s;visibility:hidden}
+.drawer.open{transform:none;visibility:visible}
+.dh{display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:-20px;background:#fff;padding:6px 0 10px;border-bottom:2px solid var(--lime);margin-bottom:12px}
+.sec{border:1px solid #e3e6f0;border-radius:6px;padding:10px 12px;margin:8px 0}
+.sec .h{display:flex;justify-content:space-between;gap:8px;font-weight:700;color:var(--main)}
+.sec .ans{white-space:pre-wrap;background:var(--panel);border-radius:4px;padding:8px;margin:6px 0;font-size:15px}
+.sec ul{margin:4px 0;padding-inline-start:20px;font-size:14px}
+.okc{color:var(--ok)}.bad{color:var(--err)}
+.qsec{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #eceef4}
+.qsec .t{font-size:15px}.qsec .acts{display:flex;gap:6px;flex-wrap:wrap}
+.rec{background:var(--err)!important;color:#fff!important}
+.login{max-width:460px;margin:8vh auto;background:#fff;border-radius:6px;padding:24px;display:grid;gap:14px}
+@media(max-width:700px){main{padding:0 8px 60px}.sheet{padding:14px}.code{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.drawer{transition:none}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+{
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const st = { api: "", key: "", tab: "track", classes: [], students: [], exams: [], sessions: [], classId: "", sessionId: "", attempts: [], examCache: {} };
+try { Object.assign(st, JSON.parse(localStorage.getItem("simAdmin") || "{}")); } catch (e) {}
+const keep = () => { try { localStorage.setItem("simAdmin", JSON.stringify({ api: st.api, key: st.key, tab: st.tab, classId: st.classId, sessionId: st.sessionId })); } catch (e) {} };
+async function api(action, body) {
+  const r = await fetch(st.api, { method: "POST", body: JSON.stringify(Object.assign({ action, key: st.key }, body || {})) });
+  const j = await r.json(); if (!j.ok) throw new Error(j.error); return j.data;
+}
+const SIM = new URL("../", location.href).href;
+const app = $("app");
+const fmt = d => d ? new Date(d).toLocaleString("he-IL", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "";
+const msg = (t, e) => { const m = $("msg"); if (m) { m.textContent = t || ""; m.className = "msg" + (e ? " e" : ""); } };
+async function run(fn, okText) { try { msg("עובד…"); await fn(); msg(okText || ""); } catch (e) { msg(e.message, true); } }
+
+/* ===== כניסה ===== */
+function login(err) {
+  app.innerHTML = `<div class="login"><h2>ניהול מורה – סימולטור בגרות</h2>
+  <label>כתובת השרת<input id="lapi" placeholder="https://script.google.com/macros/s/…/exec" value="${esc(st.api)}"></label>
+  <label>מפתח מורה<input id="lkey" type="password" value="${esc(st.key)}"></label>
+  <button class="btn l" id="lgo">כניסה</button><div class="msg e">${esc(err || "")}</div>
+  <div class="hint">את הכתובת ואת המפתח מקבלים פעם אחת מההתקנה של השרת.</div></div>`;
+  $("lgo").onclick = async () => {
+    st.api = $("lapi").value.trim(); st.key = $("lkey").value.trim();
+    try { const me = await api("teacher.me"); st.me = me; keep(); await loadBase(); shell(); } catch (e) { login(e.message); }
+  };
+}
+async function loadBase() {
+  [st.classes, st.exams, st.sessions] = await Promise.all([api("classes.list"), api("exams.list"), api("sessions.list")]);
+  if (!st.classes.some(c => c.classId === st.classId)) st.classId = st.classes[0]?.classId || "";
+}
+
+/* ===== מעטפת ===== */
+const TABS = [["track", "מעקב והגשות"], ["sessions", "מועדי בחינה"], ["students", "כיתות ותלמידים"], ["exams", "בחינות"], ["audio", "הקראות"]];
+function shell() {
+  app.innerHTML = `<header class="top"><b>סימולטור בגרות</b><small>ניהול מורה</small><span class="sp"></span><small>${esc(st.me?.name || "")}</small><button class="btn g" id="out">יציאה</button></header>
+  <nav class="tabs">${TABS.map(([k, t]) => `<button data-t="${k}" class="${st.tab === k ? "on" : ""}">${t}</button>`).join("")}</nav>
+  <main><div class="sheet" id="tab"></div><div class="msg" id="msg"></div></main><aside class="drawer" id="drawer"></aside>`;
+  document.querySelectorAll(".tabs button").forEach(b => b.onclick = () => { st.tab = b.dataset.t; keep(); shell(); });
+  $("out").onclick = () => { st.key = ""; keep(); login(); };
+  ({ track, sessions, students, exams, audio })[st.tab]();
+}
+const classOpts = sel => st.classes.map(c => `<option value="${esc(c.classId)}" ${c.classId === sel ? "selected" : ""}>${esc(c.name)}</option>`).join("");
+const examName = id => st.exams.find(e => e.examId === id)?.title || "";
+const className = id => st.classes.find(c => c.classId === id)?.name || "";
+
+/* ===== כיתות ותלמידים ===== */
+async function students() {
+  const t = $("tab");
+  if (st.classId) st.students = await api("students.list", { classId: st.classId });
+  t.innerHTML = `<h2>כיתות ותלמידים</h2>
+  <div class="row"><label>כיתה<select id="cls">${classOpts(st.classId)}</select></label>
+  <label>כיתה חדשה<input id="ncls" placeholder="למשל יא1 תיירות"></label><button class="btn g" id="addc">הוספת כיתה</button></div>
+  ${st.classId ? `<h3>הדבקת רשימה ממשוב</h3><div class="hint">כל שורה: מספר זהות, ואחריו שם (מופרדים בטאב או בפסיק). אפשר להעתיק עמודות ישר מהגיליון של משוב.</div>
+  <textarea id="paste" placeholder="123456789	ישראל ישראלי"></textarea><div class="row"><button class="btn g" id="addp">הוספה לכיתה</button></div>
+  <h3>התלמידים (${st.students.length})</h3><div class="hint">"שם במט״ח" – רק אם השם שם שונה. הקראה, מענה בעל פה והארכת זמן – לפי ההתאמות של כל תלמיד.</div>
+  <div class="scroll"><table><thead><tr><th>מספר זהות</th><th>שם</th><th>שם במט״ח</th><th>הקראה</th><th>מענה בעל פה</th><th>הארכת זמן %</th><th></th></tr></thead><tbody>
+  ${st.students.map((s, i) => `<tr data-i="${i}"><td class="num">${esc(s.studentId)}</td><td><input type="text" data-f="name" value="${esc(s.name)}"></td><td><input type="text" data-f="cetName" value="${esc(s.cetName)}"></td>
+  <td><input type="checkbox" data-f="readAloud" ${tr(s.readAloud) ? "checked" : ""} aria-label="הקראה"></td><td><input type="checkbox" data-f="voiceAnswer" ${tr(s.voiceAnswer) ? "checked" : ""} aria-label="מענה בעל פה"></td>
+  <td><input type="number" min="0" max="100" step="5" data-f="extraTime" value="${esc(s.extraTime || 0)}" style="width:80px"></td><td><button class="btn r" data-del="${i}">מחיקה</button></td></tr>`).join("") || `<tr><td colspan="7" class="hint">אין עדיין תלמידים בכיתה.</td></tr>`}
+  </tbody></table></div><div class="row" style="margin-top:12px"><button class="btn l" id="savs">שמירת שינויים</button></div>` : `<p class="hint">התחילו ביצירת כיתה.</p>`}`;
+  if ($("cls")) $("cls").onchange = e => { st.classId = e.target.value; keep(); students(); };
+  $("addc").onclick = () => run(async () => { const n = $("ncls").value.trim(); if (!n) throw new Error("יש להקליד שם כיתה"); const c = await api("classes.save", { item: { name: n } }); st.classes.push(c); st.classId = c.classId; keep(); students(); }, "הכיתה נוספה");
+  if (!st.classId) return;
+  $("addp").onclick = () => run(async () => {
+    const items = $("paste").value.split(/\n/).map(l => l.split(/\t|,/).map(x => x.trim())).filter(a => /^\d{5,9}$/.test(a[0]))
+      .map(a => ({ studentId: a[0], name: a.slice(1).join(" ").trim(), classId: st.classId }));
+    if (!items.length) throw new Error("לא נמצאו שורות עם מספר זהות");
+    await api("students.save", { items, classId: st.classId }); students();
+  }, "נוספו תלמידים");
+  $("savs").onclick = () => run(async () => {
+    const items = [...document.querySelectorAll("tr[data-i]")].map(r => { const s = Object.assign({}, st.students[r.dataset.i]);
+      r.querySelectorAll("[data-f]").forEach(el => s[el.dataset.f] = el.type === "checkbox" ? el.checked : el.value); return s; });
+    await api("students.save", { items, classId: st.classId }); students();
+  }, "נשמר");
+  document.querySelectorAll("[data-del]").forEach(b => b.onclick = () => run(async () => {
+    const s = st.students[b.dataset.del]; if (!confirmInline(b)) return;
+    await api("students.save", { items: [], remove: [{ studentId: s.studentId, classId: st.classId }], classId: st.classId }); students();
+  }, "נמחק"));
+}
+const tr = v => v === true || v === "TRUE" || v === "true";
+function confirmInline(b) { if (b.dataset.sure) return true; b.dataset.sure = 1; b.textContent = "בטוח? לחצו שוב"; return false; }
+
+/* ===== בחינות ===== */
+function exams() {
+  $("tab").innerHTML = `<h2>בחינות</h2><div class="hint">כל בחינה היא קובץ שנמצא באתר הסימולטור. אפשר להוסיף אותה בחינה לכמה מועדים.</div>
+  <div class="cards">${st.exams.map(e => `<div class="card"><b>${esc(e.title)}</b><div class="hint">${esc(e.url)}</div></div>`).join("") || `<p class="hint">אין עדיין בחינות.</p>`}</div>
+  <h3>הוספת בחינה</h3><div class="row"><label>שם<input id="et" value="תיירות – טופס תרגול 1"></label><label style="flex:1">קובץ<input id="eu" value="exams/tour-880387-p01.json"></label><button class="btn l" id="ea">הוספה</button></div>`;
+  $("ea").onclick = () => run(async () => { const e = await api("exams.save", { item: { title: $("et").value.trim(), url: $("eu").value.trim() } }); st.exams.push(e); exams(); }, "הבחינה נוספה");
+}
+
+/* ===== מועדי בחינה ===== */
+function sessions() {
+  const rows = st.sessions.slice().sort((a, b) => String(b.created).localeCompare(String(a.created)));
+  $("tab").innerHTML = `<h2>מועדי בחינה</h2>
+  <div class="row"><label>כיתה<select id="sc">${classOpts(st.classId)}</select></label><label>בחינה<select id="se">${st.exams.map(e => `<option value="${esc(e.examId)}">${esc(e.title)}</option>`).join("")}</select></label>
+  <label>משך (דקות)<input id="sm" type="number" value="180" style="width:110px"></label><button class="btn l" id="sa">פתיחת מועד</button></div>
+  <div class="hint">התלמידים נכנסים עם מספר זהות וסיסמת הפתיחה. קישור לתלמידים: <a href="${esc(SIM)}" target="_blank">${esc(SIM)}</a></div>
+  <div class="scroll"><table><thead><tr><th>כיתה</th><th>בחינה</th><th>סיסמה</th><th>משך</th><th>מצב</th><th>נפתח</th><th></th></tr></thead><tbody>
+  ${rows.map(s => `<tr><td>${esc(className(s.classId))}</td><td>${esc(examName(s.examId))}</td><td><span class="code" style="font-size:22px;padding:2px 10px">${esc(s.openCode)}</span></td><td class="num">${esc(s.minutes)}</td>
+  <td><span class="tag ${s.status === "open" ? "t-sub" : "t-new"}">${s.status === "open" ? "פתוח" : "סגור"}</span></td><td>${fmt(s.created)}</td>
+  <td><button class="btn g" data-tog="${esc(s.sessionId)}">${s.status === "open" ? "סגירה" : "פתיחה מחדש"}</button> <button class="btn" data-trk="${esc(s.sessionId)}">מעקב</button></td></tr>`).join("") || `<tr><td colspan="7" class="hint">אין מועדים.</td></tr>`}</tbody></table></div>`;
+  $("sa").onclick = () => run(async () => {
+    if (!$("se").value) throw new Error("יש להוסיף קודם בחינה");
+    const s = await api("sessions.save", { item: { classId: $("sc").value, examId: $("se").value, minutes: Number($("sm").value) || 180, status: "open" } });
+    st.sessions.push(s); sessions();
+  }, "המועד נפתח");
+  document.querySelectorAll("[data-tog]").forEach(b => b.onclick = () => run(async () => {
+    const s = st.sessions.find(x => x.sessionId === b.dataset.tog); s.status = s.status === "open" ? "closed" : "open";
+    Object.assign(s, await api("sessions.save", { item: s })); sessions();
+  }));
+  document.querySelectorAll("[data-trk]").forEach(b => b.onclick = () => { st.sessionId = b.dataset.trk; st.tab = "track"; keep(); shell(); });
+}
+
+/* ===== מעקב והגשות ===== */
+let trackTimer = null;
+async function track() {
+  clearTimeout(trackTimer);
+  const t = $("tab"); if (!t || st.tab !== "track") return;
+  if (!st.sessions.some(s => s.sessionId === st.sessionId)) st.sessionId = st.sessions.slice(-1)[0]?.sessionId || "";
+  const s = st.sessions.find(x => x.sessionId === st.sessionId);
+  if (!s) { t.innerHTML = `<h2>מעקב והגשות</h2><p class="hint">אין עדיין מועד בחינה. פתחו אחד בלשונית "מועדי בחינה".</p>`; return; }
+  const [att, studs] = await Promise.all([api("attempts.list", { sessionId: s.sessionId }), api("students.list", { classId: s.classId })]);
+  st.attempts = att;
+  const rows = studs.map(x => ({ s: x, a: att.find(a => String(a.studentId) === String(x.studentId)) }));
+  const sub = att.filter(a => a.status === "submitted").length, graded = att.filter(a => a.grade && a.grade.score !== "").length;
+  t.innerHTML = `<h2>מעקב והגשות</h2>
+  <div class="row"><label>מועד<select id="ts">${st.sessions.map(x => `<option value="${esc(x.sessionId)}" ${x.sessionId === s.sessionId ? "selected" : ""}>${esc(className(x.classId))} · ${esc(examName(x.examId))} · ${fmt(x.created)}</option>`).join("")}</select></label>
+  <div><div class="hint" style="margin:0">סיסמת פתיחה</div><span class="code">${esc(s.openCode)}</span></div>
+  <div class="hint" style="margin:0">הגישו ${sub} מתוך ${studs.length} · נבדקו ${graded}<br>מתעדכן כל 15 שניות</div></div>
+  <div class="scroll"><table><thead><tr><th>תלמיד</th><th>מספר זהות</th><th>מצב</th><th>שמירה אחרונה</th><th>זמן שנותר</th><th>ציון</th><th>הוזן במט״ח</th><th></th></tr></thead><tbody>
+  ${rows.map(({ s: x, a }) => { const g = a?.grade; const stt = !a ? ["t-new", "טרם נכנס"] : a.status === "submitted" ? ["t-sub", "הוגש"] : ["t-act", "בעבודה"];
+    return `<tr><td>${esc(x.name)}${x.cetName ? `<div class="hint" style="margin:0">במט״ח: ${esc(x.cetName)}</div>` : ""}</td><td class="num">${esc(x.studentId)}</td><td><span class="tag ${stt[0]}">${stt[1]}</span></td>
+    <td>${fmt(a?.updatedAt)}</td><td class="num">${a ? Math.round(a.timeLeft / 60) + " דק׳" : ""}</td>
+    <td class="num">${g ? (g.error ? `<span class="tag t-err" title="${esc(g.error)}">שגיאה</span>` : `<b>${esc(g.score)}</b>`) : (a?.status === "submitted" ? "בבדיקה…" : "")}</td>
+    <td>${g && !g.error ? (g.cetEntered ? "✓ " + fmt(g.cetEntered) : "—") : ""}</td><td>${a ? `<button class="btn g" data-open="${esc(a.attemptId)}">פירוט</button>` : ""}</td></tr>`; }).join("")}
+  </tbody></table></div>`;
+  $("ts").onchange = e => { st.sessionId = e.target.value; keep(); track(); };
+  document.querySelectorAll("[data-open]").forEach(b => b.onclick = () => openAttempt(b.dataset.open));
+  trackTimer = setTimeout(() => track().catch(() => {}), 15000);
+}
+async function loadExamJson(examId) {
+  if (st.examCache[examId]) return st.examCache[examId];
+  const e = st.exams.find(x => x.examId === examId); const r = await fetch(new URL(e.url, SIM)); return st.examCache[examId] = await r.json();
+}
+async function openAttempt(id) {
+  const d = $("drawer"); d.innerHTML = `<p class="hint">טוען…</p>`; d.classList.add("open");
+  const s = st.sessions.find(x => x.sessionId === st.sessionId);
+  const [list, exam] = await Promise.all([api("attempts.list", { sessionId: st.sessionId, full: true }), loadExamJson(s.examId)]);
+  const a = list.find(x => x.attemptId === id); const g = a.grade || {}; const det = g.detail?.result; const an = g.detail?.analysis || {};
+  const ansOf = sid => Object.keys(a.answers || {}).filter(k => k.split("__")[0] === sid).map(k => a.answers[k]).filter(Boolean).join("\n");
+  const line = sid => det?.lines.find(l => l.id === sid);
+  d.innerHTML = `<div class="dh"><div><b style="font-size:20px">${esc(a.name)}</b> <span class="hint">${esc(a.studentId)}</span></div>
+  <div class="row" style="margin:0"><button class="btn l" id="rg">${g.score !== undefined && g.score !== "" ? "בדיקה מחדש" : "בדיקה עכשיו"}</button><button class="btn g" id="dx">סגירה</button></div></div>
+  ${g.error ? `<div class="msg e">שגיאה בבדיקה: ${esc(g.error)}</div>` : ""}
+  ${det ? `<h3>ציון: ${esc(g.score)} מתוך 100</h3>` : `<p class="hint">${a.status === "submitted" ? "הבדיקה תרוץ אוטומטית תוך דקה–שתיים." : "התלמיד עוד לא הגיש."}</p>`}
+  ${g.cetText ? `<h3>הטקסט למט״ח</h3><textarea id="cet" style="min-height:260px">${esc(g.cetText)}</textarea>
+  <div class="row"><button class="btn" id="cp">העתקה</button><button class="btn g" id="svc">שמירת עריכה</button><label style="flex-direction:row;display:flex;gap:6px;align-items:center"><input type="checkbox" id="ce" ${g.cetEntered ? "checked" : ""} style="width:20px;min-height:20px">הוזן במט״ח</label></div>` : ""}
+  <h3>תשובות לפי סעיפים</h3>
+  ${exam.chapters.map(c => c.questions.map(q => q.sections.map(sec => { const ans = ansOf(sec.id), l = line(sec.id); if (!ans && !l) return "";
+    return `<div class="sec"><div class="h"><span>${esc(q.title)} ${sec.letter ? "· סעיף " + esc(sec.letter) : ""}</span><span>${l ? `${l.score} / ${l.max}${l.counted ? "" : " (לא נספר)"}` : ""}</span></div>
+    <div class="ans">${esc(ans || "(לא נענה)")}</div>
+    ${l ? `<ul>${l.ok.map(x => `<li class="okc">✓ ${esc(x)}</li>`).join("")}${l.missing.map(x => `<li class="bad">✗ חסר: ${esc(x)}</li>`).join("")}${l.wrong.map(x => `<li class="bad">✗ שגוי: ${esc(x)}</li>`).join("")}${l.tip ? `<li>→ ${esc(l.tip)}</li>` : ""}</ul>` : ""}</div>`; }).join("")).join("")).join("")}
+  ${an.summary ? `<h3>ניתוח</h3><p>${esc(an.summary)}</p>` : ""}`;
+  $("dx").onclick = () => d.classList.remove("open");
+  $("rg").onclick = async () => { $("rg").disabled = true; $("rg").textContent = "בודק…"; try { await api("grade.run", { attemptId: id }); openAttempt(id); track(); } catch (e) { $("rg").textContent = "שגיאה: " + e.message; } };
+  if ($("cp")) $("cp").onclick = () => navigator.clipboard.writeText($("cet").value).then(() => $("cp").textContent = "הועתק ✓").catch(() => { $("cet").select(); });
+  if ($("svc")) $("svc").onclick = async () => { await api("grade.edit", { attemptId: id, cetText: $("cet").value }); $("svc").textContent = "נשמר ✓"; };
+  if ($("ce")) $("ce").onchange = async e => { await api("grade.cetMark", { attemptId: id, value: e.target.checked }); track(); };
+}
+
+/* ===== הקראות ===== */
+async function audio() {
+  const t = $("tab");
+  if (!st.exams.length) { t.innerHTML = `<h2>הקראות</h2><p class="hint">יש להוסיף קודם בחינה.</p>`; return; }
+  const examId = st.audioExam || st.exams[0].examId; st.audioExam = examId;
+  const [exam, have] = await Promise.all([loadExamJson(examId), api("audio.list")]);
+  const kinds = ref => have.filter(h => h.ref === examId + ":" + ref).map(h => h.kind);
+  const items = []; exam.chapters.forEach(c => c.questions.forEach(q => { if (q.instr) items.push({ ref: "instr:" + q.id, label: q.title + " · הנחיה", text: q.instr.replace(/<[^>]+>/g, "") });
+    q.sections.forEach(s => items.push({ ref: s.id, label: q.title + (s.letter ? " · סעיף " + s.letter : ""), text: (s.letter ? "סעיף " + s.letter + ". " : "") + s.text.replace(/<[^>]+>/g, "") })); }));
+  t.innerHTML = `<h2>הקראות</h2><div class="row"><label>בחינה<select id="ae">${st.exams.map(e => `<option value="${esc(e.examId)}" ${e.examId === examId ? "selected" : ""}>${esc(e.title)}</option>`).join("")}</select></label></div>
+  <div class="hint">סדר העדיפות לתלמיד: ההקלטה שלך ← הקראה ממוחשבת שנוצרה כאן ← הקול של הדפדפן. ההקראה מופיעה רק לתלמידים שסימנת להם "הקראה".</div>
+  ${items.map((it, i) => { const k = kinds(it.ref); return `<div class="qsec"><div><b>${esc(it.label)}</b><div class="t">${esc(it.text)}</div>
+  <div class="hint" style="margin:2px 0">${k.includes("question") ? "✓ הקלטה שלך" : ""} ${k.includes("tts") ? "✓ הקראה ממוחשבת" : ""}</div></div>
+  <div class="acts"><button class="btn g" data-play="${i}">השמעה</button><button class="btn" data-rec="${i}">הקלטה</button><button class="btn g" data-tts="${i}">הקראה ממוחשבת</button>${k.includes("question") ? `<button class="btn r" data-delrec="${i}">מחיקת הקלטה</button>` : ""}</div></div>`; }).join("")}`;
+  $("ae").onchange = e => { st.audioExam = e.target.value; audio(); };
+  document.querySelectorAll("[data-play]").forEach(b => b.onclick = async () => { const it = items[b.dataset.play];
+    const a = await api("audio.get", { examId, sectionId: it.ref }).catch(() => null);
+    if (a) new Audio(`data:${a.mime};base64,${a.base64}`).play(); else { const u = new SpeechSynthesisUtterance(it.text); u.lang = "he-IL"; speechSynthesis.speak(u); } });
+  document.querySelectorAll("[data-tts]").forEach(b => b.onclick = () => run(async () => { b.disabled = true; await api("audio.tts", { examId, sectionId: items[b.dataset.tts].ref, text: items[b.dataset.tts].text }); audio(); }, "ההקראה נוצרה"));
+  document.querySelectorAll("[data-delrec]").forEach(b => b.onclick = () => run(async () => { await api("audio.saveQuestion", { examId, sectionId: items[b.dataset.delrec].ref }); audio(); }, "נמחק"));
+  document.querySelectorAll("[data-rec]").forEach(b => b.onclick = () => recordQ(b, examId, items[b.dataset.rec].ref));
+}
+let qrec = null;
+async function recordQ(b, examId, ref) {
+  if (qrec) { qrec.stop(); return; }
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true }).catch(() => null);
+  if (!stream) return msg("אין גישה למיקרופון", true);
+  const ch = []; qrec = new MediaRecorder(stream); b.classList.add("rec"); b.textContent = "עצירה";
+  qrec.ondataavailable = e => ch.push(e.data);
+  qrec.onstop = () => { stream.getTracks().forEach(t => t.stop()); const blob = new Blob(ch, { type: qrec.mimeType || "audio/webm" }); qrec = null;
+    const f = new FileReader(); f.onload = () => run(async () => { await api("audio.saveQuestion", { examId, sectionId: ref, base64: String(f.result).split(",")[1], mime: blob.type }); audio(); }, "ההקלטה נשמרה"); f.readAsDataURL(blob); };
+  qrec.start();
+}
+
+(st.api && st.key) ? api("teacher.me").then(async me => { st.me = me; await loadBase(); shell(); }).catch(e => login(e.message)) : login();
+}
+</script>
+</body>
+</html>

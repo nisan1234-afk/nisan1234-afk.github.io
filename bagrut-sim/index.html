@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>סימולטור בגרות תיירות</title>
+<title>סימולטור בגרות</title>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Arimo:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* VOICE: exam-room neutral, nothing added beyond the player itself
@@ -143,171 +143,11 @@ body.big .sheet{font-size:19px}body.big .tw textarea,body.big .cz,body.big .t se
 @media(max-width:1100px){.mid{padding-inline-end:12px}.sheet{width:calc(100% - 150px)}.pg{width:60px}.pg.prv{right:calc(84px + 8px)}.pg.nxt{left:8px}.pg::before{width:180px;height:180px;top:41px}.saved{display:none}.det b{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.drawer,.dct svg{transition:none}}
 </style>
+<link rel="stylesheet" href="extra.css">
 </head>
 <body>
 <div id="app"></div>
-<script>
-{
-/* ===== נתוני הבחינה – מופרדים מהתצוגה. בהמשך: נטען מהשרת לפי מזהה בחינה ===== */
-const EXAM={id:"tour-practice-01",code:"880387",subject:"תיירות",kind:"תרגול כיתתי",session:"טופס לדוגמה, 2026",minutes:180,practiceCode:"1234",
- chapters:[
-  {name:"פרק ראשון",points:34,desc:"בפרק זה עליכם לענות על שתיים מבין השאלות 1–4 (לכל שאלה – 17 נקודות).",questions:[{title:"שאלה 2 – רמת־הגולן",page:"golan"}]},
-  {name:"פרק שני",points:36,desc:"ענו על שלוש מבין השאלות 5–10 (לכל שאלה – 12 נקודות).",questions:[]},
-  {name:"פרק שלישי",points:30,desc:"ענו על שאלה 11 – שאלת חובה.",questions:[]}]};
-const SITES=[{id:"rujm",art:"rings"},{id:"gamla",art:"ridge"},{id:"nimrod",art:"castle"}];
-const OPTIONS=["","שמורת הבניאס","שמורת גמלא","מבצר נמרוד","רוג'ום אל־הירי (גלגל רפאים)","הר בנטל","קצרין העתיקה"];
-const PAGES=["gate","golan","summary"];
-
-/* ===== מצב ושמירה ===== */
-const S={id:"",name:"",page:0,ans:{},left:EXAM.minutes*60,open:{0:true}};
-const KEY=()=>"sim:"+EXAM.id+":"+S.id;
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const $=id=>document.getElementById(id);
-function save(){try{localStorage.setItem(KEY(),JSON.stringify({ans:S.ans,left:S.left,page:S.page}))}catch(e){}
- const s=$("saved");if(s)s.textContent="נשמר "+new Date().toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"})}
-function load(){try{const d=JSON.parse(localStorage.getItem(KEY())||"null");if(d){S.ans=d.ans||{};S.left=d.left??S.left;S.page=d.page||0}}catch(e){}}
-const EMB=(()=>{try{return window.self!==window.top}catch(e){return true}})();
-const FSI=`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6V1h5M10 1h5v5M15 10v5h-5M6 15H1v-5"/></svg>`;
-function goFull(){const el=document.documentElement;const ok=el.requestFullscreen&&document.fullscreenEnabled;
- if(ok){el.requestFullscreen().catch(()=>openTab())}else openTab()}
-function openTab(){window.open(location.href,"_blank","noopener")}
-const fsBtn=id=>EMB?`<button type="button" class="fsb" id="${id}">${FSI}פתיחה במסך מלא</button>`:"";
-document.addEventListener("fullscreenchange",()=>document.querySelectorAll(".fsb").forEach(b=>b.style.display=document.fullscreenElement?"none":""));
-const filled=k=>String(S.ans[k]||"").trim()!=="";
-const mmss=s=>{s=Math.max(0,s);const h=Math.floor(s/3600),m=Math.floor(s%3600/60),x=s%60;return h+":"+String(m).padStart(2,"0")+":"+String(x).padStart(2,"0")};
-
-/* ===== גרפיקה (מקורית) ===== */
-const I={x:`<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6"><path d="M4 4l16 16M20 4L4 20"/></svg>`,
- xs:`<svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l12 12M13 1L1 13"/></svg>`,
- nav:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 5h13M3 12h13M3 19h13"/><circle cx="21" cy="5" r="1.2" fill="currentColor"/><circle cx="21" cy="12" r="1.2" fill="currentColor"/><circle cx="21" cy="19" r="1.2" fill="currentColor"/></svg>`,
- draft:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg>`,
- end:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 12l3 3 5-6"/></svg>`,
- user:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="6" cy="4" r="2.3"/><path d="M1.5 11.5c.6-2.4 2.3-3.6 4.5-3.6s3.9 1.2 4.5 3.6"/></svg>`,
- chev:`<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3l5 5-5 5"/></svg>`,
- right:`<svg viewBox="0 0 22 22" fill="none" stroke="#000" stroke-width="1.6"><path d="M2 11h18M13 4l7 7-7 7"/></svg>`,
- left:`<svg viewBox="0 0 22 22" fill="none" stroke="#000" stroke-width="1.6"><path d="M20 11H2M9 4l-7 7 7 7"/></svg>`};
-/* לוגו מקורי של הסימולטור (לא של מט"ח) */
-const LOGO=`<svg class="logo" viewBox="0 0 56 50"><g><path d="M20 10l16-7 16 7-16 7z" fill="#d3e64c"/><path d="M20 10v18l16 7V17z" fill="#b5c92a"/><path d="M52 10v18l-16 7V17z" fill="#93a51a"/></g><g><path d="M4 28l12-5 12 5-12 5z" fill="#d3e64c"/><path d="M4 28v13l12 5V33z" fill="#b5c92a"/><path d="M28 28v13l-12 5V33z" fill="#93a51a"/></g></svg>`;
-const ART={
- rings:`<svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#8fb35a"/><g fill="none" stroke="#9b9283" stroke-width="7">${[58,43,28,13].map(r=>`<circle cx="100" cy="76" r="${r}"/>`).join("")}</g><circle cx="100" cy="76" r="6" fill="#9b9283"/></svg>`,
- ridge:`<svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#cfe2f1"/><path d="M0 150V96q50-26 88-14l38-40q18-14 34 6l40 34v68z" fill="#7d9c4c"/><path d="M118 52l8-10q18-14 34 6l-10 14q-14-14-32-10z" fill="#a89069"/><path d="M0 150l74-34 126 20v14z" fill="#5c7a35"/></svg>`,
- castle:`<svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#d6e6f4"/><path d="M0 150v-38q60-30 200-8v46z" fill="#6c8c43"/><g fill="#bca57e" stroke="#8d7753"><rect x="50" y="64" width="100" height="44"/><rect x="42" y="48" width="26" height="60"/><rect x="132" y="48" width="26" height="60"/>${[44,57,134,147].map(x=>`<rect x="${x}" y="40" width="8" height="9"/>`).join("")}</g><rect x="92" y="82" width="16" height="26" fill="#5b4a33"/></svg>`};
-const MAP=`<svg viewBox="0 0 551 510" role="img" aria-label="מפה סכמטית של רמת הגולן">
-<defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#cfe08a"/><stop offset=".45" stop-color="#e7d79a"/><stop offset="1" stop-color="#c8834a"/></linearGradient></defs>
-<rect width="551" height="510" fill="url(#g1)"/>
-<path d="M190 30C250 22 320 32 360 62L410 140 430 250 420 360 392 470 226 476 212 386 202 296 188 196Z" fill="#d18d55" opacity=".75"/>
-<path d="M190 30C235 24 280 26 300 40L292 92 240 104 200 92Z" fill="#a86b3d" opacity=".8"/>
-<path d="M110 0L190 30 360 62 462 0" fill="none" stroke="#7a1111" stroke-width="3.5"/>
-<path d="M360 62L410 140 430 250 420 360 462 510" fill="none" stroke="#7a1111" stroke-width="3.5" stroke-dasharray="9 6"/>
-<path d="M226 476C296 466 376 476 462 510" fill="none" stroke="#7a1111" stroke-width="3.5"/>
-<path d="M140 166L172 156 182 196 162 226 142 206Z" fill="#9fcbe9"/>
-<ellipse cx="178" cy="414" rx="40" ry="60" fill="#7fb6dd"/>
-<path d="M168 36C172 106 162 156 160 170M160 226C162 286 168 336 172 356" stroke="#3d8ed0" stroke-width="2.5" fill="none" stroke-dasharray="5 3"/>
-<g font-family="Segoe UI,Arimo,Arial" font-size="15" fill="#1d1d1d" text-anchor="middle">
-<text x="178" y="419">כנרת</text><text x="150" y="140">עמק החולה</text><text x="318" y="262" font-size="21" font-weight="700" letter-spacing="2">רמת הגולן</text>
-<circle cx="298" cy="318" r="3.5"/><text x="298" y="340">קצרין</text><circle cx="256" cy="118" r="3.5"/><text x="256" y="138">הר חרמון</text></g>
-<text x="12" y="500" font-family="Assistant" font-size="12" fill="#333">איור סכמטי לתרגול – לא בקנה מידה</text></svg>`;
-const CZ=[{k:"m1",x:39,y:7,l:"מדינה בצפון"},{k:"m2",x:4,y:45,l:"מדינה במזרח"},{k:"m3",x:20,y:93,l:"מדינה בדרום"}];
-
-/* ===== מסך כניסה ===== */
-const app=$("app");
-function loginView(){
- app.innerHTML=`<div class="login"><div class="lcard"><header>${LOGO}<div><b>סימולטור בגרות</b>${esc(EXAM.subject)} · ${esc(EXAM.kind)}</div></header>
- <form id="lf" novalidate><label>מספר זהות<input id="lid" inputmode="numeric" autocomplete="off"></label><label>שם הנבחן<input id="lnm" autocomplete="off"></label>
- <label>סיסמה לפתיחת הבחינה<input id="lpw" inputmode="numeric" autocomplete="off"></label>${EMB?`<div class="emb-note">מומלץ לעבוד במסך מלא, כמו בבחינה האמיתית.${fsBtn("fs1")}</div>`:""}<div class="lerr" id="lerr"></div>
- <button class="btn l">המשך</button><div class="disc" style="margin:0">לתרגול: הסיסמה היא ${esc(EXAM.practiceCode)}</div></form></div></div>`;
- if(EMB)$("fs1").onclick=goFull;
- $("lf").addEventListener("submit",e=>{e.preventDefault();const id=$("lid").value.trim(),nm=$("lnm").value.trim(),pw=$("lpw").value.trim();
-  if(!/^\d{5,9}$/.test(id))return $("lerr").textContent="יש להקליד מספר זהות תקין";
-  if(!nm)return $("lerr").textContent="יש להקליד שם";
-  if(pw!==EXAM.practiceCode)return $("lerr").textContent="הסיסמה שגויה";
-  S.id=id;S.name=nm;load();shell()});
-}
-
-/* ===== מעטפת הנגן ===== */
-function shell(){
- app.innerHTML=`<header class="top">${LOGO}<div class="det"><b>${esc(EXAM.subject)}, ${esc(EXAM.kind)}, ${esc(EXAM.session)}, שאלון ${esc(EXAM.code)}</b><span>${I.user}${esc(S.name)}</span></div>
- <div class="mid">${fsBtn("fs2")}<span class="saved" id="saved"></span><div class="clock" id="clock" title="זמן שנותר"><span id="tm"></span></div><button class="circ" id="bfont" aria-label="גודל טקסט" title="גודל טקסט"><span>A<i>א</i></span></button></div>
- <button class="x" id="bx" aria-label="יציאה">${I.x}</button></header>
- <aside class="rail" aria-label="תפריט"><div class="cap"></div><button class="rbtn" id="bnav">${I.nav}ניווט</button>
- <div class="rest"><button class="rbtn" id="bdraft">${I.draft}טיוטה</button><button class="rbtn" id="bend">${I.end}סיום</button></div></aside>
- <section class="stage"><div class="scroll" id="scroll"><div id="main"></div></div></section>
- <button class="pg prv" id="bprev" aria-label="לעמוד הקודם">${I.right}</button><button class="pg nxt" id="bnext" aria-label="לעמוד הבא">${I.left}</button>
- <aside class="drawer" id="drawer" aria-label="ניווט"></aside>
- <div class="draft" id="draft"><header>טיוטה (לא נבדקת)</header><textarea id="dtx" aria-label="טיוטה"></textarea></div>
- <div class="modal" id="modal"><div class="mcard" id="mcard"></div></div>`;
- if(EMB)$("fs2").onclick=goFull;
- $("bfont").onclick=()=>document.body.classList.toggle("big");
- $("bnav").onclick=()=>drawer();
- $("bdraft").onclick=()=>{const o=$("draft").classList.toggle("open");$("bdraft").classList.toggle("on",o)};
- $("bend").onclick=()=>go(PAGES.length-1);
- $("bx").onclick=()=>go(PAGES.length-1);
- $("bprev").onclick=()=>go(S.page-1);$("bnext").onclick=()=>go(S.page+1);
- $("modal").onclick=e=>{if(e.target.id==="modal")$("modal").classList.remove("open")};
- $("dtx").value=S.ans._draft||"";$("dtx").oninput=e=>{S.ans._draft=e.target.value;save()};
- document.addEventListener("keydown",e=>{if(e.key==="Escape"){$("modal").classList.remove("open");drawer(false)}});
- tick();setInterval(tick,1000);render();
-}
-function tick(){if(S.left>0)S.left--;const t=$("tm");if(!t)return;t.textContent=mmss(S.left);$("clock").classList.toggle("warn",S.left<900);if(S.left%15===0)save()}
-function drawer(force){const d=$("drawer"),o=force??!d.classList.contains("open");d.classList.toggle("open",o);$("bnav").classList.toggle("on",o);if(o)drawNav()}
-const golanKeys=()=>["m1","m2","m3","a2",...SITES.flatMap(s=>[s.id+"_n",s.id+"_d"])];
-function drawNav(){
- const pg=PAGES[S.page];
- $("drawer").innerHTML=`<div class="dh">ניווט<button id="dx" aria-label="סגירה">${I.xs}</button></div>
- <button class="db ${pg==="gate"?"cur":""}" data-p="0">שער</button>
- ${EXAM.chapters.map((c,i)=>`<div class="dch ${S.open[i]?"open":""}"><button class="dct" data-c="${i}"><span class="nm">${I.chev}${esc(c.name)}</span><span class="pts"><b>${c.points}</b> נק'</span></button>
- <div class="dbody"><p class="dd">${esc(c.desc)}</p>${c.questions.length?c.questions.map(q=>`<button class="dq ${pg===q.page?"cur":""}" data-p="${PAGES.indexOf(q.page)}">${esc(q.title)}<small>${golanKeys().filter(filled).length}/${golanKeys().length}</small></button>`).join(""):`<div class="dnone">שאלות הפרק יתווספו בהמשך</div>`}</div></div>`).join("")}
- <div class="dch"><button class="db ${pg==="summary"?"cur":""}" data-p="${PAGES.length-1}">סיום והגשה</button></div>`;
- $("dx").onclick=()=>drawer(false);
- document.querySelectorAll("#drawer [data-p]").forEach(b=>b.onclick=()=>{go(+b.dataset.p);drawer(false)});
- document.querySelectorAll("#drawer [data-c]").forEach(b=>b.onclick=()=>{S.open[b.dataset.c]=!S.open[b.dataset.c];drawNav()});
-}
-function go(p){if(p<0||p>=PAGES.length)return;S.page=p;save();render();$("scroll").scrollTop=0}
-
-/* ===== עמודים ===== */
-function render(){
- const m=$("main"),pg=PAGES[S.page];
- $("bprev").disabled=S.page===0;$("bnext").disabled=S.page===PAGES.length-1;
- if(pg==="gate")m.innerHTML=`<div class="sheet gate"><div class="sh"><div class="glabel">סימולטור בגרות<small>תרגול כיתתי</small></div>
-  <dl class="gmeta"><dt>סוג הבחינה:</dt><dd>${esc(EXAM.kind)}</dd><dt>מועד הבחינה:</dt><dd>${esc(EXAM.session)}</dd><dt>סמל השאלון:</dt><dd>${esc(EXAM.code)}</dd></dl>
-  <div class="band">${esc(EXAM.subject)}</div></div><div class="qt"><h3>הוראות לנבחנים</h3><ol>
-  <li><b>משך הבחינה:</b> ${EXAM.minutes/60===3?"שלוש שעות":EXAM.minutes+" דקות"}.</li>
-  <li><b>מבנה השאלון ומפתח ההערכה:</b> בשאלון זה שלושה פרקים. ${EXAM.chapters.map(c=>`${esc(c.name)} – ${c.points} נקודות`).join("; ")}.</li>
-  <li><b>מעבר בין השאלות:</b> בחיצים שבצדי המסך או בלשונית "ניווט".</li>
-  <li><b>שמירה:</b> התשובות נשמרות אוטומטית תוך כדי עבודה.</li>
-  <li><b>טיוטה:</b> בלשונית "טיוטה". הכתוב בה אינו נבדק.</li></ol>
-  <div class="disc">סימולציה לתרגול בכיתה · השאלות והאיורים נכתבו לתרגול ואינם בחינה רשמית</div></div></div>`;
- if(pg==="golan")m.innerHTML=`<div class="sheet"><div class="sh"><b>פרק ראשון</b> (34 נקודות)<br><b>ענו על <u>שתיים</u> מבין השאלות 1–4 (לכל שאלה – 17 נקודות).</b></div>
-  <div class="qt"><div class="topline"></div><span class="numq">שאלה 2 – רמת־הגולן</span>
-  <p style="margin:22px 0 0"><b>ענו על <u>שניים</u> מבין שלושת הסעיפים שלפניכם (לכל סעיף – 8.5 נקודות).</b></p>
-  <div class="sec"><b>א.</b><div>רמת־הגולן גובלת בכמה מדינות.<br>כתבו על־גבי המפה, במקומות המתאימים, את שמות המדינות.<div class="nik">(4 נקודות)</div>
-   <div class="map">${MAP}${CZ.map(c=>`<input class="cz" data-k="${c.k}" aria-label="${esc(c.l)}" style="right:${c.x}%;top:${c.y}%">`).join("")}</div>
-   הסבירו כיצד מיקומה של רמת־הגולן משפיע על התיירות באזור.<div class="nik">(4.5 נקודות)</div>
-   <span class="tw"><textarea data-k="a2" maxlength="1500"></textarea><div class="cnt" data-c="a2"></div></span></div></div>
-  <div class="sec"><b>ב.</b><div>בטבלה שלפניכם מוצגים איורים של אתרים ברמת־הגולן.<br>– זהו <b>שלושה</b> מבין האתרים, ובחרו בשם המתאים לכל אחד מהם.<div class="nik">(4 נקודות)</div>
-   – תארו בקצרה כל אחד משלושת האתרים שזיהיתם, והסבירו את מקור משיכתו לתיירים.<div class="nik">(4.5 נקודות)</div>
-   <p>שימו לב, תוכלו להגדיל כל איור באמצעות לחיצה עליו.</p>
-   <table class="t"><thead><tr><th>התמונה</th><th>שם האתר</th><th>תיאור האתר ומקור המשיכה לתיירים</th></tr></thead><tbody>
-   ${SITES.map((s,i)=>`<tr><td class="pic"><button class="thumb" data-art="${s.art}" aria-label="הגדלת איור ${i+1}">${ART[s.art]}</button><div class="credit">איור לתרגול</div></td>
-    <td style="text-align:center"><select data-k="${s.id}_n" aria-label="שם האתר ${i+1}">${OPTIONS.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join("")}</select></td>
-    <td><span class="tw"><textarea data-k="${s.id}_d" maxlength="800" aria-label="תיאור אתר ${i+1}"></textarea></span></td></tr>`).join("")}
-   </tbody></table></div></div></div></div>`;
- if(pg==="summary"){const L={m1:"א – מפה, צפון",m2:"א – מפה, מזרח",m3:"א – מפה, דרום",a2:"א – הסבר",rujm_n:"ב – שם אתר 1",rujm_d:"ב – תיאור אתר 1",gamla_n:"ב – שם אתר 2",gamla_d:"ב – תיאור אתר 2",nimrod_n:"ב – שם אתר 3",nimrod_d:"ב – תיאור אתר 3"};
-  const ks=golanKeys(),n=ks.filter(filled).length;
-  m.innerHTML=`<div class="sheet"><div class="sh"><b>סיום והגשה</b></div><div class="qt"><p>מילאת ${n} מתוך ${ks.length} שדות בשאלה 2. זמן שנותר: ${mmss(S.left)}.</p>
-  <table class="t sum"><thead><tr><th>סעיף</th><th>מצב</th></tr></thead><tbody>${ks.map(k=>`<tr><td>${esc(L[k])}</td><td class="${filled(k)?"ok":"no"}">${filled(k)?"נענה":"לא נענה"}</td></tr>`).join("")}</tbody></table>
-  <p style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px"><button class="btn l" id="sub">הגשת הבחינה</button><button class="btn" id="back">חזרה לשאלות</button></p><div id="sent"></div></div></div>`;
-  $("back").onclick=()=>go(1);$("sub").onclick=()=>{S.ans._submitted=new Date().toISOString();save();$("sent").innerHTML=`<p class="ok">הבחינה הוגשה. בגרסת ההדגמה התשובות נשמרות בדפדפן בלבד.</p>`}}
- bind();
-}
-function bind(){
- document.querySelectorAll("#main [data-k]").forEach(el=>{const k=el.dataset.k;if(S.ans[k]!=null)el.value=S.ans[k];const c=document.querySelector(`[data-c="${k}"]`);
-  const cnt=()=>{if(c)c.textContent=(el.value||"").length+" / "+el.maxLength+" תווים"};cnt();
-  const up=()=>{S.ans[k]=el.value;cnt();save()};el.addEventListener("input",up);el.addEventListener("change",up)});
- document.querySelectorAll(".thumb").forEach(b=>b.onclick=()=>{$("mcard").innerHTML=ART[b.dataset.art]+`<p style="text-align:center;margin:12px 0 0"><button class="btn" id="mx">סגירה</button></p>`;$("modal").classList.add("open");$("mx").onclick=()=>$("modal").classList.remove("open")});
-}
-loginView();
-}
-</script>
+<script src="config.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
