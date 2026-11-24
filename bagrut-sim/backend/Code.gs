@@ -8,7 +8,7 @@
  *   CLAUDE_MODEL        – לא חובה. ברירת מחדל: claude-sonnet-5-5
  *   GEMINI_MODEL        – לא חובה. ברירת מחדל: gemini-2.5-flash
  *   GEMINI_TTS_MODEL    – לא חובה. ברירת מחדל: gemini-2.5-flash-preview-tts
- *   EXAMS_BASE_URL      – כתובת תיקיית הבחינות באתר, למשל https://nisan1234-afk.github.io/bagrut-sim/exams/
+ *   EXAMS_BASE_URL      – כתובת תיקיית הבחינות באתר, למשל https://nisan1234-afk.github.io/bagrut-sim/
  * התקנה: להריץ פעם אחת את setup() – הפונקציה יוצרת את הגיליון והתיקייה ומדפיסה ביומן מפתח מורה ראשון.
  */
 
