@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>הטיול השנתי – כסלו תשפ"ז</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="lib/leaflet.css">
+<style>
+/* VOICE: חגיגי ושמח, מדריך טיול לתלמידים
+   IDEA: כרטיס טיול / מפת סימון שבילים של המדבר
+   PICTURE: מפה אמיתית גדולה + תמונות מהמקומות
+   COLOUR and TYPE: חול-מדבר כתום, חום כהה, טורקיז של מעיינות; Secular One + Assistant
+   LAYOUT: כותרת עם תמונה, מפה, ימים, ציוד, הסעות */
+:root{color-scheme:light dark;
+ --bg:light-dark(#fbf6ee,#1b140f);--card:light-dark(#fff,#261c15);--ink:light-dark(#2a1d14,#f3e9dc);
+ --mute:light-dark(#7a6655,#bba892);--sand:#c8743a;--sand2:light-dark(#f1dcc0,#3a2a1d);--sea:#13817f;--line:light-dark(#ead9c3,#3d2e22)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 Assistant,Arial,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Secular One",Assistant,sans-serif;font-weight:400;line-height:1.1;margin:0;text-wrap:balance}
+img{display:block;max-width:100%}
+.hero{position:relative;min-height:min(78vh,620px);display:flex;align-items:flex-end;color:#fff;background:#3a2414}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(30,15,5,.88),rgba(30,15,5,.15) 60%)}
+.hero .in{position:relative;z-index:1;padding:clamp(24px,5vw,56px) max(5vw,16px);max-width:1240px;width:100%;margin:auto}
+.hero h1{font-size:clamp(40px,8vw,76px)}
+.hero p{font-size:clamp(17px,2.4vw,21px);margin:.5em 0 0;max-width:40em}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:4px 12px;border-radius:99px;font-size:15px;backdrop-filter:blur(4px)}
+nav{position:sticky;top:0;z-index:1000;background:var(--sand);display:flex;gap:4px;overflow-x:auto;padding:8px max(4vw,10px)}
+nav a{flex:none;color:#fff;text-decoration:none;font-weight:700;padding:8px 14px;border-radius:99px;font-size:16px}
+nav a:hover,nav a:focus-visible{background:rgba(0,0,0,.18);outline:none}
+.band{padding:clamp(28px,4vw,60px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:auto}
+.note{background:var(--sand2);border-radius:14px;padding:12px 16px;font-weight:600;display:flex;gap:10px;align-items:center}
+h2{font-size:clamp(30px,4.5vw,44px);margin-bottom:16px}
+.sub{color:var(--mute);margin:-8px 0 16px}
+#map{height:min(70vh,560px);border-radius:18px;border:1px solid var(--line);z-index:0}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 12px}
+.filters button{font:inherit;font-weight:700;font-size:15px;min-height:44px;padding:6px 16px;border-radius:99px;border:2px solid var(--c,var(--sand));background:var(--card);color:var(--ink);cursor:pointer}
+.filters button.on{background:var(--c,var(--sand));color:#fff}
+.filters button:focus-visible{outline:3px solid var(--sea);outline-offset:2px}
+.day{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(18px,3vw,40px);background:var(--card);border-radius:22px;overflow:hidden;border:1px solid var(--line);margin-bottom:28px}
+.day .pics{display:grid;grid-template-rows:1fr auto;min-height:320px;position:relative}
+.day .pics img{width:100%;height:100%;object-fit:cover;min-height:260px}
+.day .pics .two{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.day .pics .two img{min-height:130px;height:150px}
+.day .txt{padding:clamp(18px,3vw,32px) clamp(18px,3vw,32px) clamp(18px,3vw,32px) 0}
+.dno{display:inline-block;background:var(--c);color:#fff;border-radius:99px;padding:2px 14px;font-weight:700;font-size:15px}
+.day h3{font-size:clamp(28px,3.6vw,38px);margin:8px 0 2px}
+.date{color:var(--mute);font-weight:600}
+.route{border-inline-start:4px solid var(--c);background:var(--sand2);border-radius:10px;padding:10px 14px;margin:14px 0;font-weight:600}
+.route small{display:block;font-weight:400;color:var(--mute)}
+ol.sch{list-style:none;margin:0;padding:0}
+ol.sch li{display:grid;grid-template-columns:4.2em minmax(0,1fr);gap:10px;padding:7px 0;border-bottom:1px dashed var(--line)}
+ol.sch li:last-child{border:0}
+.t{font-weight:700;color:var(--c);white-space:nowrap;font-variant-numeric:tabular-nums}
+.who{color:var(--mute);font-size:15px}
+.guide{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:52px;margin-top:14px;padding:10px 18px;border-radius:14px;background:var(--sea);color:#fff;font-weight:700;font-size:18px;text-decoration:none;box-shadow:0 4px 12px rgba(19,129,127,.35)}
+.guide.pod{background:#5b4fa3;box-shadow:none;margin-top:8px}
+.guide:hover,.guide:focus-visible{filter:brightness(1.1);outline:3px solid var(--c);outline-offset:2px}
+.mapbtn{font:inherit;font-weight:700;margin-top:14px;min-height:44px;padding:8px 16px;border-radius:12px;border:0;background:var(--c);color:#fff;cursor:pointer}
+.cred{position:absolute;bottom:6px;left:8px;font-size:12px;color:#fff;background:rgba(0,0,0,.45);padding:1px 8px;border-radius:6px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px}
+.box h3{font-size:26px;margin-bottom:4px}
+.must{color:#b23a1e;font-weight:700}
+.chk{list-style:none;padding:0;margin:10px 0 0}
+.chk label{display:flex;gap:12px;align-items:center;min-height:44px;padding:4px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--sea);flex:none}
+.chk input:checked+span{text-decoration:line-through;color:var(--mute)}
+.tag{font-size:13px;font-weight:700;color:#fff;background:#b23a1e;border-radius:6px;padding:0 7px;margin-inline-start:6px}
+.prog{height:10px;background:var(--sand2);border-radius:99px;overflow:hidden;margin-top:12px}
+.prog i{display:block;height:100%;width:0;background:var(--sea);transition:width .3s}
+.reset{font:inherit;background:none;border:0;color:var(--mute);text-decoration:underline;cursor:pointer;margin-top:8px;min-height:44px}
+.bus{display:grid;gap:12px}
+.bus div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.bus b{font-family:"Secular One";font-weight:400;font-size:22px;color:var(--sand)}
+footer{background:#2a1d14;color:#e9dccb;text-align:center;padding:36px 16px;font-size:14px}
+footer h3{font-size:30px;color:#fff;margin-bottom:10px}
+footer .credits{max-width:800px;margin:16px auto 0;opacity:.75;font-size:13px}
+footer a{color:#f1c79c}
+.leaflet-popup-content{font:15px/1.4 Assistant,sans-serif;text-align:right;direction:rtl}
+.pin{width:30px;height:30px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.4);display:grid;place-items:center}
+.pin span{transform:rotate(45deg);color:#fff;font:700 13px Assistant}
+
+.gsec{background:light-dark(#f3ece2,#211812)}
+.gq{font-size:19px}.gq b{color:var(--sand)}
+.gbox{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 0;padding:0 18px}
+.gbox>summary{cursor:pointer;font-weight:700;padding:14px 0;min-height:44px;list-style-position:inside}
+.gbox[open]{padding-bottom:16px}
+.gtabs{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 14px}
+.gtabs button{font:inherit;font-weight:700;min-height:44px;padding:6px 16px;border-radius:99px;border:2px solid var(--c);background:var(--card);color:var(--ink);cursor:pointer}
+.gtabs button[aria-selected=true]{background:var(--c);color:#fff}
+.gday{display:none}.gday.on{display:block}
+.gday h3{font-size:clamp(26px,3.4vw,34px);color:var(--c)}
+.gday .gsub{color:var(--mute);margin:4px 0 14px}
+.pod-box{background:var(--card);border:2px solid #5b4fa3;border-radius:16px;padding:14px 16px;margin:12px 0}
+.pod-box b{display:block;margin-bottom:6px}
+.pod-box iframe{width:100%;height:90px;border:0;border-radius:10px;background:#000}
+.pod-box a{color:#5b4fa3;font-weight:700}
+.gt{width:100%;border-collapse:collapse;margin:8px 0}.gt th,.gt td{text-align:start;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}.gt th{color:var(--mute);font-size:14px}
+.gnote{background:var(--sand2);border-radius:12px;padding:10px 14px;margin:12px 0;font-weight:600}
+.st{background:var(--card);border:1px solid var(--line);border-inline-start:5px solid var(--c);border-radius:14px;margin:12px 0;overflow:hidden}
+.st>summary{cursor:pointer;padding:14px 16px;display:flex;gap:12px;align-items:center;min-height:56px;list-style:none}
+.st>summary::-webkit-details-marker{display:none}
+.st .num{flex:none;width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-weight:700}
+.st .tt{font-weight:700;font-size:18px;line-height:1.25}.st .meta{display:block;font-weight:400;font-size:14px;color:var(--mute)}
+.st .body{padding:0 16px 16px}
+.st figure{margin:0 -16px 12px;position:relative}.st figure img{width:100%;max-height:420px;object-fit:cover}
+.st figcaption{position:absolute;bottom:8px;inset-inline-start:8px;background:rgba(0,0,0,.55);color:#fff;font-size:12px;padding:2px 8px;border-radius:6px}
+.lbl{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--c);border-radius:6px;padding:1px 8px;margin:10px 0 4px}
+.lbl.q{background:#b23a1e}.lbl.s{background:#7a6655}
+.quote{border-inline-start:4px solid var(--sand);padding:6px 12px;margin:10px 0;font-style:italic;background:var(--sand2);border-radius:0 8px 8px 0}
+.srcq{background:light-dark(#fff8ea,#2c2116);border:1px dashed var(--sand);border-radius:10px;padding:10px 12px;margin:10px 0}
+.srcq .t{display:block;font-weight:700;font-size:15px;margin-bottom:4px;color:var(--sand)}
+.coins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0}.coins div{background:var(--sand2);border-radius:10px;padding:10px}
+.quiz li{margin:6px 0}.quiz details{display:inline}.quiz summary{cursor:pointer;color:var(--sea);font-size:14px;display:inline}
+.tl{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.tl div{background:var(--sand2);border-radius:10px;padding:6px 10px;font-size:15px}.tl b{display:block;color:var(--sand);white-space:nowrap}
+.kw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.kw div{background:var(--sand2);border-radius:12px;padding:10px}.kw b{font-family:"Secular One";font-weight:400;font-size:24px;color:var(--sand);display:block}
+@media(max-width:600px){.kw,.coins{grid-template-columns:1fr}}
+@media(max-width:760px){.day{grid-template-columns:1fr}.day .txt{padding:0 18px 22px}.cols{grid-template-columns:1fr}.day .pics{min-height:0}.day .pics img{min-height:220px;max-height:280px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="hero">
+ <img src="IMG_HERO" alt="שביל הנחש במצדה">
+ <div class="in">
+  <h1>הטיול השנתי – יוצאים לדרך!</h1>
+  <p>ארבעה ימים במדבר – יוצאים בשני, חוזרים בחמישי: בקעת הירדן, ים המלח, מצדה, ניצנה, המכתש הגדול ונחל הבשור.</p>
+  <div class="chips"><span class="chip">שני 30.11 – חמישי 3.12</span><span class="chip">כ׳ – כ"ג כסלו תשפ"ז</span><span class="chip">3 לילות בשטח</span></div>
+ </div>
+</header>
+<nav aria-label="ניווט">
+ <a href="#map-sec">מפה</a><a href="#d0">ראשון</a><a href="#d1">שני</a><a href="#d2">שלישי</a><a href="#d3">רביעי</a><a href="#d4">חמישי</a><a href="#gear">ציוד</a><a href="#guide">הדרכה</a><a href="#bus">הסעות</a>
+</nav>
+
+<section class="band"><div class="wrap">
+ <div class="note">⚠️ כל המסלולים יכולים להשתנות בהתאם למזג האוויר ולאישור מוקד טבע.</div>
+</div></section>
+
+<section class="band" id="map-sec" style="padding-top:0"><div class="wrap">
+ <h2>המפה של הטיול</h2>
+ <p class="sub">כל יום בצבע משלו. לחיצה על נקודה מציגה מה עושים שם.</p>
+ <div class="filters" id="filters"></div>
+ <div id="map" role="region" aria-label="מפת הטיול"></div>
+ <p class="sub" style="margin-top:10px;font-size:14px">הקווים מחברים בין התחנות לפי הסדר – זה לא תוואי הנסיעה המדויק.</p>
+</div></section>
+
+<section class="band" style="padding-top:0"><div class="wrap" id="days"></div></section>
+
+<section class="band gsec" id="guide"><div class="wrap">
+ <h2>ההדרכה – מהמכבים להורדוס, ועד הבשור</h2>
+ <p class="gq">השאלה המלווה: <b id="gq"></b></p>
+ <details class="gbox"><summary>רקע למדריך: הסיפור בקיצור, מילות מפתח, ציר זמן ומשפחות</summary><div id="gintro"></div></details>
+ <div class="gtabs" id="gtabs" role="tablist"></div>
+ <div id="gdays"></div>
+ <details class="gbox"><summary>מקורות למדריך</summary><table class="gt stack" id="gsrc"><thead><tr><th>נושא</th><th>מקור</th></tr></thead><tbody></tbody></table></details>
+ <details class="gbox"><summary>הצעת חלוקה בין המדריכים (ימים שני–שלישי)</summary><p class="sub">זו הצעה בלבד, לדיון ולתיקון.</p><table class="gt stack" id="gsplit"><thead><tr><th>חלק</th><th>מוביל</th><th>הערה</th></tr></thead><tbody></tbody></table></details>
+ <details class="gbox"><summary>לסגור לפני הסיור</summary><ul class="chk" id="gcheck"></ul></details>
+ <p class="sub" style="font-size:13px;margin-top:14px">התמונות המסומנות "הדמיה" נוצרו ב־Gemini להמחשה, ואינן צילומים אמיתיים.</p>
+</div></section>
+
+<section class="band" id="gear" style="background:var(--sand2)"><div class="wrap">
+ <h2>רשימת ציוד</h2>
+ <p class="sub">אפשר לסמן ✓ על מה שכבר ארזתם – הסימון נשמר בטלפון שלכם.</p>
+ <div class="cols" id="gearCols"></div>
+ <button class="reset" id="reset">איפוס הסימונים</button>
+</div></section>
+
+<section class="band" id="bus"><div class="wrap">
+ <h2>הסעות הביתה – יום חמישי</h2>
+ <p class="sub">כרגע לא סגור סופית.</p>
+ <div class="bus">
+  <div><b>קבוצה א'</b><br>יד בנימין · לטרון · רכבת ירושלים</div>
+  <div><b>קבוצה ב'</b><br>חריש · צ. יקנעם · צ. גולני · טבריה · רמת הגולן</div>
+ </div>
+</div></section>
+
+<footer>
+ <h3>הגעה הביתה לחיים טובים ולשלום! ❤️</h3>
+ <div>מפה: © Esri · התמונות המסומנות "הדמיה" נוצרו ב־Gemini · פודקאסטים: NotebookLM</div>
+ <div class="credits" id="credits"></div>
+</footer>
+
+<script src="lib/leaflet.js"></script>
+<script>
+{
+const F=n=>{const k=Object.keys(IM).find(k=>IM[k].f===n);return "img/w_"+k+".jpg"};
+const IM={
+ rashash:{f:"נחל רשאש.jpg",a:"Inbal Lamberger",l:"CC BY-SA 4.0",t:"נחל רשאש"},
+ fasael:{f:"Fatzael Springs and water system 017.JPG",a:"Hanay",l:"CC BY-SA 3.0",t:"עיינות פצאל"},
+ kalia:{f:"Kalia Beach, 2019 (10).jpg",a:"Bahnfrend",l:"CC BY-SA 4.0",t:"ים המלח, קליה"},
+ masada:{f:"Masada snake path 11.jpg",a:"Immanuel Giel",l:"CC BY-SA 4.0",t:"שביל הנחש"},
+ masada2:{f:"Masada snake path 03.jpg",a:"Immanuel Giel",l:"CC BY-SA 4.0",t:"שביל הנחש"},
+ nitzana:{f:"Tel Nitzana National Park 04.jpg",a:"Hoshvilim",l:"CC BY-SA 4.0",t:"ניצנה"},
+ snapir:{f:"Ha-snapir-blick-zum-makhtesh-gadol.jpg",a:"Mboesch",l:"CC BY-SA 4.0",t:"הסנפיר הגדול"},
+ makhtesh:{f:"Makhtesh gadol.jpg",a:"Amnon Hahn",l:"CC BY-SA 2.5",t:"המכתש הגדול"},
+ besor:{f:"Besor Stream Bridge 04.jpg",a:"Hoshvilim",l:"CC BY-SA 4.0",t:"גשר הבשור"},
+ eshkol:{f:"Nahal-besor-eshkol-park.JPG",a:"Mboesch",l:"CC BY-SA 4.0",t:"פארק אשכול"}};
+document.querySelector('.hero img').src=F(IM.masada2.f);
+
+const POD={1:"https://drive.google.com/file/d/10uj99tGguAygST5qLizxmp2IoJwMdFv4/view",2:"https://drive.google.com/file/d/1FmtFPXRQFmImgGI_hVCrPLJ1R9Hd921v/view",3:"https://drive.google.com/file/d/1FoIhCQDcS6Iv8ylIaKPu32Pwp21OsPpf/view",4:"https://drive.google.com/file/d/1ROKZWUn-vPUOqiD_kT4MI0-8L3G8hJ0H/view"};
+const GIMG={"phasaelis": "img/g_phasaelis.jpg", "cistern": "img/g_cistern.jpg", "palace": "img/g_palace.jpg", "window": "img/g_window.jpg", "oilcamp": "img/g_oilcamp.jpg", "makhtesh": "img/g_makhtesh.jpg", "fin": "img/g_fin.jpg", "yorkeam": "img/g_yorkeam.jpg", "nitzana": "img/g_nitzana.jpg", "david": "img/g_david.jpg", "bridge": "img/g_bridge.jpg", "eshkol": "img/g_eshkol.jpg"};
+const DAYS=[
+ {id:"d0",c:"#7a6655",name:"יום ראשון",date:"29/11 · י\"ט כסלו",title:"לפני היציאה – בדיקת ציוד בישיבה",pics:[],
+  route:null,
+  sch:[["","🏫 הגעה רגילה לישיבה"],["","🎒 בדיקת ציוד – תיק גדול ותיק קטן"],["","✅ בודקים שהכל מוכן – מחר יוצאים!"]],
+  pts:[]},
+ {id:"d1",c:"#c8743a",name:"יום שני",date:"30/11 · כ' כסלו",title:"בקעת הירדן וים המלח",pics:["rashash","fasael"],
+  route:["ואדי רשאש – עיינות פצאל","הליכה בערוץ הנחל, בין סלעים, עד המעיינות השופעים"],
+  sch:[["07:00","🙏 תפילה"],["","🥐 ארוחת בוקר והעמסת ציוד"],["08:00","🚌 יציאה מהישיבה!!"],["","🥾 מסלול: ואדי רשאש – עיינות פצאל"],["","🥋 צילום פומסות","בהובלת מנחם"],["","🚍 נסיעה לחאן ארץ התמר – קליה"],["","🔥🥩 על האש לפי שכבות"],["","🌙 לילה טוב"]],
+  pts:[["ישיבת אלוני הבשן",33.0441,35.8392,"08:00 יציאה"],["ואדי רשאש",32.0408,35.3719,"תחילת המסלול"],["עיינות פצאל",32.0511,35.4048,"סוף המסלול · צילום פומסות"],["חאן ארץ התמר – קליה",31.757,35.478,"על האש ולינה"]]},
+ {id:"d2",c:"#b23a1e",name:"יום שלישי",date:"1/12 · כ\"א כסלו",title:"מצדה וניצנה",pics:["masada","nitzana"],
+  route:["עלייה למצדה בשביל הנחש","שביל תלול ומפותל במזרח ההר, כ־350 מטר עלייה"],
+  sch:[["06:00","⏰ השכמה"],["06:30","🚌 יציאה לאוטובוס"],["07:00","🙏🥐 תפילה וארוחת בוקר"],["08:00","🥾 שביל הנחש – עלייה למצדה"],["","🚍 נסיעה לחמוקי ניצנה"],["","⚽🏆 טורניר כדורגל / פעילות","באחריות כיתה י\"ב"],["","🏃 ריצה","בהובלת הרב רן"],["","🥋 אימון טקוואנדו","בהובלת הוד משה"],["","🍲 ארוחת ערב מבושלת","בניהול כיתה י\"ב"],["","🌙 לילה טוב – לינה בניצנה"]],
+  pts:[["שביל הנחש – מצדה",31.3157,35.358,"08:00 עלייה ברגל"],["חמוקי ניצנה",30.8854,34.4223,"טורניר, ריצה, טקוואנדו ולינה"]]},
+ {id:"d3",c:"#13817f",name:"יום רביעי",date:"2/12 · כ\"ב כסלו",title:"המכתש הגדול",pics:["snapir","makhtesh"],
+  route:["הר אבנון · הסנפיר הגדול · עין ירקעם","תצפית על המכתש, טיפוס על הסנפיר וביקור במעיין"],
+  sch:[["06:30","🙏 תפילה"],["","🥐 ארוחת בוקר"],["08:00","🥾 יציאה למסלול: הר אבנון, הסנפיר הגדול, עין ירקעם"],["","🚍 נסיעה לחאן ניצנה"],["","🍳🔥 בישולי שדה לפי שכבות"]],
+  pts:[["מצפור הר אבנון",30.9715,34.9825,"תצפית על המכתש"],["הסנפיר הגדול",30.9446,35.0289,"טיפוס על דופן המכתש"],["עין ירקעם",30.948,35.045,"מעיין בלב המדבר"],["חאן ניצנה",30.8854,34.4223,"בישולי שדה"]]},
+ {id:"d4",c:"#5b4fa3",name:"יום חמישי",date:"3/12 · כ\"ג כסלו",title:"אופניים בנחל הבשור",pics:["besor","eshkol"],
+  route:["מסלול אופניים בנחל הבשור","רכיבה לאורך הנחל, באזור פארק אשכול"],
+  sch:[["07:00","🙏 תפילה"],["08:15","🚴 יציאה למסלול אופניים בנחל הבשור"],["12:30","👥 מנחה, ארוחת צהריים ויציאה הביתה"]],
+  pts:[["נחל הבשור – גשר הבשור",31.2583,34.4874,"רכיבה"],["פארק אשכול",31.3048,34.4899,"מנחה, צהריים ויציאה הביתה"]]}
+];
+
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);
+const pic=(k,cls)=>`<img loading="lazy" src="${F(IM[k].f)}" alt="${esc(IM[k].t)}">`;
+document.getElementById('days').innerHTML=DAYS.map((d,i)=>`
+<article class="day" id="${d.id}" style="--c:${d.c}">
+ <div class="pics">${d.pics.length?pic(d.pics[0])+`<span class="cred">${esc(IM[d.pics[0]].t)}</span>`+(d.pics[1]?`<div class="two" style="grid-template-columns:1fr">${pic(d.pics[1])}</div>`:''):`<div style="display:grid;place-items:center;background:var(--sand2);font-size:64px;min-height:220px">🎒</div>`}</div>
+ <div class="txt">
+  <span class="dno">${esc(d.name)}</span>
+  <h3>${esc(d.title)}</h3>
+  <div class="date">${esc(d.date)}</div>
+  ${d.route?`<div class="route">🥾 ${esc(d.route[0])}<small>${esc(d.route[1])}</small></div>`:''}
+  <ol class="sch">${d.sch.map(s=>`<li><span class="t">${s[0]||'·'}</span><span>${esc(s[1])}${s[2]?` <span class="who">– ${esc(s[2])}</span>`:''}</span></li>`).join('')}</ol>
+  ${i>0?`<a class="guide" href="#guide-d${i}" data-gday="${i}">📖 ההדרכה ליום הזה</a><a class="guide pod" href="#guide-d${i}" data-gday="${i}">🎧 פודקאסט לדרך</a>`:''}
+  ${d.pts.length?`<button class="mapbtn" data-day="${i}">📍 הצג את היום במפה</button>`:''}
+ </div>
+</article>`).join('');
+
+/* map */
+const map=L.map('map',{scrollWheelZoom:false}).setView([31.6,35.1],8);
+const E='https://server.arcgisonline.com/ArcGIS/rest/services/';
+const street=L.tileLayer(E+'World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Tiles © Esri'}).addTo(map);
+const sat=L.tileLayer(E+'World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,attribution:'Imagery © Esri'});
+L.control.layers({'מפה':street,'לוויין':sat},null,{position:'topleft'}).addTo(map);
+const groups=DAYS.map((d,i)=>{
+ const g=L.featureGroup();
+ d.pts.forEach((p,j)=>{
+  const ic=L.divIcon({className:'',html:`<div class="pin" style="background:${d.c}"><span>${i}</span></div>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-28]});
+  L.marker([p[1],p[2]],{icon:ic}).bindPopup(`<b>${esc(p[0])}</b><br>${esc(d.name)} · ${esc(p[3])}`).addTo(g);
+ });
+ if(d.pts.length>1)L.polyline(d.pts.map(p=>[p[1],p[2]]),{color:d.c,weight:4,dashArray:'8 8',opacity:.85}).addTo(g);
+ return g;});
+groups.forEach(g=>g.addTo(map));
+const all=L.featureGroup(groups.flatMap(g=>g.getLayers()));
+map.fitBounds(all.getBounds(),{padding:[30,30]});
+const fl=document.getElementById('filters');
+fl.innerHTML=`<button class="on" data-i="-1">כל הימים</button>`+DAYS.map((d,i)=>d.pts.length?`<button data-i="${i}" style="--c:${d.c}">${esc(d.name)}</button>`:'').join('');
+function show(i){
+ fl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+ groups.forEach((g,k)=>{if(i<0||k===i)g.addTo(map);else map.removeLayer(g)});
+ const b=(i<0?all:groups[i]).getBounds();
+ map.flyToBounds(b,{padding:[40,40],maxZoom:13,duration:.8});
+}
+fl.addEventListener('click',e=>{const b=e.target.closest('button');if(b)show(+b.dataset.i)});
+document.getElementById('days').addEventListener('click',e=>{const b=e.target.closest('.mapbtn');if(!b)return;document.getElementById('map-sec').scrollIntoView();setTimeout(()=>show(+b.dataset.day),400)});
+
+/* gear */
+const GEAR=[
+ {h:"🎒 תיק הולך (תיק קטן)",n:"כל הדברים חובה!",items:[["תיק עם מקום לנשיאת אוכל קבוצתי",1],["כובע",1],["נעליים (על הרגליים)",1],["3–4 ליטר מים",1]]},
+ {h:"🧳 תיק נוסע (תיק גדול)",n:"",items:[["תפילין",1],["בגדים ל־4 ימים",0],["ביגוד חם",0],["מגבת וכלי רחצה",0],["בגד ים",0],["שק\"ש",0],["פנס",0],["כלים רב־פעמיים בשריים (לא יהיה חד־פעמי)",0],["סנדלים (רצוי)",0]]}];
+let st={};try{st=JSON.parse(localStorage.getItem('tripGear')||'{}')}catch(e){}
+const gc=document.getElementById('gearCols');
+gc.innerHTML=GEAR.map((g,gi)=>`<div class="box"><h3>${esc(g.h)}</h3>${g.n?`<div class="must">${esc(g.n)}</div>`:''}
+<ul class="chk">${g.items.map((it,ii)=>`<li><label><input type="checkbox" id="g${gi}_${ii}"><span>${esc(it[0])}${it[1]&&gi===1?'<span class="tag">חובה!!</span>':''}</span></label></li>`).join('')}</ul>
+<div class="prog"><i id="p${gi}"></i></div></div>`).join('');
+function upd(){GEAR.forEach((g,gi)=>{const n=g.items.filter((_,ii)=>document.getElementById(`g${gi}_${ii}`).checked).length;document.getElementById('p'+gi).style.width=(n/g.items.length*100)+'%'})}
+gc.querySelectorAll('input').forEach(c=>{c.checked=!!st[c.id];c.addEventListener('change',()=>{st[c.id]=c.checked;try{localStorage.setItem('tripGear',JSON.stringify(st))}catch(e){}upd()})});
+upd();
+document.getElementById('reset').addEventListener('click',()=>{st={};try{localStorage.removeItem('tripGear')}catch(e){}gc.querySelectorAll('input').forEach(c=>c.checked=false);upd()});
+
+const GUIDE_INTRO={
+ q:"מה שומר על האור? ארמונות ומבצרים, או רוח ואמונה?",
+ about:"המכבים נלחמו על עצמאות ועל טהרת המקדש. כ־130 שנה אחר כך מולך ביהודה מלך יהודי, הורדוס, שבונה ארמונות, מבצרים ומקדש מפואר. אבל הוא עלה לשלטון על חשבון בית חשמונאי, ושלטונו תלוי ברומא. בשני הימים הראשונים נעקוב אחרי הסיפור בשטח: ביום שני במים של בקעת הירדן, וביום שלישי עד המבצר במדבר. ביום רביעי נלמד מהמכתש מה נשאר כשהרך נשחק, וביום חמישי, בנחל הבשור, נסיים בבשורה – יום לפני נר ראשון של חנוכה.",
+ audience:"קהל: תלמידי הישיבה, כיתות ט׳–י״ב. כל חלק בנוי משלושה רכיבים: סיפור קצר, משהו לעשות או לראות, ושאלה לדיון. ההדרכה מחולקת לתחנות קצרות לאורך המסלול, כדי לא לעצור את ההליכה לזמן ארוך.",
+ gear:["חנוכייה להמחשה","דפי משימה לקבוצות","צילומים מודפסים של שני מטבעות","כרטיסים בצורת נר","חבל (לפעילות \"החבל\")","מפה של הבקעה וים המלח","רמקול נייד","טושים"],
+ words:[["אור","החנוכייה, והאור הפנימי שנשאר."],["מים","המעיינות בפצאל, הבורות במצדה, הגב בעין ירקעם ומעיינות הבשור. בלי מים אין שלטון ואין חיים."],["אחים","אחים שרבו (הורקנוס ואריסטובולוס), אחים שאהבו (פצאל והורדוס), ואחים שנרצחו."]],
+ timeline:[["164 לפנה״ס","חנוכת המקדש"],["63 לפנה״ס","פומפיוס נכנס לירושלים"],["40 לפנה״ס","פצאל מת · רומא ממנה את הורדוס למלך"],["37 לפנה״ס","הורדוס כובש את ירושלים"],["כ־20 לפנה״ס","מתחיל בניית המקדש המפואר"],["4 לפנה״ס","מות הורדוס"],["70 לספירה","חורבן הבית"],["73 לספירה","נפילת מצדה"]],
+ families:{has:"בית חשמונאי: אלכסנדר ינאי + שלומציון ← הורקנוס השני ⚔ אריסטובולוס השני ← אלכסנדרה ← מרים ואריסטובולוס השלישי. מתתיהו אנטיגונוס – המלך החשמונאי האחרון.",her:"בית אנטיפטרוס האדומי: אנטיפטרוס ← פצאל והורדוס.",join:"נישואים: הורדוס מתחתן עם מרים החשמונאית. שני בניהם, אלכסנדר ואריסטובולוס, הוצאו להורג בפקודת אביהם בשנת 7 לפנה״ס."},
+ facts:["גיור האדומים בימי יוחנן הורקנוס – קדמוניות היהודים יג, 257–258.","פצאל שם קץ לחייו בשבי (הטיח את ראשו בסלע) – מלחמת היהודים א, 271–272.","העיר פצאליס בבקעה, שנבנתה לזכרו והפכה את האזור לפורה – קדמוניות טז, 145. גם פליניוס מזכיר את התמרים של פצאליס.","הטבעת אריסטובולוס השלישי, בן 17, בבריכה ביריחו אחרי חג הסוכות שבו העם הריע לו – קדמוניות טו, 50–56."]
+};
+
+const GUIDE_DAYS=[
+{d:1,id:"guide-d1",title:"יום שני · ואדי רשאש ועיינות פצאל",sub:"מהמכבים להורדוס – בית חשמונאי מתפרק, והורדוס עולה",
+ where:[["בתחילת המסלול, ראש ואדי רשאש","1–2: פתיחה, בית חשמונאי מתפרק"],["נקודת תצפית על הבקעה באמצע המסלול","3: פצאל והורדוס, שני אחים"],["בסוף המסלול, עיינות פצאל ליד המים","4–5: עליית הורדוס, סיכום היום"],["ערב בקליה, חאן ארץ התמר (רשות)","חידון \"מי אני?\""]],
+ st:[
+ {n:1,t:"פתיחה בראש המסלול",time:"כ־15 דקות",at:"ראש ואדי רשאש",
+  act:["מעגל בראש הוואדי, לפני שיורדים. המדריך מוציא חנוכייה ושואל: \"את המכבים כולם מכירים. מה קרה לנכדים ולנינים שלהם?\" שומעים כמה ניחושים, בלי לתקן.","מחלקים לכל קבוצה (כיתה או חוליה) דף משימה. לאורך היומיים אוספים 4 מילים: עצמאות, ארמון, מים, אור. בכל פעם שמילה \"מופיעה\" בסיפור, הקבוצה רושמת לידה משפט אחד: איפה שמענו אותה?"],
+  q:"אם הייתם מלך, מה הייתם בונים קודם: ארמון, מבצר או בית מקדש? ולמה?",
+  tip:"מבקשים מכל אחד לעמוד ליד \"פינה\": ארמון, מבצר או מקדש. חוזרים לשאלה הזו בסוף, בפסגת מצדה, ובודקים אם מישהו שינה את דעתו.",
+  quote:"המכבים היו חמישה אחים שנלחמו יחד. היום נשמע סיפור על אחים אחרים, ונראה מה קורה לאור כשהאחים מפסיקים להיות ביחד."},
+ {n:2,t:"בית חשמונאי מתפרק",time:"כ־10 דקות",at:"ראש ואדי רשאש",
+  story:["המכבים ניצחו, טיהרו את המקדש, ובהמשך הקימו ממלכה עצמאית. צאצאיהם מלכו כמאה שנה.","אחרי מות המלכה שלומציון רבו שני בניה, הורקנוס השני ואריסטובולוס השני, על הכתר. כל אחד מהם שלח שליחים למצביא הרומי פומפיוס וביקש שיפסוק לטובתו. בשנת 63 לפנה״ס נכנס פומפיוס לירושלים, ואחרי מצור של שלושה חודשים כבש את הר הבית. מאותו יום רומא היא שמחליטה מי ימלוך."],
+  quote:"מה שהאויב מבחוץ לא הצליח לקחת, הריב מבפנים איבד.",
+  actH:"פעילות קצרה: \"החבל\"",act:["שני תלמידים מחזיקים חבל, כל אחד בקצה אחר, ומושכים. תלמיד שלישי (\"רומא\") עומד באמצע ופשוט לוקח את החבל כשהוא נמתח. שואלים: מי ניצח במשיכה?"],
+  q:"מה קורה כשאחים רבים? ומה עוזר לשמור על אחדות בכיתה, בישיבה ובעם?"},
+ {n:3,t:"פצאל והורדוס, שני אחים",time:"כ־20 דקות",at:"באמצע המסלול, בנקודה שרואים ממנה את הבקעה",img:"phasaelis",
+  story:["אנטיפטרוס האדומי היה יועץ בכיר בחצר החשמונאים, ושני בניו, פצאל והורדוס, קיבלו תפקידי שלטון: פצאל בירושלים והורדוס בגליל.","בשנת 40 לפנה״ס מתתיהו אנטיגונוס, אחרון מלכי בית חשמונאי, חוזר לשלטון בעזרת הפרתים, אויבי רומא. פצאל נלכד ומת בשבי. לפי יוסף בן מתתיהו הוא שם קץ לחייו כדי לא למות בידי אויביו.","הורדוס בורח. את בני משפחתו הוא משאיר במבצר אחד במדבר (נעלה אליו מחר בבוקר), ומגיע עד רומא. שם הסנאט ממנה אותו למלך יהודה: מלך ממונה מטעם רומא, ולא מלך שהעם בחר בו.","כשהורדוס התבסס בשלטון הוא הנציח את אחיו: בנה כאן בבקעה, ממש ליד המעיינות שאליהם אנחנו הולכים, עיר בשם פצאליס, עם מטעי תמרים שהושקו במי המעיינות, ובנה בירושלים מגדל בשם מגדל פצאל.","מצביעים דרומה, לכיוון יריחו: שם היו ארמונות החורף של החשמונאים, ואחריהם של הורדוס. אריסטובולוס השלישי, אחיה של מרים אשת הורדוס, היה נסיך חשמונאי. הורדוס מינה אותו לכהן גדול כשהיה בן 17. בחג הסוכות עלה לשרת במקדש, והעם הריע לו בהתרגשות. זמן קצר אחר כך, בבריכה בארמון ביריחו, \"שיחקו\" איתו המשרתים של הורדוס במים והטביעו אותו. כך מספר יוסף בן מתתיהו."],
+  extra:"האדומים התגיירו בימי יוחנן הורקנוס החשמונאי, כלומר משפחתו של הורדוס הגיעה ליהדות דרך החשמונאים עצמם.",
+  actH:"פעילות שטח: \"בלשי מים\"",act:["לאורך הירידה בוואדי מחפשים סימנים לכך שיש כאן מים: צמחייה ירוקה, דקלים, קני סוף, ציפורים, קולות של זרימה. כל קבוצה מצלמת \"הוכחה\" אחת.","כשמגיעים לעיינות שואלים: למה מלכים בנו כאן ארמונות? תשובות שכדאי להגיע אליהן: מים, חום נעים בחורף, תמרים (וגם אפרסמון יקר ערך), והדרך לירושלים."],
+  q:"הורדוס אהב את אחיו ובנה עיר לזכרו, ובאותו זמן הרג את אחי אשתו. איך אותו אדם יכול להיות גם וגם? מה מפחיד שליט עד כדי כך?"},
+ {n:4,t:"איך הורדוס עלה על חשבון החשמונאים",time:"כ־15 דקות",at:"בעיינות פצאל, ליד המים",
+  story:["הורדוס התחתן עם מרים החשמונאית, נכדתו של הורקנוס השני, כדי שהעם יקבל אותו. בשנת 37 לפנה״ס כבש את ירושלים בעזרת צבא רומי. אנטיגונוס נשלח לאנטיוכיה והוצא להורג בפקודת אנטוניוס. מלכות בית חשמונאי הסתיימה.","אחר כך, בזה אחר זה, חיסל הורדוס את כל מי שנשאר מהמשפחה: את אריסטובולוס השלישי (35 לפנה״ס), את הורקנוס השני הזקן (30 לפנה״ס), את מרים עצמה (29 לפנה״ס), ובסוף גם את שני בניו ממנה (7 לפנה״ס)."],
+  extra:"לפי מסורת רומית, הקיסר אוגוסטוס אמר שעדיף להיות החזיר של הורדוס מאשר בנו. ביוונית יש כאן משחק מילים, והעוקץ ברור: הורדוס שמר על מנהגי היהודים ולא אכל חזיר, אבל את בניו הרג.",
+  src:["התלמוד על הורדוס (בבא בתרא ג ע״ב)","\"הורדוס עבדא דבית חשמונאי הוה... אמר: כל מאן דאמר מבית חשמונאי קאתינא – עבדא הוא.\"","חז״ל מתארים את הורדוס כ\"עבד\" של בית חשמונאי, שהרג את אדוניו. לפי המסורת, הוא ניסה למחוק את הזיכרון עצמו: מי שיאמר \"אני מבית חשמונאי\" ייחשב עבד."],
+  q:"הורדוס התחתן עם נסיכה חשמונאית כדי שיאהבו אותו. זה עבד? מה באמת גורם לאנשים לסמוך על מנהיג? מה ההבדל בין שלטון שנשען על כוח זר לשלטון שנשען על אמון העם? איפה זה פוגש אותנו היום?"},
+ {n:5,t:"סיכום היום",time:"כ־5 דקות",at:"בעיינות פצאל",
+  act:["בודקים בדף המשימה: איזו מילה כבר מצאנו? (עצמאות: המכבים; ארמון: יריחו; מים: המעיינות.)","שואלים: \"הורדוס השאיר את המשפחה שלו במבצר במדבר כשברח לרומא. מה דרוש כדי לשרוד במבצר באמצע המדבר?\" לא עונים עכשיו. התשובה מחכה מחר בבוקר במצדה."],
+  quiz:[["נלחמתי עם אחי על הכתר, וביקשתי עזרה מרומא.","הורקנוס או אריסטובולוס השני"],["אחי הקים עיר בבקעה לזכרי.","פצאל"],["הייתי המלך החשמונאי האחרון, וטבעתי חנוכייה על מטבע.","מתתיהו אנטיגונוס"],["הייתי נסיכה חשמונאית ונישאתי למלך שלא מבית חשמונאי.","מרים"],["הייתי כהן גדול בן 17, והעם הריע לי בסוכות.","אריסטובולוס השלישי"]],
+  tip:"משימת חלון בבוקר: בנסיעה מקליה דרומה לאורך ים המלח – מי מזהה ראשון את הצוק של מצדה? (רמז: הר שטוח לגמרי למעלה.)"}
+ ]},
+{d:2,id:"guide-d2",title:"יום שלישי · מצדה בשביל הנחש",sub:"המבצר במדבר – מים, ארמון, מטבעות ואור",
+ where:[["תחתית שביל הנחש, לפני העלייה","6: מבצר שהתחיל אצל החשמונאים"],["פסגת מצדה","7–10: הנס של המים, הארמון הצפוני, המטבעות, מעגל סיום"]],
+ note:"העלייה בשביל הנחש היא כ־350 מטר טיפוס, בערך שעה. את הסיפורים מספרים בתחנות, לא תוך כדי הליכה. אחרי הירידה נוסעים לחמוקי ניצנה.",
+ st:[
+ {n:6,t:"מבצר שהתחיל אצל החשמונאים",time:"כ־10 דקות",at:"בתחתית שביל הנחש, לפני העלייה",
+  story:["יוסף בן מתתיהו מספר שהראשון שביצר את מצדה היה \"יונתן הכוהן הגדול\", כנראה אחד ממלכי בית חשמונאי. כלומר, גם המבצר הזה מתחיל אצל החשמונאים, והורדוס לקח אותו והגדיל אותו פי כמה.","מצדה היא צוק מבודד: מצד מזרח ים המלח, ממערב מדבר יהודה, והפסגה שטוחה כמו שולחן. אי אפשר להגיע אליה בהפתעה."],
+  act:["מצביעים על הנוף: איפה ים המלח? מאיפה הגענו אתמול? מסתכלים למעלה על הצוק ושואלים: איך מביאים לשם מים, אוכל וחומרי בניין? בפסגה נבדוק."]},
+ {n:7,t:"המצור על משפחת הורדוס: הנס של המים",time:"כ־15 דקות",at:"ליד אחד מבורות המים",img:"cistern",
+  story:["זוכרים שהורדוס ברח לרומא? את אמו, את אחיו יוסף ואת ארוסתו מרים הוא השאיר כאן, במצדה, עם כמה מאות לוחמים. אנטיגונוס, המלך החשמונאי, הטיל עליהם מצור.","אחרי זמן מה נגמרו המים. הם כבר תכננו לברוח בלילה. אז, לפי יוסף בן מתתיהו, ירד בלילה גשם חזק ומילא את הבורות, והם החזיקו מעמד עד שהורדוס חזר עם צבא.","כשהורדוס נעשה מלך, הוא לא שכח את הלקח: חצב במצדה בורות מים ענקיים, שהמים נאספו אליהם מהנחלים בשיטפונות החורף והגיעו בתעלות."],
+  actH:"פעילות: כמה מים צריך?",act:["נכנסים לאחד הבורות הגדולים (בדרום הפסגה) או עומדים בפתחו. שואלים: כמה בקבוקים ממלאים את הבור הזה? כמה ימים כל השכבה שלנו הייתה יכולה לחיות ממנו?","מגלים שהבורות במצדה יכלו להחזיק עשרות אלפי מטרים מעוקבים, מספיק לאלפי אנשים במשך זמן רב."],
+  extraH:"חיבור לחנוכה",extra:"במקדש, החשמונאים חיפשו פך שמן אחד טהור. במצדה, לחיות במצור היה תלוי במים. בשני המקרים \"מעט\" החזיק מעמד הרבה יותר ממה שציפו. מה ה\"פך הקטן\" שמחזיק אותנו – את הכיתה, את החבורה, את הישיבה?"},
+ {n:8,t:"הארמון הצפוני: הורדוס הבנאי",time:"כ־20 דקות",at:"תצפית לארמון הצפוני",img:"palace",
+  story:["הארמון הצפוני תלוי על שלוש מדרגות סלע בקצה הצוק. יש בו עמודים, טיח מצויר שנראה כמו שיש, ומרפסות שצופות לנוף. מסביב: מחסני מזון ענקיים, בית מרחץ בסגנון רומי (חם, פושר וקר), ובורות מים.","הורדוס היה הבנאי הגדול בתולדות ארץ ישראל: מצדה, הרודיון, קיסריה, ארמונות יריחו, והמקדש בירושלים."],
+  src:["על המקדש שבנה אמרו חז״ל (בבא בתרא ד ע״א)","\"מי שלא ראה בנין הורדוס – לא ראה בנין נאה מימיו.\"","מאותו מקום בתלמוד: בבא בן בוטא, החכם שהורדוס עיוור, הוא שיעץ לו לבנות את המקדש כתיקון למה שעשה."],
+  actH:"משימה",act:["מוצאים בארמון את הטיח שנראה כמו שיש. נוגעים בעיניים, לא בידיים. שואלים: למה מלך צריך שהקיר ייראה יקר יותר ממה שהוא באמת?"],
+  q:"הורדוס בנה את הבניינים היפים ביותר, והמקדש שבנה זכה לשבחים של חז״ל. ובכל זאת הוא נזכר כמלך אכזר. האם אפשר להפריד בין מה שאדם בנה לבין מי שהוא היה?"},
+ {n:9,t:"שני מטבעות, שני מלכים",time:"כ־15 דקות",at:"בצל, באחד המחסנים",
+  act:["מחלקים לכל קבוצה צילום מודפס של שני מטבעות ומבקשים להשוות: מה מצויר? מה כתוב? באיזו שפה?"],
+  coins:[["מטבע של מתתיהו אנטיגונוס (40–37 לפנה״ס)","מנורת המקדש. זה מהציורים הקדומים ביותר של המנורה שידועים לנו, והוא נטבע בזמן שהחשמונאי האחרון נלחם על כיסאו. על מטבעות אחרים שלו מופיע גם שולחן לחם הפנים. הכתובת בעברית ובשפה זרה."],["מטבע של הורדוס","אין דמות אדם, מתוך התחשבות ביהודים. סמלים כמו חצובה, קסדה או עוגן. הכתובת ביוונית בלבד: \"של המלך הורדוס\"."]],
+  extraH:"מה מטבע מספר?",extra:"מטבע הוא \"מודעה\" של השליט: במה הוא רוצה שיזכרו אותו. אנטיגונוס בחר במנורה. הורדוס בחר בתואר \"מלך\" ביוונית.",
+  q:"אם הייתם מעצבים מטבע לישיבה או לכיתה שלכם, מה הייתם מציירים עליו? (אפשר לצייר על גב הדף.)",
+  tipH:"כמה מילים על סוף מצדה (לפי שיקול המדריך)",tip:"כ־75 שנה אחרי מות הורדוס, במרד הגדול ברומאים, החזיקו כאן קבוצת מורדים עד שנת 73 לספירה. הרומאים הקיפו את ההר ובנו סוללה ענקית. לפי יוסף בן מתתיהו, כשהמורדים הבינו שהסוף קרוב, הם בחרו למות כבני חורין ולא ליפול בשבי. המבצר שהורדוס בנה כדי להגן על עצמו מפני היהודים הפך למקום שבו נלחמו יהודים על חירותם מול אותה רומא שהמליכה את הורדוס. שאלת המעשה עצמו מעוררת מחלוקת גם בין חכמים וחוקרים. אם עולה דיון, כדאי שהמדריך ינהל אותו בזהירות ולא יכריע."},
+ {n:10,t:"מעגל סיום: נרות הכיתה",time:"כ־20 דקות",at:"בפסגה, לפני הירידה",img:"window",
+  story:["הארמונות של הורדוס עומדים חרבים. המקדש שלו נשרף. המטבעות שלו מונחים במוזיאונים. ומה נשאר מהחשמונאים? פך שמן קטן, וחנוכייה שדולקת בכל בית יהודי כבר יותר מאלפיים שנה.","אבנים יכולות להחזיק הרבה זמן. אור צריך שמישהו ידליק אותו מחדש בכל שנה."],
+  actH:"פעילות סיום",act:["כל קבוצה חוזרת לדף המשימה ומחברת את 4 המילים למשפט אחד. לדוגמה: \"בלי מים אין חיים, בלי עצמאות אין חירות, ארמון לא מחזיק לבד, ואור צריך להדליק.\"","כל קבוצה כותבת על כרטיס בצורת נר: \"מה שומר על האור אצלנו בישיבה?\" מסדרים את הכרטיסים על הקרקע בצורת חנוכייה גדולה. כל קבוצה מקריאה את הנר שלה.","חוזרים לשאלת הבוקר: מי שינה את דעתו לגבי ארמון, מבצר או מקדש?","שרים יחד \"מעוז צור\" או \"באנו חושך לגרש\" (ברמקול או בלי)."],
+  quote:"בעוד שלושה ימים, ביום שישי בערב, מדליקים נר ראשון של חנוכה. כל אחד לוקח הביתה משפט אחד מהטיול ומספר אותו ליד החנוכייה."}
+ ]},
+{d:3,id:"guide-d3",title:"יום רביעי · המכתש הגדול",sub:"מה נשאר כשהרך נשחק – הר אבנון, הסנפיר הגדול ועין ירקעם",
+ where:[["מצפור הר אבנון, בבוקר","11: חיפשו נפט, מצאו מכתש"],["בתחילת העלייה לסנפיר הגדול","12: איך נוצר מכתש"],["על הסנפיר הגדול, בתצפית","13: מעטים מול רבים"],["עין ירקעם, ליד הגב","14: מים במדבר"],["ערב בחאן ניצנה, לפני בישולי השדה","15: ניצנה – עיר על דרך הבשמים"]],
+ note:"העלייה לסנפיר הגדול תלולה ועוברת על שלוחה צרה, ובירידה יש דרגיות מתכת. מספרים רק בעצירות, לא על השלוחה. ליד עין ירקעם שומרים על שקט וניקיון: זה מקור המים של חיות הבר באזור.",
+ st:[
+ {n:11,t:"חיפשו נפט, מצאו מכתש",time:"כ־10 דקות",at:"מצפור הר אבנון",img:"oilcamp",
+  story:["עומדים על הר אבנון, בשולי המכתש הגדול. מכאן רואים את כל ה\"קערה\": קירות סלע קשים מסביב, ובפנים אבן חול צבעונית ורכה.","ליד דרך הגישה למצפור יש שרידי מבנים של מחנה בריטי מ־1941. הבריטים הגיעו לכאן כדי לחפש נפט. התוכנית נעצרה עוד לפני שהתחילו לקדוח, וגם ניסיון לחדש את החיפוש אחרי קום המדינה לא מצא כאן נפט."],
+  extraH:"חיבור לחנוכה",extra:"כאן חיפשו הרבה \"שמן\" ולא מצאו כלום. החשמונאים חיפשו במקדש, ומצאו רק פך אחד קטן – והוא הספיק. לפעמים מה שנראה מעט הוא בדיוק מה שצריך.",
+  act:["מצביעים: איפה הקירות הקשים? איפה החול הצבעוני? מאיפה המים יוצאים מהמכתש? (לכיוון מזרח, דרך נחל חתירה – שם נגיע בסוף, לעין ירקעם.)"],
+  q:"מה אתם \"מחפשים\" בטיול הזה? ומה כבר מצאתם בלי לחפש?"},
+ {n:12,t:"איך נוצר מכתש",time:"כ־10 דקות",at:"בתחילת העלייה לסנפיר הגדול",img:"makhtesh",
+  story:["פעם עמד כאן הר. מבחוץ – שכבות גיר קשות. מתחתן – אבן חול רכה.","כשהמים חדרו דרך סדק בשכבה הקשה והגיעו לאבן החול, הם שטפו אותה, גם מתחת לגיר. הגיר נשאר בלי משענת, נשבר והתמוטט. כך, לאט לאט, נשטף לב ההר, ונשאר בור ענק מוקף קירות.","נחל חתירה הוא שניקז את אבן החול החוצה, ולכן למכתש קוראים גם מכתש חתירה. הוא נקרא \"הגדול\" כי התגלה לפני מכתש רמון, שהוא בעצם גדול ממנו."],
+  actH:"המחשה: \"העוגה\"",act:["מניחים בכף היד ערימת חול, ועליה \"מכסה\" – דף או כרטיס. שופכים מעט מים בצד. מה קורה למכסה כשהחול מתחתיו נשטף?"],
+  q:"השכבה הקשה שמרה על כל ההר – עד שנפתח בה סדק אחד. מה ה\"סדק הקטן\" שיכול לפרק קבוצה, כיתה או חבורה? ומה שומר שהוא לא ייפתח?"},
+ {n:13,t:"מעטים מול רבים",time:"כ־15 דקות",at:"על הסנפיר הגדול, בתצפית",img:"fin",
+  story:["הסנפיר הגדול הוא אחד מקירות המכתש, ושכבות הסלע בו נטויות כמו סנפיר של כריש. הוא בנוי משכבה קשה ודקה יחסית – אבל היא זו שנשארה עומדת, כשכל מה שרך סביבה נשחק ונסחף.","בתפילת \"על הניסים\" אנחנו אומרים: \"מסרת גבורים ביד חלשים, ורבים ביד מעטים\". החשמונאים היו מעטים. מה שהחזיק אותם לא היה הכמות, אלא הקושי של החומר – אמונה שלא נשחקת."],
+  actH:"פעילות: \"שכבות\"",act:["כל קבוצה עומדת בשורה אחת על משטח בטוח ומחזיקה ידיים – זו \"השכבה הקשה\". שאר התלמידים מנסים, בעדינות, לעבור דרכה. אחר כך מבקשים מהשורה לשחרר יד אחת. מה השתנה?"],
+  q:"מה עושה אדם, או קבוצה, \"קשים\" במובן הטוב – כאלה שלא נשחקים מכל רוח?"},
+ {n:14,t:"מים במדבר",time:"כ־15 דקות",at:"עין ירקעם, ליד הגב",img:"yorkeam",
+  story:["עין ירקעם הוא מעיין עונתי בנחל חתירה, ממזרח למכתש. בחורף מי התהום עולים, ויחד עם מי הגשמים והשיטפונות הם ממלאים גב (בריכה טבעית בסלע) בעומק של עד 5 מטרים.","בקיץ נשארים מים רק בחלק התחתון של הגב. אבל מי התהום נשארים גבוהים, וחיות הבר מגיעות אליהם בחפירה קטנה בחול. לכן אסור ללון ליד המעיין: זה מקור המים של היעלים ובעלי החיים באזור.","שימו לב למדרגות החצובות שיורדות אל הגב: הן נחצבו כדי שגמלים יוכלו להגיע אל המים. ליד המעיין יש גם מצד ירקעם, נקודת שמירה מהתקופה הביזנטית."],
+  extra:"השם ירקעם מופיע במקרא, ברשימת משפחות שבט יהודה (דברי הימים א ב, מד).",
+  actH:"פעילות: \"דקה של שקט\"",act:["יושבים ליד הגב דקה שלמה בלי לדבר. מקשיבים: מה שומעים? מים, ציפורים, רוח? אחר כך כל אחד אומר מילה אחת."],
+  q:"אתמול במצדה ראינו מים שנאגרו בעבודה קשה של מלך. כאן המים פשוט נובעים מהאדמה. ממה אנחנו \"שותים\" כשקשה לנו – ממה שבנינו בעצמנו, או ממה שנובע מבפנים?"},
+ {n:15,t:"ניצנה – עיר על דרך הבשמים",time:"כ־10 דקות",at:"ערב בחאן ניצנה, לפני בישולי השדה",img:"nitzana",
+  story:["ניצנה העתיקה הייתה עיר נבטית ליד הגבול עם מצרים, שהתחילה כתחנה לשיירות על דרך הבשמים. מכאן יצאה דרך לסיני ולמצרים, ודרך אחרת לבאר שבע, לחברון ולירושלים.","בחפירות בתל ניצנה נמצאו גם מטבעות חשמונאיים – סימן שלמקום היה קשר מסחרי עם יהודה. כלומר, המטבעות של החשמונאים הגיעו עד כאן, לקצה המדבר.","בתקופה הביזנטית הייתה כאן עיר עם מבצר. בחפירות נמצאו פפירוסים – מסמכים כתובים – ומהם למדו שהשם העתיק של המקום היה נֶסָּנָה.","ב־1986 הגיע לכאן לובה אליאב, עמד על גבעה חשופה וראה בחזונו קהילה חינוכית במדבר. כך נוסד הכפר החינוכי ניצנה."],
+  q:"לובה אליאב הגיע לגבעה ריקה וראה בה קהילה. מה הייתם רוצים \"להדליק\" במקום ריק – בישיבה, בכיתה, ביישוב שלכם?"}
+ ]},
+{d:4,id:"guide-d4",title:"יום חמישי · אופניים בנחל הבשור",sub:"\"כחלק היורד למלחמה וכחלק היושב על הכלים\" – ובשורה לפני חנוכה",
+ where:[["תחילת הרכיבה, לפני היציאה","16: נחל הבשור – דוד ואנשיו"],["עצירה ליד גשר הרכבת","17: רכבת, מים ומלחמה"],["פארק אשכול, ליד המעיינות","18: מסירות במדבר"],["מעגל סיום לפני מנחה","19: בשורה"]],
+ note:"ברכיבה: קסדה חובה, מרווחים בין רוכבים, מים בהישג יד. מספרים רק בעצירות, כשכולם הגיעו ועצרו. לפני היציאה לוודא שוב את הנחיות הביטחון לאזור.",
+ st:[
+ {n:16,t:"נחל הבשור – דוד ואנשיו",time:"כ־10 דקות",at:"תחילת הרכיבה, לפני היציאה",img:"david",
+  story:["נחל הבשור הוא אחד הנחלים הגדולים בנגב. הוא מופיע בתנ״ך בסיפור של דוד (שמואל א, פרק ל).","העמלקים פשטו על צקלג, שרפו אותה ושבו את הנשים והילדים. דוד יצא לרדוף אחריהם עם שש מאות איש. כשהגיעו לנחל הבשור, מאתיים מהם היו עייפים מדי ולא יכלו לחצות. הם נשארו ליד הכלים, ודוד המשיך עם ארבע מאות.","דוד ניצח את העמלקים והחזיר את כולם. בדרך חזרה אמרו כמה מהלוחמים: מי שלא יצא לקרב לא יקבל מהשלל."],
+  src:["שמואל א ל, כד–כה","\"כִּי כְּחֵלֶק הַיֹּרֵד בַּמִּלְחָמָה וּכְחֵלֶק הַיֹּשֵׁב עַל הַכֵּלִים – יַחְדָּו יַחֲלֹקוּ.\"","\"וַיְהִי מֵהַיּוֹם הַהוּא וָמָעְלָה וַיְשִׂמֶהָ לְחֹק וּלְמִשְׁפָּט לְיִשְׂרָאֵל עַד הַיּוֹם הַזֶּה.\""],
+  q:"בטיול הזה היו מי שהובילו, מי שבישלו, מי שסחבו ומי שעודדו. מי אצלנו \"יושב על הכלים\" – ואיך נדאג שגם הוא יקבל חלק?"},
+ {n:17,t:"רכבת, מים ומלחמה",time:"כ־10 דקות",at:"עצירה ליד שרידי גשר הרכבת",img:"bridge",
+  story:["בפארק אשכול יש שרידי גשר שנשא פעם מסילת רכבת. הבריטים בנו אותה במלחמת העולם הראשונה מרפיח לבאר שבע.","המסילה נועדה, בין השאר, לספק מים ממעיינות הבשור לכוחות הבריטיים שחנו בחזית מול הטורקים, מעזה עד באר שבע, וגם להעביר חיילים, אספקה ותחמושת. על גדת הנחל חנה מחנה של חיילים אוסטרלים וניו־זילנדים.","לא הרחק מכאן, על גדת הבשור, גילו החיילים האוסטרלים שרידים של כנסייה ביזנטית עם רצפת פסיפס יפה. הפסיפס הועבר לשימור במוזיאון באוסטרליה."],
+  extraH:"שוב מים",extra:"ביום שני – מעיינות פצאל. ביום שלישי – הבורות במצדה. ביום רביעי – הגב בעין ירקעם. והיום – מעיינות הבשור, שבזכותם עברה כאן רכבת. מי ששולט במים, שולט במדבר.",
+  q:"מה עובר על מקום שכל כך הרבה כוחות נלחמו עליו? מה זה אומר לנו על האחריות שלנו למקום הזה היום?"},
+ {n:18,t:"מסירות במדבר",time:"כ־10 דקות",at:"פארק אשכול, ליד המעיינות",img:"eshkol",
+  story:["פארק אשכול הוא נווה מדבר על הגדה הדרומית של נחל הבשור, עם מעיינות שופעים. הוא נקרא על שם ראש הממשלה לוי אשכול.","האזור הזה, יישובי מועצה אזורית אשכול ועוטף עזה, חווה את השבעה באוקטובר. מי שהיה במסע העוטף מכיר חלק מהסיפורים."],
+  tip:"לפי שיקול המדריך והיכרות עם הקבוצה: אפשר לעצור כאן לרגע של זיכרון בשקט, או לקרוא פסוק או תפילה קצרה. לא חייבים להרחיב.",
+  actH:"פעילות: \"מעגל תודה\"",act:["כל אחד אומר תודה למישהו מהטיול שהיה \"יושב על הכלים\" – עזר בלי שראו: בישל, סחב, חיכה, עודד."],
+  q:"איך הופכים כאב לכוח של בנייה, כמו שעשו כאן אנשי הנגב שוב ושוב?"},
+ {n:19,t:"בשורה",time:"כ־10 דקות",at:"מעגל סיום לפני מנחה",
+  story:["בשור – מאותו שורש כמו בשורה. אנחנו מסיימים את הטיול על נחל ששמו בשורה, יום לפני חנוכה.","התחלנו בשאלה: מה שומר על האור? ראינו ארמונות חרבים, מבצר במדבר, הר שנשחק ושכבה קשה אחת שנשארה, מים שנובעים מהאדמה, ואנשים שחילקו את השלל גם עם מי שנשאר מאחור."],
+  act:["כל קבוצה חוזרת פעם אחרונה לדף המשימה ומוסיפה משפט אחד מהיומיים האחרונים.","כל אחד בוחר \"בשורה\" אחת – משפט אחד מהטיול – שהוא לוקח הביתה ומספר ליד החנוכייה מחר בערב."],
+  quote:"מחר בערב מדליקים נר ראשון. נר אחד קטן – כמו פך אחד, כמו שכבה קשה אחת, כמו מעיין אחד במדבר."}
+ ]}
+];
+
+const GUIDE_SOURCES=[
+ ["הריב בין הורקנוס לאריסטובולוס וכניסת פומפיוס","קדמוניות היהודים יד, 4; מלחמת היהודים א, 6–7"],
+ ["גיור האדומים בימי יוחנן הורקנוס","קדמוניות יג, 257–258"],
+ ["מות פצאל בשבי הפרתים","מלחמת היהודים א, 269–272"],
+ ["המצור על משפחת הורדוס במצדה והגשם","מלחמת היהודים א, 286–287"],
+ ["הסנאט ממנה את הורדוס למלך","מלחמת היהודים א, 282–285"],
+ ["הטבעת אריסטובולוס השלישי ביריחו","קדמוניות טו, 50–56"],
+ ["העיר פצאליס ומגדל פצאל","קדמוניות טז, 144–145; מלחמת היהודים ה, 166"],
+ ["מבני הורדוס במצדה ו\"יונתן הכוהן הגדול\"","מלחמת היהודים ז, 280–303"],
+ ["הורדוס \"עבדא דבית חשמונאי\", בבא בן בוטא ובניין המקדש","תלמוד בבלי, בבא בתרא ג ע״ב – ד ע״א"],
+ ["נס פך השמן","תלמוד בבלי, שבת כא ע״ב"],
+ ["על הניסים, \"מסרת גבורים ביד חלשים\"","סידור, תוספת לחנוכה"],
+ ["דוד בנחל הבשור, \"כחלק היורד במלחמה\"","שמואל א, פרק ל"],
+ ["השם ירקעם","דברי הימים א ב, מד"]
+];
+
+const GUIDE_SPLIT=[
+ ["1. פתיחה","ניסן","כולל חלוקת דפי המשימה"],
+ ["2. בית חשמונאי מתפרק","הרב נחמיה","כולל פעילות החבל ושאלת האחדות"],
+ ["3. פצאל והורדוס","ניסן","כולל פעילות \"בלשי מים\""],
+ ["4. עליית הורדוס","הרב נחמיה","הדיון על כוח מול אמון ומקור התלמוד"],
+ ["5. סיכום היום + חידון בערב בקליה","ניסן",""],
+ ["6–7. מצדה החשמונאית והנס של המים","ניסן","ליד בור המים"],
+ ["8. הארמון הצפוני ומקורות חז״ל","הרב נחמיה",""],
+ ["9. המטבעות","ניסן","בעזרת הצילומים המודפסים"],
+ ["10. מעגל סיום ונרות הכיתה","שניהם","הרב נחמיה פותח בדברי סיום, ניסן מוביל את הפעילות והשירה"]
+];
+
+const GUIDE_CHECK=[
+ "לבחור מראש את נקודת התצפית באמצע ואדי רשאש ומקום מוצל למעגל בעיינות פצאל.",
+ "לתאם כניסה לקבוצה במצדה ולבדוק את שעת פתיחת שביל הנחש.",
+ "להדפיס: דפי משימה (עותק לכל קבוצה), צילומי המטבעות, מפות, כרטיסי נר.",
+ "לבדוק את מצב הביטחון והנחיות התנועה בבקעה ובאזור הבשור בימי הסיור.",
+ "יום רביעי: לבדוק מצב מים בעין ירקעם ותנאי השביל לסנפיר הגדול.",
+ "יום חמישי: קסדות ותקינות אופניים לכל הרוכבים.",
+ "מים: לפחות 3 ליטר לאדם, גם בחורף. כובעים וקרם הגנה."
+];
+
+/* guide render */
+const GC=["#7a6655","#c8743a","#b23a1e","#13817f","#5b4fa3"];
+document.getElementById('gq').textContent=GUIDE_INTRO.q;
+const gi=GUIDE_INTRO;
+document.getElementById('gintro').innerHTML=`<p>${esc(gi.about)}</p><p>${esc(gi.audience)}</p>
+<span class="lbl s">שלוש מילות מפתח</span><div class="kw">${gi.words.map(w=>`<div><b>${esc(w[0])}</b>${esc(w[1])}</div>`).join('')}</div>
+<span class="lbl s">ציר הזמן</span><div class="tl">${gi.timeline.map(t=>`<div><b>${esc(t[0])}</b>${esc(t[1])}</div>`).join('')}</div>
+<span class="lbl s">שתי המשפחות: איך בית הורדוס נכנס לתוך בית חשמונאי</span><p>${esc(gi.families.has)}<br>${esc(gi.families.her)}<br><b>${esc(gi.families.join)}</b></p>
+<span class="lbl s">בדיקת עובדות</span><p class="sub" style="margin:4px 0">העובדות שסומנו בתוכנית המקורית לבדיקה נבדקו מול כתבי יוסף בן מתתיהו, והן נכונות:</p><ul>${gi.facts.map(f=>`<li>${esc(f)}</li>`).join('')}</ul>
+<span class="lbl s">ציוד למדריכים</span><p>${gi.gear.map(esc).join(' · ')}</p>`;
+const gimg=(k,alt)=>GIMG[k]?`<figure><img loading="lazy" src="${GIMG[k]}" alt="${esc(alt)}"><figcaption>הדמיה · Gemini</figcaption></figure>`:'';
+const para=a=>(a||[]).map(p=>`<p>${esc(p)}</p>`).join('');
+const stHTML=s=>`<details class="st"${s.n===GUIDE_DAYS.find(d=>d.st.includes(s)).st[0].n?' open':''}><summary><span class="num">${s.n}</span><span class="tt">${esc(s.t)}<span class="meta">${esc(s.time)} · ${esc(s.at)}</span></span></summary><div class="body">
+${gimg(s.img,s.t)}
+${s.story?`<span class="lbl">הסיפור</span>${para(s.story)}`:''}
+${s.quote&&s.n!==10&&s.n!==19&&s.n!==1?`<p class="quote">${esc(s.quote)}</p>`:''}
+${s.extra?`<span class="lbl s">${esc(s.extraH||'הרחבה')}</span><p>${esc(s.extra)}</p>`:''}
+${s.src?`<div class="srcq"><span class="t">מקור: ${esc(s.src[0])}</span>${s.src.slice(1).map(x=>`<p style="margin:4px 0">${esc(x)}</p>`).join('')}</div>`:''}
+${s.act?`<span class="lbl">${esc(s.actH||(s.story?'פעילות':'מה עושים'))}</span>${para(s.act)}`:''}
+${s.coins?`<div class="coins">${s.coins.map(c=>`<div><b>${esc(c[0])}</b><br>${esc(c[1])}</div>`).join('')}</div>`:''}
+${s.quiz?`<span class="lbl">ערב בקליה, או באוטובוס למצדה: חידון "מי אני?"</span><ol class="quiz">${s.quiz.map(q=>`<li>"${esc(q[0])}" <details><summary>תשובה</summary> ${esc(q[1])}</details></li>`).join('')}</ol>`:''}
+${s.tip?`<span class="lbl s">${esc(s.tipH||'טיפ')}</span><p>${esc(s.tip)}</p>`:''}
+${s.q?`<span class="lbl q">שאלה לדיון</span><p><b>${esc(s.q)}</b></p>`:''}
+${s.quote&&(s.n===10||s.n===19||s.n===1)?`<p class="quote">${esc(s.quote)}</p>`:''}
+</div></details>`;
+const gt=document.getElementById('gtabs');
+gt.innerHTML=GUIDE_DAYS.map(d=>`<button role="tab" data-g="${d.d}" style="--c:${GC[d.d]}">${esc(DAYS[d.d].name)}</button>`).join('');
+document.getElementById('gdays').innerHTML=GUIDE_DAYS.map(d=>`<div class="gday" id="${d.id}" style="--c:${GC[d.d]}">
+<h3>${esc(d.title)}</h3><p class="gsub">${esc(d.sub)}</p>
+<div class="pod-box"><b>🎧 פודקאסט ליום הזה – לשמוע באוטובוס בדרך</b><audio controls preload="none" src="audio/day${d.d}.mp3" style="width:100%"></audio><a href="audio/day${d.d}.mp3" download="פודקאסט-יום-${d.d}.mp3" style="font-size:14px">⬇ הורדת הפודקאסט לטלפון (לשמיעה בלי קליטה)</a></div>
+<span class="lbl s">איפה כל חלק</span><table class="gt stack"><thead><tr><th>מקום</th><th>חלקים</th></tr></thead><tbody>${d.where.map(w=>`<tr><td>${esc(w[0])}</td><td>${esc(w[1])}</td></tr>`).join('')}</tbody></table>
+${d.note?`<div class="gnote">⚠️ ${esc(d.note)}</div>`:''}
+${d.st.map(stHTML).join('')}
+</div>`).join('');
+function gshow(n,scroll){gt.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.g===n));document.querySelectorAll('.gday').forEach(x=>x.classList.toggle('on',x.id==='guide-d'+n));if(scroll)document.getElementById('guide-d'+n).scrollIntoView();}
+gt.addEventListener('click',e=>{const b=e.target.closest('button');if(b)gshow(+b.dataset.g)});
+document.addEventListener('click',e=>{const a=e.target.closest('a[data-gday]');if(a){e.preventDefault();gshow(+a.dataset.gday);document.getElementById('guide').scrollIntoView();}});
+const hm=location.hash.match(/^#guide-d(\d)$/);gshow(hm?+hm[1]:1,!!hm);
+document.querySelector('#gsrc tbody').innerHTML=GUIDE_SOURCES.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('');
+document.querySelector('#gsplit tbody').innerHTML=GUIDE_SPLIT.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${esc(r[2])}</td></tr>`).join('');
+document.getElementById('gcheck').innerHTML=GUIDE_CHECK.map((c,i)=>`<li><label><input type="checkbox" id="gc${i}"><span>${esc(c)}</span></label></li>`).join('');
+
+document.getElementById('credits').innerHTML='צילומים מוויקישיתוף: '+Object.values(IM).map(m=>`<a href="https://commons.wikimedia.org/wiki/File:${encodeURIComponent(m.f)}">${esc(m.t)}</a> – ${esc(m.a)} (${esc(m.l)})`).join(' · ');
+}
+</script>
+</body>
+</html>
